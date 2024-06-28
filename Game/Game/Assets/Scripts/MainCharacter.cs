@@ -10,7 +10,7 @@ public class MainCharacter : MonoBehaviour
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
     public const int MAXIMUM_LIVE_COUNT = 5;
 
-    private SpriteRenderer spriteRender;
+    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidBody2D;
     private double speedX, speedY;
     private long coinCount;
@@ -24,7 +24,7 @@ public class MainCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.spriteRender = GetComponent<SpriteRenderer>();
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.rigidBody2D = GetComponent<Rigidbody2D>();
         this.bag = GetComponent<PlayerBag>();
         this.speedX = 0;
@@ -126,19 +126,25 @@ public class MainCharacter : MonoBehaviour
     void Update()
     {
         UpdateVelocity();
+        UpdateInvincibilityStatus();
     }
 
     void UpdateInvincibilityStatus()
     {
         if (this.invincible)
         {
-            float   currentTime = Time.time,
-                    amountPassed = (currentTime - this.lastDamageTime) * 1000;
+            float currentTime = Time.time,
+                  amountPassed = (currentTime - this.lastDamageTime) * 1000;
             if (amountPassed > NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD)
             {
                 this.invincible = false;
+            } 
+            else
+            {
+                this.spriteRenderer.color = new Color(1f, 1f, 1f, (float)(Math.Sin(amountPassed) + 1) / 2);
             }
-        }
+        } else
+            this.spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
     }
 
     private void FixedUpdate()
