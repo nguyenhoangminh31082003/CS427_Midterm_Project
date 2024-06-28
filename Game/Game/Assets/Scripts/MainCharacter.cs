@@ -13,17 +13,19 @@ public class MainCharacter : MonoBehaviour
     private Rigidbody2D rigidBody2D;
     private double speedX, speedY;
     private long coinCount;
-    private double weight;
     private int liveCount;
+    private PlayerBag bag;
+    private double weight;
 
     // Start is called before the first frame update
     void Start()
     {
         this.spriteRender = GetComponent<SpriteRenderer>();
         this.rigidBody2D = GetComponent<Rigidbody2D>();
-        this.weight = 1;
+        this.bag = GetComponent<PlayerBag>();
         this.speedX = 0;
         this.speedY = 0;
+        this.weight = 1;
         this.liveCount = 5;
         this.coinCount = 0;
     }
@@ -38,12 +40,12 @@ public class MainCharacter : MonoBehaviour
         this.coinCount = newCoinCount;
         return true;
     }
-
+    /*
     public void ModifySpeed(double speedX, double speedY) {
         this.speedX = speedX;
         this.speedY = speedY;
     }
-
+    */
     public long GetCoinCount() {
         return this.coinCount;
     }
@@ -56,6 +58,11 @@ public class MainCharacter : MonoBehaviour
     public double GetWeight()
     {
         return this.weight;
+    }
+
+    public double GetTotalWeight()
+    {
+        return this.weight + this.bag.GetTotalWeight();
     }
 
     public Vector2 GetVelocityVector()
@@ -99,7 +106,7 @@ public class MainCharacter : MonoBehaviour
             this.speedY += 1;
         if (downArrow)
             this.speedY -= 1;
-        double percentage = 1 - weight / MAXIMUM_WEIGHT_LIMIT;
+        double percentage = Math.Max(0, 1 - this.GetTotalWeight() / MAXIMUM_WEIGHT_LIMIT);
         this.speedX *= percentage;
         this.speedY *= percentage;
     }
@@ -112,7 +119,16 @@ public class MainCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //GameManager.setPlayerVelocity(this.speedX, this.speedY);
         this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
+    }
+
+    public bool IsDead()
+    {
+        return this.liveCount <= 0;
+    }
+
+    public bool IsAlive()
+    {
+        return this.liveCount > 0;
     }
 }
