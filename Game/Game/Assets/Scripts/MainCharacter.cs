@@ -14,7 +14,7 @@ public class MainCharacter : MonoBehaviour
     private Rigidbody2D rigidBody2D;
     private double speedX, speedY;
     private long coinCount;
-    private int liveCount;
+    [SerializeField] private int liveCount;
     private PlayerBag bag;
     private double weight;
 
@@ -117,6 +117,10 @@ public class MainCharacter : MonoBehaviour
             this.speedY += 1;
         if (downArrow)
             this.speedY -= 1;
+        if (this.speedX > 0)
+            this.spriteRenderer.flipX = false;
+        else if (this.speedX < 0)
+            this.spriteRenderer.flipX = true;
         double percentage = Math.Max(0, 1 - this.GetTotalWeight() / MAXIMUM_WEIGHT_LIMIT);
         this.speedX *= percentage;
         this.speedY *= percentage;
