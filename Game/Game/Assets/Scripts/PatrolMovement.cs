@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPatrol : MonoBehaviour
+public class PatrolMovement : MonoBehaviour
 {
     [SerializeField] public Transform[] patrolPoints;
     public float speed;

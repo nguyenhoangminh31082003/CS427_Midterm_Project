@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyDash : MonoBehaviour
+public class DashMovement : MonoBehaviour
 {
     public GameObject player;
     public float moveSpeed;

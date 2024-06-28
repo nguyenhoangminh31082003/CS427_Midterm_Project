@@ -1072,6 +1072,7 @@ GameObject:
   - component: {fileID: 687900975}
   - component: {fileID: 687900974}
   - component: {fileID: 687900976}
+  - component: {fileID: 687900977}
   m_Layer: 0
   m_Name: skull
   m_TagString: Untagged
@@ -1244,6 +1245,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &687900977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687900970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678ee258288747b49b1bc8e4cea0866c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 3
 --- !u!1 &779921724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,6 +1267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 779921725}
+  - component: {fileID: 779921726}
   m_Layer: 0
   m_Name: skeleton1
   m_TagString: Untagged
@@ -1280,6 +1295,19 @@ Transform:
   - {fileID: 946700362}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &779921726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779921724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678ee258288747b49b1bc8e4cea0866c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 3
 --- !u!1 &873633843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,8 +1579,9 @@ GameObject:
   - component: {fileID: 1511833076}
   - component: {fileID: 1511833075}
   - component: {fileID: 1511833074}
-  - component: {fileID: 1511833073}
   - component: {fileID: 1511833078}
+  - component: {fileID: 1511833080}
+  - component: {fileID: 1511833079}
   m_Layer: 0
   m_Name: vampire
   m_TagString: Untagged
@@ -1560,23 +1589,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1511833073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511833072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d3a41340b2e0944b379dce3597f683, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 528890787}
-  moveSpeed: 2
-  dashPower: 5
-  dashRadius: 4
-  isDashing: 0
 --- !u!50 &1511833074
 Rigidbody2D:
   serializedVersion: 4
@@ -1737,6 +1749,36 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1511833079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511833072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d3a41340b2e0944b379dce3597f683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 528890787}
+  moveSpeed: 2
+  dashPower: 5
+  dashRadius: 4
+  isDashing: 0
+--- !u!114 &1511833080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511833072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678ee258288747b49b1bc8e4cea0866c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 3
 --- !u!1 &1579283231
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyChase : MonoBehaviour
+public class ChaseMovement : MonoBehaviour
 {
     public GameObject player;
     public float speed;
