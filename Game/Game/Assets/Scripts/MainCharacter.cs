@@ -6,11 +6,13 @@ using System;
 public class MainCharacter : MonoBehaviour
 {
 
-    const double WEIGHT_LIMIT = 1E8;
+    const double MAXIMUM_WEIGHT_LIMIT = 1E8;
+    const int MAXIMUM_LIVE_COUNT = 5;
 
     private SpriteRenderer spriteRender;
     private Rigidbody2D rigidBody2D;
     private double speedX, speedY;
+    private long coinCount;
     private double weight;
     private int liveCount;
 
@@ -23,6 +25,38 @@ public class MainCharacter : MonoBehaviour
         this.speedX = 0;
         this.speedY = 0;
         this.liveCount = 5;
+        this.coinCount = 0;
+    }
+
+    public bool ChangeCoinCount(long change)
+    {
+        long newCoinCount = this.coinCount + change;
+        if (newCoinCount < 0)
+        {
+            return false;
+        }
+        this.coinCount = newCoinCount;
+        return true;
+    }
+
+    public bool DecreaseLiveCount()
+    {
+        if (this.liveCount > 0)
+        {
+            --this.liveCount; 
+            return true;
+        }
+        return false;
+    }
+
+    public bool IncreaseLiveCount()
+    {
+        if (this.liveCount < MAXIMUM_LIVE_COUNT)
+        {
+            ++this.liveCount;
+            return true;
+        }
+        return false;
     }
 
     void UpdateVelocity()
@@ -34,14 +68,14 @@ public class MainCharacter : MonoBehaviour
         this.speedX = 0;
         this.speedY = 0;
         if (leftArrow)
-            this.speedX += 1;
-        if (rightArrow)
             this.speedX -= 1;
+        if (rightArrow)
+            this.speedX += 1;
         if (upArrow)
             this.speedY += 1;
         if (downArrow)
             this.speedY -= 1;
-        double percentage = 1 - weight / WEIGHT_LIMIT;
+        double percentage = 1 - weight / MAXIMUM_WEIGHT_LIMIT;
         this.speedX *= percentage;
         this.speedY *= percentage;
     }
