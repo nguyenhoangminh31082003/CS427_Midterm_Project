@@ -1,11 +1,12 @@
+using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using System;
 
 public class MainCharacter : MonoBehaviour
 {
 
+    public const double NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD = 4000;
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
     public const int MAXIMUM_LIVE_COUNT = 5;
 
@@ -16,6 +17,9 @@ public class MainCharacter : MonoBehaviour
     private int liveCount;
     private PlayerBag bag;
     private double weight;
+
+    private bool invincible;
+    private float lastDamageTime;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +32,9 @@ public class MainCharacter : MonoBehaviour
         this.weight = 1;
         this.liveCount = 5;
         this.coinCount = 0;
+
+        this.invincible = false;
+        this.lastDamageTime = 0;
     }
 
     public bool ChangeCoinCount(long change)
@@ -72,9 +79,13 @@ public class MainCharacter : MonoBehaviour
 
     public bool DecreaseLiveCount()
     {
+        if (this.invincible)
+            return false;
         if (this.liveCount > 0)
         {
-            --this.liveCount; 
+            --this.liveCount;
+            this.invincible = true;
+            this.lastDamageTime = Time.time;
             return true;
         }
         return false;
@@ -115,6 +126,19 @@ public class MainCharacter : MonoBehaviour
     void Update()
     {
         UpdateVelocity();
+    }
+
+    void UpdateInvincibilityStatus()
+    {
+        if (this.invincible)
+        {
+            float   currentTime = Time.time,
+                    amountPassed = (currentTime - this.lastDamageTime) * 1000;
+            if (amountPassed > NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD)
+            {
+                this.invincible = false;
+            }
+        }
     }
 
     private void FixedUpdate()
