@@ -6,8 +6,8 @@ using System;
 public class MainCharacter : MonoBehaviour
 {
 
-    const double MAXIMUM_WEIGHT_LIMIT = 1E8;
-    const int MAXIMUM_LIVE_COUNT = 5;
+    public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
+    public const int MAXIMUM_LIVE_COUNT = 5;
 
     private SpriteRenderer spriteRender;
     private Rigidbody2D rigidBody2D;
@@ -38,6 +38,30 @@ public class MainCharacter : MonoBehaviour
         this.coinCount = newCoinCount;
         return true;
     }
+
+    public void ModifySpeed(double speedX, double speedY) {
+        this.speedX = speedX;
+        this.speedY = speedY;
+    }
+
+    public long GetCoinCount() {
+        return this.coinCount;
+    }
+
+    public int GetLiveConut()
+    {
+        return this.liveCount;
+    }
+
+    public double GetWeight()
+    {
+        return this.weight;
+    }
+
+    public Vector2 GetVelocityVector()
+    {
+        return new Vector2((float)this.speedX, (float)this.speedY);
+    } 
 
     public bool DecreaseLiveCount()
     {
