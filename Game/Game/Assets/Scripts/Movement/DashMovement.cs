@@ -1,34 +1,20 @@
 using System.Collections;
 using UnityEngine;
 
-public class DashMovement : MonoBehaviour
+public class DashMovement : MovementBase
 {
-    public GameObject player;
     public float moveSpeed;
     public float dashPower;
-
     private float dashingTime = 1f;
-
     private float dashingCooldown = 2f;
     public float dashRadius;
-
-    private Rigidbody2D rb;
-
     public bool isDashing = false;
-
     private bool canDash = true;
-
     private Vector2 direction;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    void Update()
-    {
-        if (isDashing)
-            return;
+    protected override void Update()
+    {        
+        if (isDashing) { return; }
 
         direction = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
         
@@ -38,14 +24,14 @@ public class DashMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate() {
-        if (isDashing) {
-            return;
-        }
+    protected override void FixedUpdate() {
+        if (knockback.gettingKnockedBack) { return; }
+
+        if (isDashing) { return; }
         rb.velocity = direction * moveSpeed;
     }
 
-    IEnumerator Dash() {
+    private IEnumerator Dash() {
         canDash = false;
         isDashing = true;
         rb.velocity = direction * dashPower;
@@ -55,12 +41,12 @@ public class DashMovement : MonoBehaviour
         canDash = true;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject == player)
-        {
-            // Deal damage to the player
-            print("damage");
-        }
-    }
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.gameObject == player)
+    //     {
+    //         // Deal damage to the player
+    //         print("damage");
+    //     }
+    // }
 }

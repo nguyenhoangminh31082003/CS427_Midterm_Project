@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    // temporary
+    public GameObject player;
+
+    [SerializeField] private GameObject deathVFX;
     [SerializeField] private int initialHealth = 3;
     private int currentHealth;
-    // Start is called before the first frame update
+    private Knockback knockback;
+    private Flash flash;
+
+    void Awake() {
+        flash = GetComponent<Flash>();
+        knockback = GetComponent<Knockback>();
+    }
     void Start()
     {
         currentHealth = initialHealth;
@@ -14,10 +24,14 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage) {
         currentHealth -= damage;
+        // Debug.Log(currentHealth);
+        knockback.GetKnockedBack(player.transform, 15f);
+        StartCoroutine(flash.FlashRoutine());
     }
 
-    private void DetectDeath() {
+    public void CheckDeath() {
         if (currentHealth <= 0) {
+            Instantiate(deathVFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

@@ -2,23 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolMovement : MonoBehaviour
+public class PatrolMovement : MovementBase
 {
     [SerializeField] public Transform[] patrolPoints;
     public float speed;
-    private int targetPoint = 0;
-    private SpriteRenderer sr;
+    private int targetPoint;
+    private Vector2 direction;
 
-    private Rigidbody2D rb;
-
-    // Start is called before the first frame update
     void Start() {
-        sr = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
+        targetPoint = 0;
     }
-
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {            
         // Check if the enemy has reached the current waypoint
         if (Vector2.Distance(transform.position, patrolPoints[targetPoint].position) < 0.1f)
@@ -26,14 +21,15 @@ public class PatrolMovement : MonoBehaviour
             targetPoint = (targetPoint + 1) % patrolPoints.Length;
             FaceWaypoint(patrolPoints[targetPoint]);
         }
+        direction = ((Vector2)patrolPoints[targetPoint].position - (Vector2)transform.position).normalized;
     }
 
-    void FixedUpdate() {
-        Vector2 direction = ((Vector2)patrolPoints[targetPoint].position - (Vector2)transform.position).normalized;
-        // Move in the correct direction with the set force strength
+    protected override void FixedUpdate() {
+        if (knockback.gettingKnockedBack) { return; }
+        
         rb.MovePosition(rb.position + direction * (speed * Time.fixedDeltaTime));
     }
-    void FaceWaypoint(Transform waypoint)
+    private void FaceWaypoint(Transform waypoint)
     {
         if (waypoint != null)
         {
