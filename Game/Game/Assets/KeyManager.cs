@@ -26,4 +26,8 @@ public class KeyManager : MonoBehaviour
             _inventoryItems.Remove(item);
         }
     }
+
+    public bool CheckRequiredItem(KeyItem item) {
+        return _inventoryItems.Contains(item);
+    }
 }
