@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChaseMovement : MovementBase
 {
+    private GameManager gameManager;
     public float speed;
     public float chaseRadius;
     private Vector2 originalPosition;
@@ -11,6 +12,7 @@ public class ChaseMovement : MovementBase
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.Instance;
         originalPosition = transform.position;
     }
 

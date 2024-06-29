@@ -13,7 +13,7 @@ public class MainCharacter : MonoBehaviour
     public const double NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD = 4000;
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
     public const int MAXIMUM_LIVE_COUNT = 5;
-
+    private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidBody2D;
     private double speedX, speedY;
@@ -39,6 +39,8 @@ public class MainCharacter : MonoBehaviour
 
         this.invincible = false;
         this.lastDamageTime = 0;
+
+        this.gameManager = GameManager.Instance;
     }
 
     public bool ChangeCoinCount(long change)
@@ -57,7 +59,8 @@ public class MainCharacter : MonoBehaviour
         this.speedY = speedY;
     }
     */
-    public long GetCoinCount() {
+    public long GetCoinCount()
+    {
         return this.coinCount;
     }
 
@@ -79,7 +82,7 @@ public class MainCharacter : MonoBehaviour
     public Vector2 GetVelocityVector()
     {
         return new Vector2((float)this.speedX, (float)this.speedY);
-    } 
+    }
 
     public bool DecreaseLiveCount()
     {
@@ -153,12 +156,13 @@ public class MainCharacter : MonoBehaviour
             if (amountPassed > NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD)
             {
                 this.invincible = false;
-            } 
+            }
             else
             {
                 this.spriteRenderer.color = new Color(1f, 1f, 1f, (float)(Math.Sin(amountPassed) + 1) / 2);
             }
-        } else
+        }
+        else
             this.spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
     }
 
@@ -175,5 +179,13 @@ public class MainCharacter : MonoBehaviour
     public bool IsAlive()
     {
         return this.liveCount > 0;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.transform.tag == "Monster")
+        {
+            gameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);
+        }
     }
 }
