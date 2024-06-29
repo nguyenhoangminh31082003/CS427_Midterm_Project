@@ -14,6 +14,7 @@ public class Destructible : MonoBehaviour
     // }
     
     private void OnCollisionEnter2D(Collision2D other) {
+        GetComponent<PickUpSpawner>().DropItems();
         Instantiate(destroyVFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
 
