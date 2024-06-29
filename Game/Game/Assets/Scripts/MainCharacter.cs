@@ -2,9 +2,13 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class MainCharacter : MonoBehaviour
 {
+
+    [SerializeField] private TextMeshProUGUI liveCountText;
+    [SerializeField] private TextMeshProUGUI coinCountText;
 
     public const double NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD = 4000;
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
@@ -131,6 +135,13 @@ public class MainCharacter : MonoBehaviour
     {
         UpdateVelocity();
         UpdateInvincibilityStatus();
+        UpdateCanvasElement();
+    }
+
+    void UpdateCanvasElement()
+    {
+        this.liveCountText.text = this.liveCount.ToString();
+        this.coinCountText.text = this.coinCount.ToString();
     }
 
     void UpdateInvincibilityStatus()
