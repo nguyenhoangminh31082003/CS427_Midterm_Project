@@ -14,7 +14,11 @@ public class ChaseMovement : MovementBase
 
     public override void Roaming()
     {
-        moveDir = (originalPosition - (Vector2)transform.position).normalized;
+        if (Vector2.Distance(transform.position, originalPosition) > 0.1f) {
+            moveDir = (originalPosition - (Vector2)transform.position).normalized;
+        } else {
+            StopMoving();
+        }
         
         if (Vector2.Distance(player.transform.position, originalPosition) <= chaseRadius) {
             enemyController.SwitchToAttacking();

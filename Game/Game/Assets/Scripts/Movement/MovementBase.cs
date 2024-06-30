@@ -24,12 +24,12 @@ public abstract class MovementBase : MonoBehaviour
     protected virtual void Update() {}
     protected virtual void FixedUpdate() {
         if (knockback.gettingKnockedBack) { return; }
-        
+
         rb.MovePosition(rb.position + moveDir * (moveSpeed * Time.fixedDeltaTime));
 
-        if (moveDir.x < 0) {
+        if (moveDir.x < -0.1f) {
             sr.flipX = true;
-        } else {
+        } else if (moveDir.x > 0.1f) {
             sr.flipX = false;
         }
     }
