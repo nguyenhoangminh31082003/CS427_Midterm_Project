@@ -3,50 +3,49 @@ using UnityEngine;
 
 public class DashMovement : MovementBase
 {
-    public float moveSpeed;
-    public float dashPower;
-    private float dashingTime = 1f;
-    private float dashingCooldown = 2f;
-    public float dashRadius;
+    private float originalSpeed;
+    public float dashSpeed = 7f;
+    public float dashRadius = 4f;
     public bool isDashing = false;
-    private bool canDash = true;
-    private Vector2 direction;
+    public bool canDash = true;
 
-    protected override void Update()
-    {        
-        if (isDashing) { return; }
+    protected override void Start() 
+    {
+        originalSpeed = moveSpeed;
+    }
 
-        direction = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
-        
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer <= dashRadius && canDash){
-            StartCoroutine(Dash());
+    public override void Roaming()
+    {
+        if (Vector2.Distance(transform.position, player.transform.position) <= dashRadius) {
+            enemyController.SwitchToAttacking();
+        }
+
+        moveDir = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
+    }
+
+    public override void Attacking()
+    {
+        if (Vector2.Distance(transform.position, player.transform.position) > dashRadius) {
+            enemyController.SwitchToRoaming();
+        }
+
+        moveDir = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
+
+        if (canDash && !isDashing) {
+            canDash = false;
+            isDashing = true;
+            moveSpeed *= dashSpeed;
+            StartCoroutine(EndDashRoutine());
         }
     }
 
-    protected override void FixedUpdate() {
-        if (knockback.gettingKnockedBack) { return; }
-
-        if (isDashing) { return; }
-        rb.velocity = direction * moveSpeed;
-    }
-
-    private IEnumerator Dash() {
-        canDash = false;
-        isDashing = true;
-        rb.velocity = direction * dashPower;
-        yield return new WaitForSeconds(dashingTime);
+    private IEnumerator EndDashRoutine() {
+        float dashTime = .2f;
+        float dashCooldown = .25f;
+        yield return new WaitForSeconds(dashTime);
         isDashing = false;
-        yield return new WaitForSeconds(dashingCooldown);
+        moveSpeed = originalSpeed;
+        yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
-
-    // void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.gameObject == player)
-    //     {
-    //         // Deal damage to the player
-    //         print("damage");
-    //     }
-    // }
 }

@@ -4,38 +4,29 @@ using UnityEngine;
 
 public class ChaseMovement : MovementBase
 {
-    public float speed;
     public float chaseRadius;
     private Vector2 originalPosition;
-    private bool isChasing = false;
-    // Start is called before the first frame update
-    void Start()
+
+    protected override void Start()
     {
         originalPosition = transform.position;
     }
 
-    // Update is called once per frame
-    protected override void Update()
+    public override void Roaming()
     {
-        float distanceToPlayer = Vector2.Distance(player.transform.position, originalPosition);
-
-        isChasing = distanceToPlayer <= chaseRadius;
+        moveDir = (originalPosition - (Vector2)transform.position).normalized;
+        
+        if (Vector2.Distance(player.transform.position, originalPosition) <= chaseRadius) {
+            enemyController.SwitchToAttacking();
+        }
     }
 
-    protected override void FixedUpdate() {
-        if (knockback.gettingKnockedBack) {
-            return;
+    public override void Attacking()
+    {
+        moveDir = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
+        
+        if (Vector2.Distance(player.transform.position, originalPosition) > chaseRadius) {
+            enemyController.SwitchToRoaming();
         }
-
-        Vector2 direction;
-        if (isChasing) {
-            direction = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
-        }
-        else {
-            direction = (originalPosition - (Vector2)transform.position).normalized;
-        }
-        // Move in the correct direction with the set force strength
-        rb.MovePosition(rb.position + direction * (speed * Time.fixedDeltaTime));
     }
-
 }
