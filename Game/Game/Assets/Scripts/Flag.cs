@@ -15,17 +15,17 @@ public class Flag : Interactable
         Debug.Log(storyPlot);
     }
 
-    protected override void OnPlayerEnterRange()
-    {
-        base.OnPlayerEnterRange();
+    // protected override void OnPlayerEnterRange()
+    // {
+    //     base.OnPlayerEnterRange();
         
-        // Debug.Log("Player entered flag interaction range");
-    }
+    //     // Debug.Log("Player entered flag interaction range");
+    // }
 
-    protected override void OnPlayerExitRange()
-    {
-        base.OnPlayerExitRange();
+    // protected override void OnPlayerExitRange()
+    // {
+    //     base.OnPlayerExitRange();
         
-        // Debug.Log("Player exited flag interaction range");
-    }
+    //     // Debug.Log("Player exited flag interaction range");
+    // }
 }

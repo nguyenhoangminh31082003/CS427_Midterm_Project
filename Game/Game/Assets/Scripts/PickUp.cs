@@ -9,6 +9,8 @@ public class Pickup : MonoBehaviour
         GoldCoin,
         StaminaGlobe,
         HealthGlobe,
+        SilverKey,
+        GoldKey
     }
     [SerializeField] private PickUpType pickUpType;
     [SerializeField] private float pickUpDistance = 5f;
@@ -25,6 +27,7 @@ public class Pickup : MonoBehaviour
     }
 
     private void Start() {
+        if (pickUpType == PickUpType.SilverKey || pickUpType == PickUpType.GoldKey) { return; }
         StartCoroutine(AnimCurveSpawnRoutine());
     }
 
@@ -88,6 +91,14 @@ public class Pickup : MonoBehaviour
                 // do stamina globe stuff
                 Debug.Log("StaminaGlobe");
                 break;
+            case PickUpType.SilverKey:
+                KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+                Debug.Log("SilverKey");
+                break;
+            case PickUpType.GoldKey:
+                Debug.Log("GoldKey");
+                KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
+                break;    
         }
     }
 }
