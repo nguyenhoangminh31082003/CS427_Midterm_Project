@@ -185,7 +185,7 @@ public class MainCharacter : MonoBehaviour
     {
         if (other.transform.tag == "Monster")
         {
-            gameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);
+            gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
         }
     }
 }
