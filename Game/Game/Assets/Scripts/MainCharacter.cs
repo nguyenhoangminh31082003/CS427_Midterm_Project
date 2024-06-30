@@ -169,6 +169,10 @@ public class MainCharacter : MonoBehaviour
     private void FixedUpdate()
     {
         this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
+        if (IsDead())
+        {
+            Destroy(gameObject);
+        }
     }
 
     public bool IsDead()
