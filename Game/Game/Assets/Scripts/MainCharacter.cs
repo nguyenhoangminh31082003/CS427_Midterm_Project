@@ -7,6 +7,8 @@ using TMPro;
 public class MainCharacter : MonoBehaviour
 {
 
+    public static MainCharacter Instance;
+
     [SerializeField] private TextMeshProUGUI liveCountText;
     [SerializeField] private TextMeshProUGUI coinCountText;
 
@@ -24,6 +26,12 @@ public class MainCharacter : MonoBehaviour
 
     private bool invincible;
     private float lastDamageTime;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
