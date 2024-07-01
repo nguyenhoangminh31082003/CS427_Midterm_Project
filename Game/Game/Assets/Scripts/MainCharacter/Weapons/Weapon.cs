@@ -8,14 +8,21 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected int number;
     [SerializeField] protected bool currentlyUsed;
 
+    private SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         this.number = 0;
 
         this.currentlyUsed = false;
 
         this.gameObject.SetActive(this.currentlyUsed);
+    
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = this.currentlyUsed;
     }
 
     // Update is called once per frame
