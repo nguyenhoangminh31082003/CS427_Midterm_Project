@@ -6,6 +6,8 @@ public class Sword : Weapon
 {
 
     [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION;
+    [SerializeField] private Sprite movingSwordSprite;
+    [SerializeField] private Sprite stillWordSprite;
 
     bool attacking;
     float attackStartTime;
@@ -30,10 +32,9 @@ public class Sword : Weapon
         if (this.attacking || !this.currentlyUsed)
             return false;
 
-        //Debug.Log("Attack started successfully!!!");
-
         this.attacking = true;
         this.attackStartTime = Time.time;
+        this.spriteRenderer.sprite = this.movingSwordSprite;
 
         return true;
     }
@@ -47,13 +48,8 @@ public class Sword : Weapon
         if (amountPassed > NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION)
         {
             this.attacking = false;
+            this.spriteRenderer.sprite = this.stillWordSprite;
             this.transform.rotation = this.GetDefaultRotation();
-        }
-        else
-        {
-            float angle = 180 * amountPassed / NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION;
-            Debug.Log(angle);
-            this.transform.rotation = Quaternion.Euler(0, 0, 90 - angle);
         }
     }
 
