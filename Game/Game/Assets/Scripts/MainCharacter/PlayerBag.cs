@@ -6,9 +6,17 @@ using UnityEngine;
 public class PlayerBag : MonoBehaviour
 {
 
+    public static PlayerBag Instance;
+
     [SerializeField] private int currentWeaponIndex;
     private List<Weapon> weapons;
     private double totalWeight;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -51,10 +59,18 @@ public class PlayerBag : MonoBehaviour
                 weapon.IncreaseNumber(1);
                 weapon.StartUsing();
 
-                Debug.Log("UPDATE!!!!!!!!!!!!");
+                //Debug.Log("UPDATE!!!!!!!!!!!!");
             }
 
-            
+            //Debug.Log("Update " + this.currentWeaponIndex);
         }
+    }
+
+    public bool UseCurrentWeaponToAttack()
+    {
+        //Debug.Log(this.currentWeaponIndex + " " + Instance.currentWeaponIndex);
+        if (this.currentWeaponIndex < 0)
+            return false;
+        return this.weapons[this.currentWeaponIndex].Attack();
     }
 }

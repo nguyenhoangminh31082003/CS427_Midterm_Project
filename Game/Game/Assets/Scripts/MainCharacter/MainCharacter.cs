@@ -149,15 +149,25 @@ public class MainCharacter : MonoBehaviour
         UpdateVelocity();
         UpdateInvincibilityStatus();
         UpdateCanvasElement();
+        UpdateAttack();
     }
 
-    void UpdateCanvasElement()
+    void UpdateAttack()
+    {
+        bool spaceEntered = Input.GetKey(KeyCode.Space);
+        if (spaceEntered)
+        {
+            this.bag.UseCurrentWeaponToAttack();
+        }
+    }
+
+    private void UpdateCanvasElement()
     {
         this.liveCountText.text = this.liveCount.ToString();
         this.coinCountText.text = this.coinCount.ToString();
     }
 
-    void UpdateInvincibilityStatus()
+    private void UpdateInvincibilityStatus()
     {
         if (this.invincible)
         {

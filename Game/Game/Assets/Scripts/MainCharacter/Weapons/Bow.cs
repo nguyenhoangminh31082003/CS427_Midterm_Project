@@ -17,4 +17,9 @@ public class Bow : Weapon
     {
         base.Update();
     }
+
+    public override bool Attack()
+    {
+        return false;
+    }
 }

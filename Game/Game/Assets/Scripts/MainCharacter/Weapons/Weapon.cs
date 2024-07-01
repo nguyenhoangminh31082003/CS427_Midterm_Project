@@ -6,8 +6,10 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    [SerializeField] protected int number;
+    [SerializeField] protected double weightPerUnit;
     [SerializeField] protected bool currentlyUsed;
+    [SerializeField] protected int number;
+
 
     protected SpriteRenderer spriteRenderer;
 
@@ -53,13 +55,20 @@ public class Weapon : MonoBehaviour
     protected void UpdateSpriteRenderer()
     {
         if (this.spriteRenderer != null)
+        {
             this.spriteRenderer.enabled = this.currentlyUsed;
+        }  
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
         UpdateSpriteRenderer();
+    }
+
+    public virtual bool Attack()
+    {
+        return false;
     }
  
 }
