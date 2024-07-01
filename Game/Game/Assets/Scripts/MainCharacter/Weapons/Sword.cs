@@ -5,7 +5,7 @@ using UnityEngine;
 public class Sword : Weapon
 {
 
-    [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION = 1000;
+    [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION;
 
     bool attacking;
     float attackStartTime;
@@ -30,7 +30,7 @@ public class Sword : Weapon
         if (this.attacking || !this.currentlyUsed)
             return false;
 
-        Debug.Log("Attack started successfully!!!");
+        //Debug.Log("Attack started successfully!!!");
 
         this.attacking = true;
         this.attackStartTime = Time.time;
@@ -51,7 +51,8 @@ public class Sword : Weapon
         }
         else
         {
-            float angle = 90 * amountPassed / NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION;
+            float angle = 180 * amountPassed / NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION;
+            Debug.Log(angle);
             this.transform.rotation = Quaternion.Euler(0, 0, 90 - angle);
         }
     }

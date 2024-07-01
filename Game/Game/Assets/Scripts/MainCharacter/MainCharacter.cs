@@ -11,6 +11,7 @@ public class MainCharacter : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI liveCountText;
     [SerializeField] private TextMeshProUGUI coinCountText;
+    [SerializeField] private GameObject playerBag;
 
     public const double NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD = 4000;
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
@@ -37,11 +38,11 @@ public class MainCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.spriteRenderer = GetComponent<SpriteRenderer>();
-        this.rigidBody2D = GetComponent<Rigidbody2D>();
-        //Debug.Log("HELLO!!!");
-        this.bag = GetComponent<PlayerBag>();
-        //Debug.Log("HELLO!!!!!");
+        this.spriteRenderer = this.GetComponent<SpriteRenderer>();
+        this.rigidBody2D = this.GetComponent<Rigidbody2D>();
+        //Debug.Log(this.playerBag.GetComponent<PlayerBag>());
+        //this.bag = GetComponent<PlayerBag>();
+        this.bag = this.playerBag.GetComponent<PlayerBag>();
         this.speedX = 0;
         this.speedY = 0;
         this.weight = 1;
@@ -116,7 +117,7 @@ public class MainCharacter : MonoBehaviour
         return false;
     }
 
-    void UpdateVelocity()
+    private void UpdateVelocity()
     {
         bool rightArrow = Input.GetKey(KeyCode.RightArrow)  || Input.GetKey(KeyCode.D),
              leftArrow  = Input.GetKey(KeyCode.LeftArrow)   || Input.GetKey(KeyCode.A),
@@ -140,6 +141,7 @@ public class MainCharacter : MonoBehaviour
         {
             this.transform.localScale = new Vector3(-1, 1, 1);
         }
+        //Debug.Log("bag " + (this.bag == null) + "???");
         double percentage = Math.Max(0, 1 - this.GetTotalWeight() / MAXIMUM_WEIGHT_LIMIT);
         this.speedX *= percentage;
         this.speedY *= percentage;
@@ -154,7 +156,7 @@ public class MainCharacter : MonoBehaviour
         UpdateAttack();
     }
 
-    void UpdateAttack()
+    private void UpdateAttack()
     {
         bool spaceEntered = Input.GetKey(KeyCode.Space);
         if (spaceEntered)

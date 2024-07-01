@@ -22,7 +22,7 @@ public class Weapon : MonoBehaviour
 
         this.gameObject.SetActive(this.currentlyUsed);
     
-        this.spriteRenderer = GetComponent<SpriteRenderer>();
+        this.spriteRenderer = this.GetComponent<SpriteRenderer>();
 
         if (spriteRenderer != null)
             spriteRenderer.enabled = this.currentlyUsed;
@@ -63,6 +63,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        //Debug.Log("Weapon UPDATE!!!");
         UpdateSpriteRenderer();
     }
 

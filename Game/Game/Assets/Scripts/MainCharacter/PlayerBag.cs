@@ -28,8 +28,7 @@ public class PlayerBag : MonoBehaviour
             }
         }
 
-        Debug.Log("Count " + this.weapons.Count);
-        Debug.Log("Game object " + this.gameObject);
+        //Debug.Log(this.weapons.Count);
 
         if (this.weapons.Count > 0)
         {
@@ -41,7 +40,11 @@ public class PlayerBag : MonoBehaviour
             {
                 weapon.IncreaseNumber(1);
                 weapon.StartUsing();
+
+                //Debug.Log(weapon.GetNumber());
             }
+
+            //Debug.Log(this.weapons[this.currentWeaponIndex].GetNumber());
         }
     }
 
@@ -53,6 +56,23 @@ public class PlayerBag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(this.weapons[this.currentWeaponIndex].GetNumber());
+        if (this.currentWeaponIndex >= 0)
+        {
+            
+
+            Weapon weapon = this.weapons[this.currentWeaponIndex];
+
+            if (weapon.GetNumber() == 0)
+            {
+                weapon.IncreaseNumber(1);
+                weapon.StartUsing();
+
+                //Debug.Log(weapon.GetNumber());
+            }
+
+            //Debug.Log(this.weapons[this.currentWeaponIndex].GetNumber());
+        }
     }
 
     public bool UseCurrentWeaponToAttack()
