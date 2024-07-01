@@ -4,28 +4,12 @@ public class Flag : Interactable
 {
     public string storyPlot;
 
+    [SerializeField] private Dialogue dialogue;
+
     protected override void Interact()
     {
         Debug.Log("Interacting with the flag");
-        DisplayStoryPlot();
+        DialogueManager.Instance.StartDialogue(dialogue);
     }
 
-    private void DisplayStoryPlot()
-    {
-        Debug.Log(storyPlot);
-    }
-
-    // protected override void OnPlayerEnterRange()
-    // {
-    //     base.OnPlayerEnterRange();
-        
-    //     // Debug.Log("Player entered flag interaction range");
-    // }
-
-    // protected override void OnPlayerExitRange()
-    // {
-    //     base.OnPlayerExitRange();
-        
-    //     // Debug.Log("Player exited flag interaction range");
-    // }
 }

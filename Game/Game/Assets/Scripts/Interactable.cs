@@ -22,10 +22,15 @@ public abstract class Interactable : MonoBehaviour
     {
         // Check the distance between the player and the interactable object
         float distance = Vector2.Distance(transform.position, player.transform.position);
+
         if (distance <= interactionRadius)
         {
-            isPlayerInRange = true;
-            OnPlayerEnterRange();
+            if (!isPlayerInRange)
+            {
+                isPlayerInRange = true;
+                OnPlayerEnterRange();
+            }
+
             // Check if the player presses the "E" key
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -45,19 +50,17 @@ public abstract class Interactable : MonoBehaviour
     // Method called when the player presses "E" within range
     protected abstract void Interact();
 
-    // Optional: Method called when the player enters the interaction range
     protected virtual void OnPlayerEnterRange()
     {
-        // You can add visual feedback or other effects here
+        // vi du: canvas.gameObject.SetActive(true);
     }
 
-    // Optional: Method called when the player exits the interaction range
     protected virtual void OnPlayerExitRange()
     {
-        // You can add visual feedback or other effects here
+        // vi du: canvas.gameObject.SetActive(false);
     }
 
-    // Optional: Draw the interaction radius in the editor
+    // Draw the interaction radius in the editor
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
