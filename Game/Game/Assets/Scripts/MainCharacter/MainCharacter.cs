@@ -116,10 +116,10 @@ public class MainCharacter : MonoBehaviour
 
     void UpdateVelocity()
     {
-        bool rightArrow = Input.GetKey(KeyCode.RightArrow),
-             leftArrow = Input.GetKey(KeyCode.LeftArrow),
-             upArrow = Input.GetKey(KeyCode.UpArrow),
-             downArrow = Input.GetKey(KeyCode.DownArrow);
+        bool rightArrow = Input.GetKey(KeyCode.RightArrow)  || Input.GetKey(KeyCode.D),
+             leftArrow  = Input.GetKey(KeyCode.LeftArrow)   || Input.GetKey(KeyCode.A),
+             upArrow    = Input.GetKey(KeyCode.UpArrow)     || Input.GetKey(KeyCode.W),
+             downArrow  = Input.GetKey(KeyCode.DownArrow)   || Input.GetKey(KeyCode.S);
         this.speedX = 0;
         this.speedY = 0;
         if (leftArrow)
@@ -188,5 +188,15 @@ public class MainCharacter : MonoBehaviour
     public bool IsAlive()
     {
         return this.liveCount > 0;
+    }
+
+    public void PauseAnimation()
+    {
+        this.GetComponent<Animator>().enabled = false;
+    }
+
+    public void ContinueAnimation()
+    {
+        this.GetComponent<Animator>().enabled = true;
     }
 }
