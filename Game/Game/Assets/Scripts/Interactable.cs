@@ -6,9 +6,11 @@ public abstract class Interactable : MonoBehaviour
 {
     public float interactionRadius = 2.0f;  // Radius within which the player can interact
     private bool isPlayerInRange = false;
-    public GameObject player;
+    private MainCharacter player;
 
-    // Start is called before the first frame update
+    protected virtual void Awake() {
+        player = MainCharacter.Instance;
+    }
     protected virtual void Start()
     {
         
@@ -18,8 +20,6 @@ public abstract class Interactable : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (player == null) return;
-
         // Check the distance between the player and the interactable object
         float distance = Vector2.Distance(transform.position, player.transform.position);
         if (distance <= interactionRadius)

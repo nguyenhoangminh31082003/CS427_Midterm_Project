@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     // temporary
-    public GameObject player;
+
+    private MainCharacter player;
 
     [SerializeField] private GameObject deathVFX;
     [SerializeField] private int initialHealth = 3;
@@ -16,6 +17,7 @@ public class EnemyHealth : MonoBehaviour
     void Awake() {
         flash = GetComponent<Flash>();
         knockback = GetComponent<Knockback>();
+        player = MainCharacter.Instance;
     }
     void Start()
     {

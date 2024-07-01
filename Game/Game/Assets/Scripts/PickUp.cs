@@ -33,7 +33,7 @@ public class Pickup : MonoBehaviour
 
     private void Update() {
         // Vector3 playerPos = PlayerController.Instance.transform.position;
-        Vector3 playerPos = new Vector3(5,5,5);
+        Vector3 playerPos = MainCharacter.Instance.transform.position;
 
         if (Vector3.Distance(transform.position, playerPos) < pickUpDistance) {
             moveDir = (playerPos - transform.position).normalized;

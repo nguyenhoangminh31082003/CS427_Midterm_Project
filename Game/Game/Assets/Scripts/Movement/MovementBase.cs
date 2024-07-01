@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class MovementBase : MonoBehaviour
 {
     [SerializeField] protected float moveSpeed = 2f;
-    public GameObject player;
+    protected MainCharacter player;
     protected EnemyController enemyController;
     protected Rigidbody2D rb;
     protected Knockback knockback;
@@ -19,6 +19,8 @@ public abstract class MovementBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         enemyController = GetComponent<EnemyController>();
+
+        player = MainCharacter.Instance;
     }
     protected virtual void Start() {}
     protected virtual void Update() {}
