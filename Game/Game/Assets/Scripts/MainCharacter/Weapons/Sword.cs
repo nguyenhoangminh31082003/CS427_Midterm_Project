@@ -9,8 +9,9 @@ public class Sword : Weapon
     [SerializeField] private Sprite movingSwordSprite;
     [SerializeField] private Sprite stillWordSprite;
 
-    bool attacking;
-    float attackStartTime;
+    private bool attacking;
+    private float attackStartTime;
+    private CapsuleCollider2D movingCollider;
 
     private Quaternion GetDefaultRotation()
     {
@@ -22,7 +23,11 @@ public class Sword : Weapon
     {
         base.Start();
 
-        this.spriteRenderer = GetComponent<SpriteRenderer>();
+        this.spriteRenderer = this.GetComponent<SpriteRenderer>();
+
+        this.movingCollider = this.GetComponent<CapsuleCollider2D>();
+
+        this.movingCollider.enabled = false;
 
         this.attacking = false;
     }
@@ -32,9 +37,16 @@ public class Sword : Weapon
         if (this.attacking || !this.currentlyUsed)
             return false;
 
+        float currentTime = Time.time,
+              amountPassed = (currentTime - this.attackStartTime) * 1000;
+
+        if (amountPassed < NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION * 2)
+            return false;
+
         this.attacking = true;
         this.attackStartTime = Time.time;
         this.spriteRenderer.sprite = this.movingSwordSprite;
+        this.movingCollider.enabled = true;
 
         return true;
     }
@@ -48,8 +60,8 @@ public class Sword : Weapon
         if (amountPassed > NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION)
         {
             this.attacking = false;
+            this.movingCollider.enabled = false;
             this.spriteRenderer.sprite = this.stillWordSprite;
-            this.transform.rotation = this.GetDefaultRotation();
         }
     }
 
