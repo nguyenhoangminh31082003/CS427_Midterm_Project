@@ -8,11 +8,13 @@ public class Bow : Weapon
     protected override void Start()
     {
         base.Start();
+
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
     }
 }

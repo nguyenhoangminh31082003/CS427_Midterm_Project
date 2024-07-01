@@ -7,30 +7,33 @@ public class PlayerBag : MonoBehaviour
 
     private double totalWeight;
     [SerializeField] private Weapon currentWeapon;
-    private List<GameObject> weapons;
+    private List<Weapon> weapons;
 
     // Start is called before the first frame update
     void Start()
     {
         this.totalWeight = 0;
 
-        this.weapons = new List<GameObject>();
+        this.weapons = new List<Weapon>();
 
         this.currentWeapon = null;
 
         foreach (Transform child in this.transform)
         {
-            Debug.Log("Child GameObject: " + child.gameObject.name);
-
             Weapon weapon = child.GetComponent<Weapon>();
             if (weapon != null && weapon is Weapon)
             {
-                Debug.Log(child.name + " is a Weapon or a subclass of Weapon.");
+                this.weapons.Add(weapon);
             }
-            else
-            {
-                Debug.Log(child.name + " is not a Weapon or a subclass of Weapon.");
-            }
+        }
+
+        if (this.weapons.Count > 0)
+        {
+            this.currentWeapon = this.weapons[0];
+            this.currentWeapon.IncreaseNumber(1);
+            Debug.Log(this.currentWeapon.GetNumber());
+            Debug.Log(this.currentWeapon.StartUsing());
+            //this.currentWeapon.StartUsing();
         }
     }
 
