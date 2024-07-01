@@ -131,12 +131,23 @@ public class MainCharacter : MonoBehaviour
         if (downArrow)
             this.speedY -= DEFAULT_SPEED;
         if (this.speedX > 0)
+        {
             this.spriteRenderer.flipX = false;
+            this.FlipWeaponHorizontally();
+        }
         else if (this.speedX < 0)
+        {
             this.spriteRenderer.flipX = true;
+            this.FlipWeaponHorizontally();
+        }
         double percentage = Math.Max(0, 1 - this.GetTotalWeight() / MAXIMUM_WEIGHT_LIMIT);
         this.speedX *= percentage;
         this.speedY *= percentage;
+    }
+
+    void FlipWeaponHorizontally()
+    {
+        this.bag.FlipCurrentWeapon(this.spriteRenderer.bounds.center.x);
     }
 
     // Update is called once per frame

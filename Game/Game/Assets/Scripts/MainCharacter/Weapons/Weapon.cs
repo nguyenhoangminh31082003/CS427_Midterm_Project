@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -51,7 +52,6 @@ public class Weapon : MonoBehaviour
 
     protected void UpdateSpriteRenderer()
     {
-        Debug.Log(this.spriteRenderer);
         if (this.spriteRenderer != null)
             this.spriteRenderer.enabled = this.currentlyUsed;
     }
@@ -59,7 +59,21 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        Debug.Log("Hello!!!");
         UpdateSpriteRenderer();
     }
+
+    public void FlipWithVerticalMirror(double x)
+    {
+        Debug.Log("FLIP!!!");
+        Vector3 localScale = transform.localScale;
+        if (x < 0)
+        {
+            localScale.x = Mathf.Abs(localScale.x); // Ensure the sprite is facing right
+        }
+        else if (x > 0)
+        {
+            localScale.x = -Mathf.Abs(localScale.x); // Flip the sprite to face left
+        }
+        transform.localScale = localScale;
+    }    
 }
