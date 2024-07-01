@@ -4,45 +4,37 @@ using UnityEngine;
 
 public class PatrolMovement : MovementBase
 {
-    [SerializeField] public Transform[] patrolPoints;
-    public float speed;
+    public Transform[] patrolPoints;
     private int targetPoint;
-    private Vector2 direction;
 
-    void Start() {
+    protected override void Awake()
+    {
+        base.Awake();
+        List<Transform> patrolPointsList = new List<Transform>();
+
+        foreach (Transform sibling in transform.parent) {
+            if (sibling != transform) {
+                patrolPointsList.Add(sibling);
+            }
+        }
+
+        patrolPoints = patrolPointsList.ToArray();
+    }
+    protected override void Start() {
         targetPoint = 0;
     }
-    // Update is called once per frame
-    protected override void Update()
-    {            
-        // Check if the enemy has reached the current waypoint
+
+    public override void Roaming()
+    {
         if (Vector2.Distance(transform.position, patrolPoints[targetPoint].position) < 0.1f)
         {
             targetPoint = (targetPoint + 1) % patrolPoints.Length;
-            FaceWaypoint(patrolPoints[targetPoint]);
         }
-        direction = ((Vector2)patrolPoints[targetPoint].position - (Vector2)transform.position).normalized;
+        moveDir = (patrolPoints[targetPoint].position - transform.position).normalized;
     }
 
-    protected override void FixedUpdate() {
-        if (knockback.gettingKnockedBack) { return; }
-        
-        rb.MovePosition(rb.position + direction * (speed * Time.fixedDeltaTime));
-    }
-    private void FaceWaypoint(Transform waypoint)
+    public override void Attacking()
     {
-        if (waypoint != null)
-        {
-            if (transform.position.x < waypoint.position.x)
-            {
-                // Waypoint is to the left
-                sr.flipX = false; // Flip to face left
-            }
-            else if (transform.position.x > waypoint.position.x)
-            {
-                // Waypoint is to the right
-                sr.flipX = true; // Flip to face left
-            }
-        }
+        
     }
 }
