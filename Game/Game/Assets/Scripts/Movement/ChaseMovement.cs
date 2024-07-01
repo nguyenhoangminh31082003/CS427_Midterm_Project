@@ -9,7 +9,6 @@ public class ChaseMovement : MovementBase
 
     protected override void Start()
     {
-        gameManager = GameManager.Instance;
         originalPosition = transform.position;
     }
 

@@ -6,7 +6,7 @@ using TMPro;
 
 public class MainCharacter : MonoBehaviour
 {
-
+    public static MainCharacter Instance;
     [SerializeField] private TextMeshProUGUI liveCountText;
     [SerializeField] private TextMeshProUGUI coinCountText;
 
@@ -26,6 +26,12 @@ public class MainCharacter : MonoBehaviour
     private float lastDamageTime;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
+
     void Start()
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
@@ -59,6 +65,7 @@ public class MainCharacter : MonoBehaviour
         this.speedY = speedY;
     }
     */
+
     public long GetCoinCount()
     {
         return this.coinCount;

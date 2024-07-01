@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -43,8 +44,24 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Here");
             GameObject collidedObject = RetrieveObject(collidedObjectName);
+            GameObject attackedObject = RetrieveObject(attackedObjectName);
             
             MainCharacter mainCharacter = collidedObject.GetComponent<MainCharacter>();
+
+            if (attackedObjectName.Contains("Skull"))
+            {
+                ChaseMovement chaseMovement = attackedObject.GetComponent<ChaseMovement>();
+                double countDown = MainCharacter.NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD;
+                chaseMovement.StopMoving();
+                while (countDown > 0)
+                {
+                    //Debug.Log(countDown);
+                    countDown -= Time.deltaTime;
+                    
+                }
+                //chaseMovement.Roaming();
+            }
+
             Debug.Log(mainCharacter.DecreaseLiveCount());
         }
     }
