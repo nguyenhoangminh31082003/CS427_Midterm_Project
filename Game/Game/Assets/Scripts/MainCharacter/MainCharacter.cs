@@ -39,7 +39,9 @@ public class MainCharacter : MonoBehaviour
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.rigidBody2D = GetComponent<Rigidbody2D>();
+        //Debug.Log("HELLO!!!");
         this.bag = GetComponent<PlayerBag>();
+        //Debug.Log("HELLO!!!!!");
         this.speedX = 0;
         this.speedY = 0;
         this.weight = 1;
