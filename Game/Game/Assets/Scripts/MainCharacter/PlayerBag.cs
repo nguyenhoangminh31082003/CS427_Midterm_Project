@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerBag : MonoBehaviour
 {
 
-    private double totalWeight;
-    [SerializeField] private Weapon currentWeapon;
+    [SerializeField] private int currentWeaponIndex;
     private List<Weapon> weapons;
+    private double totalWeight;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,7 @@ public class PlayerBag : MonoBehaviour
 
         this.weapons = new List<Weapon>();
 
-        this.currentWeapon = null;
+        this.currentWeaponIndex = -1;
 
         foreach (Transform child in this.transform)
         {
@@ -29,11 +30,7 @@ public class PlayerBag : MonoBehaviour
 
         if (this.weapons.Count > 0)
         {
-            this.currentWeapon = this.weapons[0];
-            this.currentWeapon.IncreaseNumber(1);
-            Debug.Log(this.currentWeapon.GetNumber());
-            Debug.Log(this.currentWeapon.StartUsing());
-            //this.currentWeapon.StartUsing();
+            this.currentWeaponIndex = 0;
         }
     }
 
@@ -45,6 +42,19 @@ public class PlayerBag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (this.currentWeaponIndex >= 0)
+        {
+            Weapon weapon = this.weapons[this.currentWeaponIndex];
+
+            if (weapon.GetNumber() == 0)
+            {
+                weapon.IncreaseNumber(1);
+                weapon.StartUsing();
+
+                Debug.Log("UPDATE!!!!!!!!!!!!");
+            }
+
+            
+        }
     }
 }
