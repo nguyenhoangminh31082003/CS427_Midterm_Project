@@ -61,19 +61,5 @@ public class Weapon : MonoBehaviour
     {
         UpdateSpriteRenderer();
     }
-
-    public void FlipWithVerticalMirror(double x)
-    {
-        Debug.Log("FLIP!!!");
-        Vector3 localScale = transform.localScale;
-        if (x < 0)
-        {
-            localScale.x = Mathf.Abs(localScale.x); // Ensure the sprite is facing right
-        }
-        else if (x > 0)
-        {
-            localScale.x = -Mathf.Abs(localScale.x); // Flip the sprite to face left
-        }
-        transform.localScale = localScale;
-    }    
+ 
 }

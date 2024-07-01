@@ -47,16 +47,4 @@ public class PlayerBag : MonoBehaviour
     {
         
     }
-
-    public bool FlipCurrentWeapon(double x)
-    {
-        Debug.Log("Hello???");
-
-        if (this.currentWeapon == null) 
-            return false;
-
-        this.currentWeapon.FlipWithVerticalMirror(x);
-        
-        return true;
-    }
 }
