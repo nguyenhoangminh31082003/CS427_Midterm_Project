@@ -15,6 +15,7 @@ public class MainCharacter : MonoBehaviour
     public const double NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD = 4000;
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
     public const int MAXIMUM_LIVE_COUNT = 5;
+    public const double DEFAULT_SPEED = 4;
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidBody2D;
@@ -122,13 +123,13 @@ public class MainCharacter : MonoBehaviour
         this.speedX = 0;
         this.speedY = 0;
         if (leftArrow)
-            this.speedX -= 1;
+            this.speedX -= DEFAULT_SPEED;
         if (rightArrow)
-            this.speedX += 1;
+            this.speedX += DEFAULT_SPEED;
         if (upArrow)
-            this.speedY += 1;
+            this.speedY += DEFAULT_SPEED;
         if (downArrow)
-            this.speedY -= 1;
+            this.speedY -= DEFAULT_SPEED;
         if (this.speedX > 0)
             this.spriteRenderer.flipX = false;
         else if (this.speedX < 0)
