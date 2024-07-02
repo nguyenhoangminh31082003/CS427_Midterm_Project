@@ -30,12 +30,6 @@ public class MainCharacter : MonoBehaviour
     private bool invincible;
     private float lastDamageTime;
 
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-    }
-
     // Start is called before the first frame update
     private void Awake()
     {
