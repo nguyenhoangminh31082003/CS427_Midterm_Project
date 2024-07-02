@@ -836,7 +836,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1265,7 +1265,7 @@ MonoBehaviour:
   m_Follow: {fileID: 859572281}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 12
+    OrthographicSize: 4
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1715,7 +1715,7 @@ MonoBehaviour:
   normalSprite: {fileID: 21300000, guid: e8510bd6cc7c7784390bb3d11ed10fb6, type: 3}
   holdingSprite: {fileID: 21300000, guid: f26811333cf68714e8507e2e1c53ed08, type: 3}
   stoppingSprite: {fileID: 21300000, guid: 460332712f0bb3d4390ccb3aa5082327, type: 3}
-  maximumSpeedX: 0
+  maximumSpeedX: 8
   maximumSpeedY: 0
   MAXIMUM_DAMAGE_CAUSED_PER_HIT: 42
   NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING: 5000

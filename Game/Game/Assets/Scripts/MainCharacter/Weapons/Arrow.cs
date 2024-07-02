@@ -150,8 +150,6 @@ public class Arrow : Weapon
             currentPosition.x += this.speedX * Time.fixedDeltaTime;
             currentPosition.y += this.speedY * Time.fixedDeltaTime;
             transform.position = currentPosition;
-
-            //Debug.Log(this.speedX + " " + this.speedY);
         }
     }
 

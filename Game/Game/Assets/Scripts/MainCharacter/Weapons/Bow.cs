@@ -166,19 +166,9 @@ public class Bow : Weapon
         if (this.currentlyHeldArrow == null)
             return false;
 
-        //Debug.Log(this.transform.localPosition.x);
-
-        //Debug.Log(this.transform.localScale);
-
         this.currentlyHeldArrow.transform.SetParent(null);
 
-        //Debug.Log(this.currentlyHeldArrow.transform.localScale);
-        //Debug.Log(this.currentlyHeldArrow.transform.rotation);
-        //Debug.Log(this.currentlyHeldArrow.transform.position);
-
         Arrow arrow = this.currentlyHeldArrow.GetComponent<Arrow>();
-
-        //Debug.Log(arrow.GetMaximumSpeedX() + " " + arrow.GetMaximumSpeedY());
 
         if (this.currentlyHeldArrow.transform.localScale.x < 0)
             arrow.SetMaximumSpeed(-arrow.GetMaximumSpeedX(), arrow.GetMaximumSpeedY());
