@@ -3,17 +3,24 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System.Drawing;
 
 public class MainCharacter : MonoBehaviour
 {
+
     public static MainCharacter Instance;
+
     [SerializeField] private TextMeshProUGUI liveCountText;
     [SerializeField] private TextMeshProUGUI coinCountText;
+    [SerializeField] private GameObject playerBag;
 
     public const double NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD = 4000;
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
     public const int MAXIMUM_LIVE_COUNT = 5;
     private GameManager gameManager;
+    public const double DEFAULT_SPEED = 4;
+
+    private Knockback knockback;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidBody2D;
     private double speedX, speedY;
@@ -25,18 +32,24 @@ public class MainCharacter : MonoBehaviour
     private bool invincible;
     private float lastDamageTime;
 
-    // Start is called before the first frame update
     private void Awake()
     {
         if (Instance == null)
-            Instance = this;
+            Instance = this;   
+        else 
+            GameObject.Destroy(Instance);
+
+        DontDestroyOnLoad(this);
     }
 
     void Start()
     {
-        this.spriteRenderer = GetComponent<SpriteRenderer>();
-        this.rigidBody2D = GetComponent<Rigidbody2D>();
-        this.bag = GetComponent<PlayerBag>();
+        this.spriteRenderer = this.GetComponent<SpriteRenderer>();
+        this.rigidBody2D = this.GetComponent<Rigidbody2D>();
+        //Debug.Log(this.playerBag.GetComponent<PlayerBag>());
+        //this.bag = GetComponent<PlayerBag>();
+        this.bag = this.playerBag.GetComponent<PlayerBag>();
+        this.knockback = this.GetComponent<Knockback>();
         this.speedX = 0;
         this.speedY = 0;
         this.weight = 1;
@@ -47,6 +60,11 @@ public class MainCharacter : MonoBehaviour
         this.lastDamageTime = 0;
 
         this.gameManager = GameManager.Instance;
+    }
+
+    public void GetKnockBack(Transform source)
+    {
+        this.knockback.GetKnockedBack(source, 10f);
     }
 
     public bool ChangeCoinCount(long change)
@@ -65,9 +83,8 @@ public class MainCharacter : MonoBehaviour
         this.speedY = speedY;
     }
     */
-
-    public long GetCoinCount()
-    {
+    
+    public long GetCoinCount() {
         return this.coinCount;
     }
 
@@ -115,26 +132,30 @@ public class MainCharacter : MonoBehaviour
         return false;
     }
 
-    void UpdateVelocity()
+    private void UpdateVelocity()
     {
-        bool rightArrow = Input.GetKey(KeyCode.RightArrow),
-             leftArrow = Input.GetKey(KeyCode.LeftArrow),
-             upArrow = Input.GetKey(KeyCode.UpArrow),
-             downArrow = Input.GetKey(KeyCode.DownArrow);
+        bool rightArrow = Input.GetKey(KeyCode.RightArrow)  || Input.GetKey(KeyCode.D),
+             leftArrow  = Input.GetKey(KeyCode.LeftArrow)   || Input.GetKey(KeyCode.A),
+             upArrow    = Input.GetKey(KeyCode.UpArrow)     || Input.GetKey(KeyCode.W),
+             downArrow  = Input.GetKey(KeyCode.DownArrow)   || Input.GetKey(KeyCode.S);
         this.speedX = 0;
         this.speedY = 0;
         if (leftArrow)
-            this.speedX -= 1;
+            this.speedX -= DEFAULT_SPEED;
         if (rightArrow)
-            this.speedX += 1;
+            this.speedX += DEFAULT_SPEED;
         if (upArrow)
-            this.speedY += 1;
+            this.speedY += DEFAULT_SPEED;
         if (downArrow)
-            this.speedY -= 1;
+            this.speedY -= DEFAULT_SPEED;
         if (this.speedX > 0)
-            this.spriteRenderer.flipX = false;
+        {
+            this.transform.localScale = new Vector3(1, 1, 1);
+        }
         else if (this.speedX < 0)
-            this.spriteRenderer.flipX = true;
+        {
+            this.transform.localScale = new Vector3(-1, 1, 1);
+        }
         double percentage = Math.Max(0, 1 - this.GetTotalWeight() / MAXIMUM_WEIGHT_LIMIT);
         this.speedX *= percentage;
         this.speedY *= percentage;
@@ -146,15 +167,21 @@ public class MainCharacter : MonoBehaviour
         UpdateVelocity();
         UpdateInvincibilityStatus();
         UpdateCanvasElement();
+        UpdateAttack();
     }
 
-    void UpdateCanvasElement()
+    private void UpdateAttack()
+    {
+        this.bag.UseCurrentWeaponToAttackWithConsideringKeyboard();   
+    }
+
+    private void UpdateCanvasElement()
     {
         this.liveCountText.text = this.liveCount.ToString();
         this.coinCountText.text = this.coinCount.ToString();
     }
 
-    void UpdateInvincibilityStatus()
+    private void UpdateInvincibilityStatus()
     {
         if (this.invincible)
         {
@@ -166,15 +193,22 @@ public class MainCharacter : MonoBehaviour
             }
             else
             {
-                this.spriteRenderer.color = new Color(1f, 1f, 1f, (float)(Math.Sin(amountPassed) + 1) / 2);
+                UnityEngine.Color color = new UnityEngine.Color(1f, 1f, 1f, (float)(Math.Sin(amountPassed) + 1) / 2);
+                this.spriteRenderer.color = color;
+                this.bag.ChangeColorRecursively(color);
             }
         }
         else
-            this.spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+        {
+            UnityEngine.Color color = new UnityEngine.Color(1f, 1f, 1f, 1f);
+            this.spriteRenderer.color = color;
+            this.bag.ChangeColorRecursively(color);
+        }
     }
 
     private void FixedUpdate()
     {
+        if (knockback.gettingKnockedBack) { return; }
         this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
         if (IsDead())
         {
@@ -194,9 +228,30 @@ public class MainCharacter : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (IsAttacking()) return;
         if (other.transform.tag == "Monster")
         {
             gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
         }
+    }
+    
+    public void PauseAnimation()
+    {
+        this.GetComponent<Animator>().enabled = false;
+    }
+
+    public void ContinueAnimation()
+    {
+        this.GetComponent<Animator>().enabled = true;
+    }
+
+    public bool IsAttacking()
+    {
+        return this.bag.IsAttacking();
+    }
+
+    public bool IsInvincible() 
+    {
+        return this.invincible;  
     }
 }

@@ -35,14 +35,21 @@ public class GameManager : MonoBehaviour
                                  string attackedObjectTag, string attackedObjectName)
     {
         //For debug purposes
-        CollisionLog(collidedObjectName);
-        CollisionLog(collidedObjectTag);
-        CollisionLog(attackedObjectName);
-        CollisionLog(attackedObjectTag);
+        //CollisionLog(collidedObjectName);
+        //CollisionLog(collidedObjectTag);
+        //CollisionLog(attackedObjectName);
+        //CollisionLog(attackedObjectTag);
+
+        if (collidedObjectTag == "Monster" && attackedObjectTag == "Sword")
+        {
+            GameObject collidedObject = RetrieveObject(collidedObjectName);
+
+            EnemyHealth enemyHealth = collidedObject.GetComponent<EnemyHealth>();
+            enemyHealth.TakeDamage(1);
+        }
 
         if (collidedObjectTag == "Player" && attackedObjectTag == "Monster")
         {
-            Debug.Log("Here");
             GameObject collidedObject = RetrieveObject(collidedObjectName);
             GameObject attackedObject = RetrieveObject(attackedObjectName);
             
@@ -61,8 +68,11 @@ public class GameManager : MonoBehaviour
                 }
                 //chaseMovement.Roaming();
             }
-
-            Debug.Log(mainCharacter.DecreaseLiveCount());
+            if (!mainCharacter.IsInvincible())
+            {
+                mainCharacter.GetKnockBack(attackedObject.transform);
+            }
+            mainCharacter.DecreaseLiveCount();
         }
     }
 
