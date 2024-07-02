@@ -37,13 +37,8 @@ public class Bow : Weapon
         char[] digits = this.arrowIndex.ToCharArray();
         int length = digits.Length;
 
-        // Start from the last digit and work backwards
         for (int i = length - 1; i >= 0; i--)
         {
-            if (digits[i] < '0' || digits[i] > '9')
-            {
-                throw new ArgumentException("Input must be a valid non-negative number", nameof(number));
-            }
 
             if (digits[i] < '9')
             {
@@ -52,11 +47,9 @@ public class Bow : Weapon
                 return;
             }
 
-            digits[i] = '0'; // Set current digit to '0' and carry the increment to the next digit
+            digits[i] = '0';
         }
 
-        // If we reach here, it means all digits were '9'
-        // We need to add a '1' at the beginning
         this.arrowIndex = '1' + new string(digits);
     }
 
@@ -72,7 +65,6 @@ public class Bow : Weapon
 
     private void UpdateSampleArrow()
     {
-        //Debug.Log("One");
 
         if (this.unusedArrowCount > 0 &&
             !this.attacking)
@@ -80,9 +72,6 @@ public class Bow : Weapon
             this.sampleArrow.StartUsing();
             return;
         }
-
-        //Debug.Log(this.sampleArrow.IsCurrentlyUsed());
-        //Debug.Log("Two");
 
         this.sampleArrow.StopUsing();
     }
@@ -94,29 +83,10 @@ public class Bow : Weapon
 
         Arrow arrow = this.currentlyHeldArrow.GetComponent<Arrow>();
 
-        //Debug.Log("----------------");
-
-        //Debug.Log(arrow.GetStatus());
-        //Debug.Log(this.currentlyHeldArrow.name + " " + arrow.IsCurrentlyHeld());
-        //Debug.Log(this.currentlyHeldArrow.name + " " + arrow.IsCurrentlyUsed());
-
         if (!arrow.IsCurrentlyUsed())
         {
             arrow.StartUsing();
             arrow.StartHolding();
-        }
-
-        //Debug.Log(arrow.GetStatus());
-        //Debug.Log(this.currentlyHeldArrow.name + " " + arrow.IsCurrentlyHeld());
-        //Debug.Log(this.currentlyHeldArrow.name + " " + arrow.IsCurrentlyUsed());
-
-        if (arrow.IsCurrentlyHeld())
-        {
-            this.spriteRenderer.color = arrow.GetCurrentColor();
-        }
-        else
-        {
-            this.spriteRenderer.color = new Color(1, 1, 1, 1);
         }
     }
 
@@ -186,10 +156,6 @@ public class Bow : Weapon
         arrow.StartUsing();
 
         arrow.StartHolding();
-
-        //Debug.Log(arrow.IsCurrentlyHeld());
-
-        //Debug.Log(this.currentlyHeldArrow.name + "-" + this.currentlyHeldArrow.GetComponent<Arrow>().IsCurrentlyHeld());
 
         return true;
     }

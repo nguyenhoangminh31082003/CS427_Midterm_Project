@@ -5,6 +5,7 @@ using UnityEngine;
 public class Arrow : Weapon
 {
     [SerializeField] private Sprite normalSprite;
+    [SerializeField] private Sprite holdingSprite;
     [SerializeField] private Sprite stoppingSprite;
     [SerializeField] private float MAXIMUM_SPEED_X;
     [SerializeField] private float MAXIMUM_SPEED_Y;
@@ -61,7 +62,6 @@ public class Arrow : Weapon
             float   currentTime = Time.time,
                     secondsPassed = currentTime - this.startTime;
             this.percentage = 1 / (1 + Mathf.Exp(-secondsPassed));
-            //Debug.Log(this.percentage);
             return this.percentage;
         }
 
@@ -87,14 +87,8 @@ public class Arrow : Weapon
     protected override void Update()
     {
         base.Update();
-
-        //Debug.Log(this.gameObject.name + " " + this.arrowStatus);
         
-        if (this.arrowStatus == ArrowState.PREPARED_TO_BE_USED)
-        {
-            this.spriteRenderer.color = this.GetCurrentColor();
-        }
-        else if (this.arrowStatus == ArrowState.CURRENTLY_USED)
+        if (this.arrowStatus == ArrowState.CURRENTLY_USED)
         {
             float   currentTime = Time.time,
                     amountPassed = (currentTime - this.startTime) * 1000;
@@ -113,6 +107,8 @@ public class Arrow : Weapon
                     amountPassed = (currentTime - this.startTime) * 1000;
             if (amountPassed > NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING)
             {
+                this.speedX = 0;
+                this.speedY = 0;
                 this.arrowStatus = ArrowState.USED;
             }
         }
@@ -128,18 +124,6 @@ public class Arrow : Weapon
             currentPosition.y += speedY * Time.fixedDeltaTime;
             transform.position = currentPosition;
         }
-    }
-
-    public UnityEngine.Color GetCurrentColor()
-    {
-        if (this.arrowStatus == ArrowState.PREPARED_TO_BE_USED)
-        {
-            this.CalculatePercentage();
-
-            return new Color(this.percentage, 1 - this.percentage, 0, this.percentage);
-        }
-
-        return new Color(1, 1, 1, 1);
     }
 
     public override double GetAmountDamageThatCanBeCaused()
