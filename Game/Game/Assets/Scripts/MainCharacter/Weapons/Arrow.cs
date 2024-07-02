@@ -126,11 +126,6 @@ public class Arrow : Weapon
     {
         if (this.arrowStatus == ArrowState.PREPARED_TO_BE_USED)
         {
-            /*
-            UnityEngine.Color   green   =   new Color(1, 0, 0, 1),
-                                yellow  =   new Color(1, 1, 0, 1),
-                                red     =   new Color(0, 1, 0, 1); 
-            */
             this.CalculatePercentage();
 
             if (this.percentage < 0.75)

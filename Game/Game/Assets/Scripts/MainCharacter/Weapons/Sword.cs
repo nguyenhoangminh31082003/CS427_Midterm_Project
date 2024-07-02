@@ -90,4 +90,9 @@ public class Sword : Weapon
     {
         base.ChangeColorRecursively(color);
     }
+
+    public override string GetTypeName()
+    {
+        return "Sword";
+    }
 }

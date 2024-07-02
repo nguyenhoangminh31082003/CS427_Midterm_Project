@@ -96,4 +96,9 @@ public class Weapon : MonoBehaviour
         this.spriteRenderer.color = color;
     }
 
+    public virtual string GetTypeName()
+    {
+        return "Weapon";
+    }
+
 }

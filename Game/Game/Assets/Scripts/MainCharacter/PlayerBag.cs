@@ -84,4 +84,11 @@ public class PlayerBag : MonoBehaviour
             this.weapons[this.currentWeaponIndex].ChangeColorRecursively(color);
         }
     }
+
+    public Weapon GetCurrentWeapon()
+    {
+        if (this.currentWeaponIndex < 0)
+            return null;
+        return this.weapons[this.currentWeaponIndex];
+    }
 }

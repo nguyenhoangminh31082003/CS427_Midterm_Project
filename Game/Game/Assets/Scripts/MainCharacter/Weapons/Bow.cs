@@ -9,6 +9,7 @@ public class Bow : Weapon
     [SerializeField] protected Arrow sampleArrow;
 
     private bool attacking;
+    private GameObject currentlyHeldArrow;
     private float mostRecentFinishingAttackTime;
 
     // Start is called before the first frame update
@@ -35,10 +36,13 @@ public class Bow : Weapon
 
     private void UpdateSampleArrow()
     {
-        if (this.unusedArrowCount > 0)
+        if (this.unusedArrowCount > 0 &&
+            !this.attacking)
+        {
             this.sampleArrow.StartUsing();
-        else
-            this.sampleArrow.StopUsing();
+            return;
+        }
+        this.sampleArrow.StopUsing();
     }
 
     public override bool Attack()
@@ -72,8 +76,13 @@ public class Bow : Weapon
                 amountPassed = (currentTime - this.mostRecentFinishingAttackTime) * 1000;
         if (amountPassed < NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK)
             return false;
+        this.currentlyHeldArrow = Instantiate(this.sampleArrow.gameObject, this.transform);
+        this.attacking = true;
         return true;
     }
 
-    
+    public override string GetTypeName()
+    {
+        return "Bow";
+    }
 }
