@@ -19,10 +19,10 @@ public abstract class MovementBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         enemyController = GetComponent<EnemyController>();
-
-        player = MainCharacter.Instance;
+        this.player = MainCharacter.Instance;
     }
     protected virtual void Start() {}
+
     protected virtual void Update() {}
     protected virtual void FixedUpdate() {
         if (knockback.gettingKnockedBack) { return; }

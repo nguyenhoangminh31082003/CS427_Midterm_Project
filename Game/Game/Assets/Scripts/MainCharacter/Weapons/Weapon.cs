@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected bool currentlyUsed;
     [SerializeField] protected int number;
 
+    protected GameManager gameManager;
 
     protected SpriteRenderer spriteRenderer;
 
@@ -26,6 +28,8 @@ public class Weapon : MonoBehaviour
 
         if (spriteRenderer != null)
             spriteRenderer.enabled = this.currentlyUsed;
+
+        this.gameManager = GameManager.Instance;
     }
 
     public bool StartUsing()
@@ -71,5 +75,9 @@ public class Weapon : MonoBehaviour
     {
         return false;
     }
- 
+
+    protected void OnCollisionEnter2D(Collision2D other)
+    {
+        gameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);   
+    }
 }
