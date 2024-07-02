@@ -52,9 +52,6 @@ public class MainCharacter : MonoBehaviour
 
         this.invincible = false;
         this.lastDamageTime = 0;
-
-        this.invincible = true;
-        this.lastDamageTime = Time.time;
     }
 
     public bool ChangeCoinCount(long change)
@@ -67,12 +64,7 @@ public class MainCharacter : MonoBehaviour
         this.coinCount = newCoinCount;
         return true;
     }
-    /*
-    public void ModifySpeed(double speedX, double speedY) {
-        this.speedX = speedX;
-        this.speedY = speedY;
-    }
-    */
+    
     public long GetCoinCount() {
         return this.coinCount;
     }

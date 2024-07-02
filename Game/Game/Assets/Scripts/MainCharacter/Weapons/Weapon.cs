@@ -38,6 +38,17 @@ public class Weapon : MonoBehaviour
         return true;
     }
 
+    public bool StopUsing()
+    {
+        if (!this.currentlyUsed)
+            return true;
+        if (this.IsBeingUsedToAttack())
+            return false;
+        this.currentlyUsed = true;
+        this.gameObject.SetActive(true);
+        return true;
+    }
+
     public bool IncreaseNumber(int number)
     {
         if (number <= 0)
@@ -62,7 +73,6 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        //Debug.Log("Weapon UPDATE!!!");
         UpdateSpriteRenderer();
     }
 
