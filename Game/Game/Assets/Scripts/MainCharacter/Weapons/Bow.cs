@@ -22,4 +22,9 @@ public class Bow : Weapon
     {
         return false;
     }
+
+    public override double GetAmountDamageThatCanBeCaused()
+    {
+        return 0;
+    }
 }

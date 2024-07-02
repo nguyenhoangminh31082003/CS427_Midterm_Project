@@ -10,7 +10,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected bool currentlyUsed;
     [SerializeField] protected int number;
 
-
     protected SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
@@ -71,5 +70,10 @@ public class Weapon : MonoBehaviour
     {
         return false;
     }
- 
+
+    public virtual double GetAmountDamageThatCanBeCaused()
+    {
+        return 0;
+    }
+
 }
