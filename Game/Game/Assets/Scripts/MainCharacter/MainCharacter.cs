@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System.Drawing;
 
 public class MainCharacter : MonoBehaviour
 {
@@ -51,6 +52,9 @@ public class MainCharacter : MonoBehaviour
 
         this.invincible = false;
         this.lastDamageTime = 0;
+
+        this.invincible = true;
+        this.lastDamageTime = Time.time;
     }
 
     public bool ChangeCoinCount(long change)
@@ -179,13 +183,20 @@ public class MainCharacter : MonoBehaviour
             if (amountPassed > NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD)
             {
                 this.invincible = false;
-            } 
+            }
             else
             {
-                this.spriteRenderer.color = new Color(1f, 1f, 1f, (float)(Math.Sin(amountPassed) + 1) / 2);
+                UnityEngine.Color color = new UnityEngine.Color(1f, 1f, 1f, (float)(Math.Sin(amountPassed) + 1) / 2);
+                this.spriteRenderer.color = color;
+                this.bag.ChangeColorRecursively(color);
             }
-        } else
-            this.spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+        }
+        else
+        {
+            UnityEngine.Color color = new UnityEngine.Color(1f, 1f, 1f, 1f);
+            this.spriteRenderer.color = color;
+            this.bag.ChangeColorRecursively(color);
+        }
     }
 
     private void FixedUpdate()

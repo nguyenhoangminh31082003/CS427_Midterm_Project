@@ -81,4 +81,9 @@ public class Weapon : MonoBehaviour
         return false;
     }
 
+    public virtual void ChangeColorRecursively(Color color)
+    {
+        this.spriteRenderer.color = color;
+    }
+
 }

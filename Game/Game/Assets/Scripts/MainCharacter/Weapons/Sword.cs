@@ -85,4 +85,9 @@ public class Sword : Weapon
     {
         return this.attacking;
     }
+
+    public override void ChangeColorRecursively(Color color)
+    {
+        base.ChangeColorRecursively(color);
+    }
 }

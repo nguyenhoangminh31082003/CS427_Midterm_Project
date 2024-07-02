@@ -32,4 +32,9 @@ public class Bow : Weapon
     {
         return false;
     }
+
+    public override void ChangeColorRecursively(Color color)
+    {
+        base.ChangeColorRecursively(color);
+    }
 }
