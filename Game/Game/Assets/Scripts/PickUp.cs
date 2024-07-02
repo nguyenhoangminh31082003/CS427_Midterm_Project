@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    private enum PickUpType
+    public enum PickUpType
     {
         GoldCoin,
         StaminaGlobe,
@@ -47,13 +47,17 @@ public class Pickup : MonoBehaviour
     private void FixedUpdate() {
         rb.velocity = moveDir * moveSpeed * Time.fixedDeltaTime;
     }
+    public PickUpType GetPickUpType()
+    {
+        return pickUpType;
+    }
 
     private void OnTriggerStay2D(Collider2D other) {
         // if (other.gameObject.GetComponent<PlayerController>()) {
         //     Destroy(gameObject);
         // }
-        DetectPickupType();
-        Destroy(gameObject);
+        //DetectPickupType();
+        //Destroy(gameObject);
     }
 
     private IEnumerator AnimCurveSpawnRoutine() {
@@ -77,7 +81,8 @@ public class Pickup : MonoBehaviour
         }
     }
 
-    private void DetectPickupType() {
+    private void DetectPickupType()
+    {
         switch (pickUpType)
         {
             case PickUpType.GoldCoin:
@@ -98,7 +103,7 @@ public class Pickup : MonoBehaviour
             case PickUpType.GoldKey:
                 Debug.Log("GoldKey");
                 KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
-                break;    
+                break;
         }
     }
 }

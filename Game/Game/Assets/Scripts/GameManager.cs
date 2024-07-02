@@ -40,12 +40,41 @@ public class GameManager : MonoBehaviour
         //CollisionLog(attackedObjectName);
         //CollisionLog(attackedObjectTag);
 
+        if (collidedObjectTag == "Player" && attackedObjectTag == "Item") {
+            Debug.Log("Increase gold coin");
+            GameObject collidedObject = RetrieveObject(collidedObjectName);
+            GameObject attackedObject = RetrieveObject(attackedObjectName);
+
+            MainCharacter mainCharacter = collidedObject.GetComponent<MainCharacter>();
+            Pickup pickup = attackedObject.GetComponent<Pickup>();
+
+            if (pickup.GetPickUpType() == Pickup.PickUpType.GoldCoin)
+            {
+                mainCharacter.ChangeCoinCount(1);
+            }
+
+            Destroy(attackedObject);
+        }
+
         if (collidedObjectTag == "Monster" && attackedObjectTag == "Sword")
         {
             GameObject collidedObject = RetrieveObject(collidedObjectName);
-
+            GameObject attackedObject = RetrieveObject(attackedObjectName);  
+            
+            Sword sword = attackedObject.GetComponent<Sword>();
             EnemyHealth enemyHealth = collidedObject.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage(1);
+            enemyHealth.TakeDamage((int)Math.Round(sword.GetAmountDamageThatCanBeCaused()));
+        }
+
+        if (collidedObjectTag == "Monster" && attackedObjectTag == "Arrow")
+        {
+            GameObject collidedObject = RetrieveObject(collidedObjectName);
+            GameObject attackedObject = RetrieveObject(attackedObjectName);
+
+            Arrow arrow = attackedObject.GetComponent<Arrow>();
+            EnemyHealth enemyHealth = collidedObject.GetComponent<EnemyHealth>();
+            enemyHealth.TakeDamage((int)Math.Round(arrow.GetAmountDamageThatCanBeCaused()));
+            Destroy(attackedObject);
         }
 
         if (collidedObjectTag == "Player" && attackedObjectTag == "Monster")
@@ -68,6 +97,7 @@ public class GameManager : MonoBehaviour
                 }
                 //chaseMovement.Roaming();
             }
+
             if (!mainCharacter.IsInvincible())
             {
                 mainCharacter.GetKnockBack(attackedObject.transform);

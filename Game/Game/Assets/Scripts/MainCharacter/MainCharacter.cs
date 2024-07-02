@@ -7,7 +7,6 @@ using System.Drawing;
 
 public class MainCharacter : MonoBehaviour
 {
-
     public static MainCharacter Instance;
 
     [SerializeField] private TextMeshProUGUI liveCountText;
@@ -229,7 +228,13 @@ public class MainCharacter : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         if (IsAttacking()) return;
+
         if (other.transform.tag == "Monster")
+        {
+            gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
+        }
+
+        if (other.transform.tag == "Item")
         {
             gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
         }

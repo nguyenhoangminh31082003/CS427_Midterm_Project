@@ -12,7 +12,6 @@ public class Arrow : Weapon
     [SerializeField] private float MAXIMUM_DAMAGE_CAUSED_PER_HIT;
     [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING;
     [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING;
-
     public enum ArrowState
     {
         NOT_USED_YET,

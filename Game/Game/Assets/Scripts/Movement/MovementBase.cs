@@ -21,7 +21,9 @@ public abstract class MovementBase : MonoBehaviour
         enemyController = GetComponent<EnemyController>();
         this.player = MainCharacter.Instance;
     }
-    protected virtual void Start() {}
+    protected virtual void Start() {
+       
+    }
 
     protected virtual void Update() {}
     protected virtual void FixedUpdate() {
