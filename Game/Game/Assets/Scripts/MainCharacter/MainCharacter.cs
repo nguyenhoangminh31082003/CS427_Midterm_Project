@@ -20,6 +20,7 @@ public class MainCharacter : MonoBehaviour
     private GameManager gameManager;
     public const double DEFAULT_SPEED = 4;
 
+    private Knockback knockback;
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidBody2D;
     private double speedX, speedY;
@@ -48,6 +49,7 @@ public class MainCharacter : MonoBehaviour
         //Debug.Log(this.playerBag.GetComponent<PlayerBag>());
         //this.bag = GetComponent<PlayerBag>();
         this.bag = this.playerBag.GetComponent<PlayerBag>();
+        this.knockback = this.GetComponent<Knockback>();
         this.speedX = 0;
         this.speedY = 0;
         this.weight = 1;
@@ -58,8 +60,11 @@ public class MainCharacter : MonoBehaviour
         this.lastDamageTime = 0;
 
         this.gameManager = GameManager.Instance;
-        this.invincible = true;
-        this.lastDamageTime = Time.time;
+    }
+
+    public void GetKnockBack(Transform source)
+    {
+        this.knockback.GetKnockedBack(source, 10f);
     }
 
     public bool ChangeCoinCount(long change)
@@ -208,6 +213,7 @@ public class MainCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (knockback.gettingKnockedBack) { return; }
         this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
         if (IsDead())
         {
@@ -227,6 +233,7 @@ public class MainCharacter : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (IsAttacking()) return;
         if (other.transform.tag == "Monster")
         {
             gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
@@ -246,5 +253,10 @@ public class MainCharacter : MonoBehaviour
     public bool IsAttacking()
     {
         return this.bag.IsAttacking();
+    }
+
+    public bool IsInvincible() 
+    {
+        return this.invincible;  
     }
 }

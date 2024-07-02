@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
                                  string attackedObjectTag, string attackedObjectName)
     {
         //For debug purposes
-        CollisionLog(collidedObjectName);
-        CollisionLog(collidedObjectTag);
-        CollisionLog(attackedObjectName);
-        CollisionLog(attackedObjectTag);
+        //CollisionLog(collidedObjectName);
+        //CollisionLog(collidedObjectTag);
+        //CollisionLog(attackedObjectName);
+        //CollisionLog(attackedObjectTag);
 
         if (collidedObjectTag == "Monster" && attackedObjectTag == "Sword")
         {
@@ -68,7 +68,10 @@ public class GameManager : MonoBehaviour
                 }
                 //chaseMovement.Roaming();
             }
-
+            if (!mainCharacter.IsInvincible())
+            {
+                mainCharacter.GetKnockBack(attackedObject.transform);
+            }
             mainCharacter.DecreaseLiveCount();
         }
     }
