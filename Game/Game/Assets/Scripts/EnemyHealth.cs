@@ -24,10 +24,10 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = initialHealth;
     }
 
-    public void TakeDamage(int damage) {
+    public void TakeDamage(GameObject damageSource, int damage) {
         currentHealth -= damage;
         // Debug.Log(currentHealth);
-        knockback.GetKnockedBack(player.transform, 15f);
+        knockback.GetKnockedBack(damageSource.transform, 15f);
         StartCoroutine(flash.FlashRoutine());
         CheckDeath();
     }
