@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using System.Drawing;
 
 public class MainCharacter : MonoBehaviour
 {
@@ -57,6 +58,8 @@ public class MainCharacter : MonoBehaviour
         this.lastDamageTime = 0;
 
         this.gameManager = GameManager.Instance;
+        this.invincible = true;
+        this.lastDamageTime = Time.time;
     }
 
     public bool ChangeCoinCount(long change)
@@ -149,7 +152,6 @@ public class MainCharacter : MonoBehaviour
         {
             this.transform.localScale = new Vector3(-1, 1, 1);
         }
-        //Debug.Log("bag " + (this.bag == null) + "???");
         double percentage = Math.Max(0, 1 - this.GetTotalWeight() / MAXIMUM_WEIGHT_LIMIT);
         this.speedX *= percentage;
         this.speedY *= percentage;
@@ -191,11 +193,17 @@ public class MainCharacter : MonoBehaviour
             }
             else
             {
-                this.spriteRenderer.color = new Color(1f, 1f, 1f, (float)(Math.Sin(amountPassed) + 1) / 2);
+                UnityEngine.Color color = new UnityEngine.Color(1f, 1f, 1f, (float)(Math.Sin(amountPassed) + 1) / 2);
+                this.spriteRenderer.color = color;
+                this.bag.ChangeColorRecursively(color);
             }
         }
         else
-            this.spriteRenderer.color = new Color(1f, 1f, 1f, 1f);
+        {
+            UnityEngine.Color color = new UnityEngine.Color(1f, 1f, 1f, 1f);
+            this.spriteRenderer.color = color;
+            this.bag.ChangeColorRecursively(color);
+        }
     }
 
     private void FixedUpdate()
@@ -233,5 +241,10 @@ public class MainCharacter : MonoBehaviour
     public void ContinueAnimation()
     {
         this.GetComponent<Animator>().enabled = true;
+    }
+
+    public bool IsAttacking()
+    {
+        return this.bag.IsAttacking();
     }
 }

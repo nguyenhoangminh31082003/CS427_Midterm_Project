@@ -81,4 +81,19 @@ public class PlayerBag : MonoBehaviour
             return false;
         return this.weapons[this.currentWeaponIndex].Attack();
     }
+
+    public bool IsAttacking()
+    {
+        if (this.currentWeaponIndex < 0)
+            return false;
+        return this.weapons[this.currentWeaponIndex].IsBeingUsedToAttack();
+    }
+
+    public void ChangeColorRecursively(Color color)
+    {
+        if (this.currentWeaponIndex >= 0)
+        {
+            this.weapons[this.currentWeaponIndex].ChangeColorRecursively(color);
+        }
+    }
 }

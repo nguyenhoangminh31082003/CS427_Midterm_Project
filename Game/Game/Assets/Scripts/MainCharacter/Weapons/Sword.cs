@@ -6,6 +6,7 @@ public class Sword : Weapon
 {
 
     [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION;
+    [SerializeField] private double damageCausedPerHit;
     [SerializeField] private Sprite movingSwordSprite;
     [SerializeField] private Sprite stillWordSprite;
 
@@ -73,5 +74,20 @@ public class Sword : Weapon
         base.Update();
 
         UpdateAttack();
+    }
+
+    public override double GetAmountDamageThatCanBeCaused()
+    {
+        return this.damageCausedPerHit;
+    }
+
+    public override bool IsBeingUsedToAttack()
+    {
+        return this.attacking;
+    }
+
+    public override void ChangeColorRecursively(Color color)
+    {
+        base.ChangeColorRecursively(color);
     }
 }

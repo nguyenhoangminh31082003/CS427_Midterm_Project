@@ -355,7 +355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &162187229
 Transform:
   m_ObjectHideFlags: 0
@@ -852,7 +852,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.8784314, g: 0.26274508, b: 0.5962359, a: 0}
+  m_BackGroundColor: {r: 0, g: 1, b: 0.018611908, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -972,8 +972,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 162187229}
   - {fileID: 1672580694}
+  - {fileID: 162187229}
   m_Father: {fileID: 859572281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &679290868
@@ -1996,7 +1996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1672580694
 Transform:
   m_ObjectHideFlags: 0
@@ -2028,6 +2028,7 @@ MonoBehaviour:
   currentlyUsed: 0
   number: 0
   NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION: 200
+  damageCausedPerHit: 42
   movingSwordSprite: {fileID: 21300000, guid: 83aaa63eec275e5449f4d6a59d5a39a8, type: 3}
   stillWordSprite: {fileID: 21300000, guid: 3d9e76a44a6786e4cae51c98707859f9, type: 3}
 --- !u!212 &1672580696

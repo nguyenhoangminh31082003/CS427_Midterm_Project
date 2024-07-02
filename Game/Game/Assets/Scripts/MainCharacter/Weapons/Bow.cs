@@ -22,4 +22,19 @@ public class Bow : Weapon
     {
         return false;
     }
+
+    public override double GetAmountDamageThatCanBeCaused()
+    {
+        return 0;
+    }
+
+    public override bool IsBeingUsedToAttack()
+    {
+        return false;
+    }
+
+    public override void ChangeColorRecursively(Color color)
+    {
+        base.ChangeColorRecursively(color);
+    }
 }

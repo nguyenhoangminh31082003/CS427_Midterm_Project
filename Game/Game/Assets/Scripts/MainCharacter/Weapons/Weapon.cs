@@ -80,4 +80,19 @@ public class Weapon : MonoBehaviour
     {
         gameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);   
     }
+    public virtual double GetAmountDamageThatCanBeCaused()
+    {
+        return 0;
+    }
+
+    public virtual bool IsBeingUsedToAttack()
+    {
+        return false;
+    }
+
+    public virtual void ChangeColorRecursively(Color color)
+    {
+        this.spriteRenderer.color = color;
+    }
+
 }
