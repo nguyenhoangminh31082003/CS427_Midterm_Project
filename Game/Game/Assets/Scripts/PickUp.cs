@@ -22,8 +22,11 @@ public class Pickup : MonoBehaviour
     private Vector3 moveDir;
     private Rigidbody2D rb;
 
+    private GameManager gameManager;
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
+        gameManager = GameManager.Instance;
     }
 
     private void Start() {
@@ -56,6 +59,10 @@ public class Pickup : MonoBehaviour
         // if (other.gameObject.GetComponent<PlayerController>()) {
         //     Destroy(gameObject);
         // }
+        if (other.gameObject.tag == "Player")
+        {
+            gameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);
+        }
         //DetectPickupType();
         //Destroy(gameObject);
     }

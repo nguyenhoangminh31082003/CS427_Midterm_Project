@@ -9,7 +9,7 @@ public class TestPlayer : MonoBehaviour
         Debug.Log("Trigger 12");
         if (other.gameObject.GetComponent<EnemyHealth>()) {
             EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage(1);
+            enemyHealth.TakeDamage(this.gameObject, 1);
         }
     }
 }

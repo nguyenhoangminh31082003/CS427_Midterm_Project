@@ -233,11 +233,6 @@ public class MainCharacter : MonoBehaviour
         {
             gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
         }
-
-        if (other.transform.tag == "Item")
-        {
-            gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
-        }
     }
     
     public void PauseAnimation()

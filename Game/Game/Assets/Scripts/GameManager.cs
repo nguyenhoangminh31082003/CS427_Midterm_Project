@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
             
             Sword sword = attackedObject.GetComponent<Sword>();
             EnemyHealth enemyHealth = collidedObject.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage((int)Math.Round(sword.GetAmountDamageThatCanBeCaused()));
+            enemyHealth.TakeDamage(attackedObject, (int)Math.Round(sword.GetAmountDamageThatCanBeCaused()));
         }
 
         if (collidedObjectTag == "Monster" && attackedObjectTag == "Arrow")
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
             Arrow arrow = attackedObject.GetComponent<Arrow>();
             EnemyHealth enemyHealth = collidedObject.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage((int)Math.Round(arrow.GetAmountDamageThatCanBeCaused()));
+            enemyHealth.TakeDamage(attackedObject, (int)Math.Round(arrow.GetAmountDamageThatCanBeCaused()));
             Destroy(attackedObject);
         }
 
