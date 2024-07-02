@@ -54,6 +54,16 @@ public class Sword : Weapon
         return true;
     }
 
+    public override bool AttackWithConsideringKeyboard()
+    {
+        bool spaceEntered = Input.GetKeyDown(KeyCode.Space);
+        if (spaceEntered)
+        {
+            return this.Attack();
+        }
+        return false;
+    }
+
     private void UpdateAttack()
     {
         if (!this.attacking || !this.currentlyUsed)
@@ -90,4 +100,5 @@ public class Sword : Weapon
     {
         base.ChangeColorRecursively(color);
     }
+
 }

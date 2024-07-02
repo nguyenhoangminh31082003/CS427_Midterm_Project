@@ -83,9 +83,8 @@ public class MainCharacter : MonoBehaviour
         this.speedY = speedY;
     }
     */
-
-    public long GetCoinCount()
-    {
+    
+    public long GetCoinCount() {
         return this.coinCount;
     }
 
@@ -173,11 +172,7 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateAttack()
     {
-        bool spaceEntered = Input.GetKeyDown(KeyCode.Space);
-        if (spaceEntered)
-        {
-            this.bag.UseCurrentWeaponToAttack();
-        }
+        this.bag.UseCurrentWeaponToAttackWithConsideringKeyboard();   
     }
 
     private void UpdateCanvasElement()

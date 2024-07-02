@@ -40,6 +40,20 @@ public class Weapon : MonoBehaviour
         }
         this.currentlyUsed = true;
         this.gameObject.SetActive(true);
+
+        //Debug.Log(this.gameObject.name + " " + this.currentlyUsed);
+        return true;
+    }
+
+    public bool StopUsing()
+    {
+        //Debug.Log(this.gameObject.name + " " + this.currentlyUsed);
+        if (!this.currentlyUsed)
+            return true;
+        if (this.IsBeingUsedToAttack())
+            return false;
+        this.currentlyUsed = false;
+        this.gameObject.SetActive(false);
         return true;
     }
 
@@ -67,7 +81,6 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        //Debug.Log("Weapon UPDATE!!!");
         UpdateSpriteRenderer();
     }
 
@@ -95,4 +108,13 @@ public class Weapon : MonoBehaviour
         this.spriteRenderer.color = color;
     }
 
+    public virtual bool AttackWithConsideringKeyboard()
+    {
+        return false;
+    }
+
+    public bool IsCurrentlyUsed()
+    {
+        return this.currentlyUsed;
+    }
 }
