@@ -76,4 +76,9 @@ public class Weapon : MonoBehaviour
         return 0;
     }
 
+    public virtual bool IsBeingUsedToAttack()
+    {
+        return false;
+    }
+
 }

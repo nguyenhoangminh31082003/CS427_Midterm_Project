@@ -27,4 +27,9 @@ public class Bow : Weapon
     {
         return 0;
     }
+
+    public override bool IsBeingUsedToAttack()
+    {
+        return false;
+    }
 }

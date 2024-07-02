@@ -141,7 +141,6 @@ public class MainCharacter : MonoBehaviour
         {
             this.transform.localScale = new Vector3(-1, 1, 1);
         }
-        //Debug.Log("bag " + (this.bag == null) + "???");
         double percentage = Math.Max(0, 1 - this.GetTotalWeight() / MAXIMUM_WEIGHT_LIMIT);
         this.speedX *= percentage;
         this.speedY *= percentage;
@@ -212,5 +211,10 @@ public class MainCharacter : MonoBehaviour
     public void ContinueAnimation()
     {
         this.GetComponent<Animator>().enabled = true;
+    }
+
+    public bool IsAttacking()
+    {
+        return this.bag.IsAttacking();
     }
 }

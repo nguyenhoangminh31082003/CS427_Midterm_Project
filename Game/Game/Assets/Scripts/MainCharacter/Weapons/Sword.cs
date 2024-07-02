@@ -78,6 +78,11 @@ public class Sword : Weapon
 
     public override double GetAmountDamageThatCanBeCaused()
     {
-        return damageCausedPerHit;
+        return this.damageCausedPerHit;
+    }
+
+    public override bool IsBeingUsedToAttack()
+    {
+        return this.attacking;
     }
 }
