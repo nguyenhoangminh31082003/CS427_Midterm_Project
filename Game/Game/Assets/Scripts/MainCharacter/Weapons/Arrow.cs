@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class Arrow : Weapon
 {
-    [SerializeField] private double MAXIMUM_SPEED;
-    [SerializeField] private double damageCausedPerHit;
+    [SerializeField] private Sprite normalSprite;
+    [SerializeField] private Sprite stoppingSprite;
+    [SerializeField] private float MAXIMUM_SPEED_X;
+    [SerializeField] private float MAXIMUM_SPEED_Y;
+    [SerializeField] private float MAXIMUM_DAMAGE_CAUSED_PER_HIT;
+    [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING;
+    [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING;
 
     public enum ArrowState
     {
         NOT_USED_YET,
+        PREPARED_TO_BE_USED,
         CURRENTLY_USED,
+        STOPPING,
         USED
     }
 
+    private Rigidbody2D rigidBody2D;
     private ArrowState arrowStatus;
+    private float percentage;
+    private float startTime;
+    private float speedX;
+    private float speedY;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -24,12 +36,87 @@ public class Arrow : Weapon
 
         this.arrowStatus = ArrowState.NOT_USED_YET;
 
+        this.rigidBody2D = this.GetComponent<Rigidbody2D>();
+
         this.IncreaseNumber(1);
+    }
+
+    public bool StartHolding()
+    {
+        if (this.arrowStatus != ArrowState.NOT_USED_YET)
+            return false;
+    
+        this.startTime = Time.time;
+        this.arrowStatus = ArrowState.PREPARED_TO_BE_USED;
+        
+        return true;
+    }
+
+    public float CalculatePercentage()
+    {
+        if (this.arrowStatus == ArrowState.PREPARED_TO_BE_USED)
+        {
+            float   currentTime = Time.time,
+                    secondsPassed = currentTime - this.startTime;
+            this.percentage = 1 + (1 + Mathf.Exp(secondsPassed));
+            return this.percentage;
+        }
+
+        if (this.arrowStatus == ArrowState.CURRENTLY_USED)
+            return this.percentage;
+
+        return 0;
+    }
+
+    public bool Shot()
+    {
+        if (this.arrowStatus != ArrowState.PREPARED_TO_BE_USED)
+            return false;
+        this.speedX = this.MAXIMUM_SPEED_X * this.CalculatePercentage();
+        this.speedY = this.MAXIMUM_SPEED_Y * this.CalculatePercentage();
+        this.startTime = Time.time;
+        this.arrowStatus = ArrowState.CURRENTLY_USED;
+        return true;
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
+
+        if (this.arrowStatus == ArrowState.CURRENTLY_USED)
+        {
+            float   currentTime = Time.time,
+                    amountPassed = (currentTime - this.startTime) * 1000;
+            if (amountPassed > NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING)
+            {
+                this.speedX = 0;
+                this.speedY = 0;
+                this.startTime = Time.time;
+                this.arrowStatus = ArrowState.STOPPING;
+                this.spriteRenderer.sprite = this.stoppingSprite;
+            }
+        }
+        else if (this.arrowStatus == ArrowState.STOPPING)
+        {
+            float   currentTime = Time.time,
+                    amountPassed = (currentTime - this.startTime) * 1000;
+            if (amountPassed > NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING)
+            {
+                this.arrowStatus = ArrowState.USED;
+            }
+        }
+
+    }
+
+    protected void FixedUpdate()
+    {
+        if (this.arrowStatus == ArrowState.CURRENTLY_USED)
+            this.rigidBody2D.velocity = new Vector2(this.speedX, this.speedY);
+    }
+
+    public override double GetAmountDamageThatCanBeCaused()
+    {
+        return this.CalculatePercentage() * this.MAXIMUM_DAMAGE_CAUSED_PER_HIT;
     }
 }

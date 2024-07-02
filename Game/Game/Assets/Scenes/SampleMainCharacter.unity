@@ -1621,6 +1621,7 @@ GameObject:
   - component: {fileID: 1617578840}
   - component: {fileID: 1617578841}
   - component: {fileID: 1617578842}
+  - component: {fileID: 1617578843}
   m_Layer: 0
   m_Name: SampleArrow
   m_TagString: Untagged
@@ -1711,7 +1712,35 @@ MonoBehaviour:
   currentlyUsed: 0
   number: 0
   MAXIMUM_SPEED: 0
-  damageCausedPerHit: 0
+  MAXIMUM_DAMAGE_CAUSED_PER_HIT: 0
+  NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING: 0
+--- !u!50 &1617578843
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617578839}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1672580693
 GameObject:
   m_ObjectHideFlags: 0
