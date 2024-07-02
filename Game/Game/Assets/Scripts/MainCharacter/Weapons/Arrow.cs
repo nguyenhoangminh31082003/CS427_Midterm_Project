@@ -21,7 +21,6 @@ public class Arrow : Weapon
         USED
     }
 
-    private Rigidbody2D rigidBody2D;
     private ArrowState arrowStatus;
     private float percentage;
     private float startTime;
@@ -35,8 +34,6 @@ public class Arrow : Weapon
         base.Start();
 
         this.arrowStatus = ArrowState.NOT_USED_YET;
-
-        this.rigidBody2D = this.GetComponent<Rigidbody2D>();
 
         this.IncreaseNumber(1);
     }
@@ -58,7 +55,7 @@ public class Arrow : Weapon
         {
             float   currentTime = Time.time,
                     secondsPassed = currentTime - this.startTime;
-            this.percentage = 1 + (1 + Mathf.Exp(secondsPassed));
+            this.percentage = 1 / (1 + Mathf.Exp(-secondsPassed));
             return this.percentage;
         }
 
@@ -76,6 +73,7 @@ public class Arrow : Weapon
         this.speedY = this.MAXIMUM_SPEED_Y * this.CalculatePercentage();
         this.startTime = Time.time;
         this.arrowStatus = ArrowState.CURRENTLY_USED;
+        this.spriteRenderer.color = new Color(1, 1, 1, 1);
         return true;
     }
 
@@ -83,8 +81,12 @@ public class Arrow : Weapon
     protected override void Update()
     {
         base.Update();
-
-        if (this.arrowStatus == ArrowState.CURRENTLY_USED)
+        
+        if (this.arrowStatus == ArrowState.PREPARED_TO_BE_USED)
+        {
+            this.spriteRenderer.color = this.GetCurrentColor();
+        }
+        else if (this.arrowStatus == ArrowState.CURRENTLY_USED)
         {
             float   currentTime = Time.time,
                     amountPassed = (currentTime - this.startTime) * 1000;
@@ -112,7 +114,31 @@ public class Arrow : Weapon
     protected void FixedUpdate()
     {
         if (this.arrowStatus == ArrowState.CURRENTLY_USED)
-            this.rigidBody2D.velocity = new Vector2(this.speedX, this.speedY);
+        {
+            Vector3 currentPosition = transform.position;
+            currentPosition.x += speedX * Time.fixedDeltaTime;
+            currentPosition.y += speedY * Time.fixedDeltaTime;
+            transform.position = currentPosition;
+        }
+    }
+
+    public UnityEngine.Color GetCurrentColor()
+    {
+        if (this.arrowStatus == ArrowState.PREPARED_TO_BE_USED)
+        {
+            /*
+            UnityEngine.Color   green   =   new Color(1, 0, 0, 1),
+                                yellow  =   new Color(1, 1, 0, 1),
+                                red     =   new Color(0, 1, 0, 1); 
+            */
+            this.CalculatePercentage();
+
+            if (this.percentage < 0.75)
+                return new Color(1, this.percentage, 0, 1);
+            return new Color(1 - this.percentage, 1, 0, 1);
+        }
+
+        return new Color(1, 1, 1, 1);
     }
 
     public override double GetAmountDamageThatCanBeCaused()
