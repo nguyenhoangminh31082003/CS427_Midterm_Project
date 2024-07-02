@@ -836,7 +836,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1265,7 +1265,7 @@ MonoBehaviour:
   m_Follow: {fileID: 859572281}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 4
+    OrthographicSize: 12
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1605,7 +1605,7 @@ Transform:
   m_GameObject: {fileID: 1503114771}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1889458, y: 0.40822238, z: 0}
+  m_LocalPosition: {x: 4.91, y: 5.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1622,6 +1622,7 @@ GameObject:
   - component: {fileID: 1617578840}
   - component: {fileID: 1617578841}
   - component: {fileID: 1617578842}
+  - component: {fileID: 1617578843}
   m_Layer: 0
   m_Name: SampleArrow
   m_TagString: Untagged
@@ -1712,12 +1713,48 @@ MonoBehaviour:
   currentlyUsed: 0
   number: 0
   normalSprite: {fileID: 21300000, guid: e8510bd6cc7c7784390bb3d11ed10fb6, type: 3}
+  holdingSprite: {fileID: 21300000, guid: f26811333cf68714e8507e2e1c53ed08, type: 3}
   stoppingSprite: {fileID: 21300000, guid: 460332712f0bb3d4390ccb3aa5082327, type: 3}
-  MAXIMUM_SPEED_X: 8
-  MAXIMUM_SPEED_Y: 0
+  maximumSpeedX: 0
+  maximumSpeedY: 0
   MAXIMUM_DAMAGE_CAUSED_PER_HIT: 42
-  NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING: 5
-  NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING: 1
+  NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING: 5000
+  NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING: 1000
+--- !u!70 &1617578843
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617578839}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.04}
+  m_Size: {x: 0.8, y: 0.4}
+  m_Direction: 1
 --- !u!1 &1672580693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,7 +2048,7 @@ Transform:
   m_GameObject: {fileID: 1901989736}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.709, y: -0.20743968, z: 0}
+  m_LocalPosition: {x: -6.08, y: -0.20743968, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

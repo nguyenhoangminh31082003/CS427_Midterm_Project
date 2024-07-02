@@ -7,8 +7,8 @@ public class Arrow : Weapon
     [SerializeField] private Sprite normalSprite;
     [SerializeField] private Sprite holdingSprite;
     [SerializeField] private Sprite stoppingSprite;
-    [SerializeField] private float MAXIMUM_SPEED_X;
-    [SerializeField] private float MAXIMUM_SPEED_Y;
+    [SerializeField] private float maximumSpeedX;
+    [SerializeField] private float maximumSpeedY;
     [SerializeField] private float MAXIMUM_DAMAGE_CAUSED_PER_HIT;
     [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING;
     [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING;
@@ -22,6 +22,7 @@ public class Arrow : Weapon
         USED
     }
 
+    private CapsuleCollider2D hittingCollider;
     private ArrowState arrowStatus;
     private float percentage;
     private float startTime;
@@ -35,6 +36,10 @@ public class Arrow : Weapon
         base.Start();
 
         this.arrowStatus = ArrowState.NOT_USED_YET;
+
+        this.hittingCollider = GetComponent<CapsuleCollider2D>();
+
+        this.hittingCollider.enabled = false;
 
         this.IncreaseNumber(1);
     }
@@ -51,6 +56,8 @@ public class Arrow : Weapon
     
         this.startTime = Time.time;
         this.arrowStatus = ArrowState.PREPARED_TO_BE_USED;
+        if (this.spriteRenderer != null)
+            this.spriteRenderer.sprite = holdingSprite;
         
         return true;
     }
@@ -71,15 +78,31 @@ public class Arrow : Weapon
         return 0;
     }
 
+    public void SetMaximumSpeed(float maximumSpeedX, float maximumSpeedY)
+    {
+        this.maximumSpeedX = maximumSpeedX;
+        this.maximumSpeedY = maximumSpeedY;
+    }
+
+    public float GetMaximumSpeedX()
+    {
+        return this.maximumSpeedX;
+    }
+    public float GetMaximumSpeedY()
+    {
+        return this.maximumSpeedY;
+    }
+
     public bool Shot()
     {
         if (this.arrowStatus != ArrowState.PREPARED_TO_BE_USED)
             return false;
-        this.speedX = this.MAXIMUM_SPEED_X * this.CalculatePercentage();
-        this.speedY = this.MAXIMUM_SPEED_Y * this.CalculatePercentage();
+        this.hittingCollider.enabled = true;
+        this.speedX = this.maximumSpeedX * this.CalculatePercentage();
+        this.speedY = this.maximumSpeedY * this.CalculatePercentage();
         this.startTime = Time.time;
         this.arrowStatus = ArrowState.CURRENTLY_USED;
-        this.spriteRenderer.color = new Color(1, 1, 1, 1);
+        this.spriteRenderer.sprite = normalSprite;
         return true;
     }
 
@@ -112,6 +135,10 @@ public class Arrow : Weapon
                 this.arrowStatus = ArrowState.USED;
             }
         }
+        else if (this.arrowStatus == ArrowState.USED)
+        {
+            Destroy(this.gameObject);
+        }
 
     }
 
@@ -120,9 +147,11 @@ public class Arrow : Weapon
         if (this.arrowStatus == ArrowState.CURRENTLY_USED)
         {
             Vector3 currentPosition = transform.position;
-            currentPosition.x += speedX * Time.fixedDeltaTime;
-            currentPosition.y += speedY * Time.fixedDeltaTime;
+            currentPosition.x += this.speedX * Time.fixedDeltaTime;
+            currentPosition.y += this.speedY * Time.fixedDeltaTime;
             transform.position = currentPosition;
+
+            //Debug.Log(this.speedX + " " + this.speedY);
         }
     }
 
