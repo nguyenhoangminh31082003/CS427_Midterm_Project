@@ -166,7 +166,7 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateAttack()
     {
-        bool spaceEntered = Input.GetKey(KeyCode.Space);
+        bool spaceEntered = Input.GetKeyDown(KeyCode.Space);
         if (spaceEntered)
         {
             this.bag.UseCurrentWeaponToAttack();

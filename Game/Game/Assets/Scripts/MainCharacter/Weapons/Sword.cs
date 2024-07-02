@@ -30,6 +30,8 @@ public class Sword : Weapon
         this.movingCollider.enabled = false;
 
         this.attacking = false;
+
+        this.attackStartTime = Time.time;
     }
 
     public override bool Attack()
