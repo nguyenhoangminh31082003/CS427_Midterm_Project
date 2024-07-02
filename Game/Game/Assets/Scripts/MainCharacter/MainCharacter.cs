@@ -153,28 +153,7 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateAttack()
     {
-        Weapon currentWeapon = this.bag.GetCurrentWeapon();
-
-        if (currentWeapon == null)
-            return;
-
-        bool    spaceEntered    =   Input.GetKeyDown(KeyCode.Space),
-                spaceHold       =   Input.GetKey(KeyCode.Space),
-                spaceReleased   =   Input.GetKeyUp(KeyCode.Space);
-
-        if (currentWeapon.GetTypeName() == "Bow")
-        {
-
-            if (spaceEntered)
-                currentWeapon.StartHolding();
-
-            return;
-        }
-
-        if (spaceEntered)
-        {
-            this.bag.UseCurrentWeaponToAttack();
-        }
+        this.bag.UseCurrentWeaponToAttackWithConsideringKeyboard();   
     }
 
     private void UpdateCanvasElement()

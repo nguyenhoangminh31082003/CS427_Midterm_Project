@@ -38,6 +38,11 @@ public class Arrow : Weapon
         this.IncreaseNumber(1);
     }
 
+    public bool IsCurrentlyHeld()
+    {
+        return this.arrowStatus == ArrowState.PREPARED_TO_BE_USED;
+    }
+
     public bool StartHolding()
     {
         if (this.arrowStatus != ArrowState.NOT_USED_YET)
@@ -56,6 +61,7 @@ public class Arrow : Weapon
             float   currentTime = Time.time,
                     secondsPassed = currentTime - this.startTime;
             this.percentage = 1 / (1 + Mathf.Exp(-secondsPassed));
+            //Debug.Log(this.percentage);
             return this.percentage;
         }
 
@@ -81,6 +87,8 @@ public class Arrow : Weapon
     protected override void Update()
     {
         base.Update();
+
+        //Debug.Log(this.gameObject.name + " " + this.arrowStatus);
         
         if (this.arrowStatus == ArrowState.PREPARED_TO_BE_USED)
         {
@@ -128,9 +136,7 @@ public class Arrow : Weapon
         {
             this.CalculatePercentage();
 
-            if (this.percentage < 0.75)
-                return new Color(1, this.percentage, 0, 1);
-            return new Color(1 - this.percentage, 1, 0, 1);
+            return new Color(this.percentage, 1 - this.percentage, 0, this.percentage);
         }
 
         return new Color(1, 1, 1, 1);
@@ -139,5 +145,15 @@ public class Arrow : Weapon
     public override double GetAmountDamageThatCanBeCaused()
     {
         return this.CalculatePercentage() * this.MAXIMUM_DAMAGE_CAUSED_PER_HIT;
+    }
+
+    public override bool AttackWithConsideringKeyboard()
+    {
+        return false;
+    }
+
+    public ArrowState GetStatus()
+    {
+        return this.arrowStatus;
     }
 }

@@ -70,6 +70,13 @@ public class PlayerBag : MonoBehaviour
         return this.weapons[this.currentWeaponIndex].Attack();
     }
 
+    public bool UseCurrentWeaponToAttackWithConsideringKeyboard()
+    {
+        if (this.currentWeaponIndex < 0)
+            return false;
+        return this.weapons[this.currentWeaponIndex].AttackWithConsideringKeyboard();
+    }
+
     public bool IsAttacking()
     {
         if (this.currentWeaponIndex < 0)
@@ -85,10 +92,4 @@ public class PlayerBag : MonoBehaviour
         }
     }
 
-    public Weapon GetCurrentWeapon()
-    {
-        if (this.currentWeaponIndex < 0)
-            return null;
-        return this.weapons[this.currentWeaponIndex];
-    }
 }
