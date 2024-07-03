@@ -7,13 +7,14 @@ public abstract class Interactable : MonoBehaviour
     public float interactionRadius = 2.0f;  // Radius within which the player can interact
     private bool isPlayerInRange = false;
     private MainCharacter player;
+    private Transform textBubble;
 
     protected virtual void Awake() {
-        player = MainCharacter.Instance;
+        textBubble = this.transform.Find("TextBubble");
     }
     protected virtual void Start()
     {
-        
+        player = MainCharacter.Instance;
         // player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -52,12 +53,12 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void OnPlayerEnterRange()
     {
-        // vi du: canvas.gameObject.SetActive(true);
+        textBubble.gameObject.SetActive(true);
     }
 
     protected virtual void OnPlayerExitRange()
     {
-        // vi du: canvas.gameObject.SetActive(false);
+        textBubble.gameObject.SetActive(false);
     }
 
     // Draw the interaction radius in the editor
