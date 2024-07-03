@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
                                  string attackedObjectTag, string attackedObjectName)
     {
         //For debug purposes
-        CollisionLog(collidedObjectName);
-        CollisionLog(collidedObjectTag);
-        CollisionLog(attackedObjectName);
-        CollisionLog(attackedObjectTag);
+        //CollisionLog(collidedObjectName);
+        //CollisionLog(collidedObjectTag);
+        //CollisionLog(attackedObjectName);
+        //CollisionLog(attackedObjectTag);
 
         if (collidedObjectTag == "Player" && attackedObjectTag == "Item") {
             GameObject collidedObject = RetrieveObject(collidedObjectName);
@@ -119,6 +119,20 @@ public class GameManager : MonoBehaviour
                 }
                 //chaseMovement.Roaming();
             }
+
+            if (!mainCharacter.IsInvincible())
+            {
+                mainCharacter.GetKnockBack(attackedObject.transform);
+            }
+            mainCharacter.DecreaseLiveCount();
+        }
+
+        if (collidedObjectTag == "Player" && attackedObjectTag == "Trap")
+        {
+            GameObject collidedObject = RetrieveObject(collidedObjectName);
+            GameObject attackedObject = RetrieveObject(attackedObjectName);
+
+            MainCharacter mainCharacter = collidedObject.GetComponent<MainCharacter>();
 
             if (!mainCharacter.IsInvincible())
             {

@@ -11,14 +11,18 @@ public abstract class Trap : MonoBehaviour
     private bool isIn;
     private Animator _animator;
     private string _currentState;
+    private GameManager gameManager;
+    private MainCharacter mainCharacter;
     protected abstract string AttackState { get; }
     protected abstract string SleepState { get; }
 
     void Awake() {
         _animator = GetComponent<Animator>();
+        gameManager = GameManager.Instance;
     }
     void Start()
     {
+        mainCharacter = MainCharacter.Instance;
         isIn = false;
         isTriggered = false;
         damaged = false;
@@ -49,7 +53,7 @@ public abstract class Trap : MonoBehaviour
             damaged = true;
             Debug.Log("Deal Damage to player");
             // Call manager to deal damage
-            
+            gameManager.CollisionHandler(mainCharacter.transform.tag, mainCharacter.transform.name, this.tag, this.name);
         }
     }
 
