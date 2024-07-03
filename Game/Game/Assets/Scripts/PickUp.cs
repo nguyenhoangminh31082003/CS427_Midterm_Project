@@ -88,29 +88,29 @@ public class Pickup : MonoBehaviour
         }
     }
 
-    private void DetectPickupType()
-    {
-        switch (pickUpType)
-        {
-            case PickUpType.GoldCoin:
-                // do goldcoin stuff
-                Debug.Log("GoldCoin");
-                break;
-            case PickUpType.HealthGlobe:
-                Debug.Log("HealthGlobe");
-                break;
-            case PickUpType.StaminaGlobe:
-                // do stamina globe stuff
-                Debug.Log("StaminaGlobe");
-                break;
-            case PickUpType.SilverKey:
-                KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
-                Debug.Log("SilverKey");
-                break;
-            case PickUpType.GoldKey:
-                Debug.Log("GoldKey");
-                KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
-                break;
-        }
-    }
+    // private void DetectPickupType()
+    // {
+    //     switch (pickUpType)
+    //     {
+    //         case PickUpType.GoldCoin:
+    //             // do goldcoin stuff
+    //             Debug.Log("GoldCoin");
+    //             break;
+    //         case PickUpType.HealthGlobe:
+    //             Debug.Log("HealthGlobe");
+    //             break;
+    //         case PickUpType.StaminaGlobe:
+    //             // do stamina globe stuff
+    //             Debug.Log("StaminaGlobe");
+    //             break;
+    //         case PickUpType.SilverKey:
+    //             KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+    //             Debug.Log("SilverKey");
+    //             break;
+    //         case PickUpType.GoldKey:
+    //             Debug.Log("GoldKey");
+    //             KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
+    //             break;
+    //     }
+    // }
 }

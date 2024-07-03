@@ -5,9 +5,6 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     // temporary
-
-    private MainCharacter player;
-
     [SerializeField] private GameObject deathVFX;
     [SerializeField] private int initialHealth = 3;
     private int currentHealth;
@@ -17,7 +14,6 @@ public class EnemyHealth : MonoBehaviour
     void Awake() {
         flash = GetComponent<Flash>();
         knockback = GetComponent<Knockback>();
-        player = MainCharacter.Instance;
     }
     void Start()
     {
@@ -26,7 +22,6 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(GameObject damageSource, int damage) {
         currentHealth -= damage;
-        // Debug.Log(currentHealth);
         knockback.GetKnockedBack(damageSource.transform, 15f);
         StartCoroutine(flash.FlashRoutine());
         CheckDeath();
@@ -38,4 +33,6 @@ public class EnemyHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
 }
