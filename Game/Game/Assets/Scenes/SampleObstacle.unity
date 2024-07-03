@@ -277,6 +277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6dc18de91a82b14ab5dc46b2c23f4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstBox: {fileID: 0}
+  secondBox: {fileID: 0}
+  thirddBox: {fileID: 0}
   currentWeaponIndex: 0
 --- !u!50 &210076055
 Rigidbody2D:
