@@ -143,10 +143,19 @@ public class MainCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.UpdateCurrentlyUsedWeapon();
         this.UpdateVelocity();
         this.UpdateInvincibilityStatus();
         this.UpdateCanvasElement();
         this.UpdateAttack();
+    }
+
+    private void UpdateCurrentlyUsedWeapon()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            this.bag.MoveToTheNextWeaponAsTheCurrentWeapon();
+        }
     }
 
     private void UpdateAttack()

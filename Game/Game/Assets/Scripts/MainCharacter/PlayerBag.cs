@@ -43,11 +43,19 @@ public class PlayerBag : MonoBehaviour
     private int FindNextAvailableWeapon(int position)
     {
 
+        //foreach (Weapon playerWeapon in weapons)
+        //{
+        //    Debug.Log(playerWeapon.GetWeaponName() + " " + playerWeapon.GetNumber());
+        //}
+
+        //Debug.Log("Number of weapons " + this.weapons.Count);
+
         for (int i = 0; i < this.weapons.Count; ++i)
         {
             ++position;
             if (position >= this.weapons.Count)
                 position = 0;
+            //Debug.Log("position " + position);
             if (this.weapons[position].GetNumber() > 0)
                 return position;
         }
@@ -114,14 +122,35 @@ public class PlayerBag : MonoBehaviour
                 if (position < 0 || weaponCount <= 0)
                     continue;
 
-                this.weapons[i].DisplayInCanvas(boxes[position]);
+                //Debug.Log(position + " " + i + " " + this.weapons[i].GetWeaponName() + " " + boxes[i].name);
+
+                //this.weapons[i].DisplayInCanvas(boxes[position]);
+                this.weapons[position].DisplayInCanvas(boxes[i]);
 
                 --weaponCount;
+
+                //Debug.Log("before position: " + position);
+
                 position = this.FindNextAvailableWeapon(position);
+
+                //Debug.Log("after position: " + position);
             }
 
             this.weaponBoxesUIChangeRequired = false;
         }
+    }
+
+    public bool MoveToTheNextWeaponAsTheCurrentWeapon()
+    {
+        Debug.Log(this.currentWeaponIndex);
+        if (this.currentWeaponIndex < 0)
+            return false;
+        //Debug.Log(this.currentWeaponIndex);
+        this.weapons[this.currentWeaponIndex].StopUsing();
+        this.weaponBoxesUIChangeRequired = true;
+        this.currentWeaponIndex = this.FindNextAvailableWeapon(this.currentWeaponIndex);
+        this.weapons[this.currentWeaponIndex].StartUsing();
+        return true;
     }
 
     public bool UseCurrentWeaponToAttack()
