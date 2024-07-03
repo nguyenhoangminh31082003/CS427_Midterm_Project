@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
 
-    [SerializeField] protected Sprite normalSprite;
     [SerializeField] protected double weightPerUnit;
     [SerializeField] protected bool currentlyUsed;
     [SerializeField] protected int number;
@@ -111,8 +111,12 @@ public class Weapon : MonoBehaviour
         return this.currentlyUsed;
     }
 
-    public Sprite GetNormalSprite()
+    public virtual void DisplayInCanvas(GameObject container)
     {
-        return this.normalSprite;
+    }
+
+    public virtual string GetWeaponName()
+    {
+        return "Weapon";
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sword : Weapon
 {
@@ -8,6 +9,7 @@ public class Sword : Weapon
     [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION;
     [SerializeField] private double damageCausedPerHit;
     [SerializeField] private Sprite movingSwordSprite;
+    [SerializeField] private Sprite stillSwordSprite;
 
     private bool attacking;
     private float attackStartTime;
@@ -73,7 +75,7 @@ public class Sword : Weapon
         {
             this.attacking = false;
             this.movingCollider.enabled = false;
-            this.spriteRenderer.sprite = this.normalSprite;
+            this.spriteRenderer.sprite = this.stillSwordSprite;
         }
     }
 
@@ -100,4 +102,23 @@ public class Sword : Weapon
         base.ChangeColorRecursively(color);
     }
 
+    public override string GetWeaponName()
+    {
+        return "Sword";
+    }
+
+    public override void DisplayInCanvas(GameObject container)
+    {
+        /*
+        GameObject weaponImage = new GameObject(this.GetWeaponName() + "_Image");
+        weaponImage.transform.parent = container.transform;
+        Image image = weaponImage.AddComponent<Image>();
+        image.sprite = this.stillSwordSprite;
+        */
+        GameObject weaponImage = Instantiate(container, container.transform);
+        weaponImage.name = this.GetWeaponName() + "_Image";
+        weaponImage.transform.localPosition = new Vector2(0, 0);
+        Image image = weaponImage.GetComponent<Image>();
+        image.sprite = this.stillSwordSprite;
+    }
 }

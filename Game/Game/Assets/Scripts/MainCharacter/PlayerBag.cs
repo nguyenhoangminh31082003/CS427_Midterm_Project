@@ -13,6 +13,7 @@ public class PlayerBag : MonoBehaviour
 
     [SerializeField] private int currentWeaponIndex;
 
+    private bool weaponBoxesUIChangeRequired;
     private List<Weapon> weapons;
     private double totalWeight;
 
@@ -35,6 +36,8 @@ public class PlayerBag : MonoBehaviour
         }
 
         this.currentWeaponIndex = 0;
+
+        this.weaponBoxesUIChangeRequired = false;
     }
 
     private int FindNextAvailableWeapon(int position)
@@ -67,12 +70,17 @@ public class PlayerBag : MonoBehaviour
 
             if (weapon.GetNumber() == 0)
             {
-                weapon.IncreaseNumber(1);
+                foreach (Weapon playerWeapon in weapons)
+                {
+                    playerWeapon.IncreaseNumber(1);
+                }
                 weapon.StartUsing();
+
+                this.weaponBoxesUIChangeRequired = true;
             }
         }
 
-        this.UpdateCanvasElement();
+        this.UpdateCanvasElements();
     }
 
     private int CountAvailableWeapons()
@@ -88,20 +96,31 @@ public class PlayerBag : MonoBehaviour
         return count;
     }
 
-    private void UpdateCanvasElement()
+    private void UpdateCanvasElements()
     {
-        GameObject[] boxes = {this.firstBox, this.secondBox, this.thirddBox};
-        int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
-
-        for (int i = 0; i < boxes.Length && weaponCount > 0; ++i)
+        if (this.weaponBoxesUIChangeRequired)
         {
-            if (position < 0)
-                break;
+            GameObject[] boxes = { this.firstBox, this.secondBox, this.thirddBox };
+            int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
 
+            for (int i = 0; i < boxes.Length; ++i)
+            {
 
+                foreach (Transform child in boxes[i].transform)
+                {
+                    Destroy(child.gameObject);
+                }
 
-            --weaponCount;
-            position = this.FindNextAvailableWeapon(position);
+                if (position < 0 || weaponCount <= 0)
+                    continue;
+
+                this.weapons[i].DisplayInCanvas(boxes[position]);
+
+                --weaponCount;
+                position = this.FindNextAvailableWeapon(position);
+            }
+
+            this.weaponBoxesUIChangeRequired = false;
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Arrow : Weapon
 {
+    [SerializeField] protected Sprite normalSprite;
     [SerializeField] private Sprite holdingSprite;
     [SerializeField] private Sprite stoppingSprite;
     [SerializeField] private float maximumSpeedX;
