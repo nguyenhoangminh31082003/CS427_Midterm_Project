@@ -24,6 +24,8 @@ public class Pickup : MonoBehaviour
 
     private GameManager gameManager;
 
+    private float mass;
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         gameManager = GameManager.Instance;
@@ -86,6 +88,31 @@ public class Pickup : MonoBehaviour
             transform.position = Vector2.Lerp(startPoint, endPoint, linearT) + new Vector2(0f, height);
             yield return null;
         }
+    }
+
+    public float GetMass()
+    {
+        switch (pickUpType)
+        {
+            case PickUpType.GoldCoin:
+                mass = 1f;
+                break;
+            case PickUpType.HealthGlobe:
+                mass = 1f;
+                break;
+            case PickUpType.StaminaGlobe:
+                mass = 1f;
+                break;
+            case PickUpType.SilverKey:
+                // KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+                mass = 1f;
+                break;
+            case PickUpType.GoldKey:
+                // KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
+                mass = 1f;
+                break;
+        }
+        return mass;
     }
 
     // private void DetectPickupType()
