@@ -148,6 +148,42 @@ public class MainCharacter : MonoBehaviour
         this.UpdateInvincibilityStatus();
         this.UpdateCanvasElement();
         this.UpdateAttack();
+        this.UpdateKeyUsage();
+    }
+
+    private void UpdateKeyUsage()
+    {
+        if (Input.GetKey(KeyCode.E))
+        {
+            //WHERE IS THE MANAGER!!!
+        }
+    }
+
+    public bool IncreaseGateKeyCount(int delta)
+    {
+        if (delta <= 0)
+            return false;
+        return this.bag.changeGateKeyCount(delta);
+    }
+
+    public bool DecreaseGateKeyCount(int delta)
+    {
+        if (delta <= 0)
+            return false;
+        return this.bag.changeGateKeyCount(-delta);
+    }
+    public bool IncreaseChestKeyCount(int delta)
+    {
+        if (delta <= 0)
+            return false;
+        return this.bag.changeChestKeyCount(delta);
+    }
+
+    public bool DecreaseChestKeyCount(int delta)
+    {
+        if (delta <= 0)
+            return false;
+        return this.bag.changeChestKeyCount(-delta);
     }
 
     private void UpdateCurrentlyUsedWeapon()

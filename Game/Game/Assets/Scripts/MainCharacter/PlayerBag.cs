@@ -12,6 +12,8 @@ public class PlayerBag : MonoBehaviour
     [SerializeField] private GameObject thirddBox;
 
     [SerializeField] private int currentWeaponIndex;
+    [SerializeField] private int gateKeyCount;
+    [SerializeField] private int chestKeyCount;
 
     private bool weaponBoxesUIChangeRequired;
     private List<Weapon> weapons;
@@ -20,6 +22,10 @@ public class PlayerBag : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.gateKeyCount = 0;
+
+        this.chestKeyCount = 0;
+
         this.totalWeight = 0;
 
         this.weapons = new List<Weapon>();
@@ -38,6 +44,24 @@ public class PlayerBag : MonoBehaviour
         this.currentWeaponIndex = 0;
 
         this.weaponBoxesUIChangeRequired = false;
+    }
+
+    public bool changeGateKeyCount(int delta)
+    {
+        int newGateKeyCount = this.gateKeyCount + delta;
+        if (newGateKeyCount < 0)
+            return false;
+        this.gateKeyCount = newGateKeyCount;
+        return true;
+    }
+
+    public bool changeChestKeyCount(int delta)
+    {
+        int newChestKeyCount = this.chestKeyCount + delta;
+        if (newChestKeyCount < 0)
+            return false;
+        this.gateKeyCount = newChestKeyCount;
+        return true;
     }
 
     private int FindNextAvailableWeapon(int position)
