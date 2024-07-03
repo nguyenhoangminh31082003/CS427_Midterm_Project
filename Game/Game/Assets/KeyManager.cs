@@ -30,4 +30,8 @@ public class KeyManager : MonoBehaviour
     public bool CheckRequiredItem(KeyItem item) {
         return _inventoryItems.Contains(item);
     }
+
+    public List<KeyItem> GetInventoryKey() {
+        return _inventoryItems;
+    }
 }
