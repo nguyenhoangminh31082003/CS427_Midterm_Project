@@ -8,7 +8,6 @@ public class Sword : Weapon
     [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION;
     [SerializeField] private double damageCausedPerHit;
     [SerializeField] private Sprite movingSwordSprite;
-    [SerializeField] private Sprite stillWordSprite;
 
     private bool attacking;
     private float attackStartTime;
@@ -74,7 +73,7 @@ public class Sword : Weapon
         {
             this.attacking = false;
             this.movingCollider.enabled = false;
-            this.spriteRenderer.sprite = this.stillWordSprite;
+            this.spriteRenderer.sprite = this.normalSprite;
         }
     }
 

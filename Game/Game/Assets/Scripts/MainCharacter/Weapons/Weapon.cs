@@ -6,6 +6,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
+    [SerializeField] protected Sprite normalSprite;
     [SerializeField] protected double weightPerUnit;
     [SerializeField] protected bool currentlyUsed;
     [SerializeField] protected int number;
@@ -96,7 +97,8 @@ public class Weapon : MonoBehaviour
 
     public virtual void ChangeColorRecursively(Color color)
     {
-        this.spriteRenderer.color = color;
+        if (this.spriteRenderer != null)
+            this.spriteRenderer.color = color;
     }
 
     public virtual bool AttackWithConsideringKeyboard()
@@ -107,5 +109,10 @@ public class Weapon : MonoBehaviour
     public bool IsCurrentlyUsed()
     {
         return this.currentlyUsed;
+    }
+
+    public Sprite GetNormalSprite()
+    {
+        return this.normalSprite;
     }
 }

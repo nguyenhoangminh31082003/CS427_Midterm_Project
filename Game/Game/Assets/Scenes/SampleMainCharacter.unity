@@ -311,7 +311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &162187229
 Transform:
   m_ObjectHideFlags: 0
@@ -340,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f9bc3283c97bc4b978d53c707aec34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 5cb38364f0c17494cbd5d7e705889a4e, type: 3}
   weightPerUnit: 0
   currentlyUsed: 0
   number: 0
@@ -931,8 +932,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 162187229}
   - {fileID: 1672580694}
+  - {fileID: 162187229}
   m_Father: {fileID: 859572281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &679290868
@@ -947,6 +948,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6dc18de91a82b14ab5dc46b2c23f4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstBox: {fileID: 0}
+  secondBox: {fileID: 0}
+  thirddBox: {fileID: 0}
   currentWeaponIndex: 0
 --- !u!1 &681748315
 GameObject:
@@ -1709,10 +1713,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4710306aa8f6b479a6af36e865128f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: e8510bd6cc7c7784390bb3d11ed10fb6, type: 3}
   weightPerUnit: 0
   currentlyUsed: 0
   number: 0
-  normalSprite: {fileID: 21300000, guid: e8510bd6cc7c7784390bb3d11ed10fb6, type: 3}
   holdingSprite: {fileID: 21300000, guid: f26811333cf68714e8507e2e1c53ed08, type: 3}
   stoppingSprite: {fileID: 21300000, guid: 460332712f0bb3d4390ccb3aa5082327, type: 3}
   maximumSpeedX: 8
@@ -1773,7 +1777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1672580694
 Transform:
   m_ObjectHideFlags: 0
@@ -1801,13 +1805,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d678ff06580d59d409a7196c27180198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 3d9e76a44a6786e4cae51c98707859f9, type: 3}
   weightPerUnit: 0
   currentlyUsed: 0
   number: 0
   NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION: 200
   damageCausedPerHit: 42
   movingSwordSprite: {fileID: 21300000, guid: 83aaa63eec275e5449f4d6a59d5a39a8, type: 3}
-  stillWordSprite: {fileID: 21300000, guid: 3d9e76a44a6786e4cae51c98707859f9, type: 3}
 --- !u!212 &1672580696
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -41,8 +41,6 @@ public class MainCharacter : MonoBehaviour
     {
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
         this.rigidBody2D = this.GetComponent<Rigidbody2D>();
-        //Debug.Log(this.playerBag.GetComponent<PlayerBag>());
-        //this.bag = GetComponent<PlayerBag>();
         this.bag = this.playerBag.GetComponent<PlayerBag>();
         this.speedX = 0;
         this.speedY = 0;
@@ -145,10 +143,10 @@ public class MainCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateVelocity();
-        UpdateInvincibilityStatus();
-        UpdateCanvasElement();
-        UpdateAttack();
+        this.UpdateVelocity();
+        this.UpdateInvincibilityStatus();
+        this.UpdateCanvasElement();
+        this.UpdateAttack();
     }
 
     private void UpdateAttack()

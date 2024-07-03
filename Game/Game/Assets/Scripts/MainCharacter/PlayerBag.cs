@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerBag : MonoBehaviour
 {
 
+    [SerializeField] private GameObject firstBox;
+    [SerializeField] private GameObject secondBox;
+    [SerializeField] private GameObject thirddBox;
+
     [SerializeField] private int currentWeaponIndex;
+
     private List<Weapon> weapons;
     private double totalWeight;
 
@@ -28,18 +34,22 @@ public class PlayerBag : MonoBehaviour
             }
         }
 
-        if (this.weapons.Count > 0)
+        this.currentWeaponIndex = 0;
+    }
+
+    private int FindNextAvailableWeapon(int position)
+    {
+
+        for (int i = 0; i < this.weapons.Count; ++i)
         {
-            this.currentWeaponIndex = 0;
-
-            Weapon weapon = this.weapons[this.currentWeaponIndex];
-
-            if (weapon.GetNumber() == 0)
-            {
-                weapon.IncreaseNumber(1);
-                weapon.StartUsing();
-            }
+            ++position;
+            if (position >= this.weapons.Count)
+                position = 0;
+            if (this.weapons[position].GetNumber() > 0)
+                return position;
         }
+
+        return -1;
     }
 
     public double GetTotalWeight()
@@ -60,6 +70,38 @@ public class PlayerBag : MonoBehaviour
                 weapon.IncreaseNumber(1);
                 weapon.StartUsing();
             }
+        }
+
+        this.UpdateCanvasElement();
+    }
+
+    private int CountAvailableWeapons()
+    {
+        int count = 0;
+
+        foreach (Weapon weapon in this.weapons)
+        {
+            if (weapon.GetNumber() > 0)
+                ++count;
+        }
+
+        return count;
+    }
+
+    private void UpdateCanvasElement()
+    {
+        GameObject[] boxes = {this.firstBox, this.secondBox, this.thirddBox};
+        int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
+
+        for (int i = 0; i < boxes.Length && weaponCount > 0; ++i)
+        {
+            if (position < 0)
+                break;
+
+
+
+            --weaponCount;
+            position = this.FindNextAvailableWeapon(position);
         }
     }
 
