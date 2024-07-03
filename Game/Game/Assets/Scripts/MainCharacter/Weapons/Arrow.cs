@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Arrow : Weapon
 {
-    [SerializeField] private Sprite normalSprite;
+    [SerializeField] protected Sprite normalSprite;
     [SerializeField] private Sprite holdingSprite;
     [SerializeField] private Sprite stoppingSprite;
     [SerializeField] private float maximumSpeedX;
@@ -121,6 +121,7 @@ public class Arrow : Weapon
                 this.startTime = Time.time;
                 this.arrowStatus = ArrowState.STOPPING;
                 this.spriteRenderer.sprite = this.stoppingSprite;
+                this.hittingCollider.enabled = false;
             }
         }
         else if (this.arrowStatus == ArrowState.STOPPING)
@@ -145,10 +146,10 @@ public class Arrow : Weapon
     {
         if (this.arrowStatus == ArrowState.CURRENTLY_USED)
         {
-            Vector3 currentPosition = transform.position;
+            Vector3 currentPosition = this.transform.position;
             currentPosition.x += this.speedX * Time.fixedDeltaTime;
             currentPosition.y += this.speedY * Time.fixedDeltaTime;
-            transform.position = currentPosition;
+            this.transform.position = currentPosition;
         }
     }
 

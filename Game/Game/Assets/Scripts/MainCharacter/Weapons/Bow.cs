@@ -1,11 +1,14 @@
 using System;
+using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 public class Bow : Weapon
 {
     [SerializeField] protected float NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK;
+    [SerializeField] protected Sprite stillBowSprite;
     [SerializeField] protected int unusedArrowCount;
     [SerializeField] protected Arrow sampleArrow;
 
@@ -181,5 +184,23 @@ public class Bow : Weapon
         return true;
     }
 
+    public override void DisplayInCanvas(GameObject container)
+    {
+        /*
+        GameObject weaponImage = new GameObject(this.GetWeaponName() + "_Image");
+        weaponImage.transform.parent = container.transform;
+        Image image = weaponImage.AddComponent<Image>();
+        image.sprite = this.stillBowSprite;
+        */
+        GameObject weaponImage = Instantiate(container, container.transform);
+        weaponImage.name = this.GetWeaponName() + "_Image";
+        weaponImage.transform.localPosition = new Vector2(0, 0);
+        Image image = weaponImage.GetComponent<Image>();
+        image.sprite = this.stillBowSprite;
+    }
 
+    public override string GetWeaponName()
+    {
+        return "Bow";
+    }
 }

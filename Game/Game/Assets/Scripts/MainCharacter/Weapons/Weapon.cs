@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -105,7 +106,8 @@ public class Weapon : MonoBehaviour
 
     public virtual void ChangeColorRecursively(Color color)
     {
-        this.spriteRenderer.color = color;
+        if (this.spriteRenderer != null)
+            this.spriteRenderer.color = color;
     }
 
     public virtual bool AttackWithConsideringKeyboard()
@@ -116,5 +118,14 @@ public class Weapon : MonoBehaviour
     public bool IsCurrentlyUsed()
     {
         return this.currentlyUsed;
+    }
+
+    public virtual void DisplayInCanvas(GameObject container)
+    {
+    }
+
+    public virtual string GetWeaponName()
+    {
+        return "Weapon";
     }
 }
