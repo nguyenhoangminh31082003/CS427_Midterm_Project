@@ -35,13 +35,12 @@ public class GameManager : MonoBehaviour
                                  string attackedObjectTag, string attackedObjectName)
     {
         //For debug purposes
-        //CollisionLog(collidedObjectName);
-        //CollisionLog(collidedObjectTag);
-        //CollisionLog(attackedObjectName);
-        //CollisionLog(attackedObjectTag);
+        CollisionLog(collidedObjectName);
+        CollisionLog(collidedObjectTag);
+        CollisionLog(attackedObjectName);
+        CollisionLog(attackedObjectTag);
 
         if (collidedObjectTag == "Player" && attackedObjectTag == "Item") {
-            Debug.Log("Increase gold coin");
             GameObject collidedObject = RetrieveObject(collidedObjectName);
             GameObject attackedObject = RetrieveObject(attackedObjectName);
 
@@ -51,6 +50,10 @@ public class GameManager : MonoBehaviour
             if (pickup.GetPickUpType() == Pickup.PickUpType.GoldCoin)
             {
                 mainCharacter.ChangeCoinCount(1);
+            }
+            else if (pickup.GetPickUpType() == Pickup.PickUpType.HealthGlobe)
+            {
+                mainCharacter.IncreaseLiveCount();
             }
 
             Destroy(attackedObject);
@@ -64,6 +67,25 @@ public class GameManager : MonoBehaviour
             Sword sword = attackedObject.GetComponent<Sword>();
             EnemyHealth enemyHealth = collidedObject.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(attackedObject, (int)Math.Round(sword.GetAmountDamageThatCanBeCaused()));
+        }
+
+        if (collidedObjectTag == "Box" && attackedObjectTag == "Sword")
+        {
+            GameObject collidedObject = RetrieveObject(collidedObjectName);
+            
+            Destructible destructible = collidedObject?.GetComponent<Destructible>();
+            destructible.Destruct();
+        }
+
+        if (collidedObjectTag == "Box" && attackedObjectTag == "Arrow")
+        {
+            GameObject collidedObject = RetrieveObject(collidedObjectName);
+            GameObject attackedObject = RetrieveObject(attackedObjectName);
+
+            Destructible destructible = collidedObject?.GetComponent<Destructible>();
+            destructible.Destruct();
+
+            Destroy(attackedObject);
         }
 
         if (collidedObjectTag == "Monster" && attackedObjectTag == "Arrow")

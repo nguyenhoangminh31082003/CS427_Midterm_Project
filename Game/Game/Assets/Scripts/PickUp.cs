@@ -59,7 +59,7 @@ public class Pickup : MonoBehaviour
         // if (other.gameObject.GetComponent<PlayerController>()) {
         //     Destroy(gameObject);
         // }
-        if (other.gameObject.tag == "Player")
+        if (other.transform.tag == "Player")
         {
             gameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);
         }
