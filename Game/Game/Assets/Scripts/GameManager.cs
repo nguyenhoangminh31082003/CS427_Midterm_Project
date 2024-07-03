@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
                                  string attackedObjectTag, string attackedObjectName)
     {
         //For debug purposes
-        //CollisionLog(collidedObjectName);
-        //CollisionLog(collidedObjectTag);
-        //CollisionLog(attackedObjectName);
-        //CollisionLog(attackedObjectTag);
+        // CollisionLog(collidedObjectName);
+        // CollisionLog(collidedObjectTag);
+        // CollisionLog(attackedObjectName);
+        // CollisionLog(attackedObjectTag);
 
         if (collidedObjectTag == "Player" && attackedObjectTag == "Item") {
             GameObject collidedObject = RetrieveObject(collidedObjectName);
@@ -54,6 +54,14 @@ public class GameManager : MonoBehaviour
             else if (pickup.GetPickUpType() == Pickup.PickUpType.HealthGlobe)
             {
                 mainCharacter.IncreaseLiveCount();
+            }
+            else if (pickup.GetPickUpType() == Pickup.PickUpType.SilverKey)
+            {
+                KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+            }
+            else if (pickup.GetPickUpType() == Pickup.PickUpType.GoldKey)
+            {
+                KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
             }
 
             Destroy(attackedObject);
