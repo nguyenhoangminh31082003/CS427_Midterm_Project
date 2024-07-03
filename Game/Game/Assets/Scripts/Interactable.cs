@@ -9,11 +9,11 @@ public abstract class Interactable : MonoBehaviour
     private MainCharacter player;
 
     protected virtual void Awake() {
-        player = MainCharacter.Instance;
+        // player = MainCharacter.Instance;
     }
     protected virtual void Start()
     {
-        
+        player = MainCharacter.Instance;
         // player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -31,11 +31,6 @@ public abstract class Interactable : MonoBehaviour
                 OnPlayerEnterRange();
             }
 
-            // Check if the player presses the "E" key
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Interact();
-            }
         }
         else
         {
@@ -44,6 +39,13 @@ public abstract class Interactable : MonoBehaviour
                 isPlayerInRange = false;
                 OnPlayerExitRange();
             }
+        }
+
+        // Check if the player presses the "E" key
+        if (Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
+        {
+            Debug.Log("press e");
+            Interact();
         }
     }
 

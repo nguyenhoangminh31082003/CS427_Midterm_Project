@@ -28,10 +28,10 @@ public class Pickup : MonoBehaviour
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
-        gameManager = GameManager.Instance;
     }
 
     private void Start() {
+        gameManager = GameManager.Instance;
         if (pickUpType == PickUpType.SilverKey || pickUpType == PickUpType.GoldKey) { return; }
         StartCoroutine(AnimCurveSpawnRoutine());
     }
