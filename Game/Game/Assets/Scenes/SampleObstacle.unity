@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6dc18de91a82b14ab5dc46b2c23f4ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentWeaponIndex: 0
 --- !u!50 &210076055
 Rigidbody2D:
   serializedVersion: 4
@@ -340,7 +341,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -363,6 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liveCountText: {fileID: 1211613676}
   coinCountText: {fileID: 805208831}
+  playerBag: {fileID: 0}
   liveCount: 0
 --- !u!95 &210076058
 Animator:
@@ -1689,7 +1691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &536194081059406126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2643,7 +2645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &4902138305619352887
 GameObject:
   m_ObjectHideFlags: 0

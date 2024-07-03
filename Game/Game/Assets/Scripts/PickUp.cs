@@ -104,7 +104,7 @@ public class Pickup : MonoBehaviour
                 mass = 1f;
                 break;
             case PickUpType.SilverKey:
-                // KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+                // KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey); <- handle nhat key
                 mass = 1f;
                 break;
             case PickUpType.GoldKey:
