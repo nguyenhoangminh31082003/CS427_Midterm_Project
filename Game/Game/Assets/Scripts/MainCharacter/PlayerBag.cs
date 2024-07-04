@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
@@ -195,6 +196,27 @@ public class PlayerBag : MonoBehaviour
     {
         if (number == 0)
             return false;
+
+        if (weaponName == Arrow.GetWeaponName())
+        {
+            string bowWeaponName = Bow.GetWeaponName();
+            foreach (Weapon weapon in this.weapons)
+                if (weapon.GetNameOfWeapon() == bowWeaponName)
+                {
+                    string value = weapon.GetWeaponAttributeValue("unusedArrowCount");
+
+                    if (value == null)
+                        return false;
+
+                    int parsedValue = Int32.Parse(value);
+
+                    return weapon.SetWeaponAttributeValue(
+                        "unusedArrowCount",
+                        (parsedValue + number).ToString()
+                    );
+                }
+            return false;
+        }
 
         foreach (Weapon weapon in this.weapons)
             if (weapon.GetNameOfWeapon() == weaponName)

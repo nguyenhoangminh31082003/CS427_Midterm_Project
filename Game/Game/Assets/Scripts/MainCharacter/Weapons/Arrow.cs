@@ -169,7 +169,7 @@ public class Arrow : Weapon
         return this.arrowStatus;
     }
 
-    public new string GetWeaponName()
+    public new static string GetWeaponName()
     {
         return "Arrow";
     }

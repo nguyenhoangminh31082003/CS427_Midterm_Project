@@ -132,4 +132,25 @@ public class Weapon : MonoBehaviour
     {
         return "Weapon";
     }
+
+    public virtual string GetWeaponAttributeValue(string attributeName)
+    {
+        /*
+         
+            This function should be used with high caution
+        
+        */
+        return null;
+    }
+
+    public virtual bool SetWeaponAttributeValue(string attributeName, string value)
+    {
+        /*
+         
+            This function should be used with high caution
+        
+        */
+        return false;
+    }
+
 }
