@@ -61,6 +61,14 @@ public class Weapon : MonoBehaviour
         return true;
     }
 
+    public bool DecreaseNumber(int number)
+    {
+        if (number <= 0 || this.number < number)
+            return false;
+        this.number -= number;
+        return true;
+    }
+
     public int GetNumber()
     {
         return this.number;
@@ -115,7 +123,12 @@ public class Weapon : MonoBehaviour
     {
     }
 
-    public virtual string GetWeaponName()
+    public static string GetWeaponName()
+    {
+        return "Weapon";
+    }
+
+    public virtual string GetNameOfWeapon()
     {
         return "Weapon";
     }

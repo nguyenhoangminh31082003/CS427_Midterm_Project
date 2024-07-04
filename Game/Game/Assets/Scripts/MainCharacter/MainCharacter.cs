@@ -163,27 +163,27 @@ public class MainCharacter : MonoBehaviour
     {
         if (delta <= 0)
             return false;
-        return this.bag.changeGateKeyCount(delta);
+        return this.bag.ChangeGateKeyCount(delta);
     }
 
     public bool DecreaseGateKeyCount(int delta)
     {
         if (delta <= 0)
             return false;
-        return this.bag.changeGateKeyCount(-delta);
+        return this.bag.ChangeGateKeyCount(-delta);
     }
     public bool IncreaseChestKeyCount(int delta)
     {
         if (delta <= 0)
             return false;
-        return this.bag.changeChestKeyCount(delta);
+        return this.bag.ChangeChestKeyCount(delta);
     }
 
     public bool DecreaseChestKeyCount(int delta)
     {
         if (delta <= 0)
             return false;
-        return this.bag.changeChestKeyCount(-delta);
+        return this.bag.ChangeChestKeyCount(-delta);
     }
 
     private void UpdateCurrentlyUsedWeapon()
@@ -258,5 +258,19 @@ public class MainCharacter : MonoBehaviour
     public bool IsAttacking()
     {
         return this.bag.IsAttacking();
+    }
+
+    public bool IncreaseWeaponCount(string weaponName, int number)
+    {
+        if (number <= 0)
+            return false;
+        return this.bag.ChangeWeaponCount(weaponName, number);
+    }
+
+    public bool DecreaseWeaponCount(string weaponName, int number)
+    {
+        if (number <= 0)
+            return false;
+        return this.bag.ChangeWeaponCount(weaponName, -number);
     }
 }

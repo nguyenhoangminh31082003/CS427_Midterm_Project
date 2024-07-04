@@ -186,12 +186,6 @@ public class Bow : Weapon
 
     public override void DisplayInCanvas(GameObject container)
     {
-        /*
-        GameObject weaponImage = new GameObject(this.GetWeaponName() + "_Image");
-        weaponImage.transform.parent = container.transform;
-        Image image = weaponImage.AddComponent<Image>();
-        image.sprite = this.stillBowSprite;
-        */
         GameObject weaponImage = Instantiate(container, container.transform);
         weaponImage.name = this.GetWeaponName() + "_Image";
         weaponImage.transform.localPosition = new Vector2(0, 0);
@@ -199,7 +193,12 @@ public class Bow : Weapon
         image.sprite = this.stillBowSprite;
     }
 
-    public override string GetWeaponName()
+    public new string GetWeaponName()
+    {
+        return "Bow";
+    }
+
+    public override string GetNameOfWeapon()
     {
         return "Bow";
     }

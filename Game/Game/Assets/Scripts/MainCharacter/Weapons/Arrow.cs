@@ -168,4 +168,14 @@ public class Arrow : Weapon
     {
         return this.arrowStatus;
     }
+
+    public new string GetWeaponName()
+    {
+        return "Arrow";
+    }
+
+    public override string GetNameOfWeapon()
+    {
+        return "Arrow";
+    }
 }
