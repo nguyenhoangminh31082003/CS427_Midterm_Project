@@ -56,6 +56,15 @@ public class PlayerBag : MonoBehaviour
         for (int i = 0; i < numberOfCanvasUIWeaponBoxes; ++i)
         {
             GameObject duplicate = Instantiate(this.sampleBox, this.canvasUIWeaponContainers.transform);
+
+            RectTransform rectTransform = duplicate.GetComponent<RectTransform>();
+
+            if (rectTransform != null)
+            {
+                rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y - i * rectTransform.rect.height);
+            }
+
+            duplicate.name = "Weapon box container " + i.ToString();
         }
     }
 
