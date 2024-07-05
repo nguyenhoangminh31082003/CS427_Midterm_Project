@@ -1,12 +1,15 @@
+using TMPro;
 using System;
+using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
-using Unity.VisualScripting;
-using UnityEngine;
-
 public class PlayerBag : MonoBehaviour
 {
+
+    [SerializeField] private TextMeshProUGUI silverKeyCountText;
+    [SerializeField] private TextMeshProUGUI goldenKeyCountText;
 
     [SerializeField] private GameObject firstBox;
     [SerializeField] private GameObject secondBox;
@@ -123,6 +126,19 @@ public class PlayerBag : MonoBehaviour
 
     private void UpdateCanvasElements()
     {
+
+        if (KeyManager.Instance != null)
+        {
+            if (silverKeyCountText != null)
+            {
+
+            }
+            if (goldenKeyCountText != null)
+            {
+
+            }
+        }
+
         if (this.weaponBoxesUIChangeRequired)
         {
             GameObject[] boxes = { this.firstBox, this.secondBox, this.thirddBox };
