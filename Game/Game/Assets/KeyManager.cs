@@ -34,4 +34,16 @@ public class KeyManager : MonoBehaviour
     public List<KeyItem> GetInventoryKey() {
         return _inventoryItems;
     }
+
+    public int CountItem(KeyItem item)
+    {
+        int result = 0;
+
+        foreach (KeyItem keyItem in this._inventoryItems)
+            if (keyItem == item)
+                ++result;
+
+        return result;
+    }
+
 }

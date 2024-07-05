@@ -16,8 +16,8 @@ public class PlayerBag : MonoBehaviour
     [SerializeField] private GameObject thirddBox;
 
     [SerializeField] private int currentWeaponIndex;
-    [SerializeField] private int gateKeyCount;
     [SerializeField] private int chestKeyCount;
+    [SerializeField] private int gateKeyCount;
 
     private bool weaponBoxesUIChangeRequired;
     private List<Weapon> weapons;
@@ -131,11 +131,11 @@ public class PlayerBag : MonoBehaviour
         {
             if (silverKeyCountText != null)
             {
-
+                silverKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.SilverKey).ToString();
             }
             if (goldenKeyCountText != null)
             {
-
+                goldenKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.GoldKey).ToString();
             }
         }
 
