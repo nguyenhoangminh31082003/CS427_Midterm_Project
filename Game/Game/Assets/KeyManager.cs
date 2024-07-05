@@ -1,12 +1,12 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class KeyManager : MonoBehaviour
 {
     public static KeyManager Instance;
 
-    public List<KeyItem> _inventoryItems = new List<KeyItem>();
+    public Dictionary<KeyItem, int> _inventoryItems = new Dictionary<KeyItem, int>();
     public enum KeyItem {
         SilverKey,
         GoldKey
@@ -15,35 +15,43 @@ public class KeyManager : MonoBehaviour
         Instance = this;
     }
 
-    public void AddItem(KeyItem item) {
-        if (!_inventoryItems.Contains(item)) {
-            _inventoryItems.Add(item);
+    public void AddItem(KeyItem item)
+    {
+        if (_inventoryItems.ContainsKey(item))
+        {
+            _inventoryItems[item]++;
+        }
+        else
+        {
+            _inventoryItems[item] = 1;
         }
     }
 
-    public void RemoveItem(KeyItem item) {
-        if (_inventoryItems.Contains(item)) {
-            _inventoryItems.Remove(item);
+    public void RemoveItem(KeyItem item)
+    {
+        if (_inventoryItems.ContainsKey(item))
+        {
+            _inventoryItems[item]--;
+            if (_inventoryItems[item] <= 0)
+            {
+                _inventoryItems.Remove(item);
+            }
         }
     }
 
-    public bool CheckRequiredItem(KeyItem item) {
-        return _inventoryItems.Contains(item);
+    public bool CheckRequiredItem(KeyItem item)
+    {
+        return _inventoryItems.ContainsKey(item) && _inventoryItems[item] > 0;
     }
 
-    public List<KeyItem> GetInventoryKey() {
-        return _inventoryItems;
+    public List<KeyItem> GetInventoryKey()
+    {
+        return new List<KeyItem>(_inventoryItems.Keys);
     }
 
     public int CountItem(KeyItem item)
     {
-        int result = 0;
-
-        foreach (KeyItem keyItem in this._inventoryItems)
-            if (keyItem == item)
-                ++result;
-
-        return result;
+        return _inventoryItems.ContainsKey(item) ? _inventoryItems[item] : 0;
     }
 
 }
