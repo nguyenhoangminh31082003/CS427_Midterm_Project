@@ -293,9 +293,11 @@ public class MainCharacter : MonoBehaviour
         return this.bag.IsAttacking();
     }
 
-    public bool IsInvincible() 
+    public bool IsInvincible()
     {
-        return this.invincible;  
+        return this.invincible;
+    }
+
     public bool IncreaseWeaponCount(string weaponName, int number)
     {
         if (number <= 0)
