@@ -31,8 +31,6 @@ public class Bow : Weapon
         this.arrowIndex = "0";
 
         this.currentlyHeldArrow = null;
-
-        this.unusedArrowCount = 5;
     }
 
     private void IncreaseArrowIndexByOne()
