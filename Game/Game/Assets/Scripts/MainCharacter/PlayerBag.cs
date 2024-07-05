@@ -110,21 +110,6 @@ public class PlayerBag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.currentWeaponIndex >= 0)
-        {
-           
-            Weapon weapon = this.weapons[this.currentWeaponIndex];
-
-            if (weapon.GetNumber() == 0)
-            {
-                foreach (Weapon playerWeapon in weapons)
-                {
-                    playerWeapon.IncreaseNumber(1);
-                }
-                weapon.StartUsing();
-            }
-        }
-
         this.UpdateCanvasElements();
     }
 

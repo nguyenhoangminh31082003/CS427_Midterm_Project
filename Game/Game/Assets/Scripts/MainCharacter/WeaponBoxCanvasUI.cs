@@ -67,13 +67,15 @@ public class WeaponBoxCanvasUI : MonoBehaviour
     {
         if (this.firstCounterBackground == null || this.firstCounterText == null)
             return false;
+
         this.firstCounterBackground.SetActive(true);
         this.firstCounterText.SetActive(true);
 
-        TextMeshPro textCounter = this.firstCounterText.GetComponent<TextMeshPro>();
+        TextMeshProUGUI textCounter = this.firstCounterText.GetComponent<TextMeshProUGUI>();
 
         if (textCounter != null)
             textCounter.text = value.ToString();
+
         return true;
     }
 
@@ -81,9 +83,15 @@ public class WeaponBoxCanvasUI : MonoBehaviour
     {
         if (this.secondCounterBackground == null || this.secondCounterText == null)
             return false;
+
         this.secondCounterBackground.SetActive(true);
         this.secondCounterText.SetActive(true);
-        this.secondCounterText.GetComponent<TextMeshPro>().text = value.ToString();
+
+        TextMeshProUGUI textCounter = this.secondCounterText.GetComponent<TextMeshProUGUI>();
+
+        if (textCounter != null)
+            textCounter.text = value.ToString();
+
         return true;
     }
 
@@ -142,7 +150,11 @@ public class WeaponBoxCanvasUI : MonoBehaviour
         if (this.weaponImage == null)
             return false;
         this.weaponImage.SetActive(true);
-        this.weaponImage.GetComponent<Image>().sprite = sprite;
+
+        Image image = this.weaponImage.GetComponent<Image>();
+
+        if (image != null)
+            image.sprite = sprite;
         return true;
     }
 
