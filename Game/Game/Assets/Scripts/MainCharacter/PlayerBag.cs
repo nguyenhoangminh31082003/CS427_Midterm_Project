@@ -13,7 +13,7 @@ public class PlayerBag : MonoBehaviour
     [SerializeField] private TextMeshProUGUI goldenKeyCountText;
 
     [SerializeField] private GameObject sampleBox;
-    [SerializeField] private GameObject canvasUIWeaponContainers;
+    [SerializeField] private GameObject canvasUIWeaponsContainer;
     [SerializeField] private int numberOfCanvasUIWeaponBoxes;
 
     [SerializeField] private int currentWeaponIndex;
@@ -21,7 +21,6 @@ public class PlayerBag : MonoBehaviour
     [SerializeField] private int gateKeyCount;
 
     private List<GameObject> canvasUIWeaponBoxes;
-    private bool weaponBoxesUIChangeRequired;
     private List<Weapon> weapons;
     private double totalWeight;
 
@@ -49,13 +48,11 @@ public class PlayerBag : MonoBehaviour
 
         this.currentWeaponIndex = 0;
 
-        this.weaponBoxesUIChangeRequired = false;
-
         this.canvasUIWeaponBoxes = new List<GameObject>();
 
         for (int i = 0; i < numberOfCanvasUIWeaponBoxes; ++i)
         {
-            GameObject duplicate = Instantiate(this.sampleBox, this.canvasUIWeaponContainers.transform);
+            GameObject duplicate = Instantiate(this.sampleBox, this.canvasUIWeaponsContainer.transform);
 
             RectTransform rectTransform = duplicate.GetComponent<RectTransform>();
 
@@ -65,6 +62,10 @@ public class PlayerBag : MonoBehaviour
             }
 
             duplicate.name = "Weapon box container " + i.ToString();
+
+            duplicate.SetActive(true);
+
+            this.canvasUIWeaponBoxes.Add(duplicate);
         }
     }
 
@@ -121,8 +122,6 @@ public class PlayerBag : MonoBehaviour
                     playerWeapon.IncreaseNumber(1);
                 }
                 weapon.StartUsing();
-
-                this.weaponBoxesUIChangeRequired = true;
             }
         }
 
@@ -144,6 +143,7 @@ public class PlayerBag : MonoBehaviour
 
     private void UpdateCanvasElements()
     {
+        int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
 
         if (KeyManager.Instance != null)
         {
@@ -157,15 +157,29 @@ public class PlayerBag : MonoBehaviour
             }
         }
 
-        if (this.weaponBoxesUIChangeRequired)
+        for (int i = 0; i < this.numberOfCanvasUIWeaponBoxes; ++i)
         {
+            WeaponBoxCanvasUI box = this.canvasUIWeaponBoxes[i].GetComponent<WeaponBoxCanvasUI>();
 
-            for (int i = 0; i < this.numberOfCanvasUIWeaponBoxes; ++i)
+            if (box != null)
             {
+                if (i == 0)
+                    box.SetTheBoxChosen();
+                else
+                    box.SetTheBoxUnchosen();
 
+                if (weaponCount <= 0)
+                {
+                    box.TurnIntoEmptyBox();
+                }
+                else
+                {
+                    this.weapons[position].DisplayInCanvas(box);
+                    --weaponCount;
+                    position = this.FindNextAvailableWeapon(position);
+                }
             }
-
-            this.weaponBoxesUIChangeRequired = false;
+                
         }
     }
 
@@ -175,7 +189,6 @@ public class PlayerBag : MonoBehaviour
         if (this.currentWeaponIndex < 0)
             return false;
         this.weapons[this.currentWeaponIndex].StopUsing();
-        this.weaponBoxesUIChangeRequired = true;
         this.currentWeaponIndex = this.FindNextAvailableWeapon(this.currentWeaponIndex);
         this.weapons[this.currentWeaponIndex].StartUsing();
         return true;

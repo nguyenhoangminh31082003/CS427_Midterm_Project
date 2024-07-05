@@ -194,13 +194,11 @@ public class Bow : Weapon
         return "Bow";
     }
 
-    public override void DisplayInCanvas(GameObject container)
+    public override void DisplayInCanvas(WeaponBoxCanvasUI box)
     {
-        GameObject weaponImage = Instantiate(container, container.transform);
-        weaponImage.name = this.GetNameOfWeapon() + "_Image";
-        weaponImage.transform.localPosition = new Vector2(0, 0);
-        Image image = weaponImage.GetComponent<Image>();
-        image.sprite = this.stillBowSprite;
+        box.SetAndShowFirstCounter(this.number);
+        box.SetAndShowSecondCounter(this.unusedArrowCount);
+        box.SetAndShowWeaponImage(this.stillBowSprite);
     }
 
     public override string GetWeaponAttributeValue(string attributeName)

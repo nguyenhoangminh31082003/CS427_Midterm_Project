@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour
 {
@@ -119,7 +119,7 @@ public class Weapon : MonoBehaviour
         return this.currentlyUsed;
     }
 
-    public virtual void DisplayInCanvas(GameObject container)
+    public virtual void DisplayInCanvas(WeaponBoxCanvasUI box)
     {
     }
 

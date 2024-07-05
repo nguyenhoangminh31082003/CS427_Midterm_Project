@@ -112,12 +112,10 @@ public class Sword : Weapon
         return "Sword";
     }
 
-    public override void DisplayInCanvas(GameObject container)
+    public override void DisplayInCanvas(WeaponBoxCanvasUI box)
     {
-        GameObject weaponImage = Instantiate(container, container.transform);
-        weaponImage.name = this.GetNameOfWeapon() + "_Image";
-        weaponImage.transform.localPosition = new Vector2(0, 0);
-        Image image = weaponImage.GetComponent<Image>();
-        image.sprite = this.stillSwordSprite;
+        box.SetAndShowFirstCounter(this.number);
+        box.HideSecondCounter();
+        box.SetAndShowWeaponImage(this.stillSwordSprite);
     }
 }

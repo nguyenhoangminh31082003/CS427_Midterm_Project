@@ -1,9 +1,9 @@
+using TMPro;
 using System;
 using UnityEngine;
+using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using System.Drawing;
 
 public class MainCharacter : MonoBehaviour
 {
