@@ -1,25 +1,36 @@
+using TMPro;
+using System;
+using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
-using Unity.VisualScripting;
-using UnityEngine;
-
+using JetBrains.Annotations;
 public class PlayerBag : MonoBehaviour
 {
 
-    [SerializeField] private GameObject firstBox;
-    [SerializeField] private GameObject secondBox;
-    [SerializeField] private GameObject thirddBox;
+    [SerializeField] private TextMeshProUGUI silverKeyCountText;
+    [SerializeField] private TextMeshProUGUI goldenKeyCountText;
+
+    [SerializeField] private GameObject sampleBox;
+    [SerializeField] private GameObject canvasUIWeaponsContainer;
+    [SerializeField] private int numberOfCanvasUIWeaponBoxes;
 
     [SerializeField] private int currentWeaponIndex;
+    [SerializeField] private int chestKeyCount;
+    [SerializeField] private int gateKeyCount;
 
-    private bool weaponBoxesUIChangeRequired;
+    private List<GameObject> canvasUIWeaponBoxes;
     private List<Weapon> weapons;
     private double totalWeight;
 
     // Start is called before the first frame update
     void Start()
     {
+        this.gateKeyCount = 0;
+
+        this.chestKeyCount = 0;
+
         this.totalWeight = 0;
 
         this.weapons = new List<Weapon>();
@@ -37,25 +48,53 @@ public class PlayerBag : MonoBehaviour
 
         this.currentWeaponIndex = 0;
 
-        this.weaponBoxesUIChangeRequired = false;
+        this.canvasUIWeaponBoxes = new List<GameObject>();
+
+        for (int i = 0; i < numberOfCanvasUIWeaponBoxes; ++i)
+        {
+            GameObject duplicate = Instantiate(this.sampleBox, this.canvasUIWeaponsContainer.transform);
+
+            RectTransform rectTransform = duplicate.GetComponent<RectTransform>();
+
+            if (rectTransform != null)
+            {
+                rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y - i * rectTransform.rect.height);
+            }
+
+            duplicate.name = "Weapon box container " + i.ToString();
+
+            duplicate.SetActive(true);
+
+            this.canvasUIWeaponBoxes.Add(duplicate);
+        }
+    }
+
+    public bool ChangeGateKeyCount(int delta)
+    {
+        int newGateKeyCount = this.gateKeyCount + delta;
+        if (newGateKeyCount < 0)
+            return false;
+        this.gateKeyCount = newGateKeyCount;
+        return true;
+    }
+
+    public bool ChangeChestKeyCount(int delta)
+    {
+        int newChestKeyCount = this.chestKeyCount + delta;
+        if (newChestKeyCount < 0)
+            return false;
+        this.gateKeyCount = newChestKeyCount;
+        return true;
     }
 
     private int FindNextAvailableWeapon(int position)
     {
-
-        //foreach (Weapon playerWeapon in weapons)
-        //{
-        //    Debug.Log(playerWeapon.GetWeaponName() + " " + playerWeapon.GetNumber());
-        //}
-
-        //Debug.Log("Number of weapons " + this.weapons.Count);
 
         for (int i = 0; i < this.weapons.Count; ++i)
         {
             ++position;
             if (position >= this.weapons.Count)
                 position = 0;
-            //Debug.Log("position " + position);
             if (this.weapons[position].GetNumber() > 0)
                 return position;
         }
@@ -71,23 +110,6 @@ public class PlayerBag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.currentWeaponIndex >= 0)
-        {
-           
-            Weapon weapon = this.weapons[this.currentWeaponIndex];
-
-            if (weapon.GetNumber() == 0)
-            {
-                foreach (Weapon playerWeapon in weapons)
-                {
-                    playerWeapon.IncreaseNumber(1);
-                }
-                weapon.StartUsing();
-
-                this.weaponBoxesUIChangeRequired = true;
-            }
-        }
-
         this.UpdateCanvasElements();
     }
 
@@ -106,37 +128,43 @@ public class PlayerBag : MonoBehaviour
 
     private void UpdateCanvasElements()
     {
-        if (this.weaponBoxesUIChangeRequired)
+        int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
+
+        if (KeyManager.Instance != null)
         {
-            GameObject[] boxes = { this.firstBox, this.secondBox, this.thirddBox };
-            int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
-
-            for (int i = 0; i < boxes.Length; ++i)
+            if (silverKeyCountText != null)
             {
-
-                foreach (Transform child in boxes[i].transform)
-                {
-                    Destroy(child.gameObject);
-                }
-
-                if (position < 0 || weaponCount <= 0)
-                    continue;
-
-                //Debug.Log(position + " " + i + " " + this.weapons[i].GetWeaponName() + " " + boxes[i].name);
-
-                //this.weapons[i].DisplayInCanvas(boxes[position]);
-                this.weapons[position].DisplayInCanvas(boxes[i]);
-
-                --weaponCount;
-
-                //Debug.Log("before position: " + position);
-
-                position = this.FindNextAvailableWeapon(position);
-
-                //Debug.Log("after position: " + position);
+                silverKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.SilverKey).ToString();
             }
+            if (goldenKeyCountText != null)
+            {
+                goldenKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.GoldKey).ToString();
+            }
+        }
 
-            this.weaponBoxesUIChangeRequired = false;
+        for (int i = 0; i < this.numberOfCanvasUIWeaponBoxes; ++i)
+        {
+            WeaponBoxCanvasUI box = this.canvasUIWeaponBoxes[i].GetComponent<WeaponBoxCanvasUI>();
+
+            if (box != null)
+            {
+                if (i == 0)
+                    box.SetTheBoxChosen();
+                else
+                    box.SetTheBoxUnchosen();
+
+                if (weaponCount <= 0)
+                {
+                    box.TurnIntoEmptyBox();
+                }
+                else
+                {
+                    this.weapons[position].DisplayInCanvas(box);
+                    --weaponCount;
+                    position = this.FindNextAvailableWeapon(position);
+                }
+            }
+                
         }
     }
 
@@ -145,9 +173,7 @@ public class PlayerBag : MonoBehaviour
         Debug.Log(this.currentWeaponIndex);
         if (this.currentWeaponIndex < 0)
             return false;
-        //Debug.Log(this.currentWeaponIndex);
         this.weapons[this.currentWeaponIndex].StopUsing();
-        this.weaponBoxesUIChangeRequired = true;
         this.currentWeaponIndex = this.FindNextAvailableWeapon(this.currentWeaponIndex);
         this.weapons[this.currentWeaponIndex].StartUsing();
         return true;
@@ -180,6 +206,45 @@ public class PlayerBag : MonoBehaviour
         {
             this.weapons[this.currentWeaponIndex].ChangeColorRecursively(color);
         }
+    }
+
+    public bool ChangeWeaponCount(string weaponName, int number)
+    {
+        if (number == 0)
+            return false;
+
+        if (weaponName == Arrow.GetWeaponName())
+        {
+            string bowWeaponName = Bow.GetWeaponName();
+            foreach (Weapon weapon in this.weapons)
+                if (weapon.GetNameOfWeapon() == bowWeaponName)
+                {
+                    string value = weapon.GetWeaponAttributeValue("unusedArrowCount");
+
+                    if (value == null)
+                        return false;
+
+                    int parsedValue = Int32.Parse(value);
+
+                    return weapon.SetWeaponAttributeValue(
+                        "unusedArrowCount",
+                        (parsedValue + number).ToString()
+                    );
+                }
+            return false;
+        }
+
+        foreach (Weapon weapon in this.weapons)
+            if (weapon.GetNameOfWeapon() == weaponName)
+            {
+                if (number > 0)
+                    weapon.IncreaseNumber(number);
+                else
+                    weapon.DecreaseNumber(-number);
+                return true;
+            }
+
+        return false;
     }
 
 }

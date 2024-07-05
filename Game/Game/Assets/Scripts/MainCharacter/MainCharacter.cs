@@ -1,9 +1,9 @@
+using TMPro;
 using System;
 using UnityEngine;
+using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using System.Drawing;
 
 public class MainCharacter : MonoBehaviour
 {
@@ -166,6 +166,42 @@ public class MainCharacter : MonoBehaviour
         this.UpdateInvincibilityStatus();
         this.UpdateCanvasElement();
         this.UpdateAttack();
+        this.UpdateKeyUsage();
+    }
+
+    private void UpdateKeyUsage()
+    {
+        if (Input.GetKey(KeyCode.E))
+        {
+            //WHERE IS THE MANAGER!!!
+        }
+    }
+
+    public bool IncreaseGateKeyCount(int delta)
+    {
+        if (delta <= 0)
+            return false;
+        return this.bag.ChangeGateKeyCount(delta);
+    }
+
+    public bool DecreaseGateKeyCount(int delta)
+    {
+        if (delta <= 0)
+            return false;
+        return this.bag.ChangeGateKeyCount(-delta);
+    }
+    public bool IncreaseChestKeyCount(int delta)
+    {
+        if (delta <= 0)
+            return false;
+        return this.bag.ChangeChestKeyCount(delta);
+    }
+
+    public bool DecreaseChestKeyCount(int delta)
+    {
+        if (delta <= 0)
+            return false;
+        return this.bag.ChangeChestKeyCount(-delta);
     }
 
     private void UpdateCurrentlyUsedWeapon()
@@ -260,5 +296,17 @@ public class MainCharacter : MonoBehaviour
     public bool IsInvincible() 
     {
         return this.invincible;  
+    public bool IncreaseWeaponCount(string weaponName, int number)
+    {
+        if (number <= 0)
+            return false;
+        return this.bag.ChangeWeaponCount(weaponName, number);
+    }
+
+    public bool DecreaseWeaponCount(string weaponName, int number)
+    {
+        if (number <= 0)
+            return false;
+        return this.bag.ChangeWeaponCount(weaponName, -number);
     }
 }

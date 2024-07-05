@@ -31,8 +31,6 @@ public class Bow : Weapon
         this.arrowIndex = "0";
 
         this.currentlyHeldArrow = null;
-
-        this.unusedArrowCount = 5;
     }
 
     private void IncreaseArrowIndexByOne()
@@ -184,23 +182,46 @@ public class Bow : Weapon
         return true;
     }
 
-    public override void DisplayInCanvas(GameObject container)
-    {
-        /*
-        GameObject weaponImage = new GameObject(this.GetWeaponName() + "_Image");
-        weaponImage.transform.parent = container.transform;
-        Image image = weaponImage.AddComponent<Image>();
-        image.sprite = this.stillBowSprite;
-        */
-        GameObject weaponImage = Instantiate(container, container.transform);
-        weaponImage.name = this.GetWeaponName() + "_Image";
-        weaponImage.transform.localPosition = new Vector2(0, 0);
-        Image image = weaponImage.GetComponent<Image>();
-        image.sprite = this.stillBowSprite;
-    }
-
-    public override string GetWeaponName()
+    public new static string GetWeaponName()
     {
         return "Bow";
+    }
+
+    public override string GetNameOfWeapon()
+    {
+        return "Bow";
+    }
+
+    public override void DisplayInCanvas(WeaponBoxCanvasUI box)
+    {
+        box.SetAndShowFirstCounter(this.number);
+        box.SetAndShowSecondCounter(this.unusedArrowCount);
+        box.SetAndShowWeaponImage(this.stillBowSprite);
+    }
+
+    public override string GetWeaponAttributeValue(string attributeName)
+    {
+
+        if (attributeName == "unusedArrowCount")
+            return this.unusedArrowCount.ToString();
+
+        return null;
+    }
+
+    public override bool SetWeaponAttributeValue(string attributeName, string value)
+    {
+        
+        if (attributeName == "unusedArrowCount")
+        {
+            int parsedValue = Int32.Parse(value);
+            if (parsedValue < 0)
+                return false;
+
+            this.unusedArrowCount = parsedValue;
+
+            return true;
+        }
+
+        return false;
     }
 }

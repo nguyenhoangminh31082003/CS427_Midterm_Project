@@ -102,23 +102,20 @@ public class Sword : Weapon
         base.ChangeColorRecursively(color);
     }
 
-    public override string GetWeaponName()
+    public new static string GetWeaponName()
     {
         return "Sword";
     }
 
-    public override void DisplayInCanvas(GameObject container)
+    public override string GetNameOfWeapon()
     {
-        /*
-        GameObject weaponImage = new GameObject(this.GetWeaponName() + "_Image");
-        weaponImage.transform.parent = container.transform;
-        Image image = weaponImage.AddComponent<Image>();
-        image.sprite = this.stillSwordSprite;
-        */
-        GameObject weaponImage = Instantiate(container, container.transform);
-        weaponImage.name = this.GetWeaponName() + "_Image";
-        weaponImage.transform.localPosition = new Vector2(0, 0);
-        Image image = weaponImage.GetComponent<Image>();
-        image.sprite = this.stillSwordSprite;
+        return "Sword";
+    }
+
+    public override void DisplayInCanvas(WeaponBoxCanvasUI box)
+    {
+        box.SetAndShowFirstCounter(this.number);
+        box.HideSecondCounter();
+        box.SetAndShowWeaponImage(this.stillSwordSprite);
     }
 }

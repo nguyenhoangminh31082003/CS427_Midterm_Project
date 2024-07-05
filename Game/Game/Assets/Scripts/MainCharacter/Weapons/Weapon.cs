@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class Weapon : MonoBehaviour
 {
@@ -66,6 +65,14 @@ public class Weapon : MonoBehaviour
         return true;
     }
 
+    public bool DecreaseNumber(int number)
+    {
+        if (number <= 0 || this.number < number)
+            return false;
+        this.number -= number;
+        return true;
+    }
+
     public int GetNumber()
     {
         return this.number;
@@ -120,12 +127,38 @@ public class Weapon : MonoBehaviour
         return this.currentlyUsed;
     }
 
-    public virtual void DisplayInCanvas(GameObject container)
+    public virtual void DisplayInCanvas(WeaponBoxCanvasUI box)
     {
     }
 
-    public virtual string GetWeaponName()
+    public static string GetWeaponName()
     {
         return "Weapon";
     }
+
+    public virtual string GetNameOfWeapon()
+    {
+        return "Weapon";
+    }
+
+    public virtual string GetWeaponAttributeValue(string attributeName)
+    {
+        /*
+         
+            This function should be used with high caution
+        
+        */
+        return null;
+    }
+
+    public virtual bool SetWeaponAttributeValue(string attributeName, string value)
+    {
+        /*
+         
+            This function should be used with high caution
+        
+        */
+        return false;
+    }
+
 }
