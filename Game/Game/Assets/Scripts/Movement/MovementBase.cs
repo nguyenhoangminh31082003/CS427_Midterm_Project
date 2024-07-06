@@ -12,17 +12,20 @@ public abstract class MovementBase : MonoBehaviour
 
     protected SpriteRenderer sr;
 
-    protected Vector2 moveDir;
+    protected Animator _animator;
+
+    private Vector2 moveDir;
     protected virtual void Awake()
     {
         knockback = GetComponent<Knockback>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
         enemyController = GetComponent<EnemyController>();
-        this.player = MainCharacter.Instance;
+        
     }
     protected virtual void Start() {
-       
+        this.player = MainCharacter.Instance;
     }
 
     protected virtual void Update() {}

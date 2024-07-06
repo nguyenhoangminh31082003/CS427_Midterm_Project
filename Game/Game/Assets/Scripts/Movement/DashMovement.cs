@@ -20,7 +20,7 @@ public class DashMovement : MovementBase
             enemyController.SwitchToAttacking();
         }
 
-        moveDir = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
+        MoveTo(((Vector2)player.transform.position - (Vector2)transform.position).normalized);
     }
 
     public override void Attacking()
@@ -29,7 +29,7 @@ public class DashMovement : MovementBase
             enemyController.SwitchToRoaming();
         }
 
-        moveDir = ((Vector2)player.transform.position - (Vector2)transform.position).normalized;
+        MoveTo(((Vector2)player.transform.position - (Vector2)transform.position).normalized);
 
         if (canDash && !isDashing) {
             canDash = false;

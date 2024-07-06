@@ -30,7 +30,7 @@ public class PatrolMovement : MovementBase
         {
             targetPoint = (targetPoint + 1) % patrolPoints.Length;
         }
-        moveDir = (patrolPoints[targetPoint].position - transform.position).normalized;
+        MoveTo((patrolPoints[targetPoint].position - transform.position).normalized);
     }
 
     public override void Attacking()
