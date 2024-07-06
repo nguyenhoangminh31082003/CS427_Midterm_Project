@@ -57,12 +57,18 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void OnPlayerEnterRange()
     {
-        textBubble.gameObject.SetActive(true);
+        if (textBubble) {
+            textBubble.gameObject.SetActive(true);
+        }
+        
     }
 
     protected virtual void OnPlayerExitRange()
     {
-        textBubble.gameObject.SetActive(false);
+        if (textBubble) {
+            textBubble.gameObject.SetActive(false);
+        }
+        
     }
 
     // Draw the interaction radius in the editor
