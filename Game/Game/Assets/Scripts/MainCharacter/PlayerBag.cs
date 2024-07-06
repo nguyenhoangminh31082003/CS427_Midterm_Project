@@ -115,8 +115,13 @@ public class PlayerBag : MonoBehaviour
     {
         int count = 0;
 
+        //Debug.Log(this.weapons);
+
         foreach (Weapon weapon in this.weapons)
         {
+
+            //Debug.Log(weapon);
+
             if (weapon.GetNumber() > 0)
                 ++count;
         }
@@ -207,8 +212,12 @@ public class PlayerBag : MonoBehaviour
 
     public bool ChangeWeaponCount(string weaponName, int number)
     {
+        Debug.Log("LET'S EAT PINEAPPLE PIZZA");
+
         if (number == 0)
             return false;
+
+        Debug.Log("LET'S EAT PINEAPPLE PIZZA!!!");
 
         if (weaponName == Arrow.GetWeaponName())
         {
@@ -219,20 +228,31 @@ public class PlayerBag : MonoBehaviour
                 {
                     string value = weapon.GetWeaponAttributeValue("unusedArrowCount");
 
+                    Debug.Log("PINEAPPLE PIZZA IS READY");
+
                     if (value == null)
                         return false;
 
                     int parsedValue = Int32.Parse(value);
+
+                    Debug.Log(parsedValue);
 
                     return weapon.SetWeaponAttributeValue(
                         "unusedArrowCount",
                         (parsedValue + number).ToString()
                     );
                 }
+
             return false;
         }
 
+        bool result = false;
+
+        Debug.Log("LET'S EAT MORE PINEAPPLE PIZZA!!!");
+
         int previousCounter = this.CountAvailableWeapons();
+
+        Debug.Log("HELLO???");
 
         foreach (Weapon weapon in this.weapons)
             if (weapon.GetNameOfWeapon() == weaponName)
@@ -241,27 +261,38 @@ public class PlayerBag : MonoBehaviour
                     weapon.IncreaseNumber(number);
                 else
                     weapon.DecreaseNumber(-number);
-                return true;
+                result = true;
+                break;
             }
 
-        int currentCounter = this.CountAvailableWeapons();
+        if (result)
+        {
+            int currentCounter = this.CountAvailableWeapons();
 
-        if (previousCounter == 0 && currentCounter > 0)
-        {
-            this.currentWeaponIndex = this.FindNextAvailableWeapon(0);
-            this.weapons[this.currentWeaponIndex].StartUsing();
-        } 
-        else if (currentCounter == 0 && previousCounter > 0)
-        {
-            this.weapons[this.currentWeaponIndex].StopUsing();
-            this.currentWeaponIndex = -1;
-        }
-        else if (currentCounter < previousCounter)
-        {
-            this.MoveToTheNextWeaponAsTheCurrentWeapon();
+            Debug.Log(previousCounter + " " + currentCounter);
+
+            if (previousCounter == 0 && currentCounter > 0)
+            {
+                this.currentWeaponIndex = this.FindNextAvailableWeapon(0);
+                this.weapons[this.currentWeaponIndex].StartUsing();
+                Debug.Log("PINEAPPLE PIZZA IS GOOD!!!");
+                Debug.Log(this.currentWeaponIndex);
+                Debug.Log(this.weapons[0].GetNumber());
+                Debug.Log(this.weapons[1].GetNumber());
+                Debug.Log(this.weapons[1].gameObject + " " + this.weapons[1].gameObject.activeSelf);
+            }
+            else if (currentCounter == 0 && previousCounter > 0)
+            {
+                this.weapons[this.currentWeaponIndex].StopUsing();
+                this.currentWeaponIndex = -1;
+            }
+            else if (currentCounter < previousCounter)
+            {
+                this.MoveToTheNextWeaponAsTheCurrentWeapon();
+            }
         }
 
-        return false;
+        return result;
     }
 
 }

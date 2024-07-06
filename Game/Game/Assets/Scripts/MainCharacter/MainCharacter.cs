@@ -305,6 +305,10 @@ public class MainCharacter : MonoBehaviour
     {
         if (number <= 0)
             return false;
+
+        //Debug.Log("PINEAPPLE PIZZA IS EXTREMELY GOOD!!!");
+        //Debug.Log(weaponName + " " + number);
+
         return this.bag.ChangeWeaponCount(weaponName, number);
     }
 

@@ -38,8 +38,11 @@ public class Weapon : MonoBehaviour
         {
             return false;
         }
+
         this.currentlyUsed = true;
         this.gameObject.SetActive(true);
+
+        Debug.Log(this.gameObject + " " + this.gameObject.activeSelf);
 
         //Debug.Log(this.gameObject.name + " " + this.currentlyUsed);
         return true;
