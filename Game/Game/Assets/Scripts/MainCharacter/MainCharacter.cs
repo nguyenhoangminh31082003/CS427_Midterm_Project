@@ -13,6 +13,7 @@ public class MainCharacter : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinCountText;
     [SerializeField] private GameObject playerBag;
 
+    private DialogueManager dialogueManager;
     public const double NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD = 4000;
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
     public const int MAXIMUM_LIVE_COUNT = 5;
@@ -57,6 +58,7 @@ public class MainCharacter : MonoBehaviour
         this.lastDamageTime = 0;
 
         this.gameManager = GameManager.Instance;
+        this.dialogueManager  = DialogueManager.Instance;
     }
 
     public void GetKnockBack(Transform source)
@@ -161,6 +163,7 @@ public class MainCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dialogueManager.isDialogueActive) { return; }
         this.UpdateCurrentlyUsedWeapon();
         this.UpdateVelocity();
         this.UpdateInvincibilityStatus();

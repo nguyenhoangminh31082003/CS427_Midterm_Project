@@ -81,7 +81,7 @@ public class DialogueManager : MonoBehaviour
 
     public void Update()
     {
-        if (isDialogueActive && Input.GetKeyDown(KeyCode.J))
+        if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
         {
             if (index < currentLine.line.Length)
             {

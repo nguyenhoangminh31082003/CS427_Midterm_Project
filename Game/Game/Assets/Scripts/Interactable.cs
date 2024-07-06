@@ -8,12 +8,14 @@ public abstract class Interactable : MonoBehaviour
     private bool isPlayerInRange = false;
     private MainCharacter player;
     private Transform textBubble;
+    protected DialogueManager dialogueManager;
 
     protected virtual void Awake() {
         textBubble = this.transform.Find("TextBubble");
     }
     protected virtual void Start()
     {
+        dialogueManager = DialogueManager.Instance;
         player = MainCharacter.Instance;
         // player = GameObject.FindGameObjectWithTag("Player");
     }
