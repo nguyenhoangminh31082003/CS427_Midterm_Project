@@ -275,7 +275,7 @@ public class MainCharacter : MonoBehaviour
     {
         if (IsAttacking()) return;
 
-        if (other.transform.tag == "Monster")
+        if (other.transform.tag == "Monster" || other.transform.tag == "Trap")
         {
             gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
         }

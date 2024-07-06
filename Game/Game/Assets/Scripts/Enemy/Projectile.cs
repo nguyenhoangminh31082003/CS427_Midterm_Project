@@ -28,7 +28,7 @@ public class Projectile : MonoBehaviour
 
 
         if (other.gameObject.CompareTag("Player")) {
-            GameManager.Instance.CollisionHandler(tag, name, other.tag, other.name);
+            GameManager.Instance.CollisionHandler(other.tag, other.name, tag, name);
 
             Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
             Destroy(gameObject);

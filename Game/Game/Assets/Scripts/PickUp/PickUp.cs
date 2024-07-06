@@ -10,7 +10,8 @@ public class Pickup : MonoBehaviour
         StaminaGlobe,
         HealthGlobe,
         SilverKey,
-        GoldKey
+        GoldKey,
+        Arrow,
     }
     [SerializeField] private PickUpType pickUpType;
     [SerializeField] private float pickUpDistance = 5f;

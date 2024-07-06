@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
                                  string attackedObjectTag, string attackedObjectName)
     {
         //For debug purposes
-        // CollisionLog(collidedObjectName);
-        // CollisionLog(collidedObjectTag);
-        // CollisionLog(attackedObjectName);
-        // CollisionLog(attackedObjectTag);
+        //CollisionLog(collidedObjectName);
+        //CollisionLog(collidedObjectTag);
+        //CollisionLog(attackedObjectName);
+        //CollisionLog(attackedObjectTag);
 
         if (collidedObjectTag == "Player" && attackedObjectTag == "Item") {
             GameObject collidedObject = RetrieveObject(collidedObjectName);
@@ -46,22 +46,41 @@ public class GameManager : MonoBehaviour
 
             MainCharacter mainCharacter = collidedObject.GetComponent<MainCharacter>();
             Pickup pickup = attackedObject.GetComponent<Pickup>();
+            PickUpWeapon pickupWeapon = attackedObject.GetComponent<PickUpWeapon>();
+            
+            if (pickupWeapon != null)
+            {
+                if (pickupWeapon.GetPickUpType() == PickUpWeapon.ItemWeaponType.Sword)
+                {
+                    mainCharacter.IncreaseWeaponCount(Sword.GetWeaponName(), 1);
+                    
+                }
 
-            if (pickup.GetPickUpType() == Pickup.PickUpType.GoldCoin)
-            {
-                mainCharacter.ChangeCoinCount(1);
+                if (pickupWeapon.GetPickUpType() == PickUpWeapon.ItemWeaponType.Bow)
+                {
+                    mainCharacter.IncreaseWeaponCount(Bow.GetWeaponName(), 1);
+                }
+                Destroy(attackedObject);
             }
-            else if (pickup.GetPickUpType() == Pickup.PickUpType.HealthGlobe)
+
+            if (pickup != null)
             {
-                mainCharacter.IncreaseLiveCount();
-            }
-            else if (pickup.GetPickUpType() == Pickup.PickUpType.SilverKey)
-            {
-                KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
-            }
-            else if (pickup.GetPickUpType() == Pickup.PickUpType.GoldKey)
-            {
-                KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
+                if (pickup.GetPickUpType() == Pickup.PickUpType.GoldCoin)
+                {
+                    mainCharacter.ChangeCoinCount(1);
+                }
+                else if (pickup.GetPickUpType() == Pickup.PickUpType.HealthGlobe)
+                {
+                    mainCharacter.IncreaseLiveCount();
+                }
+                else if (pickup.GetPickUpType() == Pickup.PickUpType.SilverKey)
+                {
+                    KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+                }
+                else if (pickup.GetPickUpType() == Pickup.PickUpType.GoldKey)
+                {
+                    KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
+                }
             }
 
             Destroy(attackedObject);

@@ -9,6 +9,7 @@ public abstract class Interactable : MonoBehaviour
     private MainCharacter player;
     private Transform textBubble;
     protected DialogueManager dialogueManager;
+    protected GameManager gameManager;
 
     protected virtual void Awake() {
         textBubble = this.transform.Find("TextBubble");
@@ -17,6 +18,7 @@ public abstract class Interactable : MonoBehaviour
     {
         dialogueManager = DialogueManager.Instance;
         player = MainCharacter.Instance;
+        gameManager = GameManager.Instance;
         // player = GameObject.FindGameObjectWithTag("Player");
     }
 
