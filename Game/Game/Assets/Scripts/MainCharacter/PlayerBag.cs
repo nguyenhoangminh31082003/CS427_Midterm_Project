@@ -46,8 +46,6 @@ public class PlayerBag : MonoBehaviour
             }
         }
 
-        this.currentWeaponIndex = 0;
-
         this.canvasUIWeaponBoxes = new List<GameObject>();
 
         for (int i = 0; i < numberOfCanvasUIWeaponBoxes; ++i)
@@ -170,7 +168,6 @@ public class PlayerBag : MonoBehaviour
 
     public bool MoveToTheNextWeaponAsTheCurrentWeapon()
     {
-        Debug.Log(this.currentWeaponIndex);
         if (this.currentWeaponIndex < 0)
             return false;
         this.weapons[this.currentWeaponIndex].StopUsing();
@@ -252,11 +249,16 @@ public class PlayerBag : MonoBehaviour
         if (previousCounter == 0 && currentCounter > 0)
         {
             this.currentWeaponIndex = this.FindNextAvailableWeapon(0);
-        }
-
-        if (currentCounter == 0 && previousCounter > 0)
+            this.weapons[this.currentWeaponIndex].StartUsing();
+        } 
+        else if (currentCounter == 0 && previousCounter > 0)
         {
+            this.weapons[this.currentWeaponIndex].StopUsing();
             this.currentWeaponIndex = -1;
+        }
+        else if (currentCounter < previousCounter)
+        {
+            this.MoveToTheNextWeaponAsTheCurrentWeapon();
         }
 
         return false;
