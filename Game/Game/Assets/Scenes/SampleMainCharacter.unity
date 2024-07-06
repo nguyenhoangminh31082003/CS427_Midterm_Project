@@ -543,6 +543,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRadius: 0.5
   weaponType: 1
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.01651001
+      inSlope: -1.9457463
+      outSlope: -1.9457463
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06666666
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  heightY: 1.5
+  popDuration: 0.5
 --- !u!212 &106514426
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -604,7 +630,7 @@ Transform:
   m_GameObject: {fileID: 106514424}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.47487533, y: -9.840606, z: 0}
+  m_LocalPosition: {x: -2.74, y: -6.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2156,6 +2182,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRadius: 0.5
   weaponType: 0
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.009433746
+      inSlope: -1.9196079
+      outSlope: -1.9196079
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09583336
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  heightY: 1.5
+  popDuration: 0.5
 --- !u!212 &525235211
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2217,7 +2269,7 @@ Transform:
   m_GameObject: {fileID: 525235209}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2726, y: -9.7514, z: 0}
+  m_LocalPosition: {x: -4.13, y: -6.63, z: 0}
   m_LocalScale: {x: 0.792, y: 0.792, z: 0.792}
   m_ConstrainProportionsScale: 0
   m_Children:
