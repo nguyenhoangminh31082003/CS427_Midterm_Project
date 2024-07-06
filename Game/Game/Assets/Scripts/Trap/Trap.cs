@@ -4,9 +4,10 @@ using UnityEngine;
 
 public abstract class Trap : MonoBehaviour
 {
+    [SerializeField] private float attackAnimationSpeed = 1.0f;
     public float triggerInterval = 2.0f;  // Time between triggers
     private float timer = 0.0f;           // Timer to keep track of interval
-    public bool isTriggered;              // Whether the trap is currently triggered
+    // public bool isTriggered;              // Whether the trap is currently triggered
     private bool damaged;
     private bool isIn;
     private Animator _animator;
@@ -18,13 +19,13 @@ public abstract class Trap : MonoBehaviour
 
     void Awake() {
         _animator = GetComponent<Animator>();
-        gameManager = GameManager.Instance;
+        _animator.speed = attackAnimationSpeed;        
     }
     void Start()
     {
+        gameManager = GameManager.Instance;
         mainCharacter = MainCharacter.Instance;
         isIn = false;
-        isTriggered = false;
         damaged = false;
     }
 
@@ -39,22 +40,21 @@ public abstract class Trap : MonoBehaviour
 
         if (IsAnimationPlaying(_animator, AttackState))
         {
-            isTriggered = true;
+            if (isIn && !damaged)
+            {
+                damaged = true;
+                Debug.Log("Deal Damage to player");
+                // Call manager to deal damage
+                gameManager.CollisionHandler(mainCharacter.transform.tag, mainCharacter.transform.name, this.tag, this.name);
+            }
         }
         else
         {
-            ChangeAnimationState(SleepState);
-            isTriggered = false;
+            _currentState = SleepState;
             damaged = false;
         }
 
-        if (isTriggered && isIn && !damaged)
-        {
-            damaged = true;
-            Debug.Log("Deal Damage to player");
-            // Call manager to deal damage
-            gameManager.CollisionHandler(mainCharacter.transform.tag, mainCharacter.transform.name, this.tag, this.name);
-        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D other) 
