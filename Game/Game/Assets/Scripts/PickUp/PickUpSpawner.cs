@@ -2,33 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class DroppedItem {
+    public GameObject item;
+    public int weight;
+}
+
 public class PickUpSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject goldCoin, healthGlobe, staminaGlobe, scroll;
+    // [SerializeField] private GameObject goldCoin, healthGlobe, staminaGlobe, scroll;
 
-    public void DropItems(bool isChest = false) {
-        if (!isChest) {
-            int randomNum = Random.Range(1, 5);
+    [SerializeField] private DroppedItem[] droppedItemList;
 
-            if (randomNum == 1) {
-                Instantiate(healthGlobe, transform.position, Quaternion.identity); 
-            } 
+    private GameObject RandomByWeight(Dictionary<GameObject, int> itemWeights) {
+        int totalWeight = 0;
 
-            if (randomNum == 2) {
-                Instantiate(staminaGlobe, transform.position, Quaternion.identity); 
-            }
-
-            if (randomNum == 3) {
-                int randomAmountOfGold = Random.Range(1, 4);
-                
-                for (int i = 0; i < randomAmountOfGold; i++)
-                {
-                    Instantiate(goldCoin, transform.position, Quaternion.identity);
-                }
-            }
-        } else {
-            Instantiate(scroll, transform.position, Quaternion.identity); 
+        // sum weight
+        foreach (int weight in itemWeights.Values) {
+            totalWeight += weight;
         }
-        
+
+        // random between [1, totalWeight]
+        int random = Random.Range(1, totalWeight + 1);
+
+        // find which area the random in
+        int cursor = 0;
+        foreach (KeyValuePair<GameObject, int> itemWeight in itemWeights) {
+            cursor += itemWeight.Value;
+            if (cursor >= random) {
+                return itemWeight.Key;
+            }
+        }
+
+        return null; // this should never happen
+    }
+
+    public void DropItems() {
+        Dictionary<GameObject, int> itemWeights = new Dictionary<GameObject, int>();
+        foreach (DroppedItem pair in droppedItemList) {
+            itemWeights[pair.item] = pair.weight;
+        }
+
+        GameObject selectedItem = RandomByWeight(itemWeights);
+
+        Instantiate(selectedItem, transform.position, Quaternion.identity);
     }
 }

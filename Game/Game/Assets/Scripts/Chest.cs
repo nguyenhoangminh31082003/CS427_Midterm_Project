@@ -42,7 +42,7 @@ public class Chest : Interactable
             yield return null;
         }
         yield return new WaitForSeconds(0.5f);
-        GetComponent<PickUpSpawner>().DropItems(true);
+        GetComponent<PickUpSpawner>().DropItems();
         Destroy(gameObject);
     }
 
