@@ -81,6 +81,10 @@ public class GameManager : MonoBehaviour
                 {
                     KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
                 }
+                else if (pickup.GetPickUpType() == Pickup.PickUpType.Arrow)
+                {
+                    mainCharacter.IncreaseWeaponCount(Arrow.GetWeaponName(), 1);
+                }
             }
 
             Destroy(attackedObject);
