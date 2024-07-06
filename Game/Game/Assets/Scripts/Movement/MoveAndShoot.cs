@@ -35,13 +35,12 @@ public class MoveAndShoot : MovementBase
 
     public override void Attacking()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) < attackRange) {
+        if (Vector2.Distance(player.transform.position, transform.position) > attackRange) {
             enemyController.SwitchToRoaming();
         }
 
         if (attackRange > 0 && canAttack) {
             canAttack = false;
-
             { // attack block
                 Vector2 targetDirection = player.transform.position - transform.position;
                 
@@ -51,7 +50,6 @@ public class MoveAndShoot : MovementBase
                     sr.flipX = false;
                 }
                 _animator.SetTrigger("attack");
-                
                 GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                 newBullet.transform.right = targetDirection;
             }
@@ -75,7 +73,4 @@ public class MoveAndShoot : MovementBase
     }
     
 
-    public void Attack() {
-        
-    }
 }
