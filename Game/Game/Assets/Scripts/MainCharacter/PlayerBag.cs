@@ -216,6 +216,7 @@ public class PlayerBag : MonoBehaviour
         if (weaponName == Arrow.GetWeaponName())
         {
             string bowWeaponName = Bow.GetWeaponName();
+            
             foreach (Weapon weapon in this.weapons)
                 if (weapon.GetNameOfWeapon() == bowWeaponName)
                 {
@@ -234,6 +235,8 @@ public class PlayerBag : MonoBehaviour
             return false;
         }
 
+        int previousCounter = this.CountAvailableWeapons();
+
         foreach (Weapon weapon in this.weapons)
             if (weapon.GetNameOfWeapon() == weaponName)
             {
@@ -243,6 +246,18 @@ public class PlayerBag : MonoBehaviour
                     weapon.DecreaseNumber(-number);
                 return true;
             }
+
+        int currentCounter = this.CountAvailableWeapons();
+
+        if (previousCounter == 0 && currentCounter > 0)
+        {
+            this.currentWeaponIndex = this.FindNextAvailableWeapon(0);
+        }
+
+        if (currentCounter == 0 && previousCounter > 0)
+        {
+            this.currentWeaponIndex = -1;
+        }
 
         return false;
     }
