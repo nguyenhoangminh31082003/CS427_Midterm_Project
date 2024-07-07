@@ -28,6 +28,7 @@ public class Chest : Interactable
     {
         if (KeyManager.Instance.CheckRequiredItem(_requiredKey)) {
             StartCoroutine(PlayAnimationAndChangeState());
+            KeyManager.Instance.RemoveItem(_requiredKey);
         }
     }
 
