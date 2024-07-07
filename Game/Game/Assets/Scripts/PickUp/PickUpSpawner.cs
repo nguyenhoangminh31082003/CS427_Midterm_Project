@@ -45,6 +45,9 @@ public class PickUpSpawner : MonoBehaviour
 
         GameObject selectedItem = RandomByWeight(itemWeights);
 
-        Instantiate(selectedItem, transform.position, Quaternion.identity);
+        if (selectedItem)
+        {
+            Instantiate(selectedItem, transform.position, Quaternion.identity);
+        }
     }
 }
