@@ -2462,6 +2462,8 @@ MonoBehaviour:
     weight: 1
   - item: {fileID: 1333638258896147874, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
     weight: 1
+  dialogue:
+    dialogueLines: []
 --- !u!95 &540148084
 Animator:
   serializedVersion: 5
@@ -3216,6 +3218,8 @@ MonoBehaviour:
     weight: 1
   - item: {fileID: 1333638258896147874, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
     weight: 1
+  dialogue:
+    dialogueLines: []
 --- !u!95 &840177853
 Animator:
   serializedVersion: 5
@@ -3414,6 +3418,8 @@ MonoBehaviour:
     weight: 1
   - item: {fileID: 1333638258896147874, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
     weight: 1
+  dialogue:
+    dialogueLines: []
 --- !u!95 &847616896
 Animator:
   serializedVersion: 5
@@ -6758,6 +6764,8 @@ MonoBehaviour:
     weight: 1
   - item: {fileID: 1333638258896147874, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
     weight: 1
+  dialogue:
+    dialogueLines: []
 --- !u!4 &702233809673376561
 Transform:
   m_ObjectHideFlags: 0
@@ -6903,25 +6911,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droppedItemList:
   - item: {fileID: 1555781094482300365, guid: d1fd804d68bad8a46bdaf73d766f2f9b, type: 3}
-    weight: 1
+    weight: 0
   - item: {fileID: 3631343712921048028, guid: e467754b573312d4787001d02372dd72, type: 3}
-    weight: 1
+    weight: 0
   - item: {fileID: 3500045116613962182, guid: 616503ce962d8a34084e7e1b42cf31e6, type: 3}
-    weight: 1
+    weight: 0
   - item: {fileID: 4102176116264698095, guid: ff7ce263310b90d498acaa5c5c8b007c, type: 3}
     weight: 0
   - item: {fileID: 1938104694763768459, guid: 791288240af931741839b6d9fe06df79, type: 3}
     weight: 0
   - item: {fileID: 4428361671864906613, guid: b3b5ee2696d8f0346a36f2b63f965076, type: 3}
-    weight: 20
-  - item: {fileID: 4428361671864906613, guid: b3b5ee2696d8f0346a36f2b63f965076, type: 3}
     weight: 1
   - item: {fileID: 1691946223743847268, guid: cef14338caa3a7e408e0b96cdfbd58f1, type: 3}
-    weight: 50
+    weight: 0
   - item: {fileID: 4939054354195870496, guid: 66dc11b1857231a40a4095283bd2ba6b, type: 3}
-    weight: 50
+    weight: 0
   - item: {fileID: 1333638258896147874, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
-    weight: 1
+    weight: 0
+  dialogue:
+    dialogueLines:
+    - character:
+        name: Test123
+        icon: {fileID: 0}
+      line: 123456 test test must must 123
 --- !u!212 &1234691872211878188
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7751,6 +7763,8 @@ MonoBehaviour:
     weight: 1
   - item: {fileID: 1333638258896147874, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
     weight: 1
+  dialogue:
+    dialogueLines: []
 --- !u!4 &4677601014273531349
 Transform:
   m_ObjectHideFlags: 0
@@ -7967,6 +7981,8 @@ MonoBehaviour:
     weight: 1
   - item: {fileID: 1333638258896147874, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
     weight: 0
+  dialogue:
+    dialogueLines: []
 --- !u!114 &5595653708647938186
 MonoBehaviour:
   m_ObjectHideFlags: 0
