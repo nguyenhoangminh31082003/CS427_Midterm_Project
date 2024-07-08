@@ -21,6 +21,7 @@ public class PatrolMovement : MovementBase
         patrolPoints = patrolPointsList.ToArray();
     }
     protected override void Start() {
+        base.Start();
         targetPoint = 0;
     }
 
