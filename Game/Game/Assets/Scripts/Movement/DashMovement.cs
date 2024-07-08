@@ -11,6 +11,7 @@ public class DashMovement : MovementBase
 
     protected override void Start() 
     {
+        base.Start();
         originalSpeed = moveSpeed;
     }
 
