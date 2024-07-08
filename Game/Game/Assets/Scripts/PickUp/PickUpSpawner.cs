@@ -13,6 +13,7 @@ public class PickUpSpawner : MonoBehaviour
     // [SerializeField] private GameObject goldCoin, healthGlobe, staminaGlobe, scroll;
 
     [SerializeField] private DroppedItem[] droppedItemList;
+    [SerializeField] private Dialogue dialogue;
 
     private GameObject RandomByWeight(Dictionary<GameObject, int> itemWeights) {
         int totalWeight = 0;
@@ -47,6 +48,10 @@ public class PickUpSpawner : MonoBehaviour
 
         if (selectedItem)
         {
+            StoryItem storyItem = selectedItem.GetComponent<StoryItem>();
+            if (storyItem) {
+                storyItem.SetDialogue(dialogue);
+            }
             Instantiate(selectedItem, transform.position, Quaternion.identity);
         }
     }

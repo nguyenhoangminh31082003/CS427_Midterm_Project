@@ -7,8 +7,12 @@ public class StoryItem : Interactable
     [SerializeField] private Dialogue dialogue;
     protected override void Interact()
     {
-        Debug.Log("Interacting with the flag");
         dialogueManager.StartDialogue(dialogue);
+    }
+
+    public void SetDialogue(Dialogue newDialogue)
+    {
+        dialogue = newDialogue;
     }
 
 }
