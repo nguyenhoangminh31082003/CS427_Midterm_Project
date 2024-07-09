@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 117912798}
   m_Layer: 0
   m_Name: vflamethrower (3)
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1577,7 +1577,7 @@ GameObject:
   - component: {fileID: 252997659}
   m_Layer: 0
   m_Name: vflamethrower (2)
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8731,7 +8731,7 @@ GameObject:
   - component: {fileID: 652023089}
   m_Layer: 0
   m_Name: hflamethrower (2)
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9313,7 +9313,7 @@ Transform:
   m_GameObject: {fileID: 705768799}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.71, y: 5.22, z: 0}
+  m_LocalPosition: {x: 6.81, y: 8.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16985,7 +16985,7 @@ Transform:
   m_GameObject: {fileID: 899901690}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.9239554, y: 5.141026, z: -0.10967922}
+  m_LocalPosition: {x: 6.5960445, y: 8.791026, z: -0.10967922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17355,6 +17355,104 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30da1157bd44cd5499fe8a57e47a390f, type: 3}
+--- !u!1001 &1087410973
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4182002098221898578, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.050508
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182002098221898578, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.730097
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182002098221898578, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182002098221898578, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182002098221898578, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182002098221898578, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182002098221898578, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182002098221898578, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182002098221898578, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182002098221898578, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5331452078017669056, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: m_Name
+      value: Flag (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734421148015913790, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: interactionRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734421148015913790, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734421148015913790, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[0].line
+      value: 'A newspaper? '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734421148015913790, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[1].line
+      value: 'It''s has been slightly torn apart, and dusty. But I can still read
+        some of its content. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734421148015913790, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[2].line
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734421148015913790, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[0].character.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+    - target: {fileID: 8734421148015913790, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[1].character.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+    - target: {fileID: 8734421148015913790, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[1].character.name
+      value: You
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734421148015913790, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[2].character.icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 6a739e4abf6be96469c16dce0f553ac0, type: 3}
+    - target: {fileID: 8734421148015913790, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[2].character.name
+      value: Newspaper
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 004ded651af99d34fb640f98fd82b34d, type: 3}
 --- !u!1 &1106307939
 GameObject:
   m_ObjectHideFlags: 0
@@ -20247,7 +20345,7 @@ GameObject:
   - component: {fileID: 1480508573}
   m_Layer: 0
   m_Name: vflamethrower (4)
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20720,7 +20818,7 @@ Transform:
   m_GameObject: {fileID: 1602597229}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.9239554, y: 5.141026, z: -0.10967922}
+  m_LocalPosition: {x: 6.5960445, y: 8.791026, z: -0.10967922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21317,7 +21415,7 @@ GameObject:
   - component: {fileID: 1720591576}
   m_Layer: 0
   m_Name: vflamethrower (1)
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24590,7 +24688,7 @@ GameObject:
   - component: {fileID: 2388762264018475130}
   m_Layer: 0
   m_Name: hflamethrower
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26818,7 +26916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpType: 4
-  pickUpDistance: 5
+  pickUpDistance: 2
   accelartionRate: 0.6
   moveSpeed: 3
   animCurve:
@@ -27493,13 +27591,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6335bdfcba803c4fa43caf25fe2a0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRadius: 1.5
+  interactionRadius: 1
   dialogue:
     dialogueLines:
     - character:
         name: You
-        icon: {fileID: 0}
-      line: Testing line
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: I have made it.
+    - character:
+        name: You
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: Are those, potions?
+    - character:
+        name: You
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: 'And these tables, broken dishes, ... This must be the dinning room. '
+    - character:
+        name: You
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: 'If my intuition was right, the control room sould be around here. '
+    - character:
+        name: You
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: 'And I suppose that door over there will lead to the storage. '
+    - character:
+        name: You
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: 'But both exits are locked, unfortunately. '
+    - character:
+        name: You
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: 'The keyhole in the front door looks familiar. I might be able to open
+        it using a "silver key".  '
+    - character:
+        name: You
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: Let's see if there is any in here.
 --- !u!4 &5051864593754543650
 Transform:
   m_ObjectHideFlags: 0
@@ -28235,7 +28362,7 @@ Transform:
   m_GameObject: {fileID: 1121620447208161606}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.58, y: 1.23, z: -0.02462312}
+  m_LocalPosition: {x: 13.69, y: 2.23, z: -0.02462312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28667,7 +28794,7 @@ GameObject:
   - component: {fileID: 9078739251529673785}
   m_Layer: 0
   m_Name: vflamethrower
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29204,7 +29331,7 @@ GameObject:
   - component: {fileID: 5076359003686717395}
   m_Layer: 0
   m_Name: hflamethrower (1)
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29682,3 +29809,4 @@ SceneRoots:
   - {fileID: 490728612}
   - {fileID: 529811291}
   - {fileID: 891003131}
+  - {fileID: 1087410973}
