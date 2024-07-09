@@ -9,6 +9,7 @@ public class ChaseMovement : MovementBase
 
     protected override void Start()
     {
+        base.Start();
         originalPosition = transform.position;
     }
 
