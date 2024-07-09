@@ -8,7 +8,6 @@ public class ShooterMovement : MovementBase
     [SerializeField] private float attackCD = 2f;
     [SerializeField] private bool stopWhenAttack = true;
     [SerializeField] private float deltaChangeDirection = 2f;
-    [SerializeField] private float roamingRadius = 5f;
     private float timeRoaming = 0f;
 
     private bool canAttack = true;
