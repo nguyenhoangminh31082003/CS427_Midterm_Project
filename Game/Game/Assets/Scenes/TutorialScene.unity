@@ -228,10 +228,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  chaseRadius: 6
   dashSpeed: 5
   dashRadius: 4
   isDashing: 0
   canDash: 1
+  dashCooldown: 2
 --- !u!95 &1274773
 Animator:
   serializedVersion: 5
@@ -5246,8 +5248,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -412, y: 74}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -117.252, y: 74}
+  m_SizeDelta: {x: 494.748, y: 50}
   m_Pivot: {x: 0.9999999, y: 0.5}
 --- !u!1 &264912727
 GameObject:
@@ -14585,10 +14587,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  chaseRadius: 6
   dashSpeed: 5
   dashRadius: 4
   isDashing: 0
   canDash: 1
+  dashCooldown: 2
 --- !u!95 &711924636
 Animator:
   serializedVersion: 5
@@ -87727,10 +87731,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  chaseRadius: 6
   dashSpeed: 5
   dashRadius: 4
   isDashing: 0
   canDash: 1
+  dashCooldown: 2
 --- !u!95 &1113130624
 Animator:
   serializedVersion: 5
@@ -89420,10 +89426,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  chaseRadius: 6
   dashSpeed: 5
   dashRadius: 4
   isDashing: 0
   canDash: 1
+  dashCooldown: 2
 --- !u!95 &1179379265
 Animator:
   serializedVersion: 5
@@ -91018,10 +91026,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  chaseRadius: 6
   dashSpeed: 5
   dashRadius: 4
   isDashing: 0
   canDash: 1
+  dashCooldown: 2
 --- !u!95 &1277905483
 Animator:
   serializedVersion: 5
@@ -107975,10 +107985,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  chaseRadius: 6
   dashSpeed: 5
   dashRadius: 4
   isDashing: 0
   canDash: 1
+  dashCooldown: 2
 --- !u!114 &3815431547474186444
 MonoBehaviour:
   m_ObjectHideFlags: 0
