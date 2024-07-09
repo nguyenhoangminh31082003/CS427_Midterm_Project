@@ -137,20 +137,6 @@ public class GameManager : MonoBehaviour
             
             MainCharacter mainCharacter = collidedObject.GetComponent<MainCharacter>();
 
-            if (attackedObjectName.Contains("Skull"))
-            {
-                ChaseMovement chaseMovement = attackedObject.GetComponent<ChaseMovement>();
-                double countDown = MainCharacter.NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD;
-                chaseMovement.StopMoving();
-                while (countDown > 0)
-                {
-                    //Debug.Log(countDown);
-                    countDown -= Time.deltaTime;
-                    
-                }
-                //chaseMovement.Roaming();
-            }
-
             if (!mainCharacter.IsInvincible())
             {
                 mainCharacter.GetKnockBack(attackedObject.transform);
