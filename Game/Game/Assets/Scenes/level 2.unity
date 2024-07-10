@@ -274,6 +274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -588,6 +592,10 @@ PrefabInstance:
     - target: {fileID: 5955104158342706904, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
       propertyPath: m_Name
       value: peak (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1029,6 +1037,10 @@ PrefabInstance:
     - target: {fileID: 5955104158342706904, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
       propertyPath: m_Name
       value: peak (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1495,6 +1507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1794,6 +1810,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2078,7 +2098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &258610046
 Animator:
@@ -3052,6 +3072,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3442,6 +3466,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3504,6 +3532,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3546,7 +3578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &345474882
 Animator:
@@ -3718,7 +3750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &363851887
 Animator:
@@ -3885,7 +3917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &417183579
 Animator:
@@ -4052,7 +4084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &419470335
 Animator:
@@ -9137,6 +9169,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9430,6 +9466,10 @@ PrefabInstance:
     - target: {fileID: 5955104158342706904, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
       propertyPath: m_Name
       value: peak (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9836,7 +9876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &661600344
 Animator:
@@ -10322,6 +10362,10 @@ PrefabInstance:
     - target: {fileID: 5955104158342706904, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
       propertyPath: m_Name
       value: peak (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16811,6 +16855,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16933,7 +16981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &812586370
 Animator:
@@ -17119,6 +17167,10 @@ PrefabInstance:
     - target: {fileID: 5955104158342706904, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
       propertyPath: m_Name
       value: peak (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17431,6 +17483,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17648,7 +17704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &895415630
 Animator:
@@ -18072,6 +18128,10 @@ PrefabInstance:
     - target: {fileID: 5955104158342706904, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
       propertyPath: m_Name
       value: peak (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18933,7 +18993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &1185847892
 Animator:
@@ -19347,7 +19407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &1205980439
 Animator:
@@ -19534,6 +19594,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19633,7 +19697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &1268931844
 Animator:
@@ -19819,6 +19883,10 @@ PrefabInstance:
     - target: {fileID: 5955104158342706904, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
       propertyPath: m_Name
       value: peak (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20456,7 +20524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &1354792343
 Animator:
@@ -20714,6 +20782,10 @@ PrefabInstance:
     - target: {fileID: 5955104158342706904, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
       propertyPath: m_Name
       value: peak (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21617,6 +21689,10 @@ PrefabInstance:
     - target: {fileID: 209324326103359979, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 466682287970782774, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
+      propertyPath: pickUpDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1333638258896147874, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
       propertyPath: m_Name
@@ -22558,7 +22634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &1742233735
 Animator:
@@ -22740,6 +22816,10 @@ PrefabInstance:
     - target: {fileID: 209324326103359979, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 466682287970782774, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
+      propertyPath: pickUpDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1333638258896147874, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
       propertyPath: m_Name
@@ -22952,6 +23032,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 466682287970782774, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
+      propertyPath: pickUpDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1333638258896147874, guid: e4bf0a5df3a53814ab691a7b356ed71e, type: 3}
       propertyPath: m_Name
       value: arrow (1)
@@ -23084,6 +23168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23145,6 +23233,10 @@ PrefabInstance:
     - target: {fileID: 5955104158342706904, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
       propertyPath: m_Name
       value: peak (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23460,6 +23552,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23502,7 +23598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &1918462484
 Animator:
@@ -23688,6 +23784,10 @@ PrefabInstance:
     - target: {fileID: 5955104158342706904, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
       propertyPath: m_Name
       value: peak (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24391,6 +24491,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: peak (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24452,6 +24556,10 @@ PrefabInstance:
     - target: {fileID: 5955104158342706904, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
       propertyPath: m_Name
       value: peak (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241050601714813054, guid: ecf20ad409426dc43a6e39c1d61c7e85, type: 3}
+      propertyPath: attackAnimationSpeed
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24723,7 +24831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!95 &2127638825
 Animator:
@@ -29891,7 +29999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4893c3443893154780fb6f3ebbd5f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAnimationSpeed: 0.1
+  attackAnimationSpeed: 0.7
   triggerInterval: 2
 --- !u!114 &8261275949073828189
 MonoBehaviour:
