@@ -9742,7 +9742,7 @@ Transform:
   m_GameObject: {fileID: 705768799}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.03, y: 6.83, z: 0}
+  m_LocalPosition: {x: 7.44, y: -7.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17524,7 +17524,7 @@ Transform:
   m_GameObject: {fileID: 899901690}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.2439556, y: 6.751026, z: -0.10967922}
+  m_LocalPosition: {x: 7.2260447, y: -7.958974, z: -0.10967922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18002,11 +18002,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8896522772625038216, guid: cef14338caa3a7e408e0b96cdfbd58f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.3433342
+      value: 15.54
       objectReference: {fileID: 0}
     - target: {fileID: 8896522772625038216, guid: cef14338caa3a7e408e0b96cdfbd58f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9244895
+      value: -14.49
       objectReference: {fileID: 0}
     - target: {fileID: 8896522772625038216, guid: cef14338caa3a7e408e0b96cdfbd58f1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22261,7 +22261,7 @@ Transform:
   m_GameObject: {fileID: 1602597229}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.2439556, y: 6.751026, z: -0.10967922}
+  m_LocalPosition: {x: 7.2260447, y: -7.958974, z: -0.10967922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25861,11 +25861,6 @@ MonoBehaviour:
       line: I am Tristan. I'm an inmate here. Or used to be, if you like to hear
         it that way.
     - character:
-        name: Unknown Person
-        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
-      line: I am Tristan. I'm an inmate here. Or used to be, if you like to hear
-        it that way.
-    - character:
         name: You
         icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
       line: Tristan? But your cell, are full of dead body ... I thought you must
@@ -26001,6 +25996,41 @@ MonoBehaviour:
         icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
       line: Oh so that's how it is. This is my fate. This is how the world treats
         me.
+    - character:
+        name: You
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: What are you talking about? Tristan?
+    - character:
+        name: 
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: Tristan seems to ignore me completely. His voice is weak. He is trying
+        to push out all of his final words.
+    - character:
+        name: Tristan.
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: 'Well played. Truly well played. '
+    - character:
+        name: Tristan.
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: Tell me your name, kid. Let my final moment be associated with your disgusting
+        name!
+    - character:
+        name: 
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: I tell Tristan my name. He laugh like a maniac, until his last breath
+        can be heard.
+    - character:
+        name: Tristan.
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: I rest his body on the floor, and close his eyes.
+    - character:
+        name: Tristan.
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: This journey will be much harder than I initially thought.
+    - character:
+        name: Tristan.
+        icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
+      line: Princess ... Please be safe.
 --- !u!4 &8061044932770430829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1627276633089070168, guid: c0399ec690a34c54abdab5108e88860d, type: 3}
@@ -26117,15 +26147,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6064265096909894116}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: 0.4, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1307112524041891974}
   - {fileID: 3863236611729895131}
   m_Father: {fileID: 5685103136385636182}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!70 &8867924974038478158
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
