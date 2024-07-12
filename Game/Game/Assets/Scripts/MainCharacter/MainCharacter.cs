@@ -163,7 +163,13 @@ public class MainCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dialogueManager.isDialogueActive) { return; }
+        if (dialogueManager != null)
+        {
+            if (dialogueManager.isDialogueActive) 
+            { 
+                return; 
+            }
+        }
         this.UpdateCurrentlyUsedWeapon();
         this.UpdateVelocity();
         this.UpdateInvincibilityStatus();
