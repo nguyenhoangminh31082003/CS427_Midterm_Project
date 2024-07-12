@@ -48,8 +48,11 @@ public class DialogueManager : MonoBehaviour
         if (lines.Count == 0)
         {
             EndDialogue();
-            AudioManager.Instance.currentTrack = -1;
-            AudioManager.Instance.musicSource.Stop();
+            if (AudioManager.Instance.currentTrack != -1)
+            {
+                AudioManager.Instance.currentTrack = -1;
+                AudioManager.Instance.musicSource.Stop();
+            }
             return;
         }
 
