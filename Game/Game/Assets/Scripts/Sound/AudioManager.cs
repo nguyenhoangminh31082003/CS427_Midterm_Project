@@ -8,7 +8,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
-    public int startTrack = 5; 
+    public int startTrack = 5;
+    public int currentTrack = -1;
 
     public void Awake() {
         if (Instance == null) {
@@ -43,6 +44,21 @@ public class AudioManager : MonoBehaviour
         }
         else {
             sfxSource.PlayOneShot(s.clip);
+        }
+    }
+
+    public void Update()
+    {
+        if (!musicSource.isPlaying)
+        {
+            if (currentTrack != -1)
+            {
+                PlayMusic("theme_" + currentTrack.ToString());
+            }
+            else
+            {
+                PlayMusic("theme_" + startTrack.ToString());
+            }
         }
     }
 }
