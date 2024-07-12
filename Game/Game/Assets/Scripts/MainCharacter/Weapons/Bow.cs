@@ -114,6 +114,7 @@ public class Bow : Weapon
         if (spaceReleased)
         {
             result = result || this.Shot();
+            AudioManager.Instance.PlaySFX("human_atk_arrow");
         }
 
         return result;

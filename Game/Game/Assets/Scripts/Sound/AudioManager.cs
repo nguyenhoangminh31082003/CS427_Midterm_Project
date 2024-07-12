@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
+    public int startTrack = 5; 
 
     public void Awake() {
         if (Instance == null) {
@@ -20,7 +21,7 @@ public class AudioManager : MonoBehaviour
     }
 
     private void Start() {
-        PlayMusic("theme_5");
+        PlayMusic("theme_" + startTrack.ToString());
     }
     public void PlayMusic(string name) {
         Sound s = Array.Find(musicSounds, x => x.name == name);

@@ -50,7 +50,7 @@ public class Sword : Weapon
         this.attackStartTime = Time.time;
         this.spriteRenderer.sprite = this.movingSwordSprite;
         this.movingCollider.enabled = true;
-
+        AudioManager.Instance.PlaySFX("human_atk_sword");
         return true;
     }
 
