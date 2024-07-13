@@ -45,13 +45,20 @@ public class MainCharacter : MonoBehaviour
     
     private void LoadDataFromPlayerPrefs()
     {
-        this.invincible = bool.Parse(PlayerPrefs.GetString("invincible"));
-        this.lastDamageTime = PlayerPrefs.GetFloat("lastDamageTime");
-        this.weight = double.Parse(PlayerPrefs.GetString("weight"));
-        this.coinCount = long.Parse(PlayerPrefs.GetString("coinCount"));
-        this.speedX = double.Parse(PlayerPrefs.GetString("speedX"));
-        this.speedY = double.Parse(PlayerPrefs.GetString("speedY"));
-        this.liveCount = PlayerPrefs.GetInt("liveCount");
+        if (PlayerPrefs.HasKey("invincible"))
+            this.invincible = bool.Parse(PlayerPrefs.GetString("invincible"));
+        if (PlayerPrefs.HasKey("lastDamageTime"))
+            this.lastDamageTime = PlayerPrefs.GetFloat("lastDamageTime");
+        if (PlayerPrefs.HasKey("weight"))
+            this.weight = double.Parse(PlayerPrefs.GetString("weight"));
+        if (PlayerPrefs.HasKey("coinCount"))
+            this.coinCount = long.Parse(PlayerPrefs.GetString("coinCount"));
+        if (PlayerPrefs.HasKey("speedX"))
+            this.speedX = double.Parse(PlayerPrefs.GetString("speedX"));
+        if (PlayerPrefs.HasKey("speedY"))
+            this.speedY = double.Parse(PlayerPrefs.GetString("speedY"));
+        if (PlayerPrefs.HasKey("liveCount"))
+            this.liveCount = PlayerPrefs.GetInt("liveCount");
     }
 
 
@@ -60,10 +67,12 @@ public class MainCharacter : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            this.LoadDataFromPlayerPrefs();
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
+            this.SaveDataToPlayerPrefs();
             Destroy(gameObject);
         }
     }
@@ -337,10 +346,6 @@ public class MainCharacter : MonoBehaviour
     {
         if (number <= 0)
             return false;
-
-        //Debug.Log("PINEAPPLE PIZZA IS EXTREMELY GOOD!!!");
-        //Debug.Log(weaponName + " " + number);
-
         return this.bag.ChangeWeaponCount(weaponName, number);
     }
 
