@@ -67,10 +67,12 @@ public class GameManager : MonoBehaviour
             {
                 if (pickup.GetPickUpType() == Pickup.PickUpType.GoldCoin)
                 {
+                    AudioManager.Instance.PlaySFX("coin_pick_up");
                     mainCharacter.ChangeCoinCount(1);
                 }
                 else if (pickup.GetPickUpType() == Pickup.PickUpType.HealthGlobe)
                 {
+                    AudioManager.Instance.PlaySFX("health_pick_up");
                     mainCharacter.IncreaseLiveCount();
                 }
                 else if (pickup.GetPickUpType() == Pickup.PickUpType.SilverKey)
