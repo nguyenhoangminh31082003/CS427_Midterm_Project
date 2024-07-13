@@ -44,4 +44,20 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(s.clip);
         }
     }
+
+    public void ToggleMusic() {
+        musicSource.mute = !musicSource.mute;
+    }
+
+    public void ToggleSFX() {
+        sfxSource.mute = !sfxSource.mute;
+    }
+
+    public void MusicVolume(float v) {
+        musicSource.volume = v;
+    }
+
+    public void SFXVolume(float v) {
+        sfxSource.volume = v;
+    }
 }
