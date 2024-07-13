@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [SerializeField] private String musicName;
     public static AudioManager Instance;
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
@@ -20,7 +21,7 @@ public class AudioManager : MonoBehaviour
     }
 
     private void Start() {
-        PlayMusic("theme_5");
+        PlayMusic(musicName);
     }
     public void PlayMusic(string name) {
         Sound s = Array.Find(musicSounds, x => x.name == name);
