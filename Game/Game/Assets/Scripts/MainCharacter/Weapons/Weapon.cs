@@ -15,6 +15,24 @@ public class Weapon : MonoBehaviour
 
     protected SpriteRenderer spriteRenderer;
 
+    public virtual void SaveDataToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", this.number);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", this.weightPerUnit.ToString());
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", this.currentlyUsed.ToString());
+    }
+
+    public virtual void LoadDataFromPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        this.number = PlayerPrefs.GetInt(weaponName + ".number");
+        this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
+        this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
+    }
+
     // Start is called before the first frame update
     protected virtual void Start()
     {

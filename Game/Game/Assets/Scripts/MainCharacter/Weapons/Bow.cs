@@ -10,12 +10,41 @@ public class Bow : Weapon
     [SerializeField] protected int unusedArrowCount;
     [SerializeField] protected Arrow sampleArrow;
 
-    private bool attacking;
-    private GameObject currentlyHeldArrow;
     private float mostRecentFinishingAttackTime;
+    private GameObject currentlyHeldArrow;
     private string arrowIndex;
+    private bool attacking;
 
-    // Start is called before the first frame update
+    public override void SaveDataToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", this.number);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", this.weightPerUnit.ToString());
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", this.currentlyUsed.ToString());
+
+        PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK", this.NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK);
+        PlayerPrefs.SetInt(weaponName + ".unusedArrowCount", this.unusedArrowCount);
+        PlayerPrefs.SetFloat(weaponName + ".mostRecentFinishingAttackTime", this.mostRecentFinishingAttackTime);
+        PlayerPrefs.SetString(weaponName + ".arrowIndex", this.arrowIndex);
+        PlayerPrefs.SetString(weaponName + ".attacking", this.attacking.ToString());
+    }
+
+    public override void LoadDataFromPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        this.number = PlayerPrefs.GetInt(weaponName + ".number");
+        this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
+        this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
+
+        this.NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK = PlayerPrefs.GetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK");
+        this.unusedArrowCount = PlayerPrefs.GetInt(weaponName + ".unusedArrowCount");
+        this.mostRecentFinishingAttackTime = PlayerPrefs.GetFloat(weaponName + ".mostRecentFinishingAttackTime");
+        this.arrowIndex = PlayerPrefs.GetString(weaponName + ".arrowIndex");
+        this.attacking = bool.Parse(PlayerPrefs.GetString(weaponName + ".attacking"));
+    }
+
     protected override void Start()
     {
         base.Start();

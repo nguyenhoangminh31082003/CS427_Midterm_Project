@@ -14,12 +14,39 @@ public class Sword : Weapon
     private float attackStartTime;
     private CapsuleCollider2D movingCollider;
 
+    public override void SaveDataToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", this.number);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", this.weightPerUnit.ToString());
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", this.currentlyUsed.ToString());
+
+        PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION", this.NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION);
+        PlayerPrefs.SetString(weaponName + ".damageCausedPerHit", this.damageCausedPerHit.ToString());
+        PlayerPrefs.SetString(weaponName + ".attacking", this.attacking.ToString());
+        PlayerPrefs.SetFloat(weaponName + ".attackStartTime", this.attackStartTime);
+    }
+
+    public override void LoadDataFromPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        this.number = PlayerPrefs.GetInt(weaponName + ".number");
+        this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
+        this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
+
+        this.NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION = PlayerPrefs.GetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION");
+        this.damageCausedPerHit = double.Parse(PlayerPrefs.GetString(weaponName + ".damageCausedPerHit"));
+        this.attacking = bool.Parse(PlayerPrefs.GetString(weaponName + ".attacking"));
+        this.attackStartTime = PlayerPrefs.GetFloat(weaponName + ".attackStartTime");
+    }
+
     private Quaternion GetDefaultRotation()
     {
         return Quaternion.Euler(0, 0, 90);
     }
 
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
