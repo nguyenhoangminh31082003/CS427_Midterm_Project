@@ -52,12 +52,14 @@ public class GameManager : MonoBehaviour
             {
                 if (pickupWeapon.GetPickUpType() == PickUpWeapon.ItemWeaponType.Sword)
                 {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
                     mainCharacter.IncreaseWeaponCount(Sword.GetWeaponName(), 1);
                     
                 }
 
                 if (pickupWeapon.GetPickUpType() == PickUpWeapon.ItemWeaponType.Bow)
                 {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
                     mainCharacter.IncreaseWeaponCount(Bow.GetWeaponName(), 1);
                 }
                 Destroy(attackedObject);
@@ -77,14 +79,17 @@ public class GameManager : MonoBehaviour
                 }
                 else if (pickup.GetPickUpType() == Pickup.PickUpType.SilverKey)
                 {
+                    AudioManager.Instance.PlaySFX("key_pick_up");
                     KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
                 }
                 else if (pickup.GetPickUpType() == Pickup.PickUpType.GoldKey)
                 {
+                    AudioManager.Instance.PlaySFX("key_pick_up");
                     KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
                 }
                 else if (pickup.GetPickUpType() == Pickup.PickUpType.Arrow)
                 {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
                     mainCharacter.IncreaseWeaponCount(Arrow.GetWeaponName(), 1);
                 }
             }
