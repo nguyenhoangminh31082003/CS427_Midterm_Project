@@ -35,11 +35,14 @@ public class MainCharacter : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
-            Instance = this;   
-        else 
-            GameObject.Destroy(Instance);
-
-        DontDestroyOnLoad(this);
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()
