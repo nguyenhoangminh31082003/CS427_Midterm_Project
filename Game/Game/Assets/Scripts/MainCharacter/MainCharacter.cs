@@ -30,13 +30,35 @@ public class MainCharacter : MonoBehaviour
     private bool invincible;
     private float lastDamageTime;
 
+    private void SaveDataToPlayerPrefs()
+    {
+        PlayerPrefs.SetString("invincible", this.invincible.ToString());
+        PlayerPrefs.SetFloat("lastDamageTime", this.lastDamageTime);
+        PlayerPrefs.SetString("weight", this.weight.ToString());
+        PlayerPrefs.SetString("coinCount", this.coinCount.ToString());
+        PlayerPrefs.SetString("speedX", this.speedX.ToString());
+        PlayerPrefs.SetString("speedY", this.speedY.ToString());
+        PlayerPrefs.SetInt("liveCount", this.liveCount);
+    }
+    
+    private void LoadDataFromPlayerPrefs()
+    {
+        this.invincible = bool.Parse(PlayerPrefs.GetString("invincible"));
+        this.lastDamageTime = PlayerPrefs.GetFloat("lastDamageTime");
+        this.weight = double.Parse(PlayerPrefs.GetString("weight"));
+        this.coinCount = long.Parse(PlayerPrefs.GetString("coinCount"));
+        this.speedX = double.Parse(PlayerPrefs.GetString("speedX"));
+        this.speedY = double.Parse(PlayerPrefs.GetString("speedY"));
+        this.liveCount = PlayerPrefs.GetInt("liveCount");
+    }
+
+
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
