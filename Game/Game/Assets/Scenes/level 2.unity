@@ -25351,6 +25351,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2148666517108062724, guid: dc18c4176672f464283d18e0c58f7e08, type: 3}
+      propertyPath: musicName
+      value: theme_11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148666517108062724, guid: dc18c4176672f464283d18e0c58f7e08, type: 3}
+      propertyPath: sfxSounds.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148666517108062724, guid: dc18c4176672f464283d18e0c58f7e08, type: 3}
+      propertyPath: musicSounds.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148666517108062724, guid: dc18c4176672f464283d18e0c58f7e08, type: 3}
+      propertyPath: sfxSounds.Array.data[15].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a6854d3ff4e7394081ffec635de320e, type: 3}
+    - target: {fileID: 2148666517108062724, guid: dc18c4176672f464283d18e0c58f7e08, type: 3}
+      propertyPath: sfxSounds.Array.data[15].name
+      value: text_sfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148666517108062724, guid: dc18c4176672f464283d18e0c58f7e08, type: 3}
+      propertyPath: musicSounds.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f1ad77667c76819428184908ca04749c, type: 3}
+    - target: {fileID: 2148666517108062724, guid: dc18c4176672f464283d18e0c58f7e08, type: 3}
+      propertyPath: musicSounds.Array.data[10].name
+      value: theme_11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148666517108062724, guid: dc18c4176672f464283d18e0c58f7e08, type: 3}
+      propertyPath: musicSounds.Array.data[11].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 728c489e3117b9746862f88e3e8fdd63, type: 3}
+    - target: {fileID: 2148666517108062724, guid: dc18c4176672f464283d18e0c58f7e08, type: 3}
+      propertyPath: musicSounds.Array.data[11].name
+      value: theme_12
+      objectReference: {fileID: 0}
     - target: {fileID: 5553357424269704084, guid: dc18c4176672f464283d18e0c58f7e08, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5593847
@@ -26081,11 +26117,11 @@ MonoBehaviour:
       line: Tristan seems to ignore me completely. His voice is weak. He is trying
         to push out all of his final words.
     - character:
-        name: Tristan.
+        name: Tristan
         icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
       line: 'Well played. Truly well played. '
     - character:
-        name: Tristan.
+        name: Tristan
         icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
       line: Tell me your name, kid. Let my final moment be associated with your disgusting
         name!
@@ -26095,17 +26131,18 @@ MonoBehaviour:
       line: I tell Tristan my name. He laugh like a maniac, until his last breath
         can be heard.
     - character:
-        name: Tristan.
+        name: 
         icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
       line: I rest his body on the floor, and close his eyes.
     - character:
-        name: Tristan.
+        name: 
         icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
-      line: This journey will be much harder than I initially thought.
+      line: It seems, this task will be much harder than I initially thought.
     - character:
-        name: Tristan.
+        name: You
         icon: {fileID: 21300000, guid: 2e604992e0afc2b4f85b3168cd996778, type: 3}
       line: Princess ... Please be safe.
+  backgroundTrack: theme_12
 --- !u!4 &8061044932770430829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1627276633089070168, guid: c0399ec690a34c54abdab5108e88860d, type: 3}
