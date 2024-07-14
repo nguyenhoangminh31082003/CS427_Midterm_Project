@@ -29,8 +29,7 @@ public abstract class MovementBase : MonoBehaviour
     }
 
     protected virtual void Update() {}
-    protected virtual void FixedUpdate() {
-        if (DialogueManager.Instance.isDialogueActive) { return; }
+    protected virtual void FixedUpdate() {        
         if (knockback.gettingKnockedBack) { return; }
 
         rb.MovePosition(rb.position + moveDir * (moveSpeed * Time.fixedDeltaTime));
