@@ -11,37 +11,47 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource, sfxSource;
     public string currentTrack = "";
 
-    public void Awake() {
-        if (Instance == null) {
+    public void Awake()
+    {
+        if (Instance == null)
+        {
             Instance = this;
         }
-        else {
+        else
+        {
             Destroy(gameObject);
         }
     }
 
-    private void Start() {
+    private void Start()
+    {
         PlayMusic(musicName);
     }
-    public void PlayMusic(string name) {
+    public void PlayMusic(string name)
+    {
         Sound s = Array.Find(musicSounds, x => x.name == name);
 
-        if (s == null) {
-            //Debug.Log("Music sound not found");
+        if (s == null)
+        {
+            Debug.Log("Music sound not found");
         }
-        else {
+        else
+        {
             musicSource.clip = s.clip;
             musicSource.Play();
         }
     }
 
-    public void PlaySFX(string name) {
+    public void PlaySFX(string name)
+    {
         Sound s = Array.Find(sfxSounds, x => x.name == name);
 
-        if (s == null) {
+        if (s == null)
+        {
             Debug.Log("SFX sound not found");
         }
-        else {
+        else
+        {
             sfxSource.PlayOneShot(s.clip);
         }
     }
@@ -60,19 +70,23 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
-    public void ToggleMusic() {
+    public void ToggleMusic()
+    {
         musicSource.mute = !musicSource.mute;
     }
 
-    public void ToggleSFX() {
+    public void ToggleSFX()
+    {
         sfxSource.mute = !sfxSource.mute;
     }
 
-    public void MusicVolume(float v) {
+    public void MusicVolume(float v)
+    {
         musicSource.volume = v;
     }
 
-    public void SFXVolume(float v) {
+    public void SFXVolume(float v)
+    {
         sfxSource.volume = v;
     }
 }

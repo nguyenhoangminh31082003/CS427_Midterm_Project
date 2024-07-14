@@ -20,6 +20,12 @@ public class EnemyController : MonoBehaviour
     }
 
     private void Update() {
+        if (DialogueManager.Instance != null)
+        {
+            if (DialogueManager.Instance.isDialogueActive) { 
+                return; 
+            }
+        }
         MovementStateControl();
     }
 

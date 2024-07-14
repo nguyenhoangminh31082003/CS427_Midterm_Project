@@ -89,7 +89,8 @@ public class DialogueManager : MonoBehaviour
 
     public void Update()
     {
-        if (isDialogueActive && index == currentLine.line.Length) {
+        if (isDialogueActive && index == currentLine.line.Length)
+        {
             AudioManager.Instance.sfxSource.Stop();
         }
         if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
