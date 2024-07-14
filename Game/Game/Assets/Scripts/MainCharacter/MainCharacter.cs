@@ -152,6 +152,7 @@ public class MainCharacter : MonoBehaviour
             --this.liveCount;
             this.invincible = true;
             this.lastDamageTime = Time.time;
+            AudioManager.Instance.PlaySFX("player_hurt");
             return true;
         }
         return false;
