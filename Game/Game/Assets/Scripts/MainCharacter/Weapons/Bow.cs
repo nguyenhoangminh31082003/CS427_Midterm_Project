@@ -34,15 +34,29 @@ public class Bow : Weapon
     {
         string weaponName = this.GetNameOfWeapon();
 
-        this.number = PlayerPrefs.GetInt(weaponName + ".number");
-        this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
-        this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
+        if (PlayerPrefs.HasKey(weaponName + ".number"))
+           this.number = PlayerPrefs.GetInt(weaponName + ".number");
+    
+        if (PlayerPrefs.HasKey(weaponName + ".weightPerUnit"))
+            this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
+        
+        if (PlayerPrefs.HasKey(weaponName + ".currentlyUsed"))
+            this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
 
-        this.NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK = PlayerPrefs.GetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK");
-        this.unusedArrowCount = PlayerPrefs.GetInt(weaponName + ".unusedArrowCount");
-        this.mostRecentFinishingAttackTime = PlayerPrefs.GetFloat(weaponName + ".mostRecentFinishingAttackTime");
-        this.arrowIndex = PlayerPrefs.GetString(weaponName + ".arrowIndex");
-        this.attacking = bool.Parse(PlayerPrefs.GetString(weaponName + ".attacking"));
+        if (PlayerPrefs.HasKey(weaponName + ".NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK"))
+            this.NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK = PlayerPrefs.GetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".unusedArrowCount"))
+            this.unusedArrowCount = PlayerPrefs.GetInt(weaponName + ".unusedArrowCount");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".mostRecentFinishingAttackTime"))
+            this.mostRecentFinishingAttackTime = PlayerPrefs.GetFloat(weaponName + ".mostRecentFinishingAttackTime");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".arrowIndex"))
+            this.arrowIndex = PlayerPrefs.GetString(weaponName + ".arrowIndex");
+
+        if (PlayerPrefs.HasKey(weaponName + ".attacking"))
+            this.attacking = bool.Parse(PlayerPrefs.GetString(weaponName + ".attacking"));
     }
 
     protected override void Start()

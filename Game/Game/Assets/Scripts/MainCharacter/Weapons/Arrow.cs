@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
@@ -55,43 +56,67 @@ public class Arrow : Weapon
     {
         string weaponName = this.GetNameOfWeapon();
 
-        this.number = PlayerPrefs.GetInt(weaponName + ".number");
-        this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
-        this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
+        if (PlayerPrefs.HasKey(weaponName + ".number"))
+            this.number = PlayerPrefs.GetInt(weaponName + ".number");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".weightPerUnit"))
+            this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
+        
+        if (PlayerPrefs.HasKey(weaponName + ".currentlyUsed"))
+            this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
 
-        this.maximumSpeedX = PlayerPrefs.GetFloat(weaponName + ".maximumSpeedX");
-        this.maximumSpeedY = PlayerPrefs.GetFloat(weaponName + ".maximumSpeedY");
-        this.MAXIMUM_DAMAGE_CAUSED_PER_HIT = PlayerPrefs.GetFloat(weaponName + ".MAXIMUM_DAMAGE_CAUSED_PER_HIT");
-        this.NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING = PlayerPrefs.GetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING");
-        this.NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING = PlayerPrefs.GetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING");
+        if (PlayerPrefs.HasKey(weaponName + ".maximumSpeedX"))
+            this.maximumSpeedX = PlayerPrefs.GetFloat(weaponName + ".maximumSpeedX");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".maximumSpeedY"))
+            this.maximumSpeedY = PlayerPrefs.GetFloat(weaponName + ".maximumSpeedY");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".MAXIMUM_DAMAGE_CAUSED_PER_HIT"))
+            this.MAXIMUM_DAMAGE_CAUSED_PER_HIT = PlayerPrefs.GetFloat(weaponName + ".MAXIMUM_DAMAGE_CAUSED_PER_HIT");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING"))
+            this.NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING = PlayerPrefs.GetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING"))
+            this.NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING = PlayerPrefs.GetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING");
 
-        string arrowStatus = PlayerPrefs.GetString(weaponName + ".arrowStatus");
+        if (PlayerPrefs.HasKey(weaponName + ".arrowStatus"))
+        {
+            string arrowStatus = PlayerPrefs.GetString(weaponName + ".arrowStatus");
 
-        if (arrowStatus == ArrowState.NOT_USED_YET.ToString())
-        {
-            this.arrowStatus = ArrowState.NOT_USED_YET;
+            if (arrowStatus == ArrowState.NOT_USED_YET.ToString())
+            {
+                this.arrowStatus = ArrowState.NOT_USED_YET;
+            }
+            else if (arrowStatus == ArrowState.PREPARED_TO_BE_USED.ToString())
+            {
+                this.arrowStatus = ArrowState.PREPARED_TO_BE_USED;
+            }
+            else if (arrowStatus == ArrowState.CURRENTLY_USED.ToString())
+            {
+                this.arrowStatus = ArrowState.CURRENTLY_USED;
+            }
+            else if (arrowStatus == ArrowState.STOPPING.ToString())
+            {
+                this.arrowStatus = ArrowState.STOPPING;
+            }
+            else if (arrowStatus == ArrowState.USED.ToString())
+            {
+                this.arrowStatus = ArrowState.USED;
+            }
         }
-        else if (arrowStatus == ArrowState.PREPARED_TO_BE_USED.ToString())
-        {
-            this.arrowStatus = ArrowState.PREPARED_TO_BE_USED;
-        }
-        else if (arrowStatus == ArrowState.CURRENTLY_USED.ToString())
-        {
-            this.arrowStatus = ArrowState.CURRENTLY_USED;
-        }
-        else if (arrowStatus == ArrowState.STOPPING.ToString())
-        {
-            this.arrowStatus = ArrowState.STOPPING;
-        }
-        else if (arrowStatus == ArrowState.USED.ToString())
-        {
-            this.arrowStatus = ArrowState.USED;
-        }
+        
+        if (PlayerPrefs.HasKey(weaponName + ".percentage"))
+            this.percentage = PlayerPrefs.GetFloat(weaponName + ".percentage");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".startTime"))
+            this.startTime = PlayerPrefs.GetFloat(weaponName + ".startTime");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".speedX"))
+            this.speedX = PlayerPrefs.GetFloat(weaponName + ".speedX");
 
-        this.percentage = PlayerPrefs.GetFloat(weaponName + ".percentage");
-        this.startTime = PlayerPrefs.GetFloat(weaponName + ".startTime");
-        this.speedX = PlayerPrefs.GetFloat(weaponName + ".speedX");
-        this.speedY = PlayerPrefs.GetFloat(weaponName + ".speedY");
+        if (PlayerPrefs.HasKey(weaponName + ".speedY"))
+            this.speedY = PlayerPrefs.GetFloat(weaponName + ".speedY");
     }
 
     protected override void Start()

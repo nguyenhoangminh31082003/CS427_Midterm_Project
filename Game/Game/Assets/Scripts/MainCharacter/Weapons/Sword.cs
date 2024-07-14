@@ -32,14 +32,26 @@ public class Sword : Weapon
     {
         string weaponName = this.GetNameOfWeapon();
 
-        this.number = PlayerPrefs.GetInt(weaponName + ".number");
-        this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
-        this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
+        if (PlayerPrefs.HasKey(weaponName + ".attackStartTime"))
+            this.number = PlayerPrefs.GetInt(weaponName + ".number");
 
-        this.NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION = PlayerPrefs.GetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION");
-        this.damageCausedPerHit = double.Parse(PlayerPrefs.GetString(weaponName + ".damageCausedPerHit"));
-        this.attacking = bool.Parse(PlayerPrefs.GetString(weaponName + ".attacking"));
-        this.attackStartTime = PlayerPrefs.GetFloat(weaponName + ".attackStartTime");
+        if (PlayerPrefs.HasKey(weaponName + ".weightPerUnit"))
+            this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
+        
+        if (PlayerPrefs.HasKey(weaponName + ".currentlyUsed"))
+            this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
+
+        if (PlayerPrefs.HasKey(weaponName + ".NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION"))
+            this.NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION = PlayerPrefs.GetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION");
+     
+        if (PlayerPrefs.HasKey(weaponName + ".damageCausedPerHit"))
+            this.damageCausedPerHit = double.Parse(PlayerPrefs.GetString(weaponName + ".damageCausedPerHit"));
+
+        if (PlayerPrefs.HasKey(weaponName + ".attacking"))
+            this.attacking = bool.Parse(PlayerPrefs.GetString(weaponName + ".attacking"));
+        
+        if (PlayerPrefs.HasKey(weaponName + ".attackStartTime"))
+            this.attackStartTime = PlayerPrefs.GetFloat(weaponName + ".attackStartTime");
     }
 
     private Quaternion GetDefaultRotation()

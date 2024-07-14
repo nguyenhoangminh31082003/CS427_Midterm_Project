@@ -17,8 +17,6 @@ public class WeaponBoxCanvasUI : MonoBehaviour
     private GameObject firstCounterText;
     private GameObject secondCounterText;
 
-
-    // Start is called before the first frame update
     void Start()
     {
 

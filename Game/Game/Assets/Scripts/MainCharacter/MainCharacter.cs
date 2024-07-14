@@ -13,24 +13,27 @@ public class MainCharacter : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinCountText;
     [SerializeField] private GameObject playerBag;
 
-    private DialogueManager dialogueManager;
+    [SerializeField] private int liveCount;
+
     public const double NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD = 4000;
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
     public const int MAXIMUM_LIVE_COUNT = 5;
-    private GameManager gameManager;
     public const double DEFAULT_SPEED = 4;
 
+    private DialogueManager dialogueManager;
+    private GameManager gameManager;
     private Knockback knockback;
+
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidBody2D;
     private double speedX, speedY;
     private long coinCount;
-    [SerializeField] private int liveCount;
     private PlayerBag bag;
     private double weight;
 
-    private bool invincible;
     private float lastDamageTime;
+    private bool invincible;
+    
 
     public void SaveDataToPlayerPrefs()
     {
@@ -41,11 +44,15 @@ public class MainCharacter : MonoBehaviour
         PlayerPrefs.SetString("speedX", this.speedX.ToString());
         PlayerPrefs.SetString("speedY", this.speedY.ToString());
         PlayerPrefs.SetInt("liveCount", this.liveCount);
-        Debug.Log("Data saved");    
+        //Debug.Log("Data saved");    
+
+        if (this.bag != null)
+            this.bag.SaveDataToPlayerPrefs();
     }
     
     private void LoadDataFromPlayerPrefs()
     {
+        //Debug.Log(PlayerPrefs.HasKey("liveCount"));
         if (PlayerPrefs.HasKey("invincible"))
             this.invincible = bool.Parse(PlayerPrefs.GetString("invincible"));
         if (PlayerPrefs.HasKey("lastDamageTime"))
@@ -60,7 +67,11 @@ public class MainCharacter : MonoBehaviour
             this.speedY = double.Parse(PlayerPrefs.GetString("speedY"));
         if (PlayerPrefs.HasKey("liveCount"))
             this.liveCount = PlayerPrefs.GetInt("liveCount");
-        Debug.Log("Data loaded");
+        //Debug.Log("Data loaded");
+        //Debug.Log(this.liveCount);
+
+        if (this.bag != null)
+            this.bag.LoadDataFromPlayerPrefs();
     }
 
         
@@ -70,7 +81,6 @@ public class MainCharacter : MonoBehaviour
         {
             Instance = this;
             this.LoadDataFromPlayerPrefs();
-            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -112,12 +122,6 @@ public class MainCharacter : MonoBehaviour
         this.coinCount = newCoinCount;
         return true;
     }
-    /*
-    public void ModifySpeed(double speedX, double speedY) {
-        this.speedX = speedX;
-        this.speedY = speedY;
-    }
-    */
     
     public long GetCoinCount() {
         return this.coinCount;
@@ -265,8 +269,10 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateCanvasElement()
     {
-        this.liveCountText.text = this.liveCount.ToString();
-        this.coinCountText.text = this.coinCount.ToString();
+        if (this.liveCountText != null)
+            this.liveCountText.text = this.liveCount.ToString();
+        if (this.coinCountText != null)
+            this.coinCountText.text = this.coinCount.ToString();
     }
 
     private void UpdateInvincibilityStatus()

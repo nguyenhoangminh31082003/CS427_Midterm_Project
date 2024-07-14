@@ -24,7 +24,38 @@ public class PlayerBag : MonoBehaviour
     private List<Weapon> weapons;
     private double totalWeight;
 
-    // Start is called before the first frame update
+    public void SaveDataToPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("PlayerBag.numberOfCanvasUIWeaponBoxes", this.numberOfCanvasUIWeaponBoxes);
+        PlayerPrefs.SetInt("PlayerBag.currentWeaponIndex", this.currentWeaponIndex);
+        PlayerPrefs.SetInt("PlayerBag.chestKeyCount", this.chestKeyCount);
+        PlayerPrefs.SetInt("PlayerBag.gateKeyCount", this.gateKeyCount);
+        PlayerPrefs.SetString("PlayerBag.totalWeight", this.totalWeight.ToString());
+
+        foreach (Weapon weapon in this.weapons)
+            weapon.SaveDataToPlayerPrefs();
+    }
+    public void LoadDataFromPlayerPrefs()
+    {
+        if (PlayerPrefs.HasKey("PlayerBag.numberOfCanvasUIWeaponBoxes"))
+            this.numberOfCanvasUIWeaponBoxes = PlayerPrefs.GetInt("PlayerBag.numberOfCanvasUIWeaponBoxes");
+        
+        if (PlayerPrefs.HasKey("PlayerBag.currentWeaponIndex"))
+            this.currentWeaponIndex = PlayerPrefs.GetInt("PlayerBag.currentWeaponIndex");
+        
+        if (PlayerPrefs.HasKey("PlayerBag.chestKeyCount"))
+            this.chestKeyCount = PlayerPrefs.GetInt("PlayerBag.chestKeyCount");
+        
+        if (PlayerPrefs.HasKey("PlayerBag.gateKeyCount"))
+            this.gateKeyCount = PlayerPrefs.GetInt("PlayerBag.gateKeyCount");
+        
+        if (PlayerPrefs.HasKey("PlayerBag.totalWeight"))
+            this.totalWeight = double.Parse(PlayerPrefs.GetString("PlayerBag.totalWeight"));
+
+        foreach (Weapon weapon in this.weapons)
+            weapon.LoadDataFromPlayerPrefs();
+    }
+
     void Start()
     {
         this.gateKeyCount = 0;
@@ -105,7 +136,6 @@ public class PlayerBag : MonoBehaviour
         return this.totalWeight;
     }
 
-    // Update is called once per frame
     void Update()
     {
         this.UpdateCanvasElements();
