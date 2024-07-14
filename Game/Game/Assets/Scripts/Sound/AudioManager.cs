@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
 
+    public string currentTrack = "";
+
     public void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -45,6 +47,22 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(s.clip);
         }
     }
+
+    private void Update()
+    {
+        if (!musicSource.isPlaying)
+        {
+            if (currentTrack.Length > 0)
+            {
+                PlayMusic(currentTrack);
+            }
+            else
+            {
+                PlayMusic(musicName);
+            }
+        }
+    }
+
 
     public void ToggleMusic() {
         musicSource.mute = !musicSource.mute;
