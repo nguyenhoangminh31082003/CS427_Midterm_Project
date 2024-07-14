@@ -68,6 +68,8 @@ public class MainCharacter : MonoBehaviour
 
         if (this.bag != null)
             this.bag.LoadDataFromPlayerPrefs();
+
+        Debug.Log("WHERE IS MY PINEAPPLE PIZZA!!! " + this.liveCount);
     }
 
         
@@ -80,7 +82,7 @@ public class MainCharacter : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -90,17 +92,19 @@ public class MainCharacter : MonoBehaviour
         this.rigidBody2D = this.GetComponent<Rigidbody2D>();
         this.bag = this.playerBag.GetComponent<PlayerBag>();
         this.knockback = this.GetComponent<Knockback>();
+        this.liveCount = 5;
+        this.coinCount = 0;
         this.speedX = 0;
         this.speedY = 0;
         this.weight = 1;
-        this.liveCount = 5;
-        this.coinCount = 0;
 
         this.invincible = false;
         this.lastDamageTime = 0;
 
         this.gameManager = GameManager.Instance;
         this.dialogueManager  = DialogueManager.Instance;
+
+        Debug.Log("Start!!! " + this.liveCountText + " " + this.coinCountText);
     }
 
     public void GetKnockBack(Transform source)
@@ -264,10 +268,13 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateCanvasElement()
     {
+        //Debug.Log("Update!!! " + this.liveCountText + " " + this.coinCountText);
+        Debug.Log("WHERE IS MY PINEAPPLE PIZZA??? " + this.liveCount);
         if (this.liveCountText != null)
             this.liveCountText.text = this.liveCount.ToString();
         if (this.coinCountText != null)
             this.coinCountText.text = this.coinCount.ToString();
+        //Debug.Log((this.liveCountText == null) + " " + (this.coinCountText == null));
     }
 
     private void UpdateInvincibilityStatus()

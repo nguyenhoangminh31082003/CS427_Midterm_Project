@@ -12,9 +12,9 @@ public class PlayerBag : MonoBehaviour
     [SerializeField] private TextMeshProUGUI silverKeyCountText;
     [SerializeField] private TextMeshProUGUI goldenKeyCountText;
 
-    [SerializeField] private GameObject sampleBox;
     [SerializeField] private GameObject canvasUIWeaponsContainer;
     [SerializeField] private int numberOfCanvasUIWeaponBoxes;
+    [SerializeField] private GameObject sampleBox;
 
     [SerializeField] private int currentWeaponIndex;
     [SerializeField] private int chestKeyCount;
@@ -23,6 +23,14 @@ public class PlayerBag : MonoBehaviour
     private List<GameObject> canvasUIWeaponBoxes;
     private List<Weapon> weapons;
     private double totalWeight;
+
+    private static PlayerBag Instance;
+
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
 
     public void SaveDataToPlayerPrefs()
     {
@@ -96,6 +104,8 @@ public class PlayerBag : MonoBehaviour
 
             this.canvasUIWeaponBoxes.Add(duplicate);
         }
+
+        //Debug.Log("Pineapple pizza!!! " + this.canvasUIWeaponsContainer);
     }
 
     public bool ChangeGateKeyCount(int delta)
@@ -171,10 +181,45 @@ public class PlayerBag : MonoBehaviour
             }
         }
 
-        //Debug.Log(this.numberOfCanvasUIWeaponBoxes + " " + this.canvasUIWeaponBoxes.Count);
+        if (this.canvasUIWeaponBoxes == null)
+            this.canvasUIWeaponBoxes = new List<GameObject>();
+
+        if (this.canvasUIWeaponBoxes.Count < this.numberOfCanvasUIWeaponBoxes)
+        {
+
+            //Debug.Log("Pineapple pizza " + this.canvasUIWeaponsContainer);
+            //Debug.Log("Pineapple pizza " + this.sampleBox);
+            //Debug.Log("Pineapple, pineapple, pineapple " + Instance);
+            //Debug.Log("Pineapple!, pineapple!!, pineapple!!! " + Instance.sampleBox + " " + Instance.canvasUIWeaponsContainer);
+
+            if (this.sampleBox != null && this.canvasUIWeaponsContainer != null)
+            {
+                for (int i = this.canvasUIWeaponBoxes.Count; i < numberOfCanvasUIWeaponBoxes; ++i)
+                {
+                    GameObject duplicate = Instantiate(this.sampleBox, this.canvasUIWeaponsContainer.transform);
+
+                    RectTransform rectTransform = duplicate.GetComponent<RectTransform>();
+
+                    if (rectTransform != null)
+                    {
+                        rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y - i * rectTransform.rect.height);
+                    }
+
+                    duplicate.name = "Weapon box container " + i.ToString();
+
+                    duplicate.SetActive(true);
+
+                    this.canvasUIWeaponBoxes.Add(duplicate);
+                }
+            }
+        }
 
         for (int i = 0; i < this.numberOfCanvasUIWeaponBoxes; ++i)
         {
+
+            if (i >= this.canvasUIWeaponBoxes.Count)
+                break;
+
             WeaponBoxCanvasUI box = this.canvasUIWeaponBoxes[i].GetComponent<WeaponBoxCanvasUI>();
 
             if (box != null)

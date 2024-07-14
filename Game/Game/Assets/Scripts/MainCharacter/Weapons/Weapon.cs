@@ -33,7 +33,6 @@ public class Weapon : MonoBehaviour
         this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
     }
 
-    // Start is called before the first frame update
     protected virtual void Start()
     {
         this.number = 0;

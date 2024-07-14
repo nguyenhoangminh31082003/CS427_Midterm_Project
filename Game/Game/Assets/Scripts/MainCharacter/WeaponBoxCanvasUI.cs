@@ -27,6 +27,9 @@ public class WeaponBoxCanvasUI : MonoBehaviour
             list.Add(child.gameObject);
         }
 
+        //Debug.Log(this);
+        //Debug.Log(list.Count);
+
         this.boxImage = list[0];
         this.weaponImage = list[1];
         this.firstCounterBackground = list[2];
