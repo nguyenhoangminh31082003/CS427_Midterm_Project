@@ -22,6 +22,7 @@ public class SceneController : MonoBehaviour
 
     public void NextLevel()
     {
+        MainCharacter.Instance.SaveDataToPlayerPrefs();
         StartCoroutine(LoadLevel());
     }
 

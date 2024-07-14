@@ -32,7 +32,7 @@ public class MainCharacter : MonoBehaviour
     private bool invincible;
     private float lastDamageTime;
 
-    private void SaveDataToPlayerPrefs()
+    public void SaveDataToPlayerPrefs()
     {
         PlayerPrefs.SetString("invincible", this.invincible.ToString());
         PlayerPrefs.SetFloat("lastDamageTime", this.lastDamageTime);
@@ -41,6 +41,7 @@ public class MainCharacter : MonoBehaviour
         PlayerPrefs.SetString("speedX", this.speedX.ToString());
         PlayerPrefs.SetString("speedY", this.speedY.ToString());
         PlayerPrefs.SetInt("liveCount", this.liveCount);
+        Debug.Log("Data saved");    
     }
     
     private void LoadDataFromPlayerPrefs()
@@ -59,9 +60,10 @@ public class MainCharacter : MonoBehaviour
             this.speedY = double.Parse(PlayerPrefs.GetString("speedY"));
         if (PlayerPrefs.HasKey("liveCount"))
             this.liveCount = PlayerPrefs.GetInt("liveCount");
+        Debug.Log("Data loaded");
     }
 
-
+        
     private void Awake()
     {
         if (Instance == null)
@@ -72,7 +74,6 @@ public class MainCharacter : MonoBehaviour
         }
         else
         {
-            this.SaveDataToPlayerPrefs();
             Destroy(gameObject);
         }
     }
