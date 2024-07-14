@@ -13436,9 +13436,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   silverKeyCountText: {fileID: 1523437984}
   goldenKeyCountText: {fileID: 588405161}
-  sampleBox: {fileID: 1103000177}
   canvasUIWeaponsContainer: {fileID: 220859931}
   numberOfCanvasUIWeaponBoxes: 3
+  sampleBox: {fileID: 1103000177}
   currentWeaponIndex: 0
   chestKeyCount: 0
   gateKeyCount: 0
@@ -20920,6 +20920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542983b1c99ce86488367930b9d97a3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicName: 
   musicSounds:
   - name: theme_1
     clip: {fileID: 8300000, guid: f06c2a9c68fe20645b6675c659b93b8a, type: 3}
@@ -20974,9 +20975,18 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4d9acc7b5fc6db0498efa6b9c99e8fb3, type: 3}
   - name: text_sfx
     clip: {fileID: 8300000, guid: 1a6854d3ff4e7394081ffec635de320e, type: 3}
+  - name: item_pick_up
+    clip: {fileID: 8300000, guid: a74f025995dd0ff4a96e02bfaa6928d0, type: 3}
+  - name: key_pick_up
+    clip: {fileID: 8300000, guid: 7e95d94b949a3944b97a6b997a10d85b, type: 3}
+  - name: player_hurt
+    clip: {fileID: 8300000, guid: e5e4d4528f63a9e4e88c46b1b65b4541, type: 3}
+  - name: coin_pick_up
+    clip: {fileID: 8300000, guid: 854b9fd5b1f015043af8294e0f3b9bca, type: 3}
+  - name: health_pick_up
+    clip: {fileID: 8300000, guid: 1ca0849435716784697a5f9dec8766fa, type: 3}
   musicSource: {fileID: 1133053548}
   sfxSource: {fileID: 1132730049}
-  startTrack: 15
   currentTrack: -1
 --- !u!4 &1232831313
 Transform:
