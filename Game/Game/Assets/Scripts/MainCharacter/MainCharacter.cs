@@ -44,7 +44,6 @@ public class MainCharacter : MonoBehaviour
         PlayerPrefs.SetString("speedX", this.speedX.ToString());
         PlayerPrefs.SetString("speedY", this.speedY.ToString());
         PlayerPrefs.SetInt("liveCount", this.liveCount);
-        //Debug.Log("Data saved");    
 
         if (this.bag != null)
             this.bag.SaveDataToPlayerPrefs();
@@ -52,7 +51,6 @@ public class MainCharacter : MonoBehaviour
     
     private void LoadDataFromPlayerPrefs()
     {
-        //Debug.Log(PlayerPrefs.HasKey("liveCount"));
         if (PlayerPrefs.HasKey("invincible"))
             this.invincible = bool.Parse(PlayerPrefs.GetString("invincible"));
         if (PlayerPrefs.HasKey("lastDamageTime"))
@@ -67,8 +65,6 @@ public class MainCharacter : MonoBehaviour
             this.speedY = double.Parse(PlayerPrefs.GetString("speedY"));
         if (PlayerPrefs.HasKey("liveCount"))
             this.liveCount = PlayerPrefs.GetInt("liveCount");
-        //Debug.Log("Data loaded");
-        //Debug.Log(this.liveCount);
 
         if (this.bag != null)
             this.bag.LoadDataFromPlayerPrefs();
@@ -201,7 +197,6 @@ public class MainCharacter : MonoBehaviour
         this.speedY *= percentage;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (dialogueManager != null)

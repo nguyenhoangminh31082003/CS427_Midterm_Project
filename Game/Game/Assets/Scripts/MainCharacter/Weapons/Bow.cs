@@ -94,8 +94,6 @@ public class Bow : Weapon
 
         this.arrowIndex = '1' + new string(digits);
     }
-
-    // Update is called once per frame
     protected override void Update()
     {
         base.Update();

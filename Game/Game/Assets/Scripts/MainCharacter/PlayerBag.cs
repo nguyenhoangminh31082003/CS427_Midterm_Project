@@ -171,6 +171,8 @@ public class PlayerBag : MonoBehaviour
             }
         }
 
+        //Debug.Log(this.numberOfCanvasUIWeaponBoxes + " " + this.canvasUIWeaponBoxes.Count);
+
         for (int i = 0; i < this.numberOfCanvasUIWeaponBoxes; ++i)
         {
             WeaponBoxCanvasUI box = this.canvasUIWeaponBoxes[i].GetComponent<WeaponBoxCanvasUI>();
