@@ -5,13 +5,13 @@ public class StoryItem : Interactable
     //public string storyPlot;
 
     [SerializeField] private Dialogue dialogue;
-    public int backgroundTrackIndex = -1;
+    public string backgroundTrack = "";
     protected override void Interact()
     {
-        if (backgroundTrackIndex > 0)
+        if (backgroundTrack.Length > 0)
         {
-            AudioManager.Instance.currentTrack = backgroundTrackIndex; 
-            AudioManager.Instance.PlayMusic("theme_" + backgroundTrackIndex.ToString());
+            AudioManager.Instance.currentTrack = backgroundTrack; 
+            AudioManager.Instance.PlayMusic(backgroundTrack);
         }
         dialogueManager.StartDialogue(dialogue);
     }

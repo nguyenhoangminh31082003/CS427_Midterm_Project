@@ -48,9 +48,9 @@ public class DialogueManager : MonoBehaviour
         if (lines.Count == 0)
         {
             EndDialogue();
-            if (AudioManager.Instance.currentTrack != -1)
+            if (AudioManager.Instance.currentTrack.Length != 0)
             {
-                AudioManager.Instance.currentTrack = -1;
+                AudioManager.Instance.currentTrack = "";
                 AudioManager.Instance.musicSource.Stop();
             }
             return;

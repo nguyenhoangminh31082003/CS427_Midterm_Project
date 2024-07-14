@@ -5,17 +5,15 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private String musicName;
+    [SerializeField] private String musicName = "";
     public static AudioManager Instance;
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
-    public int startTrack = 5;
-    public int currentTrack = -1;
+    public string currentTrack = "";
 
     public void Awake() {
         if (Instance == null) {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else {
             Destroy(gameObject);
@@ -52,13 +50,13 @@ public class AudioManager : MonoBehaviour
     {
         if (!musicSource.isPlaying)
         {
-            if (currentTrack != -1)
+            if (currentTrack.Length == 0)
             {
-                PlayMusic("theme_" + currentTrack.ToString());
+                PlayMusic(musicName);
             }
             else
             {
-                PlayMusic("theme_" + startTrack.ToString());
+                PlayMusic(currentTrack);
             }
         }
     }
