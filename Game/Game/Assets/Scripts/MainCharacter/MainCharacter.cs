@@ -33,6 +33,8 @@ public class MainCharacter : MonoBehaviour
 
     private float lastDamageTime;
     private bool invincible;
+
+    private bool partialInitialized = false;
     
 
     public void SaveDataToPlayerPrefs()
@@ -69,7 +71,8 @@ public class MainCharacter : MonoBehaviour
         if (this.bag != null)
             this.bag.LoadDataFromPlayerPrefs();
 
-        Debug.Log("WHERE IS MY PINEAPPLE PIZZA!!! " + this.liveCount);
+        //Debug.Log("WHERE IS MY PINEAPPLE PIZZA!!! " + this.liveCount);
+        this.partialInitialized = true;
     }
 
         
@@ -88,23 +91,30 @@ public class MainCharacter : MonoBehaviour
 
     void Start()
     {
+
+        //Debug.Log("Pineapple pizza is so good!!! " + this.partialInitialized);
+
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
         this.rigidBody2D = this.GetComponent<Rigidbody2D>();
         this.bag = this.playerBag.GetComponent<PlayerBag>();
         this.knockback = this.GetComponent<Knockback>();
-        this.liveCount = 5;
-        this.coinCount = 0;
-        this.speedX = 0;
-        this.speedY = 0;
-        this.weight = 1;
+        
+        if (!this.partialInitialized)
+        {
+            this.liveCount = 5;
+            this.coinCount = 0;
+            this.speedX = 0;
+            this.speedY = 0;
+            this.weight = 1;
 
-        this.invincible = false;
-        this.lastDamageTime = 0;
+            this.invincible = false;
+            this.lastDamageTime = 0;
+        }
 
         this.gameManager = GameManager.Instance;
-        this.dialogueManager  = DialogueManager.Instance;
+        this.dialogueManager = DialogueManager.Instance;
 
-        Debug.Log("Start!!! " + this.liveCountText + " " + this.coinCountText);
+        //Debug.Log("Start!!! " + this.liveCountText + " " + this.coinCountText);
     }
 
     public void GetKnockBack(Transform source)
