@@ -761,11 +761,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 757818741900178336, guid: cbf5720253bc3954692b4896781346b0, type: 3}
       propertyPath: attackCD
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 757818741900178336, guid: cbf5720253bc3954692b4896781346b0, type: 3}
+      propertyPath: moveSpeed
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 757818741900178336, guid: cbf5720253bc3954692b4896781346b0, type: 3}
+      propertyPath: angleSpread
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 757818741900178336, guid: cbf5720253bc3954692b4896781346b0, type: 3}
       propertyPath: attackRange
-      value: 6
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4079162273291481330, guid: cbf5720253bc3954692b4896781346b0, type: 3}
+      propertyPath: knockBackTime
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4505262484596995782, guid: cbf5720253bc3954692b4896781346b0, type: 3}
       propertyPath: m_LocalScale.x
