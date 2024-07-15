@@ -15,6 +15,8 @@ public class Weapon : MonoBehaviour
 
     protected SpriteRenderer spriteRenderer;
 
+    protected bool partiallyInitialized = false;
+
     public virtual void SaveDataToPlayerPrefs()
     {
         string weaponName = this.GetNameOfWeapon();
@@ -31,13 +33,19 @@ public class Weapon : MonoBehaviour
         this.number = PlayerPrefs.GetInt(weaponName + ".number");
         this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
         this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
+
+        this.partiallyInitialized = true;
     }
 
     protected virtual void Start()
     {
-        this.number = 0;
 
-        this.currentlyUsed = false;
+        if (!this.partiallyInitialized)
+        {
+            this.number = 0;
+
+            this.currentlyUsed = false;
+        }
 
         this.gameObject.SetActive(this.currentlyUsed);
     

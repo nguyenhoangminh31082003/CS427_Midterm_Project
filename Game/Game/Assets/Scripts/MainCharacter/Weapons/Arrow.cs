@@ -117,6 +117,8 @@ public class Arrow : Weapon
 
         if (PlayerPrefs.HasKey(weaponName + ".speedY"))
             this.speedY = PlayerPrefs.GetFloat(weaponName + ".speedY");
+
+        this.partiallyInitialized = true;
     }
 
     protected override void Start()

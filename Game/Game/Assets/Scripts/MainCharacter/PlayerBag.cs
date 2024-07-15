@@ -16,7 +16,7 @@ public class PlayerBag : MonoBehaviour
     [SerializeField] private int numberOfCanvasUIWeaponBoxes;
     [SerializeField] private GameObject sampleBox;
 
-    [SerializeField] private int currentWeaponIndex;
+    [SerializeField] private int currentWeaponIndex = -1;
     [SerializeField] private int chestKeyCount;
     [SerializeField] private int gateKeyCount;
 
@@ -26,10 +26,15 @@ public class PlayerBag : MonoBehaviour
 
     private static PlayerBag Instance;
 
+    private bool partiallyInitialized = false;
+
     void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            
+        }
     }
 
     public void SaveDataToPlayerPrefs()
@@ -60,29 +65,56 @@ public class PlayerBag : MonoBehaviour
         if (PlayerPrefs.HasKey("PlayerBag.totalWeight"))
             this.totalWeight = double.Parse(PlayerPrefs.GetString("PlayerBag.totalWeight"));
 
+        if (this.weapons == null)
+        {
+            this.weapons = new List<Weapon>();
+
+            foreach (Transform child in this.transform)
+            {
+                Weapon weapon = child.GetComponent<Weapon>();
+                if (weapon != null && weapon is Weapon)
+                {
+                    this.weapons.Add(weapon);
+                }
+            }
+        }
+
         foreach (Weapon weapon in this.weapons)
             weapon.LoadDataFromPlayerPrefs();
+
+        this.partiallyInitialized = true;
+
+        //Debug.Log("HERE AT LINE 70 " + this.currentWeaponIndex);
     }
 
     void Start()
     {
-        this.gateKeyCount = 0;
 
-        this.chestKeyCount = 0;
-
-        this.totalWeight = 0;
-
-        this.weapons = new List<Weapon>();
-
-        this.currentWeaponIndex = -1;
-
-        foreach (Transform child in this.transform)
+        if (!this.partiallyInitialized)
         {
-            Weapon weapon = child.GetComponent<Weapon>();
-            if (weapon != null && weapon is Weapon)
+            this.gateKeyCount = 0;
+
+            this.chestKeyCount = 0;
+
+            this.totalWeight = 0;
+
+            this.currentWeaponIndex = -1;
+
+            if (this.weapons != null)
             {
-                this.weapons.Add(weapon);
+                this.weapons = new List<Weapon>();
+
+                foreach (Transform child in this.transform)
+                {
+                    Weapon weapon = child.GetComponent<Weapon>();
+                    if (weapon != null && weapon is Weapon)
+                    {
+                        this.weapons.Add(weapon);
+                    }
+                }
             }
+
+            
         }
 
         this.canvasUIWeaponBoxes = new List<GameObject>();
@@ -105,7 +137,6 @@ public class PlayerBag : MonoBehaviour
             this.canvasUIWeaponBoxes.Add(duplicate);
         }
 
-        //Debug.Log("Pineapple pizza!!! " + this.canvasUIWeaponsContainer);
     }
 
     public bool ChangeGateKeyCount(int delta)
@@ -167,8 +198,6 @@ public class PlayerBag : MonoBehaviour
 
     private void UpdateCanvasElements()
     {
-        int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
-
         if (KeyManager.Instance != null)
         {
             if (silverKeyCountText != null)
@@ -186,12 +215,6 @@ public class PlayerBag : MonoBehaviour
 
         if (this.canvasUIWeaponBoxes.Count < this.numberOfCanvasUIWeaponBoxes)
         {
-
-            //Debug.Log("Pineapple pizza " + this.canvasUIWeaponsContainer);
-            //Debug.Log("Pineapple pizza " + this.sampleBox);
-            //Debug.Log("Pineapple, pineapple, pineapple " + Instance);
-            //Debug.Log("Pineapple!, pineapple!!, pineapple!!! " + Instance.sampleBox + " " + Instance.canvasUIWeaponsContainer);
-
             if (this.sampleBox != null && this.canvasUIWeaponsContainer != null)
             {
                 for (int i = this.canvasUIWeaponBoxes.Count; i < numberOfCanvasUIWeaponBoxes; ++i)
@@ -213,6 +236,10 @@ public class PlayerBag : MonoBehaviour
                 }
             }
         }
+
+        int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
+
+        //Debug.Log("HERE AT LINE 218 " + weaponCount + " " + position);
 
         for (int i = 0; i < this.numberOfCanvasUIWeaponBoxes; ++i)
         {

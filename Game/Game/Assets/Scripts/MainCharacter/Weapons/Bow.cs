@@ -57,6 +57,8 @@ public class Bow : Weapon
 
         if (PlayerPrefs.HasKey(weaponName + ".attacking"))
             this.attacking = bool.Parse(PlayerPrefs.GetString(weaponName + ".attacking"));
+
+        this.partiallyInitialized = true;
     }
 
     protected override void Start()
@@ -65,11 +67,14 @@ public class Bow : Weapon
 
         this.spriteRenderer = GetComponent<SpriteRenderer>();
 
-        this.unusedArrowCount = 0;
+        if (!this.partiallyInitialized)
+        {
+            this.unusedArrowCount = 0;
 
-        this.attacking = false;
+            this.attacking = false;
 
-        this.arrowIndex = "0";
+            this.arrowIndex = "0";
+        }
 
         this.currentlyHeldArrow = null;
     }

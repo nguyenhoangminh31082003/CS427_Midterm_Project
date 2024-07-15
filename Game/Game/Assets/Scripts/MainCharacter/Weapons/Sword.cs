@@ -32,7 +32,7 @@ public class Sword : Weapon
     {
         string weaponName = this.GetNameOfWeapon();
 
-        if (PlayerPrefs.HasKey(weaponName + ".attackStartTime"))
+        if (PlayerPrefs.HasKey(weaponName + ".number"))
             this.number = PlayerPrefs.GetInt(weaponName + ".number");
 
         if (PlayerPrefs.HasKey(weaponName + ".weightPerUnit"))
@@ -52,6 +52,8 @@ public class Sword : Weapon
         
         if (PlayerPrefs.HasKey(weaponName + ".attackStartTime"))
             this.attackStartTime = PlayerPrefs.GetFloat(weaponName + ".attackStartTime");
+
+        this.partiallyInitialized = true;
     }
 
     private Quaternion GetDefaultRotation()
@@ -67,11 +69,14 @@ public class Sword : Weapon
 
         this.movingCollider = this.GetComponent<CapsuleCollider2D>();
 
+        if (!this.partiallyInitialized)
+        {
+            this.attacking = false;
+
+            this.attackStartTime = Time.time;
+        }
+
         this.movingCollider.enabled = false;
-
-        this.attacking = false;
-
-        this.attackStartTime = Time.time;
     }
 
     public override bool Attack()
@@ -107,8 +112,10 @@ public class Sword : Weapon
     {
         if (!this.attacking || !this.currentlyUsed)
             return;
+        
         float currentTime = Time.time,
               amountPassed = (currentTime - this.attackStartTime) * 1000;
+
         if (amountPassed > NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION)
         {
             this.attacking = false;
@@ -117,9 +124,10 @@ public class Sword : Weapon
         }
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
+        //Debug.Log("SWORD " + this.number);
+
         base.Update();
 
         UpdateAttack();
@@ -152,6 +160,8 @@ public class Sword : Weapon
 
     public override void DisplayInCanvas(WeaponBoxCanvasUI box)
     {
+        //Debug.Log("HERE AT LINE 163");
+
         box.SetAndShowFirstCounter(this.number);
         box.HideSecondCounter();
         box.SetAndShowWeaponImage(this.stillSwordSprite);

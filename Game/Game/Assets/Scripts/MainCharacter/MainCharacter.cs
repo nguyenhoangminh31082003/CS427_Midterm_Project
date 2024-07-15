@@ -68,10 +68,19 @@ public class MainCharacter : MonoBehaviour
         if (PlayerPrefs.HasKey("liveCount"))
             this.liveCount = PlayerPrefs.GetInt("liveCount");
 
-        if (this.bag != null)
-            this.bag.LoadDataFromPlayerPrefs();
+        //Debug.Log("LINE ???");
+        //if (this.bag != null)
+        //{
+        //    Debug.Log("LINE 73");
+        //    this.bag.LoadDataFromPlayerPrefs();
+        //    Debug.Log("Line 75");
+        //}
 
-        //Debug.Log("WHERE IS MY PINEAPPLE PIZZA!!! " + this.liveCount);
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
+
+        this.bag.LoadDataFromPlayerPrefs();
+
         this.partialInitialized = true;
     }
 
@@ -91,12 +100,11 @@ public class MainCharacter : MonoBehaviour
 
     void Start()
     {
-
-        //Debug.Log("Pineapple pizza is so good!!! " + this.partialInitialized);
-
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
         this.rigidBody2D = this.GetComponent<Rigidbody2D>();
-        this.bag = this.playerBag.GetComponent<PlayerBag>();
+
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
         this.knockback = this.GetComponent<Knockback>();
         
         if (!this.partialInitialized)
@@ -113,8 +121,6 @@ public class MainCharacter : MonoBehaviour
 
         this.gameManager = GameManager.Instance;
         this.dialogueManager = DialogueManager.Instance;
-
-        //Debug.Log("Start!!! " + this.liveCountText + " " + this.coinCountText);
     }
 
     public void GetKnockBack(Transform source)
@@ -278,13 +284,10 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateCanvasElement()
     {
-        //Debug.Log("Update!!! " + this.liveCountText + " " + this.coinCountText);
-        Debug.Log("WHERE IS MY PINEAPPLE PIZZA??? " + this.liveCount);
         if (this.liveCountText != null)
             this.liveCountText.text = this.liveCount.ToString();
         if (this.coinCountText != null)
             this.coinCountText.text = this.coinCount.ToString();
-        //Debug.Log((this.liveCountText == null) + " " + (this.coinCountText == null));
     }
 
     private void UpdateInvincibilityStatus()
