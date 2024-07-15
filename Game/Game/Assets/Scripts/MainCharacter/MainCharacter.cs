@@ -35,8 +35,6 @@ public class MainCharacter : MonoBehaviour
     private bool invincible;
 
     private bool partialInitialized = false;
-    
-
     public void SaveDataToPlayerPrefs()
     {
         PlayerPrefs.SetString("invincible", this.invincible.ToString());
@@ -68,14 +66,6 @@ public class MainCharacter : MonoBehaviour
         if (PlayerPrefs.HasKey("liveCount"))
             this.liveCount = PlayerPrefs.GetInt("liveCount");
 
-        //Debug.Log("LINE ???");
-        //if (this.bag != null)
-        //{
-        //    Debug.Log("LINE 73");
-        //    this.bag.LoadDataFromPlayerPrefs();
-        //    Debug.Log("Line 75");
-        //}
-
         if (this.bag == null)
             this.bag = this.playerBag.GetComponent<PlayerBag>();
 
@@ -90,7 +80,7 @@ public class MainCharacter : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            this.LoadDataFromPlayerPrefs();
+            //this.LoadDataFromPlayerPrefs();
         }
         else
         {

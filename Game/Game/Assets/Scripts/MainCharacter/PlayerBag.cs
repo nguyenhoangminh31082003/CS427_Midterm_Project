@@ -84,7 +84,6 @@ public class PlayerBag : MonoBehaviour
 
         this.partiallyInitialized = true;
 
-        //Debug.Log("HERE AT LINE 70 " + this.currentWeaponIndex);
     }
 
     void Start()
