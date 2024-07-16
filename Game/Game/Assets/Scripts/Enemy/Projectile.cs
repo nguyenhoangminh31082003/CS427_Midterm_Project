@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -7,6 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private GameObject particleOnHitPrefabVFX;
     [SerializeField] private float projectileRange = 10f;
+    [SerializeField] private bool hitWall = false;
 
     private Vector3 startPosition;
 
@@ -35,6 +37,11 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) {
             GameManager.Instance.CollisionHandler(other.tag, other.name, tag, name);
 
+            Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+        
+        if (hitWall && other.gameObject.CompareTag("Wall")) {
             Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
             Destroy(gameObject);
         }
