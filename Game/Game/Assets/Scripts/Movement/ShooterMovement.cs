@@ -23,9 +23,16 @@ public class ShooterMovement : MovementBase
     [SerializeField] private float restTime = 1f;
     private bool isShooting = false;
 
+    private int initialProjectilesPerBurst, initialBurstCount;
+
+    private float initialAngleSpread;
     protected override void Start()
     {
         base.Start();
+        float initial = projectilesPerBurst;
+        initialProjectilesPerBurst = projectilesPerBurst;
+        initialBurstCount = burstCount;
+        initialAngleSpread = angleSpread;
     }
 
     public override void Roaming()
@@ -50,6 +57,17 @@ public class ShooterMovement : MovementBase
         if (attackRange > 0 && canAttack) {
             canAttack = false;
             
+            if (Vector2.Distance(player.transform.position, transform.position) <= attackRange/2) {
+                projectilesPerBurst = 17;
+                angleSpread = 359f;
+                burstCount = 5;
+            } else {
+                angleSpread = initialAngleSpread;
+                burstCount = initialBurstCount;
+                projectilesPerBurst = initialProjectilesPerBurst;
+            }
+
+
             Attack();
 
             StartCoroutine(AttackCooldownRoutine());
