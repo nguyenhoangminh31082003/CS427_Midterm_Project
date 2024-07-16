@@ -89,4 +89,19 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.volume = v;
     }
+
+    public void ChangeDefaultTrack(string newTrack)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("SFX sound not found");
+        }
+        else
+        {
+            this.currentTrack = newTrack; 
+            this.PlayMusic(newTrack);
+        }
+    }
 }
