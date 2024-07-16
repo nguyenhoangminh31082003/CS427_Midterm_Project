@@ -70,6 +70,8 @@ public class MainCharacter : MonoBehaviour
     
     private void LoadDataFromPlayerPrefs()
     {
+        Debug.Log("HELLO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
         if (PlayerPrefs.HasKey("invincible"))
             this.invincible = bool.Parse(PlayerPrefs.GetString("invincible"));
         if (PlayerPrefs.HasKey("lastDamageTime"))
