@@ -328,8 +328,21 @@ public class MainCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (knockback.gettingKnockedBack) { return; }
+        if (dialogueManager != null)
+        {
+            if (dialogueManager.isDialogueActive)
+            {
+                this.rigidBody2D.velocity = new Vector2(0, 0);
+                return;
+            }
+        }
+
+        if (knockback.gettingKnockedBack) { 
+            return; 
+        }
+        
         this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
+        
         if (IsDead())
         {
             Destroy(gameObject);
