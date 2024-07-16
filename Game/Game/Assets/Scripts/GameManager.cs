@@ -3,6 +3,8 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,17 +15,19 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
     void Start()
     {
-
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            MainCharacter.Instance.LoadDataFromPlayerPrefs();
+        }
     }
 
     private void CollisionLog(string msg)

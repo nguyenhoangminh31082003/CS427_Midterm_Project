@@ -35,7 +35,22 @@ public class MainCharacter : MonoBehaviour
     private bool invincible;
 
     private bool partialInitialized = false;
-    
+
+    public void SetDefaultValuesToPlayerPrefs()
+    {
+        PlayerPrefs.SetString("invincible", false.ToString());
+        PlayerPrefs.SetFloat("lastDamageTime", 0);
+        PlayerPrefs.SetString("weight", "0");
+        PlayerPrefs.SetString("coinCount", "0");
+        PlayerPrefs.SetString("speedX", "0");
+        PlayerPrefs.SetString("speedY", "0");
+        PlayerPrefs.SetInt("liveCount", 5);
+
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
+
+        this.bag.SetDefaultValuesToPlayerPrefs();
+    }
 
     public void SaveDataToPlayerPrefs()
     {
@@ -47,12 +62,16 @@ public class MainCharacter : MonoBehaviour
         PlayerPrefs.SetString("speedY", this.speedY.ToString());
         PlayerPrefs.SetInt("liveCount", this.liveCount);
 
-        if (this.bag != null)
-            this.bag.SaveDataToPlayerPrefs();
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
+
+        this.bag.SaveDataToPlayerPrefs();
     }
     
-    private void LoadDataFromPlayerPrefs()
+    public void LoadDataFromPlayerPrefs()
     {
+        Debug.Log("HELLO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
         if (PlayerPrefs.HasKey("invincible"))
             this.invincible = bool.Parse(PlayerPrefs.GetString("invincible"));
         if (PlayerPrefs.HasKey("lastDamageTime"))
@@ -68,10 +87,11 @@ public class MainCharacter : MonoBehaviour
         if (PlayerPrefs.HasKey("liveCount"))
             this.liveCount = PlayerPrefs.GetInt("liveCount");
 
-        if (this.bag != null)
-            this.bag.LoadDataFromPlayerPrefs();
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
 
-        //Debug.Log("WHERE IS MY PINEAPPLE PIZZA!!! " + this.liveCount);
+        this.bag.LoadDataFromPlayerPrefs();
+
         this.partialInitialized = true;
     }
 
@@ -81,7 +101,6 @@ public class MainCharacter : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            this.LoadDataFromPlayerPrefs();
         }
         else
         {
@@ -91,12 +110,12 @@ public class MainCharacter : MonoBehaviour
 
     void Start()
     {
-
-        //Debug.Log("Pineapple pizza is so good!!! " + this.partialInitialized);
-
+        //this.LoadDataFromPlayerPrefs();
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
         this.rigidBody2D = this.GetComponent<Rigidbody2D>();
-        this.bag = this.playerBag.GetComponent<PlayerBag>();
+
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
         this.knockback = this.GetComponent<Knockback>();
         
         if (!this.partialInitialized)
@@ -113,8 +132,6 @@ public class MainCharacter : MonoBehaviour
 
         this.gameManager = GameManager.Instance;
         this.dialogueManager = DialogueManager.Instance;
-
-        //Debug.Log("Start!!! " + this.liveCountText + " " + this.coinCountText);
     }
 
     public void GetKnockBack(Transform source)
@@ -278,13 +295,10 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateCanvasElement()
     {
-        //Debug.Log("Update!!! " + this.liveCountText + " " + this.coinCountText);
-        Debug.Log("WHERE IS MY PINEAPPLE PIZZA??? " + this.liveCount);
         if (this.liveCountText != null)
             this.liveCountText.text = this.liveCount.ToString();
         if (this.coinCountText != null)
             this.coinCountText.text = this.coinCount.ToString();
-        //Debug.Log((this.liveCountText == null) + " " + (this.coinCountText == null));
     }
 
     private void UpdateInvincibilityStatus()

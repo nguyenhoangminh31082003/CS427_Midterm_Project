@@ -14,6 +14,19 @@ public class Sword : Weapon
     private float attackStartTime;
     private CapsuleCollider2D movingCollider;
 
+    public override void SetDefaultValuesToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", 0);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", "0");
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", false.ToString());
+
+        PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION", 200);
+        PlayerPrefs.SetString(weaponName + ".damageCausedPerHit", "42");
+        PlayerPrefs.SetString(weaponName + ".attacking", false.ToString());
+        PlayerPrefs.SetFloat(weaponName + ".attackStartTime", 0);
+    }
     public override void SaveDataToPlayerPrefs()
     {
         string weaponName = this.GetNameOfWeapon();
@@ -32,7 +45,7 @@ public class Sword : Weapon
     {
         string weaponName = this.GetNameOfWeapon();
 
-        if (PlayerPrefs.HasKey(weaponName + ".attackStartTime"))
+        if (PlayerPrefs.HasKey(weaponName + ".number"))
             this.number = PlayerPrefs.GetInt(weaponName + ".number");
 
         if (PlayerPrefs.HasKey(weaponName + ".weightPerUnit"))
@@ -52,6 +65,8 @@ public class Sword : Weapon
         
         if (PlayerPrefs.HasKey(weaponName + ".attackStartTime"))
             this.attackStartTime = PlayerPrefs.GetFloat(weaponName + ".attackStartTime");
+
+        this.partiallyInitialized = true;
     }
 
     private Quaternion GetDefaultRotation()
@@ -67,11 +82,14 @@ public class Sword : Weapon
 
         this.movingCollider = this.GetComponent<CapsuleCollider2D>();
 
+        if (!this.partiallyInitialized)
+        {
+            this.attacking = false;
+
+            this.attackStartTime = Time.time;
+        }
+
         this.movingCollider.enabled = false;
-
-        this.attacking = false;
-
-        this.attackStartTime = Time.time;
     }
 
     public override bool Attack()
@@ -107,8 +125,10 @@ public class Sword : Weapon
     {
         if (!this.attacking || !this.currentlyUsed)
             return;
+        
         float currentTime = Time.time,
               amountPassed = (currentTime - this.attackStartTime) * 1000;
+
         if (amountPassed > NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION)
         {
             this.attacking = false;
@@ -117,7 +137,6 @@ public class Sword : Weapon
         }
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
         base.Update();
