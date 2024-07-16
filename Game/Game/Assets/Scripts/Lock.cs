@@ -9,6 +9,7 @@ public class Lock : Interactable
     protected override void Interact()
     {
         if (KeyManager.Instance.CheckRequiredItem(_requiredKey)) {
+            KeyManager.Instance.RemoveItem(_requiredKey);
             Destroy(gameObject);
         }
     }
