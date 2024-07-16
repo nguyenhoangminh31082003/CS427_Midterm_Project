@@ -68,7 +68,7 @@ public class MainCharacter : MonoBehaviour
         this.bag.SaveDataToPlayerPrefs();
     }
     
-    private void LoadDataFromPlayerPrefs()
+    public void LoadDataFromPlayerPrefs()
     {
         Debug.Log("HELLO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
@@ -101,7 +101,6 @@ public class MainCharacter : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //this.LoadDataFromPlayerPrefs();
         }
         else
         {
@@ -111,6 +110,7 @@ public class MainCharacter : MonoBehaviour
 
     void Start()
     {
+        //this.LoadDataFromPlayerPrefs();
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
         this.rigidBody2D = this.GetComponent<Rigidbody2D>();
 
