@@ -14,6 +14,19 @@ public class Sword : Weapon
     private float attackStartTime;
     private CapsuleCollider2D movingCollider;
 
+    public override void SetDefaultValuesToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", 0);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", "0");
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", false.ToString());
+
+        PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION", 200);
+        PlayerPrefs.SetString(weaponName + ".damageCausedPerHit", "42");
+        PlayerPrefs.SetString(weaponName + ".attacking", false.ToString());
+        PlayerPrefs.SetFloat(weaponName + ".attackStartTime", 0);
+    }
     public override void SaveDataToPlayerPrefs()
     {
         string weaponName = this.GetNameOfWeapon();
@@ -126,8 +139,6 @@ public class Sword : Weapon
 
     protected override void Update()
     {
-        //Debug.Log("SWORD " + this.number);
-
         base.Update();
 
         UpdateAttack();
@@ -160,8 +171,6 @@ public class Sword : Weapon
 
     public override void DisplayInCanvas(WeaponBoxCanvasUI box)
     {
-        //Debug.Log("HERE AT LINE 163");
-
         box.SetAndShowFirstCounter(this.number);
         box.HideSecondCounter();
         box.SetAndShowWeaponImage(this.stillSwordSprite);

@@ -17,6 +17,15 @@ public class Weapon : MonoBehaviour
 
     protected bool partiallyInitialized = false;
 
+    public virtual void SetDefaultValuesToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", 0);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", "0");
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", false.ToString());
+    }
+
     public virtual void SaveDataToPlayerPrefs()
     {
         string weaponName = this.GetNameOfWeapon();

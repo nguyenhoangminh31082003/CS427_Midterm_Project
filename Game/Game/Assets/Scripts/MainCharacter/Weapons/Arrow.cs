@@ -31,6 +31,27 @@ public class Arrow : Weapon
     private float speedX;
     private float speedY;
 
+    public override void SetDefaultValuesToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", 0);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", "0");
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", false.ToString());
+
+        PlayerPrefs.SetFloat(weaponName + ".maximumSpeedX", 8);
+        PlayerPrefs.SetFloat(weaponName + ".maximumSpeedY", 0);
+        PlayerPrefs.SetFloat(weaponName + ".MAXIMUM_DAMAGE_CAUSED_PER_HIT", 42);
+        PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING", 5000);
+        PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING", 1000);
+
+        PlayerPrefs.SetString(weaponName + ".arrowStatus", ArrowState.NOT_USED_YET.ToString());
+        PlayerPrefs.SetFloat(weaponName + ".percentage", 0);
+        PlayerPrefs.SetFloat(weaponName + ".startTime", 0);
+        PlayerPrefs.SetFloat(weaponName + ".speedX", 0);
+        PlayerPrefs.SetFloat(weaponName + ".speedY", 0);
+    }
+
     public override void SaveDataToPlayerPrefs()
     {
         string weaponName = this.GetNameOfWeapon();
@@ -126,7 +147,10 @@ public class Arrow : Weapon
 
         base.Start();
 
-        this.arrowStatus = ArrowState.NOT_USED_YET;
+        if (!this.partiallyInitialized)
+        {
+            this.arrowStatus = ArrowState.NOT_USED_YET;
+        }
 
         this.hittingCollider = GetComponent<CapsuleCollider2D>();
 
@@ -197,7 +221,6 @@ public class Arrow : Weapon
         return true;
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
         base.Update();

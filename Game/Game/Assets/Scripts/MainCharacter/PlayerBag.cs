@@ -33,10 +33,23 @@ public class PlayerBag : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            
         }
     }
 
+    public void SetDefaultValuesToPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("PlayerBag.numberOfCanvasUIWeaponBoxes", 3);
+        PlayerPrefs.SetInt("PlayerBag.currentWeaponIndex", -1);
+        PlayerPrefs.SetInt("PlayerBag.chestKeyCount", 0);
+        PlayerPrefs.SetInt("PlayerBag.gateKeyCount", 0);
+        PlayerPrefs.SetString("PlayerBag.totalWeight", "0");
+
+        if (this.weapons != null)
+        {
+            foreach (Weapon weapon in this.weapons)
+                weapon.SetDefaultValuesToPlayerPrefs();
+        }
+    }
     public void SaveDataToPlayerPrefs()
     {
         PlayerPrefs.SetInt("PlayerBag.numberOfCanvasUIWeaponBoxes", this.numberOfCanvasUIWeaponBoxes);
@@ -45,11 +58,17 @@ public class PlayerBag : MonoBehaviour
         PlayerPrefs.SetInt("PlayerBag.gateKeyCount", this.gateKeyCount);
         PlayerPrefs.SetString("PlayerBag.totalWeight", this.totalWeight.ToString());
 
-        foreach (Weapon weapon in this.weapons)
-            weapon.SaveDataToPlayerPrefs();
+        if (this.weapons != null)
+        {
+            foreach (Weapon weapon in this.weapons)
+                weapon.SaveDataToPlayerPrefs();
+        }
+
     }
     public void LoadDataFromPlayerPrefs()
     {
+        //Debug.Log("LOAD IS CALLED");
+
         if (PlayerPrefs.HasKey("PlayerBag.numberOfCanvasUIWeaponBoxes"))
             this.numberOfCanvasUIWeaponBoxes = PlayerPrefs.GetInt("PlayerBag.numberOfCanvasUIWeaponBoxes");
         
@@ -89,6 +108,20 @@ public class PlayerBag : MonoBehaviour
     void Start()
     {
 
+        if (this.weapons == null)
+        {
+            this.weapons = new List<Weapon>();
+
+            foreach (Transform child in this.transform)
+            {
+                Weapon weapon = child.GetComponent<Weapon>();
+                if (weapon != null && weapon is Weapon)
+                {
+                    this.weapons.Add(weapon);
+                }
+            }
+        }
+
         if (!this.partiallyInitialized)
         {
             this.gateKeyCount = 0;
@@ -98,22 +131,6 @@ public class PlayerBag : MonoBehaviour
             this.totalWeight = 0;
 
             this.currentWeaponIndex = -1;
-
-            if (this.weapons != null)
-            {
-                this.weapons = new List<Weapon>();
-
-                foreach (Transform child in this.transform)
-                {
-                    Weapon weapon = child.GetComponent<Weapon>();
-                    if (weapon != null && weapon is Weapon)
-                    {
-                        this.weapons.Add(weapon);
-                    }
-                }
-            }
-
-            
         }
 
         this.canvasUIWeaponBoxes = new List<GameObject>();
@@ -178,18 +195,23 @@ public class PlayerBag : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log("HERE AT LINE 198: " + (this.weapons == null));
         this.UpdateCanvasElements();
+        //Debug.Log("HERE AT LINE 16702024: " + (this.weapons.Count) + " " + this.numberOfCanvasUIWeaponBoxes);
     }
 
     private int CountAvailableWeapons()
     {
         int count = 0;
 
-        foreach (Weapon weapon in this.weapons)
+        if (this.weapons != null)
         {
+            foreach (Weapon weapon in this.weapons)
+            {
 
-            if (weapon.GetNumber() > 0)
-                ++count;
+                if (weapon.GetNumber() > 0)
+                    ++count;
+            }
         }
 
         return count;
@@ -238,7 +260,7 @@ public class PlayerBag : MonoBehaviour
 
         int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
 
-        //Debug.Log("HERE AT LINE 218 " + weaponCount + " " + position);
+        //Debug.Log("HERE AT LINE 261 " + position + " " + weaponCount);
 
         for (int i = 0; i < this.numberOfCanvasUIWeaponBoxes; ++i)
         {
@@ -255,7 +277,7 @@ public class PlayerBag : MonoBehaviour
                 else
                     box.SetTheBoxUnchosen();
 
-                if (weaponCount <= 0)
+                if (weaponCount <= 0 || this.weapons == null)
                 {
                     box.TurnIntoEmptyBox();
                 }
@@ -312,7 +334,7 @@ public class PlayerBag : MonoBehaviour
     public bool ChangeWeaponCount(string weaponName, int number)
     {
 
-        if (number == 0)
+        if (number == 0 || this.weapons == null)
             return false;
 
         if (weaponName == Arrow.GetWeaponName())

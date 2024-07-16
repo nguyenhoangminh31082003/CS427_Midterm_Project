@@ -15,6 +15,21 @@ public class Bow : Weapon
     private string arrowIndex;
     private bool attacking;
 
+    public override void SetDefaultValuesToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", 0);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", "0");
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", false.ToString());
+
+        PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK", 200);
+        PlayerPrefs.SetInt(weaponName + ".unusedArrowCount", 0);
+        PlayerPrefs.SetFloat(weaponName + ".mostRecentFinishingAttackTime", 0);
+        PlayerPrefs.SetString(weaponName + ".arrowIndex", "0");
+        PlayerPrefs.SetString(weaponName + ".attacking", false.ToString());
+    }
+
     public override void SaveDataToPlayerPrefs()
     {
         string weaponName = this.GetNameOfWeapon();

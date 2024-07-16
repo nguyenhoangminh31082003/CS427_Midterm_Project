@@ -35,6 +35,23 @@ public class MainCharacter : MonoBehaviour
     private bool invincible;
 
     private bool partialInitialized = false;
+
+    public void SetDefaultValuesToPlayerPrefs()
+    {
+        PlayerPrefs.SetString("invincible", false.ToString());
+        PlayerPrefs.SetFloat("lastDamageTime", 0);
+        PlayerPrefs.SetString("weight", "0");
+        PlayerPrefs.SetString("coinCount", "0");
+        PlayerPrefs.SetString("speedX", "0");
+        PlayerPrefs.SetString("speedY", "0");
+        PlayerPrefs.SetInt("liveCount", 5);
+
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
+
+        this.bag.SetDefaultValuesToPlayerPrefs();
+    }
+
     public void SaveDataToPlayerPrefs()
     {
         PlayerPrefs.SetString("invincible", this.invincible.ToString());
@@ -45,8 +62,10 @@ public class MainCharacter : MonoBehaviour
         PlayerPrefs.SetString("speedY", this.speedY.ToString());
         PlayerPrefs.SetInt("liveCount", this.liveCount);
 
-        if (this.bag != null)
-            this.bag.SaveDataToPlayerPrefs();
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
+
+        this.bag.SaveDataToPlayerPrefs();
     }
     
     private void LoadDataFromPlayerPrefs()
