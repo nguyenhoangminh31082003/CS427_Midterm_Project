@@ -63,11 +63,12 @@ public class PlayerBag : MonoBehaviour
             foreach (Weapon weapon in this.weapons)
                 weapon.SaveDataToPlayerPrefs();
         }
-
     }
     public void LoadDataFromPlayerPrefs()
     {
-        //Debug.Log("LOAD IS CALLED");
+
+        if (this.currentWeaponIndex >= 0)
+            this.weapons[this.currentWeaponIndex].StopUsing();
 
         if (PlayerPrefs.HasKey("PlayerBag.numberOfCanvasUIWeaponBoxes"))
             this.numberOfCanvasUIWeaponBoxes = PlayerPrefs.GetInt("PlayerBag.numberOfCanvasUIWeaponBoxes");
@@ -100,6 +101,9 @@ public class PlayerBag : MonoBehaviour
 
         foreach (Weapon weapon in this.weapons)
             weapon.LoadDataFromPlayerPrefs();
+
+        if (this.currentWeaponIndex >= 0)
+            this.weapons[this.currentWeaponIndex].StartUsing();
 
         this.partiallyInitialized = true;
 
@@ -195,9 +199,7 @@ public class PlayerBag : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("HERE AT LINE 198: " + (this.weapons == null));
         this.UpdateCanvasElements();
-        //Debug.Log("HERE AT LINE 16702024: " + (this.weapons.Count) + " " + this.numberOfCanvasUIWeaponBoxes);
     }
 
     private int CountAvailableWeapons()
@@ -259,8 +261,6 @@ public class PlayerBag : MonoBehaviour
         }
 
         int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
-
-        //Debug.Log("HERE AT LINE 261 " + position + " " + weaponCount);
 
         for (int i = 0; i < this.numberOfCanvasUIWeaponBoxes; ++i)
         {

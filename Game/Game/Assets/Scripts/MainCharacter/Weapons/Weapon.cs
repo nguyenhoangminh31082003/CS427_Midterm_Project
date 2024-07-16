@@ -118,8 +118,6 @@ public class Weapon : MonoBehaviour
             this.spriteRenderer.enabled = this.currentlyUsed;
         }  
     }
-
-    // Update is called once per frame
     protected virtual void Update()
     {
         UpdateSpriteRenderer();
