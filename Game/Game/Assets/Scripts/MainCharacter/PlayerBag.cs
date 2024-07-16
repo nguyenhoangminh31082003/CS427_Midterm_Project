@@ -67,6 +67,23 @@ public class PlayerBag : MonoBehaviour
     public void LoadDataFromPlayerPrefs()
     {
 
+        if (this.weapons == null)
+        {
+            this.weapons = new List<Weapon>();
+
+            foreach (Transform child in this.transform)
+            {
+                Weapon weapon = child.GetComponent<Weapon>();
+                if (weapon != null && weapon is Weapon)
+                {
+                    this.weapons.Add(weapon);
+                }
+            }
+        }
+
+        foreach (Weapon weapon in this.weapons)
+            weapon.LoadDataFromPlayerPrefs();
+
         if (this.currentWeaponIndex >= 0)
             this.weapons[this.currentWeaponIndex].StopUsing();
 
@@ -84,23 +101,6 @@ public class PlayerBag : MonoBehaviour
         
         if (PlayerPrefs.HasKey("PlayerBag.totalWeight"))
             this.totalWeight = double.Parse(PlayerPrefs.GetString("PlayerBag.totalWeight"));
-
-        if (this.weapons == null)
-        {
-            this.weapons = new List<Weapon>();
-
-            foreach (Transform child in this.transform)
-            {
-                Weapon weapon = child.GetComponent<Weapon>();
-                if (weapon != null && weapon is Weapon)
-                {
-                    this.weapons.Add(weapon);
-                }
-            }
-        }
-
-        foreach (Weapon weapon in this.weapons)
-            weapon.LoadDataFromPlayerPrefs();
 
         if (this.currentWeaponIndex >= 0)
             this.weapons[this.currentWeaponIndex].StartUsing();
