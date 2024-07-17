@@ -13,52 +13,125 @@ public class MainCharacter : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinCountText;
     [SerializeField] private GameObject playerBag;
 
-    private DialogueManager dialogueManager;
+    [SerializeField] private int liveCount;
+
     public const double NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD = 4000;
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
     public const int MAXIMUM_LIVE_COUNT = 5;
-    private GameManager gameManager;
     public const double DEFAULT_SPEED = 4;
 
+    private DialogueManager dialogueManager;
+    private GameManager gameManager;
     private Knockback knockback;
+
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidBody2D;
     private double speedX, speedY;
     private long coinCount;
-    [SerializeField] private int liveCount;
     private PlayerBag bag;
     private double weight;
 
-    private bool invincible;
     private float lastDamageTime;
+    private bool invincible;
 
+    private bool partialInitialized = false;
+
+    public void SetDefaultValuesToPlayerPrefs()
+    {
+        PlayerPrefs.SetString("invincible", false.ToString());
+        PlayerPrefs.SetFloat("lastDamageTime", 0);
+        PlayerPrefs.SetString("weight", "0");
+        PlayerPrefs.SetString("coinCount", "0");
+        PlayerPrefs.SetString("speedX", "0");
+        PlayerPrefs.SetString("speedY", "0");
+        PlayerPrefs.SetInt("liveCount", 5);
+
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
+
+        this.bag.SetDefaultValuesToPlayerPrefs();
+    }
+
+    public void SaveDataToPlayerPrefs()
+    {
+        PlayerPrefs.SetString("invincible", this.invincible.ToString());
+        PlayerPrefs.SetFloat("lastDamageTime", this.lastDamageTime);
+        PlayerPrefs.SetString("weight", this.weight.ToString());
+        PlayerPrefs.SetString("coinCount", this.coinCount.ToString());
+        PlayerPrefs.SetString("speedX", this.speedX.ToString());
+        PlayerPrefs.SetString("speedY", this.speedY.ToString());
+        PlayerPrefs.SetInt("liveCount", this.liveCount);
+
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
+
+        this.bag.SaveDataToPlayerPrefs();
+    }
+    
+    public void LoadDataFromPlayerPrefs()
+    {
+        Debug.Log("HELLO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+        if (PlayerPrefs.HasKey("invincible"))
+            this.invincible = bool.Parse(PlayerPrefs.GetString("invincible"));
+        if (PlayerPrefs.HasKey("lastDamageTime"))
+            this.lastDamageTime = PlayerPrefs.GetFloat("lastDamageTime");
+        if (PlayerPrefs.HasKey("weight"))
+            this.weight = double.Parse(PlayerPrefs.GetString("weight"));
+        if (PlayerPrefs.HasKey("coinCount"))
+            this.coinCount = long.Parse(PlayerPrefs.GetString("coinCount"));
+        if (PlayerPrefs.HasKey("speedX"))
+            this.speedX = double.Parse(PlayerPrefs.GetString("speedX"));
+        if (PlayerPrefs.HasKey("speedY"))
+            this.speedY = double.Parse(PlayerPrefs.GetString("speedY"));
+        if (PlayerPrefs.HasKey("liveCount"))
+            this.liveCount = PlayerPrefs.GetInt("liveCount");
+
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
+
+        this.bag.LoadDataFromPlayerPrefs();
+
+        this.partialInitialized = true;
+    }
+
+        
     private void Awake()
     {
         if (Instance == null)
-            Instance = this;   
-        else 
-            GameObject.Destroy(Instance);
-
-        DontDestroyOnLoad(this);
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void Start()
     {
+        //this.LoadDataFromPlayerPrefs();
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
         this.rigidBody2D = this.GetComponent<Rigidbody2D>();
-        this.bag = this.playerBag.GetComponent<PlayerBag>();
-        this.knockback = this.GetComponent<Knockback>();
-        this.speedX = 0;
-        this.speedY = 0;
-        this.weight = 1;
-        this.liveCount = 5;
-        this.coinCount = 0;
 
-        this.invincible = false;
-        this.lastDamageTime = 0;
+        if (this.bag == null)
+            this.bag = this.playerBag.GetComponent<PlayerBag>();
+        this.knockback = this.GetComponent<Knockback>();
+        
+        if (!this.partialInitialized)
+        {
+            this.liveCount = 5;
+            this.coinCount = 0;
+            this.speedX = 0;
+            this.speedY = 0;
+            this.weight = 1;
+
+            this.invincible = false;
+            this.lastDamageTime = 0;
+        }
 
         this.gameManager = GameManager.Instance;
-        this.dialogueManager  = DialogueManager.Instance;
+        this.dialogueManager = DialogueManager.Instance;
     }
 
     public void GetKnockBack(Transform source)
@@ -76,12 +149,6 @@ public class MainCharacter : MonoBehaviour
         this.coinCount = newCoinCount;
         return true;
     }
-    /*
-    public void ModifySpeed(double speedX, double speedY) {
-        this.speedX = speedX;
-        this.speedY = speedY;
-    }
-    */
     
     public long GetCoinCount() {
         return this.coinCount;
@@ -116,6 +183,7 @@ public class MainCharacter : MonoBehaviour
             --this.liveCount;
             this.invincible = true;
             this.lastDamageTime = Time.time;
+            AudioManager.Instance.PlaySFX("player_hurt");
             return true;
         }
         return false;
@@ -160,10 +228,15 @@ public class MainCharacter : MonoBehaviour
         this.speedY *= percentage;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (dialogueManager.isDialogueActive) { return; }
+        if (dialogueManager != null)
+        {
+            if (dialogueManager.isDialogueActive) 
+            { 
+                return; 
+            }
+        }
         this.UpdateCurrentlyUsedWeapon();
         this.UpdateVelocity();
         this.UpdateInvincibilityStatus();
@@ -222,8 +295,10 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateCanvasElement()
     {
-        this.liveCountText.text = this.liveCount.ToString();
-        this.coinCountText.text = this.coinCount.ToString();
+        if (this.liveCountText != null)
+            this.liveCountText.text = this.liveCount.ToString();
+        if (this.coinCountText != null)
+            this.coinCountText.text = this.coinCount.ToString();
     }
 
     private void UpdateInvincibilityStatus()
@@ -253,8 +328,21 @@ public class MainCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (knockback.gettingKnockedBack) { return; }
+        if (dialogueManager != null)
+        {
+            if (dialogueManager.isDialogueActive)
+            {
+                this.rigidBody2D.velocity = new Vector2(0, 0);
+                return;
+            }
+        }
+
+        if (knockback.gettingKnockedBack) { 
+            return; 
+        }
+        
         this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
+        
         if (IsDead())
         {
             Destroy(gameObject);
@@ -305,10 +393,6 @@ public class MainCharacter : MonoBehaviour
     {
         if (number <= 0)
             return false;
-
-        //Debug.Log("PINEAPPLE PIZZA IS EXTREMELY GOOD!!!");
-        //Debug.Log(weaponName + " " + number);
-
         return this.bag.ChangeWeaponCount(weaponName, number);
     }
 

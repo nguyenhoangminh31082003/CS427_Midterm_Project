@@ -12,11 +12,11 @@ public class PlayerBag : MonoBehaviour
     [SerializeField] private TextMeshProUGUI silverKeyCountText;
     [SerializeField] private TextMeshProUGUI goldenKeyCountText;
 
-    [SerializeField] private GameObject sampleBox;
     [SerializeField] private GameObject canvasUIWeaponsContainer;
     [SerializeField] private int numberOfCanvasUIWeaponBoxes;
+    [SerializeField] private GameObject sampleBox;
 
-    [SerializeField] private int currentWeaponIndex;
+    [SerializeField] private int currentWeaponIndex = -1;
     [SerializeField] private int chestKeyCount;
     [SerializeField] private int gateKeyCount;
 
@@ -24,26 +24,117 @@ public class PlayerBag : MonoBehaviour
     private List<Weapon> weapons;
     private double totalWeight;
 
-    // Start is called before the first frame update
+    private static PlayerBag Instance;
+
+    private bool partiallyInitialized = false;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
+    public void SetDefaultValuesToPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("PlayerBag.numberOfCanvasUIWeaponBoxes", 3);
+        PlayerPrefs.SetInt("PlayerBag.currentWeaponIndex", -1);
+        PlayerPrefs.SetInt("PlayerBag.chestKeyCount", 0);
+        PlayerPrefs.SetInt("PlayerBag.gateKeyCount", 0);
+        PlayerPrefs.SetString("PlayerBag.totalWeight", "0");
+
+        if (this.weapons != null)
+        {
+            foreach (Weapon weapon in this.weapons)
+                weapon.SetDefaultValuesToPlayerPrefs();
+        }
+    }
+    public void SaveDataToPlayerPrefs()
+    {
+        PlayerPrefs.SetInt("PlayerBag.numberOfCanvasUIWeaponBoxes", this.numberOfCanvasUIWeaponBoxes);
+        PlayerPrefs.SetInt("PlayerBag.currentWeaponIndex", this.currentWeaponIndex);
+        PlayerPrefs.SetInt("PlayerBag.chestKeyCount", this.chestKeyCount);
+        PlayerPrefs.SetInt("PlayerBag.gateKeyCount", this.gateKeyCount);
+        PlayerPrefs.SetString("PlayerBag.totalWeight", this.totalWeight.ToString());
+
+        if (this.weapons != null)
+        {
+            foreach (Weapon weapon in this.weapons)
+                weapon.SaveDataToPlayerPrefs();
+        }
+    }
+    public void LoadDataFromPlayerPrefs()
+    {
+
+        if (this.weapons == null)
+        {
+            this.weapons = new List<Weapon>();
+
+            foreach (Transform child in this.transform)
+            {
+                Weapon weapon = child.GetComponent<Weapon>();
+                if (weapon != null && weapon is Weapon)
+                {
+                    this.weapons.Add(weapon);
+                }
+            }
+        }
+
+        foreach (Weapon weapon in this.weapons)
+            weapon.LoadDataFromPlayerPrefs();
+
+        if (this.currentWeaponIndex >= 0)
+            this.weapons[this.currentWeaponIndex].StopUsing();
+
+        if (PlayerPrefs.HasKey("PlayerBag.numberOfCanvasUIWeaponBoxes"))
+            this.numberOfCanvasUIWeaponBoxes = PlayerPrefs.GetInt("PlayerBag.numberOfCanvasUIWeaponBoxes");
+        
+        if (PlayerPrefs.HasKey("PlayerBag.currentWeaponIndex"))
+            this.currentWeaponIndex = PlayerPrefs.GetInt("PlayerBag.currentWeaponIndex");
+        
+        if (PlayerPrefs.HasKey("PlayerBag.chestKeyCount"))
+            this.chestKeyCount = PlayerPrefs.GetInt("PlayerBag.chestKeyCount");
+        
+        if (PlayerPrefs.HasKey("PlayerBag.gateKeyCount"))
+            this.gateKeyCount = PlayerPrefs.GetInt("PlayerBag.gateKeyCount");
+        
+        if (PlayerPrefs.HasKey("PlayerBag.totalWeight"))
+            this.totalWeight = double.Parse(PlayerPrefs.GetString("PlayerBag.totalWeight"));
+
+        if (this.currentWeaponIndex >= 0)
+            this.weapons[this.currentWeaponIndex].StartUsing();
+
+        this.partiallyInitialized = true;
+
+    }
+
     void Start()
     {
-        this.gateKeyCount = 0;
 
-        this.chestKeyCount = 0;
-
-        this.totalWeight = 0;
-
-        this.weapons = new List<Weapon>();
-
-        this.currentWeaponIndex = -1;
-
-        foreach (Transform child in this.transform)
+        if (this.weapons == null)
         {
-            Weapon weapon = child.GetComponent<Weapon>();
-            if (weapon != null && weapon is Weapon)
+            this.weapons = new List<Weapon>();
+
+            foreach (Transform child in this.transform)
             {
-                this.weapons.Add(weapon);
+                Weapon weapon = child.GetComponent<Weapon>();
+                if (weapon != null && weapon is Weapon)
+                {
+                    this.weapons.Add(weapon);
+                }
             }
+        }
+
+        if (!this.partiallyInitialized)
+        {
+            this.gateKeyCount = 0;
+
+            this.chestKeyCount = 0;
+
+            this.totalWeight = 0;
+
+            this.currentWeaponIndex = -1;
         }
 
         this.canvasUIWeaponBoxes = new List<GameObject>();
@@ -65,6 +156,7 @@ public class PlayerBag : MonoBehaviour
 
             this.canvasUIWeaponBoxes.Add(duplicate);
         }
+
     }
 
     public bool ChangeGateKeyCount(int delta)
@@ -105,7 +197,6 @@ public class PlayerBag : MonoBehaviour
         return this.totalWeight;
     }
 
-    // Update is called once per frame
     void Update()
     {
         this.UpdateCanvasElements();
@@ -115,11 +206,14 @@ public class PlayerBag : MonoBehaviour
     {
         int count = 0;
 
-        foreach (Weapon weapon in this.weapons)
+        if (this.weapons != null)
         {
+            foreach (Weapon weapon in this.weapons)
+            {
 
-            if (weapon.GetNumber() > 0)
-                ++count;
+                if (weapon.GetNumber() > 0)
+                    ++count;
+            }
         }
 
         return count;
@@ -127,8 +221,6 @@ public class PlayerBag : MonoBehaviour
 
     private void UpdateCanvasElements()
     {
-        int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
-
         if (KeyManager.Instance != null)
         {
             if (silverKeyCountText != null)
@@ -141,8 +233,41 @@ public class PlayerBag : MonoBehaviour
             }
         }
 
+        if (this.canvasUIWeaponBoxes == null)
+            this.canvasUIWeaponBoxes = new List<GameObject>();
+
+        if (this.canvasUIWeaponBoxes.Count < this.numberOfCanvasUIWeaponBoxes)
+        {
+            if (this.sampleBox != null && this.canvasUIWeaponsContainer != null)
+            {
+                for (int i = this.canvasUIWeaponBoxes.Count; i < numberOfCanvasUIWeaponBoxes; ++i)
+                {
+                    GameObject duplicate = Instantiate(this.sampleBox, this.canvasUIWeaponsContainer.transform);
+
+                    RectTransform rectTransform = duplicate.GetComponent<RectTransform>();
+
+                    if (rectTransform != null)
+                    {
+                        rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, rectTransform.anchoredPosition.y - i * rectTransform.rect.height);
+                    }
+
+                    duplicate.name = "Weapon box container " + i.ToString();
+
+                    duplicate.SetActive(true);
+
+                    this.canvasUIWeaponBoxes.Add(duplicate);
+                }
+            }
+        }
+
+        int position = this.currentWeaponIndex, weaponCount = this.CountAvailableWeapons();
+
         for (int i = 0; i < this.numberOfCanvasUIWeaponBoxes; ++i)
         {
+
+            if (i >= this.canvasUIWeaponBoxes.Count)
+                break;
+
             WeaponBoxCanvasUI box = this.canvasUIWeaponBoxes[i].GetComponent<WeaponBoxCanvasUI>();
 
             if (box != null)
@@ -152,7 +277,7 @@ public class PlayerBag : MonoBehaviour
                 else
                     box.SetTheBoxUnchosen();
 
-                if (weaponCount <= 0)
+                if (weaponCount <= 0 || this.weapons == null)
                 {
                     box.TurnIntoEmptyBox();
                 }
@@ -209,7 +334,7 @@ public class PlayerBag : MonoBehaviour
     public bool ChangeWeaponCount(string weaponName, int number)
     {
 
-        if (number == 0)
+        if (number == 0 || this.weapons == null)
             return false;
 
         if (weaponName == Arrow.GetWeaponName())

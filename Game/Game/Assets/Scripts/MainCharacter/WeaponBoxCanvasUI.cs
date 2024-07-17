@@ -17,8 +17,6 @@ public class WeaponBoxCanvasUI : MonoBehaviour
     private GameObject firstCounterText;
     private GameObject secondCounterText;
 
-
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -39,12 +37,21 @@ public class WeaponBoxCanvasUI : MonoBehaviour
 
     public void TurnIntoEmptyBox()
     {
-        this.boxImage.SetActive(true);
-        this.weaponImage.SetActive(false);
-        this.firstCounterBackground.SetActive(false);
-        this.firstCounterText.SetActive(false);
-        this.secondCounterBackground.SetActive(false);
-        this.secondCounterText.SetActive(false);
+
+        //Debug.Log("Weapon box UI " + (this.boxImage == null));
+
+        if (this.boxImage != null)
+            this.boxImage.SetActive(true);
+        if (this.weaponImage != null)   
+            this.weaponImage.SetActive(false);
+        if (this.firstCounterBackground != null)
+            this.firstCounterBackground.SetActive(false);
+        if (this.firstCounterText != null)
+            this.firstCounterText.SetActive(false);
+        if (this.secondCounterBackground != null)
+            this.secondCounterBackground.SetActive(false);
+        if (this.secondCounterText != null)
+            this.secondCounterText.SetActive(false);
     }
 
     public bool SetTheBoxChosen()
@@ -158,7 +165,7 @@ public class WeaponBoxCanvasUI : MonoBehaviour
         return true;
     }
 
-    public bool hideWeaponImage()
+    public bool HideWeaponImage()
     {
         if (this.weaponImage == null)
             return false;
@@ -166,7 +173,6 @@ public class WeaponBoxCanvasUI : MonoBehaviour
         return true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         

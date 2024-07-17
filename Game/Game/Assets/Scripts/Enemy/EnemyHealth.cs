@@ -24,14 +24,27 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         knockback.GetKnockedBack(damageSource.transform, 15f);
         StartCoroutine(flash.FlashRoutine());
-        CheckDeath();
+        if (CheckDeath()) {
+            AudioManager.Instance.PlaySFX("monster_death");
+        } else {
+            AudioManager.Instance.PlaySFX("monster_damage");
+        }
     }
 
-    public void CheckDeath() {
+    public bool CheckDeath() {
         if (currentHealth <= 0) {
             Instantiate(deathVFX, transform.position, Quaternion.identity);
+            if (GetComponent<PickUpSpawner>()) {
+                GetComponent<PickUpSpawner>().DropItems();
+            }
+            if (GetComponent<MusicChanger>())
+            {
+                GetComponent<MusicChanger>().ChangeMusic();
+            }
             Destroy(gameObject);
+            return true;
         }
+        return false;
     }
 
     

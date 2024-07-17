@@ -15,12 +15,46 @@ public class Weapon : MonoBehaviour
 
     protected SpriteRenderer spriteRenderer;
 
-    // Start is called before the first frame update
+    protected bool partiallyInitialized = false;
+
+    public virtual void SetDefaultValuesToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", 0);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", "0");
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", false.ToString());
+    }
+
+    public virtual void SaveDataToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", this.number);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", this.weightPerUnit.ToString());
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", this.currentlyUsed.ToString());
+    }
+
+    public virtual void LoadDataFromPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        this.number = PlayerPrefs.GetInt(weaponName + ".number");
+        this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
+        this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
+
+        this.partiallyInitialized = true;
+    }
+
     protected virtual void Start()
     {
-        this.number = 0;
 
-        this.currentlyUsed = false;
+        if (!this.partiallyInitialized)
+        {
+            this.number = 0;
+
+            this.currentlyUsed = false;
+        }
 
         this.gameObject.SetActive(this.currentlyUsed);
     
@@ -84,8 +118,6 @@ public class Weapon : MonoBehaviour
             this.spriteRenderer.enabled = this.currentlyUsed;
         }  
     }
-
-    // Update is called once per frame
     protected virtual void Update()
     {
         UpdateSpriteRenderer();

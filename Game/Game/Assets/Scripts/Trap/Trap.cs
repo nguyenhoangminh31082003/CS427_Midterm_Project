@@ -59,12 +59,16 @@ public abstract class Trap : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        isIn = true;
+        if (other.CompareTag("Player")) {
+            isIn = true;
+        }   
     }
 
     void OnTriggerExit2D(Collider2D other)
-    {       
-        isIn = false;
+    {
+        if (other.CompareTag("Player")) {
+            isIn = false;
+        }
     }
     private void ChangeAnimationState(string newState)
     {

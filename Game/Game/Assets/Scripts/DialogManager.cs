@@ -30,6 +30,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        AudioManager.Instance.PlaySFX("text_sfx");
         canvas.enabled = true;
         isDialogueActive = true;
         lines.Clear();
@@ -47,6 +48,12 @@ public class DialogueManager : MonoBehaviour
         if (lines.Count == 0)
         {
             EndDialogue();
+            // if (AudioManager.Instance.currentTrack.Length != 0)
+            // {
+            //     AudioManager.Instance.currentTrack = "";
+            //     AudioManager.Instance.musicSource.Stop();
+            // }
+            AudioManager.Instance.PlayMusic(null);
             return;
         }
 
@@ -59,6 +66,8 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
 
         StartCoroutine(TypeSentence(currentLine));
+
+        AudioManager.Instance.PlaySFX("text_sfx");
     }
 
     IEnumerator TypeSentence(DialogueLine dialogueLine)
@@ -81,6 +90,10 @@ public class DialogueManager : MonoBehaviour
 
     public void Update()
     {
+        if (isDialogueActive && index == currentLine.line.Length)
+        {
+            AudioManager.Instance.sfxSource.Stop();
+        }
         if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
         {
             if (index < currentLine.line.Length)

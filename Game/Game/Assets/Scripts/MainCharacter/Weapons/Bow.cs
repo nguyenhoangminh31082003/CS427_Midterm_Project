@@ -10,23 +10,86 @@ public class Bow : Weapon
     [SerializeField] protected int unusedArrowCount;
     [SerializeField] protected Arrow sampleArrow;
 
-    private bool attacking;
-    private GameObject currentlyHeldArrow;
     private float mostRecentFinishingAttackTime;
+    private GameObject currentlyHeldArrow;
     private string arrowIndex;
+    private bool attacking;
 
-    // Start is called before the first frame update
+    public override void SetDefaultValuesToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", 0);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", "0");
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", false.ToString());
+
+        PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK", 200);
+        PlayerPrefs.SetInt(weaponName + ".unusedArrowCount", 0);
+        PlayerPrefs.SetFloat(weaponName + ".mostRecentFinishingAttackTime", 0);
+        PlayerPrefs.SetString(weaponName + ".arrowIndex", "0");
+        PlayerPrefs.SetString(weaponName + ".attacking", false.ToString());
+    }
+
+    public override void SaveDataToPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        PlayerPrefs.SetInt(weaponName + ".number", this.number);
+        PlayerPrefs.SetString(weaponName + ".weightPerUnit", this.weightPerUnit.ToString());
+        PlayerPrefs.SetString(weaponName + ".currentlyUsed", this.currentlyUsed.ToString());
+
+        PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK", this.NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK);
+        PlayerPrefs.SetInt(weaponName + ".unusedArrowCount", this.unusedArrowCount);
+        PlayerPrefs.SetFloat(weaponName + ".mostRecentFinishingAttackTime", this.mostRecentFinishingAttackTime);
+        PlayerPrefs.SetString(weaponName + ".arrowIndex", this.arrowIndex);
+        PlayerPrefs.SetString(weaponName + ".attacking", this.attacking.ToString());
+    }
+
+    public override void LoadDataFromPlayerPrefs()
+    {
+        string weaponName = this.GetNameOfWeapon();
+
+        if (PlayerPrefs.HasKey(weaponName + ".number"))
+           this.number = PlayerPrefs.GetInt(weaponName + ".number");
+    
+        if (PlayerPrefs.HasKey(weaponName + ".weightPerUnit"))
+            this.weightPerUnit = double.Parse(PlayerPrefs.GetString(weaponName + ".weightPerUnit"));
+        
+        if (PlayerPrefs.HasKey(weaponName + ".currentlyUsed"))
+            this.currentlyUsed = bool.Parse(PlayerPrefs.GetString(weaponName + ".currentlyUsed"));
+
+        if (PlayerPrefs.HasKey(weaponName + ".NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK"))
+            this.NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK = PlayerPrefs.GetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".unusedArrowCount"))
+            this.unusedArrowCount = PlayerPrefs.GetInt(weaponName + ".unusedArrowCount");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".mostRecentFinishingAttackTime"))
+            this.mostRecentFinishingAttackTime = PlayerPrefs.GetFloat(weaponName + ".mostRecentFinishingAttackTime");
+        
+        if (PlayerPrefs.HasKey(weaponName + ".arrowIndex"))
+            this.arrowIndex = PlayerPrefs.GetString(weaponName + ".arrowIndex");
+
+        if (PlayerPrefs.HasKey(weaponName + ".attacking"))
+            this.attacking = bool.Parse(PlayerPrefs.GetString(weaponName + ".attacking"));
+
+        this.partiallyInitialized = true;
+    }
+
     protected override void Start()
     {
         base.Start();
 
         this.spriteRenderer = GetComponent<SpriteRenderer>();
 
-        this.unusedArrowCount = 0;
+        if (!this.partiallyInitialized)
+        {
+            this.unusedArrowCount = 0;
 
-        this.attacking = false;
+            this.attacking = false;
 
-        this.arrowIndex = "0";
+            this.arrowIndex = "0";
+        }
 
         this.currentlyHeldArrow = null;
     }
@@ -51,8 +114,6 @@ public class Bow : Weapon
 
         this.arrowIndex = '1' + new string(digits);
     }
-
-    // Update is called once per frame
     protected override void Update()
     {
         base.Update();
@@ -114,6 +175,7 @@ public class Bow : Weapon
         if (spaceReleased)
         {
             result = result || this.Shot();
+            AudioManager.Instance.PlaySFX("human_atk_arrow");
         }
 
         return result;

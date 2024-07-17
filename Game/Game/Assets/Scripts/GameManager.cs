@@ -3,6 +3,8 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,12 +13,23 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void Start()
     {
-
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            MainCharacter.Instance.LoadDataFromPlayerPrefs();
+            // AudioManager.Instance.LoadDataFromPlayerPrefs();
+            
+        }
     }
 
     private void CollisionLog(string msg)
@@ -52,12 +65,14 @@ public class GameManager : MonoBehaviour
             {
                 if (pickupWeapon.GetPickUpType() == PickUpWeapon.ItemWeaponType.Sword)
                 {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
                     mainCharacter.IncreaseWeaponCount(Sword.GetWeaponName(), 1);
                     
                 }
 
                 if (pickupWeapon.GetPickUpType() == PickUpWeapon.ItemWeaponType.Bow)
                 {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
                     mainCharacter.IncreaseWeaponCount(Bow.GetWeaponName(), 1);
                 }
                 Destroy(attackedObject);
@@ -67,22 +82,27 @@ public class GameManager : MonoBehaviour
             {
                 if (pickup.GetPickUpType() == Pickup.PickUpType.GoldCoin)
                 {
+                    AudioManager.Instance.PlaySFX("coin_pick_up");
                     mainCharacter.ChangeCoinCount(1);
                 }
                 else if (pickup.GetPickUpType() == Pickup.PickUpType.HealthGlobe)
                 {
+                    AudioManager.Instance.PlaySFX("health_pick_up");
                     mainCharacter.IncreaseLiveCount();
                 }
                 else if (pickup.GetPickUpType() == Pickup.PickUpType.SilverKey)
                 {
+                    AudioManager.Instance.PlaySFX("key_pick_up");
                     KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
                 }
                 else if (pickup.GetPickUpType() == Pickup.PickUpType.GoldKey)
                 {
+                    AudioManager.Instance.PlaySFX("key_pick_up");
                     KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
                 }
                 else if (pickup.GetPickUpType() == Pickup.PickUpType.Arrow)
                 {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
                     mainCharacter.IncreaseWeaponCount(Arrow.GetWeaponName(), 1);
                 }
             }
@@ -136,20 +156,6 @@ public class GameManager : MonoBehaviour
             GameObject attackedObject = RetrieveObject(attackedObjectName);
             
             MainCharacter mainCharacter = collidedObject.GetComponent<MainCharacter>();
-
-            if (attackedObjectName.Contains("Skull"))
-            {
-                ChaseMovement chaseMovement = attackedObject.GetComponent<ChaseMovement>();
-                double countDown = MainCharacter.NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD;
-                chaseMovement.StopMoving();
-                while (countDown > 0)
-                {
-                    //Debug.Log(countDown);
-                    countDown -= Time.deltaTime;
-                    
-                }
-                //chaseMovement.Roaming();
-            }
 
             if (!mainCharacter.IsInvincible())
             {
