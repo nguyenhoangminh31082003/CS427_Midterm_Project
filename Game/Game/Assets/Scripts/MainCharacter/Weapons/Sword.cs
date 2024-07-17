@@ -23,7 +23,7 @@ public class Sword : Weapon
         PlayerPrefs.SetString(weaponName + ".currentlyUsed", false.ToString());
 
         PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION", 200);
-        PlayerPrefs.SetString(weaponName + ".damageCausedPerHit", "1");
+        PlayerPrefs.SetString(weaponName + ".damageCausedPerHit", "3");
         PlayerPrefs.SetString(weaponName + ".attacking", false.ToString());
         PlayerPrefs.SetFloat(weaponName + ".attackStartTime", 0);
     }

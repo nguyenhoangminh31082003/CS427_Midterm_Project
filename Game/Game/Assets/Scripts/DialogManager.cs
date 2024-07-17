@@ -48,12 +48,12 @@ public class DialogueManager : MonoBehaviour
         if (lines.Count == 0)
         {
             EndDialogue();
-            // if (AudioManager.Instance.currentTrack.Length != 0)
-            // {
-            //     AudioManager.Instance.currentTrack = "";
-            //     AudioManager.Instance.musicSource.Stop();
-            // }
-            AudioManager.Instance.PlayMusic(null);
+            if (AudioManager.Instance.currentTrack.Length != 0)
+            {
+                AudioManager.Instance.currentTrack = "";
+                AudioManager.Instance.musicSource.Stop();
+            }
+            //AudioManager.Instance.PlayMusic(null);
             return;
         }
 
@@ -106,6 +106,11 @@ public class DialogueManager : MonoBehaviour
             {
                 DisplayNextDialogueLine();
             }
+        }
+        if (isDialogueActive && Input.GetKeyDown(KeyCode.Escape))
+        {
+            lines.Clear();
+            DisplayNextDialogueLine();
         }
     }
 }

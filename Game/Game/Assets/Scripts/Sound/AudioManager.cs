@@ -63,20 +63,20 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // public void Update()
-    // {
-    //     if (!musicSource.isPlaying)
-    //     {
-    //         if (currentTrack.Length == 0)
-    //         {
-    //             PlayMusic(musicName);
-    //         }
-    //         else
-    //         {
-    //             PlayMusic(currentTrack);
-    //         }
-    //     }
-    // }
+    public void Update()
+    {
+        if (!musicSource.isPlaying)
+        {
+            if (currentTrack.Length == 0)
+            {
+                PlayMusic(musicName);
+            }
+            else
+            {
+                PlayMusic(currentTrack);
+            }
+        }
+    }
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;
