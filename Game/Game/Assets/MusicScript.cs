@@ -16,14 +16,13 @@ public class MusicScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        GetComponentInChildren<Slider>().interactable = !GetComponentInChildren<Toggle>().isOn;
-    }
+    void Update() { }
 
     void MuteMusic(bool isMuted)
     {
         AudioListener.volume = isMuted ? 0 : 0.5f;
+        GetComponentInChildren<Slider>().interactable = !isMuted;
+        GetComponentInChildren<Slider>().value = isMuted ? 0 : 0.5f;
     }
 
     public void SetVolume(float volume)
