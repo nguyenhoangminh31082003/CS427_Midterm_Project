@@ -10,7 +10,7 @@ public class StoryItem : Interactable
     {
         if (backgroundTrack.Length > 0)
         {
-            AudioManager.Instance.currentTrack = backgroundTrack;
+            // AudioManager.Instance.currentTrack = backgroundTrack;
             AudioManager.Instance.PlayMusic(backgroundTrack);
         }
         dialogueManager.StartDialogue(dialogue);

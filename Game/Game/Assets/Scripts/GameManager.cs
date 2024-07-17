@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
             MainCharacter.Instance.LoadDataFromPlayerPrefs();
+            // AudioManager.Instance.LoadDataFromPlayerPrefs();
+            
         }
     }
 
