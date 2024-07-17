@@ -292,4 +292,13 @@ public class Arrow : Weapon
     {
         return "Arrow";
     }
+
+    //private void OnCollisionEnter2D(Collision2D other)
+    //{
+
+    //    if (other.gameObject.CompareTag("Wall"))
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 }
