@@ -94,16 +94,13 @@ public class Sword : Weapon
 
     public override bool Attack()
     {
-        //Debug.Log("PINEAPPLE PIZZA!!! " + this.attacking);
-
         if (this.attacking || !this.currentlyUsed)
             return false;
 
         float currentTime = Time.time,
               amountPassed = (currentTime - this.attackStartTime) * 1000;
 
-        //Debug.Log(this.attackStartTime + " " + currentTime + " " + amountPassed + " " + NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION * 2);
-
+        
         if (amountPassed < NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION * 2)
             return false;
 
