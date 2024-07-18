@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class DestructibleDelay : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public string demonName = "";
     private bool readyToExplode;
-    GameObject crow;
+
+    private GameObject crow;
     void Start()
     {
         readyToExplode = false;
-        crow = GameObject.Find("Crow");
+        crow = GameObject.Find(demonName);
         crow.SetActive(false);
     }
 
@@ -27,6 +28,7 @@ public class DestructibleDelay : MonoBehaviour
             crow.SetActive(true);
             crow.GetComponent<Crow>().Appear();
             gameObject.GetComponent<Destructible>().Destruct();
+            gameObject.GetComponent<MusicChanger>().ChangeMusic();
         }
     }
 }
