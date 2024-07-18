@@ -22,12 +22,12 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
+        LoadDataFromPlayerPrefs();
     }
 
     private void Start()
     {
-        LoadDataFromPlayerPrefs();
+        
         PlayMusic(musicName);
     }
     public void PlayMusic(string name)
@@ -77,14 +77,22 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
-    public void ToggleMusic()
+    public void ToggleMusic(bool isOn)
     {
-        musicSource.mute = !musicSource.mute;
+        if (isOn)
+            musicSource.mute = true;
+        else 
+            musicSource.mute = false;
+        // musicSource.mute = !musicSource.mute;
     }
 
-    public void ToggleSFX()
+    public void ToggleSFX(bool isOn)
     {
-        sfxSource.mute = !sfxSource.mute;
+        if (isOn)
+            sfxSource.mute = true;
+        else 
+            sfxSource.mute = false;
+        // sfxSource.mute = !sfxSource.mute;
     }
 
     public void MusicVolume(float v)
