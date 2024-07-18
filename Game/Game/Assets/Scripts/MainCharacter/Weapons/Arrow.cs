@@ -31,6 +31,11 @@ public class Arrow : Weapon
     private float speedX;
     private float speedY;
 
+    public override double FindTotalWeight()
+    {
+        return base.FindTotalWeight();
+    }
+
     public override void SetDefaultValuesToPlayerPrefs()
     {
         string weaponName = this.GetNameOfWeapon();

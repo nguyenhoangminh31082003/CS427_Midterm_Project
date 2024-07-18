@@ -17,6 +17,10 @@ public class Weapon : MonoBehaviour
 
     protected bool partiallyInitialized = false;
 
+    public virtual double FindTotalWeight()
+    {
+        return this.weightPerUnit * this.number; 
+    }
     public virtual void SetDefaultValuesToPlayerPrefs()
     {
         string weaponName = this.GetNameOfWeapon();

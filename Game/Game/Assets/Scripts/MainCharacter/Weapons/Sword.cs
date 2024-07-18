@@ -169,11 +169,15 @@ public class Sword : Weapon
     {
         return "Sword";
     }
-
     public override void DisplayInCanvas(WeaponBoxCanvasUI box)
     {
         box.SetAndShowFirstCounter(this.number);
         box.HideSecondCounter();
         box.SetAndShowWeaponImage(this.stillSwordSprite);
+    }
+
+    public override double FindTotalWeight()
+    {
+        return base.FindTotalWeight();
     }
 }
