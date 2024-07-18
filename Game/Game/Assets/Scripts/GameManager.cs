@@ -54,8 +54,6 @@ public class GameManager : MonoBehaviour
         //CollisionLog(attackedObjectName);
         //CollisionLog(attackedObjectTag);
 
-        Debug.Log(collidedObjectTag + " " + attackedObjectTag);
-
         if (collidedObjectTag == "Player" && attackedObjectTag == "Item") {
             GameObject collidedObject = RetrieveObject(collidedObjectName);
             GameObject attackedObject = RetrieveObject(attackedObjectName);
