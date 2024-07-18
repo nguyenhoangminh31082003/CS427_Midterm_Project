@@ -12,6 +12,7 @@ public class SinglePlayerButton : MonoBehaviour
     void Start()
     {
         var button = GetComponent<Button>();
+
         button.onClick.AddListener(() => StartCoroutine(LoadLevel()));
     }
 

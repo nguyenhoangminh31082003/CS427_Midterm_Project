@@ -110,6 +110,7 @@ public class DialogueManager : MonoBehaviour
         if (isDialogueActive && Input.GetKeyDown(KeyCode.Escape))
         {
             lines.Clear();
+            AudioManager.Instance.sfxSource.Stop();
             DisplayNextDialogueLine();
         }
     }

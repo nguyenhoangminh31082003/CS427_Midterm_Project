@@ -24,11 +24,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 0)
+        if (SceneManager.GetActiveScene().buildIndex != 1)
         {
             MainCharacter.Instance.LoadDataFromPlayerPrefs();
             // AudioManager.Instance.LoadDataFromPlayerPrefs();
-            
         }
     }
 
