@@ -43,14 +43,18 @@ public class GameManager : MonoBehaviour
 
     //Name is needed to retrieve object from the hierachy 
     //Tag is needed to identify the object
-    public void CollisionHandler(string collidedObjectTag, string collidedObjectName,
-                                 string attackedObjectTag, string attackedObjectName)
+    public void CollisionHandler(string collidedObjectTag, 
+                                 string collidedObjectName,
+                                 string attackedObjectTag, 
+                                 string attackedObjectName)
     {
         //For debug purposes
         //CollisionLog(collidedObjectName);
         //CollisionLog(collidedObjectTag);
         //CollisionLog(attackedObjectName);
         //CollisionLog(attackedObjectTag);
+
+        Debug.Log(collidedObjectTag + " " + attackedObjectTag);
 
         if (collidedObjectTag == "Player" && attackedObjectTag == "Item") {
             GameObject collidedObject = RetrieveObject(collidedObjectName);

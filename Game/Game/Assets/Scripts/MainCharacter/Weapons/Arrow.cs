@@ -292,13 +292,15 @@ public class Arrow : Weapon
     {
         return "Arrow";
     }
+    
+    protected override void OnCollisionEnter2D(Collision2D other)
+    {
+        base.OnCollisionEnter2D(other);
 
-    //private void OnCollisionEnter2D(Collision2D other)
-    //{
-
-    //    if (other.gameObject.CompareTag("Wall"))
-    //    {
-    //        Destroy(this.gameObject);
-    //    }
-    //}
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    
 }
