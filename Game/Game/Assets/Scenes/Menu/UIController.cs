@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class UIController : MonoBehaviour
 {
@@ -50,5 +52,15 @@ public class UIController : MonoBehaviour
         Debug.Log("_sfxSlider.value: "+_sfxSlider.value);
         AudioManager.Instance.SFXVolume(_sfxSlider.value);
         AudioManager.Instance.SaveDataToPlayerPrefs();
+    }
+
+    public void HighResolution() {
+        Debug.Log("Trigger HighResolution");
+        Screen.SetResolution(1920, 1080, true);
+    }
+
+    public void LowResolution() {
+        Debug.Log("Trigger LowResolution");
+        Screen.SetResolution(800, 600, true);
     }
 }
