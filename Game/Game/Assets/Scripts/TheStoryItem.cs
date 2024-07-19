@@ -5,7 +5,7 @@ public class TheStoryItem : TheInteractable
 
     [SerializeField] private Dialogue dialogue;
     public string backgroundTrack = "";
-    protected override void Interact()
+    protected override void Interact(int whichPlayer)
     {
         if (backgroundTrack.Length > 0)
         {

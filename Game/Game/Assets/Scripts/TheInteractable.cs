@@ -50,12 +50,12 @@ public abstract class TheInteractable : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
         {
             Debug.Log("press e");
-            Interact();
+            Interact(1);
         }
     }
 
     // Method called when the player presses "E" within range
-    protected abstract void Interact();
+    protected abstract void Interact(int whichPlayer);
 
     protected virtual void OnPlayerEnterRange()
     {

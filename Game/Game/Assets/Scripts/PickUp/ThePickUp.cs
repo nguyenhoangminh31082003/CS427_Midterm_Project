@@ -23,7 +23,7 @@ public class ThePickup : MonoBehaviour
     private Vector3 moveDir;
     private Rigidbody2D rb;
 
-    private GameManager gameManager;
+    private TheGameManager theGameManager;
 
     private float mass;
 
@@ -32,7 +32,7 @@ public class ThePickup : MonoBehaviour
     }
 
     private void Start() {
-        gameManager = GameManager.Instance;
+        theGameManager = TheGameManager.Instance;
         if (pickUpType == PickUpType.SilverKey || pickUpType == PickUpType.GoldKey) { return; }
         StartCoroutine(AnimCurveSpawnRoutine());
     }
@@ -71,9 +71,10 @@ public class ThePickup : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D other) {
+        
         if (other.transform.tag == "Player")
         {
-            gameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);
+            theGameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);
         }
     }
 
@@ -123,29 +124,4 @@ public class ThePickup : MonoBehaviour
         return mass;
     }
 
-    // private void DetectPickupType()
-    // {
-    //     switch (pickUpType)
-    //     {
-    //         case PickUpType.GoldCoin:
-    //             // do goldcoin stuff
-    //             Debug.Log("GoldCoin");
-    //             break;
-    //         case PickUpType.HealthGlobe:
-    //             Debug.Log("HealthGlobe");
-    //             break;
-    //         case PickUpType.StaminaGlobe:
-    //             // do stamina globe stuff
-    //             Debug.Log("StaminaGlobe");
-    //             break;
-    //         case PickUpType.SilverKey:
-    //             KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
-    //             Debug.Log("SilverKey");
-    //             break;
-    //         case PickUpType.GoldKey:
-    //             Debug.Log("GoldKey");
-    //             KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
-    //             break;
-    //     }
-    // }
 }

@@ -19,10 +19,14 @@ public class ThePickUpWeapon : TheInteractable
         StartCoroutine(AnimCurveSpawnRoutine());
 
     }
-    protected override void Interact()
+    protected override void Interact(int whichPlayer)
     {
         Debug.Log("Picked " + weaponType.ToString());
-        theGameManager.CollisionHandler(MainCharacter.Instance.tag, MainCharacter.Instance.name, "Item", this.transform.name);
+
+        if (whichPlayer == 1)
+            theGameManager.CollisionHandler(TheFirstPlayer.Instance.tag, TheFirstPlayer.Instance.name, "Item", this.transform.name);
+        else if (whichPlayer == 2)
+            theGameManager.CollisionHandler(TheSecondPlayer.Instance.tag, TheSecondPlayer.Instance.name, "Item", this.transform.name);
     }
 
     public ItemWeaponType GetPickUpType()
