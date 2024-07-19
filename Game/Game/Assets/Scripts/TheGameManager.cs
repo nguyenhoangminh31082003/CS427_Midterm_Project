@@ -45,57 +45,115 @@ public class TheGameManager : MonoBehaviour
         GameObject collidedObject = RetrieveObject(collidedObjectName);
         GameObject attackedObject = RetrieveObject(attackedObjectName);
 
-        MainCharacter mainCharacter = collidedObject.GetComponent<MainCharacter>();
-        Pickup pickup = attackedObject.GetComponent<Pickup>();
-        PickUpWeapon pickupWeapon = attackedObject.GetComponent<PickUpWeapon>();
-
-        if (pickupWeapon != null)
+        if (collidedObjectName.ToLower().IndexOf("First", StringComparison.OrdinalIgnoreCase) >= 0)
         {
-            if (pickupWeapon.GetPickUpType() == PickUpWeapon.ItemWeaponType.Sword)
-            {
-                AudioManager.Instance.PlaySFX("item_pick_up");
-                mainCharacter.IncreaseWeaponCount(Sword.GetWeaponName(), 1);
+            TheFirstPlayer player = collidedObject.GetComponent<TheFirstPlayer>();
+            ThePickup pickup = attackedObject.GetComponent<ThePickup>();
+            ThePickUpWeapon pickupWeapon = attackedObject.GetComponent<ThePickUpWeapon>();
 
+            if (pickupWeapon != null)
+            {
+                if (pickupWeapon.GetPickUpType() == ThePickUpWeapon.ItemWeaponType.Sword)
+                {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
+                    player.IncreaseWeaponCount(Sword.GetWeaponName(), 1);
+
+                }
+
+                if (pickupWeapon.GetPickUpType() == ThePickUpWeapon.ItemWeaponType.Bow)
+                {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
+                    player.IncreaseWeaponCount(Bow.GetWeaponName(), 1);
+                }
+                Destroy(attackedObject);
             }
 
-            if (pickupWeapon.GetPickUpType() == PickUpWeapon.ItemWeaponType.Bow)
+            if (pickup != null)
             {
-                AudioManager.Instance.PlaySFX("item_pick_up");
-                mainCharacter.IncreaseWeaponCount(Bow.GetWeaponName(), 1);
+                if (pickup.GetPickUpType() == ThePickup.PickUpType.GoldCoin)
+                {
+                    AudioManager.Instance.PlaySFX("coin_pick_up");
+                    player.ChangeCoinCount(1);
+                }
+                else if (pickup.GetPickUpType() == ThePickup.PickUpType.HealthGlobe)
+                {
+                    AudioManager.Instance.PlaySFX("health_pick_up");
+                    player.IncreaseLiveCount();
+                }
+                else if (pickup.GetPickUpType() == ThePickup.PickUpType.SilverKey)
+                {
+                    AudioManager.Instance.PlaySFX("key_pick_up");
+                    KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+                }
+                else if (pickup.GetPickUpType() == ThePickup.PickUpType.GoldKey)
+                {
+                    AudioManager.Instance.PlaySFX("key_pick_up");
+                    KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
+                }
+                else if (pickup.GetPickUpType() == ThePickup.PickUpType.Arrow)
+                {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
+                    player.IncreaseWeaponCount(Arrow.GetWeaponName(), 1);
+                }
             }
+
             Destroy(attackedObject);
         }
 
-        if (pickup != null)
+        if (collidedObjectName.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
         {
-            if (pickup.GetPickUpType() == Pickup.PickUpType.GoldCoin)
-            {
-                AudioManager.Instance.PlaySFX("coin_pick_up");
-                mainCharacter.ChangeCoinCount(1);
-            }
-            else if (pickup.GetPickUpType() == Pickup.PickUpType.HealthGlobe)
-            {
-                AudioManager.Instance.PlaySFX("health_pick_up");
-                mainCharacter.IncreaseLiveCount();
-            }
-            else if (pickup.GetPickUpType() == Pickup.PickUpType.SilverKey)
-            {
-                AudioManager.Instance.PlaySFX("key_pick_up");
-                KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
-            }
-            else if (pickup.GetPickUpType() == Pickup.PickUpType.GoldKey)
-            {
-                AudioManager.Instance.PlaySFX("key_pick_up");
-                KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
-            }
-            else if (pickup.GetPickUpType() == Pickup.PickUpType.Arrow)
-            {
-                AudioManager.Instance.PlaySFX("item_pick_up");
-                mainCharacter.IncreaseWeaponCount(Arrow.GetWeaponName(), 1);
-            }
-        }
+            TheSecondPlayer player = collidedObject.GetComponent<TheSecondPlayer>();
+            ThePickup pickup = attackedObject.GetComponent<ThePickup>();
+            ThePickUpWeapon pickupWeapon = attackedObject.GetComponent<ThePickUpWeapon>();
 
-        Destroy(attackedObject);
+            if (pickupWeapon != null)
+            {
+                if (pickupWeapon.GetPickUpType() == ThePickUpWeapon.ItemWeaponType.Sword)
+                {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
+                    player.IncreaseWeaponCount(Sword.GetWeaponName(), 1);
+
+                }
+
+                if (pickupWeapon.GetPickUpType() == ThePickUpWeapon.ItemWeaponType.Bow)
+                {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
+                    player.IncreaseWeaponCount(Bow.GetWeaponName(), 1);
+                }
+                Destroy(attackedObject);
+            }
+
+            if (pickup != null)
+            {
+                if (pickup.GetPickUpType() == ThePickup.PickUpType.GoldCoin)
+                {
+                    AudioManager.Instance.PlaySFX("coin_pick_up");
+                    player.ChangeCoinCount(1);
+                }
+                else if (pickup.GetPickUpType() == ThePickup.PickUpType.HealthGlobe)
+                {
+                    AudioManager.Instance.PlaySFX("health_pick_up");
+                    player.IncreaseLiveCount();
+                }
+                else if (pickup.GetPickUpType() == ThePickup.PickUpType.SilverKey)
+                {
+                    AudioManager.Instance.PlaySFX("key_pick_up");
+                    KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+                }
+                else if (pickup.GetPickUpType() == ThePickup.PickUpType.GoldKey)
+                {
+                    AudioManager.Instance.PlaySFX("key_pick_up");
+                    KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
+                }
+                else if (pickup.GetPickUpType() == ThePickup.PickUpType.Arrow)
+                {
+                    AudioManager.Instance.PlaySFX("item_pick_up");
+                    player.IncreaseWeaponCount(Arrow.GetWeaponName(), 1);
+                }
+            }
+
+            Destroy(attackedObject);
+        }
     }
 
     private void CollisionHandlerBetweenPlayerAndTrap(string collidedObjectName, string attackedObjectName)

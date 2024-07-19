@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1619764221167223954}
   - component: {fileID: 1264877480486037246}
   - component: {fileID: 3318494053681779269}
-  - component: {fileID: 466682287970782774}
+  - component: {fileID: 6865089786320631062}
   m_Layer: 0
   m_Name: TheArrow
   m_TagString: Item
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &466682287970782774
+--- !u!114 &6865089786320631062
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,34 +158,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1333638258896147874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b599d00ea7694574f910345c96fc8085, type: 3}
+  m_Script: {fileID: 11500000, guid: ab4e19b2e6d197b4aafdc0926e235b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpType: 5
+  pickUpType: 0
   pickUpDistance: 5
   accelartionRate: 0.6
   moveSpeed: 3
   animCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
