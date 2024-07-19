@@ -8,7 +8,7 @@ public class MusicChanger : MonoBehaviour
 {
     public string newTrack = "";
     // Start is called before the first frame update
-    public void ChangeMusic() { 
+    public void ChangeMusic() {
         AudioManager.Instance.ChangeDefaultTrack(newTrack);
     }
 

@@ -40,6 +40,7 @@ public class AudioManager : MonoBehaviour
         if (s == null)
         {
             Debug.Log("Music sound not found");
+            currentTrack = ""; 
         }
         else
         {
@@ -106,17 +107,12 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeDefaultTrack(string newTrack)
     {
-        Sound s = Array.Find(sfxSounds, x => x.name == name);
+        Debug.Log("Music change: " + newTrack);
+        Sound s = Array.Find(musicSounds, x => x.name == name);
 
-        if (s == null)
-        {
-            Debug.Log("SFX sound not found");
-        }
-        else
-        {
-            this.currentTrack = newTrack; 
-            this.PlayMusic(newTrack);
-        }
+        
+        this.musicName = newTrack; 
+        this.PlayMusic(newTrack);
     }
 
     public void LoadDataFromPlayerPrefs()
