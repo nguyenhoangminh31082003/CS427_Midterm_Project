@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 1)
+        if (SceneManager.GetActiveScene().buildIndex > 3)
         {
             MainCharacter.Instance.LoadDataFromPlayerPrefs();
             // AudioManager.Instance.LoadDataFromPlayerPrefs();
