@@ -161,13 +161,29 @@ public class TheGameManager : MonoBehaviour
         GameObject collidedObject = RetrieveObject(collidedObjectName);
         GameObject attackedObject = RetrieveObject(attackedObjectName);
 
-        MainCharacter mainCharacter = collidedObject.GetComponent<MainCharacter>();
-
-        if (!mainCharacter.IsInvincible())
+        if (collidedObjectName.ToLower().IndexOf("First", StringComparison.OrdinalIgnoreCase) >= 0)
         {
-            mainCharacter.GetKnockBack(attackedObject.transform);
+            TheFirstPlayer player = collidedObject.GetComponent<TheFirstPlayer>();
+
+            if (!player.IsInvincible())
+            {
+                player.GetKnockBack(attackedObject.transform);
+            }
+           
+            player.DecreaseLiveCount();
         }
-        mainCharacter.DecreaseLiveCount();
+
+        if (collidedObjectName.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
+        {
+            TheSecondPlayer player = collidedObject.GetComponent<TheSecondPlayer>();
+
+            if (!player.IsInvincible())
+            {
+                player.GetKnockBack(attackedObject.transform);
+            }
+
+            player.DecreaseLiveCount();
+        }
     }
 
     private void CollisionHandlerBetweenPlayerAndMonster(string collidedObjectName, string attackedObjectName)
@@ -175,13 +191,29 @@ public class TheGameManager : MonoBehaviour
         GameObject collidedObject = RetrieveObject(collidedObjectName);
         GameObject attackedObject = RetrieveObject(attackedObjectName);
 
-        MainCharacter mainCharacter = collidedObject.GetComponent<MainCharacter>();
-
-        if (!mainCharacter.IsInvincible())
+        if (collidedObjectName.ToLower().IndexOf("First", StringComparison.OrdinalIgnoreCase) >= 0)
         {
-            mainCharacter.GetKnockBack(attackedObject.transform);
+            TheFirstPlayer player = collidedObject.GetComponent<TheFirstPlayer>();
+
+            if (!player.IsInvincible())
+            {
+                player.GetKnockBack(attackedObject.transform);
+            }
+
+            player.DecreaseLiveCount();
         }
-        mainCharacter.DecreaseLiveCount();
+
+        if (collidedObjectName.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
+        {
+            TheSecondPlayer player = collidedObject.GetComponent<TheSecondPlayer>();
+
+            if (!player.IsInvincible())
+            {
+                player.GetKnockBack(attackedObject.transform);
+            }
+
+            player.DecreaseLiveCount();
+        }
     }
 
     private void CollisionHandlerBetweenMonsterAndSword(string  collidedObjectName, string attackedObjectName)
@@ -189,9 +221,9 @@ public class TheGameManager : MonoBehaviour
         GameObject collidedObject = RetrieveObject(collidedObjectName);
         GameObject attackedObject = RetrieveObject(attackedObjectName);
 
-        Sword sword = attackedObject.GetComponent<Sword>();
+        TheSword theSword = attackedObject.GetComponent<TheSword>();
         EnemyHealth enemyHealth = collidedObject.GetComponent<EnemyHealth>();
-        enemyHealth.TakeDamage(attackedObject, (int)Math.Round(sword.GetAmountDamageThatCanBeCaused()));
+        enemyHealth.TakeDamage(attackedObject, (int)Math.Round(theSword.GetAmountDamageThatCanBeCaused()));
     }
 
     private void CollisionHandlerBetweenBoxAndSword(string collidedObjectName, string attackedObjectName)
@@ -207,9 +239,9 @@ public class TheGameManager : MonoBehaviour
         GameObject collidedObject = RetrieveObject(collidedObjectName);
         GameObject attackedObject = RetrieveObject(attackedObjectName);
 
-        Arrow arrow = attackedObject.GetComponent<Arrow>();
+        TheArrow theArrow = attackedObject.GetComponent<TheArrow>();
         EnemyHealth enemyHealth = collidedObject.GetComponent<EnemyHealth>();
-        enemyHealth.TakeDamage(attackedObject, (int)Math.Round(arrow.GetAmountDamageThatCanBeCaused()));
+        enemyHealth.TakeDamage(attackedObject, (int)Math.Round(theArrow.GetAmountDamageThatCanBeCaused()));
         Destroy(attackedObject);
     }
 

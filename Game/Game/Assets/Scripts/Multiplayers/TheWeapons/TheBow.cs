@@ -145,13 +145,17 @@ public class TheBow : TheWeapon
         if (this.currentlyHeldArrow == null)
             return;
 
-        Arrow arrow = this.currentlyHeldArrow.GetComponent<Arrow>();
+        TheArrow theArrow = this.currentlyHeldArrow.GetComponent<TheArrow>();
 
-        if (!arrow.IsCurrentlyUsed())
+        if (theArrow != null)
         {
-            arrow.StartUsing();
-            arrow.StartHolding();
+            if (!theArrow.IsCurrentlyUsed())
+            {
+                theArrow.StartUsing();
+                theArrow.StartHolding();
+            }
         }
+
     }
 
     public override bool Attack()
@@ -217,11 +221,11 @@ public class TheBow : TheWeapon
         this.attacking = true;
         --this.unusedArrowCount;
 
-        Arrow arrow = this.currentlyHeldArrow.GetComponent<Arrow>();
+        TheArrow theArrow = this.currentlyHeldArrow.GetComponent<TheArrow>();
 
-        arrow.StartUsing();
+        theArrow.StartUsing();
 
-        arrow.StartHolding();
+        theArrow.StartHolding();
 
         return true;
     }
@@ -233,12 +237,12 @@ public class TheBow : TheWeapon
 
         this.currentlyHeldArrow.transform.SetParent(null);
 
-        Arrow arrow = this.currentlyHeldArrow.GetComponent<Arrow>();
+        TheArrow theArrow = this.currentlyHeldArrow.GetComponent<TheArrow>();
 
         if (this.currentlyHeldArrow.transform.localScale.x < 0)
-            arrow.SetMaximumSpeed(-arrow.GetMaximumSpeedX(), arrow.GetMaximumSpeedY());
+            theArrow.SetMaximumSpeed(-theArrow.GetMaximumSpeedX(), theArrow.GetMaximumSpeedY());
 
-        arrow.Shot();
+        theArrow.Shot();
 
         this.currentlyHeldArrow = null;
         this.attacking = false;
