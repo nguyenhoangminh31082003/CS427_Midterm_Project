@@ -71,15 +71,10 @@ public class ThePickup : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D other) {
-        // if (other.gameObject.GetComponent<PlayerController>()) {
-        //     Destroy(gameObject);
-        // }
         if (other.transform.tag == "Player")
         {
             gameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);
         }
-        //DetectPickupType();
-        //Destroy(gameObject);
     }
 
     private IEnumerator AnimCurveSpawnRoutine() {

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public abstract class TheInteractable : MonoBehaviour
 {
-    public float interactionRadius = 2.0f;  // Radius within which the player can interact
+    public float interactionRadius = 2.0f;
     private bool isPlayerInRange = false;
-    private MainCharacter player;
+
+    private TheFirstPlayer player;
+    
     private Transform textBubble;
     protected DialogueManager dialogueManager;
     protected GameManager gameManager;
@@ -17,12 +19,10 @@ public abstract class TheInteractable : MonoBehaviour
     protected virtual void Start()
     {
         dialogueManager = DialogueManager.Instance;
-        player = MainCharacter.Instance;
+        player = TheFirstPlayer.Instance;
         gameManager = GameManager.Instance;
-        // player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     protected virtual void Update()
     {
         // Check the distance between the player and the interactable object

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThePickUpWeapon : Interactable
+public class ThePickUpWeapon : TheInteractable
 {
     [SerializeField] private ItemWeaponType weaponType;
     [SerializeField] private AnimationCurve animCurve;
