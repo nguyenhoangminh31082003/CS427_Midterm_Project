@@ -5,14 +5,14 @@ public class TheDashMovement : TheMovementBase
 {
     private float originalSpeed;
 
-    public float chaseRadius = 6f;
-    public float dashSpeed = 7f;
-    public float dashRadius = 4f;
-    public bool isDashing = false;
-    public bool canDash = true;
+    public float chaseRadius    = 6f;
+    public float dashSpeed      = 7f;
+    public float dashRadius     = 4f;
+    public bool isDashing       = false;
+    public bool canDash         = true;
 
-    public float dashCooldown = 2.0f;
-    private bool freezed = true;
+    public float dashCooldown   = 2.0f;
+    private bool freezed        = true;
 
     protected override void Start() 
     {
@@ -22,14 +22,14 @@ public class TheDashMovement : TheMovementBase
 
     public override void Roaming()
     {
-        if (freezed && Vector2.Distance(transform.position, theFirstPlayer.transform.position) <= chaseRadius) {
+        if (freezed && Vector2.Distance(transform.position, this.theFirstPlayer.transform.position) <= chaseRadius) {
             freezed = false;
         }
 
         if (freezed) { return; }
 
-        if (Vector2.Distance(transform.position, theFirstPlayer.transform.position) <= dashRadius) {
-            enemyController.SwitchToAttacking();
+        if (Vector2.Distance(transform.position, this.theFirstPlayer.transform.position) <= dashRadius) {
+            this.theEnemyController.SwitchToAttacking();
         }
 
         MoveTo(((Vector2)theFirstPlayer.transform.position - (Vector2)transform.position).normalized);
@@ -37,11 +37,11 @@ public class TheDashMovement : TheMovementBase
 
     public override void Attacking()
     {
-        if (Vector2.Distance(transform.position, theFirstPlayer.transform.position) > dashRadius) {
-            enemyController.SwitchToRoaming();
+        if (Vector2.Distance(transform.position, this.theFirstPlayer.transform.position) > dashRadius) {
+            this.theEnemyController.SwitchToRoaming();
         }
 
-        MoveTo(((Vector2)theFirstPlayer.transform.position - (Vector2)transform.position).normalized);
+        MoveTo(((Vector2)this.theFirstPlayer.transform.position - (Vector2)transform.position).normalized);
 
         if (canDash && !isDashing) {
             canDash = false;

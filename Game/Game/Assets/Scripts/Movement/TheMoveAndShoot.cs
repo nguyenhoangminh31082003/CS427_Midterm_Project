@@ -24,7 +24,7 @@ public class TheMoveAndShoot : TheMovementBase
     {
         timeRoaming += Time.deltaTime;
         if (Vector2.Distance(theFirstPlayer.transform.position, transform.position) <= attackRange) {
-            enemyController.SwitchToAttacking();
+            theEnemyController.SwitchToAttacking();
         }
         
         if (timeRoaming > deltaChangeDirection) {
@@ -36,7 +36,7 @@ public class TheMoveAndShoot : TheMovementBase
     public override void Attacking()
     {
         if (Vector2.Distance(theFirstPlayer.transform.position, transform.position) > attackRange) {
-            enemyController.SwitchToRoaming();
+            theEnemyController.SwitchToRoaming();
         }
 
         if (attackRange > 0 && canAttack) {

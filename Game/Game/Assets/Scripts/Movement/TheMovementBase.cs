@@ -6,7 +6,7 @@ public abstract class TheMovementBase : MonoBehaviour
 {
     [SerializeField] protected float moveSpeed = 2f;
     protected TheFirstPlayer theFirstPlayer;
-    protected EnemyController enemyController;
+    protected TheEnemyController theEnemyController;
     protected Rigidbody2D rb;
     protected Knockback knockback;
 
@@ -21,7 +21,7 @@ public abstract class TheMovementBase : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
-        enemyController = GetComponent<EnemyController>();
+        theEnemyController = GetComponent<TheEnemyController>();
         
     }
     protected virtual void Start() {
