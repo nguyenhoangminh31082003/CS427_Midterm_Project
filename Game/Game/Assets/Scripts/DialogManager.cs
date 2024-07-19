@@ -53,7 +53,7 @@ public class DialogueManager : MonoBehaviour
                 AudioManager.Instance.currentTrack = "";
                 AudioManager.Instance.musicSource.Stop();
             }
-            //AudioManager.Instance.PlayMusic(null);
+            AudioManager.Instance.PlayMusic(null);
             return;
         }
 

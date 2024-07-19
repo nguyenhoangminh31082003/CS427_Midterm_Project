@@ -27,8 +27,8 @@ public class DestructibleDelay : MonoBehaviour
         {
             crow.SetActive(true);
             crow.GetComponent<Crow>().Appear();
-            gameObject.GetComponent<Destructible>().Destruct();
             gameObject.GetComponent<MusicChanger>().ChangeMusic();
+            gameObject.GetComponent<Destructible>().Destruct();
         }
     }
 }
