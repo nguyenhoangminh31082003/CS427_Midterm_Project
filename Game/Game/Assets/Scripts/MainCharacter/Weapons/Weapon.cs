@@ -17,6 +17,10 @@ public class Weapon : MonoBehaviour
 
     protected bool partiallyInitialized = false;
 
+    public virtual double FindTotalWeight()
+    {
+        return this.weightPerUnit * this.number; 
+    }
     public virtual void SetDefaultValuesToPlayerPrefs()
     {
         string weaponName = this.GetNameOfWeapon();
@@ -128,7 +132,7 @@ public class Weapon : MonoBehaviour
         return false;
     }
 
-    protected void OnCollisionEnter2D(Collision2D other)
+    protected virtual void OnCollisionEnter2D(Collision2D other)
     {
         gameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);   
     }

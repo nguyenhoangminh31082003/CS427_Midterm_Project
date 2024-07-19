@@ -37,6 +37,10 @@ public class EnemyHealth : MonoBehaviour
             if (GetComponent<PickUpSpawner>()) {
                 GetComponent<PickUpSpawner>().DropItems();
             }
+            if (GetComponent<MusicChanger>())
+            {
+                GetComponent<MusicChanger>().ChangeMusic();
+            }
             Destroy(gameObject);
             return true;
         }

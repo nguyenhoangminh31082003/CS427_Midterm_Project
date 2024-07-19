@@ -197,9 +197,22 @@ public class PlayerBag : MonoBehaviour
         return this.totalWeight;
     }
 
+    private void UpdateTotalWeight()
+    {
+        this.totalWeight = 0;
+        if (this.weapons != null)
+        {
+            foreach (Weapon weapon in this.weapons)
+            {
+                this.totalWeight += weapon.FindTotalWeight();
+            }
+        }
+    }
+
     void Update()
     {
         this.UpdateCanvasElements();
+        this.UpdateTotalWeight();
     }
 
     private int CountAvailableWeapons()
@@ -223,13 +236,13 @@ public class PlayerBag : MonoBehaviour
     {
         if (KeyManager.Instance != null)
         {
-            if (silverKeyCountText != null)
+            if (this.silverKeyCountText != null)
             {
-                silverKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.SilverKey).ToString();
+                this.silverKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.SilverKey).ToString();
             }
-            if (goldenKeyCountText != null)
+            if (this.goldenKeyCountText != null)
             {
-                goldenKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.GoldKey).ToString();
+                this.goldenKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.GoldKey).ToString();
             }
         }
 

@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DestructibleDelay : MonoBehaviour
+{
+    // Start is called before the first frame update
+    private bool readyToExplode;
+    GameObject crow;
+    void Start()
+    {
+        readyToExplode = false;
+        crow = GameObject.Find("Crow");
+        crow.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!readyToExplode && DialogueManager.Instance.isDialogueActive)
+        {
+            readyToExplode = true;
+        }
+
+        if (readyToExplode && !DialogueManager.Instance.isDialogueActive)
+        {
+            crow.SetActive(true);
+            crow.GetComponent<Crow>().Appear();
+            gameObject.GetComponent<Destructible>().Destruct();
+        }
+    }
+}

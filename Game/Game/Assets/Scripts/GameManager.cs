@@ -24,9 +24,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 0)
+        if (SceneManager.GetActiveScene().buildIndex != 1)
         {
             MainCharacter.Instance.LoadDataFromPlayerPrefs();
+            // AudioManager.Instance.LoadDataFromPlayerPrefs();
         }
     }
 
@@ -42,8 +43,10 @@ public class GameManager : MonoBehaviour
 
     //Name is needed to retrieve object from the hierachy 
     //Tag is needed to identify the object
-    public void CollisionHandler(string collidedObjectTag, string collidedObjectName,
-                                 string attackedObjectTag, string attackedObjectName)
+    public void CollisionHandler(string collidedObjectTag, 
+                                 string collidedObjectName,
+                                 string attackedObjectTag, 
+                                 string attackedObjectName)
     {
         //For debug purposes
         //CollisionLog(collidedObjectName);

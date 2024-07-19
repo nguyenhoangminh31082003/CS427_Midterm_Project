@@ -53,6 +53,7 @@ public class DialogueManager : MonoBehaviour
                 AudioManager.Instance.currentTrack = "";
                 AudioManager.Instance.musicSource.Stop();
             }
+            //AudioManager.Instance.PlayMusic(null);
             return;
         }
 
@@ -105,6 +106,12 @@ public class DialogueManager : MonoBehaviour
             {
                 DisplayNextDialogueLine();
             }
+        }
+        if (isDialogueActive && Input.GetKeyDown(KeyCode.Escape))
+        {
+            lines.Clear();
+            AudioManager.Instance.sfxSource.Stop();
+            DisplayNextDialogueLine();
         }
     }
 }

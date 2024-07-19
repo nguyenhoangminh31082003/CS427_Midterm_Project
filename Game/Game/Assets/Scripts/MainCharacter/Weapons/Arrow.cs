@@ -31,6 +31,11 @@ public class Arrow : Weapon
     private float speedX;
     private float speedY;
 
+    public override double FindTotalWeight()
+    {
+        return base.FindTotalWeight();
+    }
+
     public override void SetDefaultValuesToPlayerPrefs()
     {
         string weaponName = this.GetNameOfWeapon();
@@ -292,4 +297,15 @@ public class Arrow : Weapon
     {
         return "Arrow";
     }
+    
+    protected override void OnCollisionEnter2D(Collision2D other)
+    {
+        base.OnCollisionEnter2D(other);
+
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    
 }
