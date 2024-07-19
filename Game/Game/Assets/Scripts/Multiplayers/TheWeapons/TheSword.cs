@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-public class Sword : Weapon
+public class TheSword : TheWeapon
 {
 
     [SerializeField] private float NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION;

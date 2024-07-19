@@ -5,7 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 
-public class Arrow : Weapon
+public class TheArrow : TheWeapon
 {
     [SerializeField] protected Sprite normalSprite;
     [SerializeField] private Sprite holdingSprite;

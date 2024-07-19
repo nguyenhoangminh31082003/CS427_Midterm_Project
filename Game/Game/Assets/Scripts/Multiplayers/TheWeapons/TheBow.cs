@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-public class Bow : Weapon
+public class TheBow : TheWeapon
 {
     [SerializeField] protected float NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK;
     [SerializeField] protected Sprite stillBowSprite;

@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
-public class PlayerBag : MonoBehaviour
+public class ThePlayerBag : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI silverKeyCountText;
@@ -24,7 +24,7 @@ public class PlayerBag : MonoBehaviour
     private List<Weapon> weapons;
     private double totalWeight;
 
-    private static PlayerBag Instance;
+    private static ThePlayerBag Instance;
 
     private bool partiallyInitialized = false;
 

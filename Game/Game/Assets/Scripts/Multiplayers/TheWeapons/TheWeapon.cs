@@ -4,7 +4,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 
-public class Weapon : MonoBehaviour
+public class TheWeapon : MonoBehaviour
 {
 
     [SerializeField] protected double weightPerUnit;
