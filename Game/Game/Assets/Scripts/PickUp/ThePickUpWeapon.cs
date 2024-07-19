@@ -22,7 +22,7 @@ public class ThePickUpWeapon : TheInteractable
     protected override void Interact()
     {
         Debug.Log("Picked " + weaponType.ToString());
-        gameManager.CollisionHandler(MainCharacter.Instance.tag, MainCharacter.Instance.name, "Item", this.transform.name);
+        theGameManager.CollisionHandler(MainCharacter.Instance.tag, MainCharacter.Instance.name, "Item", this.transform.name);
     }
 
     public ItemWeaponType GetPickUpType()

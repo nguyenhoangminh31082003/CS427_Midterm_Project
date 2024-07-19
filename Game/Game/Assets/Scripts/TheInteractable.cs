@@ -7,11 +7,11 @@ public abstract class TheInteractable : MonoBehaviour
     public float interactionRadius = 2.0f;
     private bool isPlayerInRange = false;
 
-    private TheFirstPlayer player;
+    private TheFirstPlayer theFirstPlayer;
     
     private Transform textBubble;
     protected DialogueManager dialogueManager;
-    protected GameManager gameManager;
+    protected TheGameManager theGameManager;
 
     protected virtual void Awake() {
         textBubble = this.transform.Find("TextBubble");
@@ -19,14 +19,14 @@ public abstract class TheInteractable : MonoBehaviour
     protected virtual void Start()
     {
         dialogueManager = DialogueManager.Instance;
-        player = TheFirstPlayer.Instance;
-        gameManager = GameManager.Instance;
+        theFirstPlayer = TheFirstPlayer.Instance;
+        theGameManager = TheGameManager.Instance;
     }
 
     protected virtual void Update()
     {
         // Check the distance between the player and the interactable object
-        float distance = Vector2.Distance(transform.position, player.transform.position);
+        float distance = Vector2.Distance(transform.position, theFirstPlayer.transform.position);
 
         if (distance <= interactionRadius)
         {

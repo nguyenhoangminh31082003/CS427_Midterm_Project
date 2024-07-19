@@ -27,7 +27,6 @@ public class TheGameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex != 1)
         {
             MainCharacter.Instance.LoadDataFromPlayerPrefs();
-            // AudioManager.Instance.LoadDataFromPlayerPrefs();
         }
     }
 
@@ -48,11 +47,6 @@ public class TheGameManager : MonoBehaviour
                                  string attackedObjectTag, 
                                  string attackedObjectName)
     {
-        //For debug purposes
-        //CollisionLog(collidedObjectName);
-        //CollisionLog(collidedObjectTag);
-        //CollisionLog(attackedObjectName);
-        //CollisionLog(attackedObjectTag);
 
         if (collidedObjectTag == "Player" && attackedObjectTag == "Item") {
             GameObject collidedObject = RetrieveObject(collidedObjectName);
@@ -180,7 +174,6 @@ public class TheGameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
 
