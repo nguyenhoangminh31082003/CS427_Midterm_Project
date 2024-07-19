@@ -27,8 +27,8 @@ public class TheFirstPlayer : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigidBody2D;
     private double speedX, speedY;
+    private ThePlayerBag bag;
     private long coinCount;
-    private PlayerBag bag;
     private double weight;
 
     private float lastDamageTime;
@@ -47,7 +47,7 @@ public class TheFirstPlayer : MonoBehaviour
         PlayerPrefs.SetInt("liveCount", 5);
 
         if (this.bag == null)
-            this.bag = this.playerBag.GetComponent<PlayerBag>();
+            this.bag = this.playerBag.GetComponent<ThePlayerBag>();
 
         this.bag.SetDefaultValuesToPlayerPrefs();
     }
@@ -63,7 +63,7 @@ public class TheFirstPlayer : MonoBehaviour
         PlayerPrefs.SetInt("liveCount", this.liveCount);
 
         if (this.bag == null)
-            this.bag = this.playerBag.GetComponent<PlayerBag>();
+            this.bag = this.playerBag.GetComponent<ThePlayerBag>();
 
         this.bag.SaveDataToPlayerPrefs();
     }
@@ -87,7 +87,7 @@ public class TheFirstPlayer : MonoBehaviour
             this.liveCount = PlayerPrefs.GetInt("liveCount");
 
         if (this.bag == null)
-            this.bag = this.playerBag.GetComponent<PlayerBag>();
+            this.bag = this.playerBag.GetComponent<ThePlayerBag>();
 
         this.bag.LoadDataFromPlayerPrefs();
 
@@ -114,7 +114,7 @@ public class TheFirstPlayer : MonoBehaviour
         this.rigidBody2D = this.GetComponent<Rigidbody2D>();
 
         if (this.bag == null)
-            this.bag = this.playerBag.GetComponent<PlayerBag>();
+            this.bag = this.playerBag.GetComponent<ThePlayerBag>();
         this.knockback = this.GetComponent<Knockback>();
 
         if (!this.partialInitialized)
