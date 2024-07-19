@@ -26,6 +26,9 @@ public abstract class Interactable : MonoBehaviour
     protected virtual void Update()
     {
         // Check the distance between the player and the interactable object
+
+        Debug.Log(this.gameObject);
+
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
         if (distance <= interactionRadius)
