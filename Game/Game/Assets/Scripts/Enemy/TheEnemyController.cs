@@ -9,10 +9,10 @@ public class TheEnemyController : MonoBehaviour
         Attacking
     }
     private State state;
-    private MovementBase movement;
+    private TheMovementBase movement;
 
     private void Awake() {
-        movement = GetComponent<MovementBase>();
+        movement = GetComponent<TheMovementBase>();
     }
 
     private void Start() {
