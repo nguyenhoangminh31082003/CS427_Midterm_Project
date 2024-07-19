@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5078003042575937405}
   - component: {fileID: 8746271155391481540}
   - component: {fileID: 3253707259390301149}
-  - component: {fileID: 7439070757307030321}
+  - component: {fileID: 270844534421417802}
   m_Layer: 0
   m_Name: TheScroll
   m_TagString: Item
@@ -155,7 +155,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0020680428, y: -0.012408733}
   m_Size: {x: 0.52432203, y: 0.88418293}
   m_Direction: 0
---- !u!114 &7439070757307030321
+--- !u!114 &270844534421417802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,16 +164,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4428361671864906613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6335bdfcba803c4fa43caf25fe2a0d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f9176a1383438949884268c05e930f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRadius: 2
   dialogue:
-    dialogueLines:
-    - character:
-        name: Test123
-        icon: {fileID: 0}
-      line: 123456 test test must must 123
+    dialogueLines: []
   backgroundTrack: 
 --- !u!1 &5550295996595669627
 GameObject:

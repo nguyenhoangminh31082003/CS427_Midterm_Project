@@ -14777,8 +14777,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 482044278}
-  - component: {fileID: 482044280}
   - component: {fileID: 482044279}
+  - component: {fileID: 482044281}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -14854,7 +14854,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &482044280
+--- !u!114 &482044281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14863,16 +14863,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 482044277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71f9bc3283c97bc4b978d53c707aec34, type: 3}
+  m_Script: {fileID: 11500000, guid: f96a95c22e585e0419921b19fdd702a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weightPerUnit: 0
   currentlyUsed: 0
   number: 0
-  NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK: 2
+  NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK: 2000
+  theSampleArrow: {fileID: 868932700}
   stillBowSprite: {fileID: 21300000, guid: 5cb38364f0c17494cbd5d7e705889a4e, type: 3}
   unusedArrowCount: 0
-  sampleArrow: {fileID: 868932698}
 --- !u!1 &485783695 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8248736938809600413, guid: 30da1157bd44cd5499fe8a57e47a390f, type: 3}
@@ -16650,9 +16650,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 580935017}
-  - component: {fileID: 580935020}
   - component: {fileID: 580935019}
   - component: {fileID: 580935018}
+  - component: {fileID: 580935020}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Sword
@@ -16771,7 +16771,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 580935016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d678ff06580d59d409a7196c27180198, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e6fdde6185af3a47a49afc3ed793db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weightPerUnit: 0
@@ -22312,8 +22312,8 @@ GameObject:
   m_Component:
   - component: {fileID: 868932696}
   - component: {fileID: 868932699}
-  - component: {fileID: 868932698}
   - component: {fileID: 868932697}
+  - component: {fileID: 868932700}
   m_Layer: 0
   m_Name: SampleArrow
   m_TagString: Arrow
@@ -22371,29 +22371,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.04}
   m_Size: {x: 0.8, y: 0.4}
   m_Direction: 1
---- !u!114 &868932698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868932695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d4710306aa8f6b479a6af36e865128f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weightPerUnit: 0
-  currentlyUsed: 0
-  number: 0
-  normalSprite: {fileID: 21300000, guid: e8510bd6cc7c7784390bb3d11ed10fb6, type: 3}
-  holdingSprite: {fileID: 21300000, guid: f26811333cf68714e8507e2e1c53ed08, type: 3}
-  stoppingSprite: {fileID: 21300000, guid: 460332712f0bb3d4390ccb3aa5082327, type: 3}
-  maximumSpeedX: 8
-  maximumSpeedY: 0
-  MAXIMUM_DAMAGE_CAUSED_PER_HIT: 42
-  NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING: 5000
-  NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING: 1000
 --- !u!212 &868932699
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22446,6 +22423,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &868932700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868932695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40f589f92bc9d94e8c0690f46359d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weightPerUnit: 0
+  currentlyUsed: 0
+  number: 0
+  normalSprite: {fileID: 21300000, guid: e8510bd6cc7c7784390bb3d11ed10fb6, type: 3}
+  holdingSprite: {fileID: 21300000, guid: f26811333cf68714e8507e2e1c53ed08, type: 3}
+  stoppingSprite: {fileID: 21300000, guid: 460332712f0bb3d4390ccb3aa5082327, type: 3}
+  maximumSpeedX: 0
+  maximumSpeedY: 0
+  MAXIMUM_DAMAGE_CAUSED_PER_HIT: 42
+  NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_FLYING: 5000
+  NUMBER_OF_MILLISECONDS_OF_MAXIMUM_DURATION_OF_STOPPING: 1000
 --- !u!1 &870301584 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9055369620991962017, guid: 0e69469e52f7f8c4cb94be64fb7b33c5, type: 3}

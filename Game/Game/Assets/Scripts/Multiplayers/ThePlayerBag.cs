@@ -21,7 +21,7 @@ public class ThePlayerBag : MonoBehaviour
     [SerializeField] private int gateKeyCount;
 
     private List<GameObject> canvasUIWeaponBoxes;
-    private List<Weapon> weapons;
+    private List<TheWeapon> theWeapons;
     private double totalWeight;
 
     private static ThePlayerBag Instance;
@@ -44,10 +44,10 @@ public class ThePlayerBag : MonoBehaviour
         PlayerPrefs.SetInt("PlayerBag.gateKeyCount", 0);
         PlayerPrefs.SetString("PlayerBag.totalWeight", "0");
 
-        if (this.weapons != null)
+        if (this.theWeapons != null)
         {
-            foreach (Weapon weapon in this.weapons)
-                weapon.SetDefaultValuesToPlayerPrefs();
+            foreach (TheWeapon theWeapon in this.theWeapons)
+                theWeapon.SetDefaultValuesToPlayerPrefs();
         }
     }
     public void SaveDataToPlayerPrefs()
@@ -58,34 +58,34 @@ public class ThePlayerBag : MonoBehaviour
         PlayerPrefs.SetInt("PlayerBag.gateKeyCount", this.gateKeyCount);
         PlayerPrefs.SetString("PlayerBag.totalWeight", this.totalWeight.ToString());
 
-        if (this.weapons != null)
+        if (this.theWeapons != null)
         {
-            foreach (Weapon weapon in this.weapons)
-                weapon.SaveDataToPlayerPrefs();
+            foreach (TheWeapon theWeapon in this.theWeapons)
+                theWeapon.SaveDataToPlayerPrefs();
         }
     }
     public void LoadDataFromPlayerPrefs()
     {
 
-        if (this.weapons == null)
+        if (this.theWeapons == null)
         {
-            this.weapons = new List<Weapon>();
+            this.theWeapons = new List<TheWeapon>();
 
             foreach (Transform child in this.transform)
             {
-                Weapon weapon = child.GetComponent<Weapon>();
-                if (weapon != null && weapon is Weapon)
+                TheWeapon weapon = child.GetComponent<TheWeapon>();
+                if (weapon != null && weapon is TheWeapon)
                 {
-                    this.weapons.Add(weapon);
+                    this.theWeapons.Add(weapon);
                 }
             }
         }
 
-        foreach (Weapon weapon in this.weapons)
-            weapon.LoadDataFromPlayerPrefs();
+        foreach (TheWeapon theWeapon in this.theWeapons)
+            theWeapon.LoadDataFromPlayerPrefs();
 
         if (this.currentWeaponIndex >= 0)
-            this.weapons[this.currentWeaponIndex].StopUsing();
+            this.theWeapons[this.currentWeaponIndex].StopUsing();
 
         if (PlayerPrefs.HasKey("PlayerBag.numberOfCanvasUIWeaponBoxes"))
             this.numberOfCanvasUIWeaponBoxes = PlayerPrefs.GetInt("PlayerBag.numberOfCanvasUIWeaponBoxes");
@@ -103,7 +103,7 @@ public class ThePlayerBag : MonoBehaviour
             this.totalWeight = double.Parse(PlayerPrefs.GetString("PlayerBag.totalWeight"));
 
         if (this.currentWeaponIndex >= 0)
-            this.weapons[this.currentWeaponIndex].StartUsing();
+            this.theWeapons[this.currentWeaponIndex].StartUsing();
 
         this.partiallyInitialized = true;
 
@@ -112,16 +112,16 @@ public class ThePlayerBag : MonoBehaviour
     void Start()
     {
 
-        if (this.weapons == null)
+        if (this.theWeapons == null)
         {
-            this.weapons = new List<Weapon>();
+            this.theWeapons = new List<TheWeapon>();
 
             foreach (Transform child in this.transform)
             {
-                Weapon weapon = child.GetComponent<Weapon>();
-                if (weapon != null && weapon is Weapon)
+                TheWeapon theWeapon = child.GetComponent<TheWeapon>();
+                if (theWeapon != null && theWeapon is TheWeapon)
                 {
-                    this.weapons.Add(weapon);
+                    this.theWeapons.Add(theWeapon);
                 }
             }
         }
@@ -180,12 +180,12 @@ public class ThePlayerBag : MonoBehaviour
     private int FindNextAvailableWeapon(int position)
     {
 
-        for (int i = 0; i < this.weapons.Count; ++i)
+        for (int i = 0; i < this.theWeapons.Count; ++i)
         {
             ++position;
-            if (position >= this.weapons.Count)
+            if (position >= this.theWeapons.Count)
                 position = 0;
-            if (this.weapons[position].GetNumber() > 0)
+            if (this.theWeapons[position].GetNumber() > 0)
                 return position;
         }
 
@@ -200,11 +200,11 @@ public class ThePlayerBag : MonoBehaviour
     private void UpdateTotalWeight()
     {
         this.totalWeight = 0;
-        if (this.weapons != null)
+        if (this.theWeapons != null)
         {
-            foreach (Weapon weapon in this.weapons)
+            foreach (TheWeapon theWeapon in this.theWeapons)
             {
-                this.totalWeight += weapon.FindTotalWeight();
+                this.totalWeight += theWeapon.FindTotalWeight();
             }
         }
     }
@@ -219,12 +219,12 @@ public class ThePlayerBag : MonoBehaviour
     {
         int count = 0;
 
-        if (this.weapons != null)
+        if (this.theWeapons != null)
         {
-            foreach (Weapon weapon in this.weapons)
+            foreach (TheWeapon theWeapon in this.theWeapons)
             {
 
-                if (weapon.GetNumber() > 0)
+                if (theWeapon.GetNumber() > 0)
                     ++count;
             }
         }
@@ -290,13 +290,13 @@ public class ThePlayerBag : MonoBehaviour
                 else
                     box.SetTheBoxUnchosen();
 
-                if (weaponCount <= 0 || this.weapons == null)
+                if (weaponCount <= 0 || this.theWeapons == null)
                 {
                     box.TurnIntoEmptyBox();
                 }
                 else
                 {
-                    this.weapons[position].DisplayInCanvas(box);
+                    this.theWeapons[position].DisplayInCanvas(box);
                     --weaponCount;
                     position = this.FindNextAvailableWeapon(position);
                 }
@@ -309,9 +309,9 @@ public class ThePlayerBag : MonoBehaviour
     {
         if (this.currentWeaponIndex < 0)
             return false;
-        this.weapons[this.currentWeaponIndex].StopUsing();
+        this.theWeapons[this.currentWeaponIndex].StopUsing();
         this.currentWeaponIndex = this.FindNextAvailableWeapon(this.currentWeaponIndex);
-        this.weapons[this.currentWeaponIndex].StartUsing();
+        this.theWeapons[this.currentWeaponIndex].StartUsing();
         return true;
     }
 
@@ -319,52 +319,52 @@ public class ThePlayerBag : MonoBehaviour
     {
         if (this.currentWeaponIndex < 0)
             return false;
-        return this.weapons[this.currentWeaponIndex].Attack();
+        return this.theWeapons[this.currentWeaponIndex].Attack();
     }
 
     public bool UseCurrentWeaponToAttackWithConsideringKeyboard()
     {
         if (this.currentWeaponIndex < 0)
             return false;
-        return this.weapons[this.currentWeaponIndex].AttackWithConsideringKeyboard();
+        return this.theWeapons[this.currentWeaponIndex].AttackWithConsideringKeyboard();
     }
 
     public bool IsAttacking()
     {
         if (this.currentWeaponIndex < 0)
             return false;
-        return this.weapons[this.currentWeaponIndex].IsBeingUsedToAttack();
+        return this.theWeapons[this.currentWeaponIndex].IsBeingUsedToAttack();
     }
 
     public void ChangeColorRecursively(Color color)
     {
         if (this.currentWeaponIndex >= 0)
         {
-            this.weapons[this.currentWeaponIndex].ChangeColorRecursively(color);
+            this.theWeapons[this.currentWeaponIndex].ChangeColorRecursively(color);
         }
     }
 
     public bool ChangeWeaponCount(string weaponName, int number)
     {
 
-        if (number == 0 || this.weapons == null)
+        if (number == 0 || this.theWeapons == null)
             return false;
 
         if (weaponName == Arrow.GetWeaponName())
         {
             string bowWeaponName = Bow.GetWeaponName();
             
-            foreach (Weapon weapon in this.weapons)
-                if (weapon.GetNameOfWeapon() == bowWeaponName)
+            foreach (TheWeapon theWeapon in this.theWeapons)
+                if (theWeapon.GetNameOfWeapon() == bowWeaponName)
                 {
-                    string value = weapon.GetWeaponAttributeValue("unusedArrowCount");
+                    string value = theWeapon.GetWeaponAttributeValue("unusedArrowCount");
 
                     if (value == null)
                         return false;
 
                     int parsedValue = Int32.Parse(value);
 
-                    return weapon.SetWeaponAttributeValue(
+                    return theWeapon.SetWeaponAttributeValue(
                         "unusedArrowCount",
                         (parsedValue + number).ToString()
                     );
@@ -377,13 +377,13 @@ public class ThePlayerBag : MonoBehaviour
 
         int previousCounter = this.CountAvailableWeapons();
 
-        foreach (Weapon weapon in this.weapons)
-            if (weapon.GetNameOfWeapon() == weaponName)
+        foreach (TheWeapon theWeapon in this.theWeapons)
+            if (theWeapon.GetNameOfWeapon() == weaponName)
             {
                 if (number > 0)
-                    weapon.IncreaseNumber(number);
+                    theWeapon.IncreaseNumber(number);
                 else
-                    weapon.DecreaseNumber(-number);
+                    theWeapon.DecreaseNumber(-number);
                 result = true;
                 break;
             }
@@ -395,11 +395,11 @@ public class ThePlayerBag : MonoBehaviour
             if (previousCounter == 0 && currentCounter > 0)
             {
                 this.currentWeaponIndex = this.FindNextAvailableWeapon(0);
-                this.weapons[this.currentWeaponIndex].StartUsing();
+                this.theWeapons[this.currentWeaponIndex].StartUsing();
             }
             else if (currentCounter == 0 && previousCounter > 0)
             {
-                this.weapons[this.currentWeaponIndex].StopUsing();
+                this.theWeapons[this.currentWeaponIndex].StopUsing();
                 this.currentWeaponIndex = -1;
             }
             else if (currentCounter < previousCounter)

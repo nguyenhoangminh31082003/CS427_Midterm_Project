@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8896522772625038216}
   - component: {fileID: 2398285995147036865}
-  - component: {fileID: 2869309282698279870}
+  - component: {fileID: 2443161840686281734}
   m_Layer: 0
   m_Name: TheSword
   m_TagString: Item
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3d9e76a44a6786e4cae51c98707859f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1.125}
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2869309282698279870
+--- !u!114 &2443161840686281734
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,32 +95,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1691946223743847268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f905093f77ca6da45b2c5accd64550d0, type: 3}
+  m_Script: {fileID: 11500000, guid: acb0f235018d6fd42bb71e595bfa3fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRadius: 2
   weaponType: 0
   animCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0.0070762634
-      inSlope: -1.9811203
-      outSlope: -1.9811203
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.06666666
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

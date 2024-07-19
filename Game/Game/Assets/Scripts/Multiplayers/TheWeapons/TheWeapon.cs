@@ -11,7 +11,7 @@ public class TheWeapon : MonoBehaviour
     [SerializeField] protected bool currentlyUsed;
     [SerializeField] protected int number;
 
-    protected GameManager gameManager;
+    protected TheGameManager theGameManager;
 
     protected SpriteRenderer spriteRenderer;
 
@@ -67,7 +67,7 @@ public class TheWeapon : MonoBehaviour
         if (spriteRenderer != null)
             spriteRenderer.enabled = this.currentlyUsed;
 
-        this.gameManager = GameManager.Instance;
+        this.theGameManager = TheGameManager.Instance;
     }
 
     public bool StartUsing()
@@ -134,7 +134,7 @@ public class TheWeapon : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D other)
     {
-        gameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);   
+        theGameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);   
     }
     public virtual double GetAmountDamageThatCanBeCaused()
     {

@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7868804282891191232}
   - component: {fileID: 7243092456617473141}
-  - component: {fileID: 5071893981808522491}
+  - component: {fileID: 2286890115117484375}
   m_Layer: 0
   m_Name: TheBow
   m_TagString: Item
@@ -170,7 +170,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5071893981808522491
+--- !u!114 &2286890115117484375
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,32 +179,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4939054354195870496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f905093f77ca6da45b2c5accd64550d0, type: 3}
+  m_Script: {fileID: 11500000, guid: acb0f235018d6fd42bb71e595bfa3fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRadius: 2
-  weaponType: 1
+  weaponType: 0
   animCurve:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0.016509414
-      inSlope: -1.9245286
-      outSlope: -1.9245286
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.0625
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
