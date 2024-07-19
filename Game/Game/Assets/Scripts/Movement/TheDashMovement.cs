@@ -22,26 +22,26 @@ public class TheDashMovement : TheMovementBase
 
     public override void Roaming()
     {
-        if (freezed && Vector2.Distance(transform.position, player.transform.position) <= chaseRadius) {
+        if (freezed && Vector2.Distance(transform.position, theFirstPlayer.transform.position) <= chaseRadius) {
             freezed = false;
         }
 
         if (freezed) { return; }
 
-        if (Vector2.Distance(transform.position, player.transform.position) <= dashRadius) {
+        if (Vector2.Distance(transform.position, theFirstPlayer.transform.position) <= dashRadius) {
             enemyController.SwitchToAttacking();
         }
 
-        MoveTo(((Vector2)player.transform.position - (Vector2)transform.position).normalized);
+        MoveTo(((Vector2)theFirstPlayer.transform.position - (Vector2)transform.position).normalized);
     }
 
     public override void Attacking()
     {
-        if (Vector2.Distance(transform.position, player.transform.position) > dashRadius) {
+        if (Vector2.Distance(transform.position, theFirstPlayer.transform.position) > dashRadius) {
             enemyController.SwitchToRoaming();
         }
 
-        MoveTo(((Vector2)player.transform.position - (Vector2)transform.position).normalized);
+        MoveTo(((Vector2)theFirstPlayer.transform.position - (Vector2)transform.position).normalized);
 
         if (canDash && !isDashing) {
             canDash = false;
