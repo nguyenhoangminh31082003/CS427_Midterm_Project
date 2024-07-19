@@ -6,9 +6,9 @@ using System.Collections.Generic;
 public class TheBow : TheWeapon
 {
     [SerializeField] protected float NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK;
+    [SerializeField] protected TheArrow theSampleArrow;
     [SerializeField] protected Sprite stillBowSprite;
     [SerializeField] protected int unusedArrowCount;
-    [SerializeField] protected Arrow sampleArrow;
 
     private float mostRecentFinishingAttackTime;
     private GameObject currentlyHeldArrow;
@@ -17,7 +17,7 @@ public class TheBow : TheWeapon
 
     public override double FindTotalWeight()
     {
-        return this.weightPerUnit * this.number + this.unusedArrowCount * sampleArrow.FindTotalWeight();
+        return this.weightPerUnit * this.number + this.unusedArrowCount * theSampleArrow.FindTotalWeight();
     }
     public override void SetDefaultValuesToPlayerPrefs()
     {
@@ -133,11 +133,11 @@ public class TheBow : TheWeapon
         if (this.unusedArrowCount > 0 &&
             !this.attacking)
         {
-            this.sampleArrow.StartUsing();
+            this.theSampleArrow.StartUsing();
             return;
         }
 
-        this.sampleArrow.StopUsing();
+        this.theSampleArrow.StopUsing();
     }
 
     private void UpdateCurrentlyHeldArrow()
@@ -199,7 +199,7 @@ public class TheBow : TheWeapon
     {
         base.ChangeColorRecursively(color);
 
-        this.sampleArrow.ChangeColorRecursively(color);
+        this.theSampleArrow.ChangeColorRecursively(color);
     }
 
     private bool StartHolding()
@@ -211,7 +211,7 @@ public class TheBow : TheWeapon
                 amountPassed = (currentTime - this.mostRecentFinishingAttackTime) * 1000;
         if (amountPassed < NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK)
             return false;
-        this.currentlyHeldArrow = Instantiate(this.sampleArrow.gameObject, this.transform);
+        this.currentlyHeldArrow = Instantiate(this.theSampleArrow.gameObject, this.transform);
         this.currentlyHeldArrow.name = "Arrow " + this.arrowIndex;
         this.IncreaseArrowIndexByOne();
         this.attacking = true;

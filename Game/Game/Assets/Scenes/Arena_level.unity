@@ -12878,11 +12878,11 @@ GameObject:
   - component: {fileID: 364334380}
   - component: {fileID: 364334379}
   - component: {fileID: 364334378}
-  - component: {fileID: 364334377}
   - component: {fileID: 364334376}
   - component: {fileID: 364334375}
+  - component: {fileID: 364334382}
   m_Layer: 0
-  m_Name: MainCharacter
+  m_Name: TheFirstPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12950,22 +12950,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &364334377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364334374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19782f52a524bc4abdcb3a37c8c71e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  liveCountText: {fileID: 763545253}
-  coinCountText: {fileID: 429764136}
-  playerBag: {fileID: 784017133}
-  liveCount: 0
 --- !u!114 &364334378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13068,6 +13052,22 @@ Transform:
   - {fileID: 784017135}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &364334382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364334374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1528f77299767ac4788bab513ef31d27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  liveCountText: {fileID: 763545253}
+  coinCountText: {fileID: 429764136}
+  playerBag: {fileID: 784017133}
+  liveCount: 5
 --- !u!1001 &366559001
 PrefabInstance:
   m_ObjectHideFlags: 0
