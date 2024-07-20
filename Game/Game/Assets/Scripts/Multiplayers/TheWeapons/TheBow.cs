@@ -228,8 +228,9 @@ public class TheBow : TheWeapon
                 amountPassed = (currentTime - this.mostRecentFinishingAttackTime) * 1000;
         if (amountPassed < NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK)
             return false;
+
         this.currentlyHeldArrow = Instantiate(this.theSampleArrow.gameObject, this.transform);
-        this.currentlyHeldArrow.name = "Arrow " + this.arrowIndex;
+        this.currentlyHeldArrow.name = "CopyOf" + this.theSampleArrow.gameObject.name + this.arrowIndex;
         this.IncreaseArrowIndexByOne();
         this.attacking = true;
         --this.unusedArrowCount;

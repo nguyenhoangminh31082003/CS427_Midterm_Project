@@ -105,8 +105,6 @@ public class TheSword : TheWeapon
         if (amountPassed < NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION * 2)
             return false;
 
-        //Debug.Log(this.theWeaponOwner);
-
         this.attacking = true;
         this.attackStartTime = Time.time;
         this.spriteRenderer.sprite = this.movingSwordSprite;

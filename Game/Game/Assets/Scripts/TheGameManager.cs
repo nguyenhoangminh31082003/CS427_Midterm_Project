@@ -266,8 +266,6 @@ public class TheGameManager : MonoBehaviour
         {
             GameObject theWeaponOwner = theSword.GetTheWeaponOwner();
 
-            //Debug.Log(theWeaponOwner.name + " " + collidedObject.name + " " + attackedObject.name);
-
             if (collidedObject != theWeaponOwner)
             {
                 if (collidedObjectName.ToLower().IndexOf("First", StringComparison.OrdinalIgnoreCase) >= 0)
@@ -292,6 +290,49 @@ public class TheGameManager : MonoBehaviour
                     }
 
                     player.DecreaseLiveCount();
+                }
+            }
+        }
+    }
+
+    private void CollisionHandlerBetweenPlayerAndArrow(string collidedObjectName, string attackedObjectName)
+    {
+        GameObject collidedObject = RetrieveObject(collidedObjectName);
+        GameObject attackedObject = RetrieveObject(attackedObjectName);
+        TheArrow    theArrow        = attackedObject?.GetComponent<TheArrow>();
+
+        if (theArrow)
+        {
+            GameObject theWeaponOwner = theArrow.GetTheWeaponOwner();
+
+            if (collidedObject != theWeaponOwner)
+            {
+                if (collidedObjectName.ToLower().IndexOf("First", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    TheFirstPlayer player = collidedObject.GetComponent<TheFirstPlayer>();
+
+                    if (!player.IsInvincible())
+                    {
+                        player.GetKnockBack(attackedObject.transform);
+                    }
+
+                    player.DecreaseLiveCount();
+
+                    Destroy(attackedObject);
+                }
+
+                if (collidedObjectName.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    TheSecondPlayer player = collidedObject.GetComponent<TheSecondPlayer>();
+
+                    if (!player.IsInvincible())
+                    {
+                        player.GetKnockBack(attackedObject.transform);
+                    }
+
+                    player.DecreaseLiveCount();
+
+                    Destroy(attackedObject);
                 }
             }
         }
@@ -342,6 +383,11 @@ public class TheGameManager : MonoBehaviour
         if (collidedObjectTag == "Player" && attackedObjectTag == "Sword")
         {
             this.CollisionHandlerBetweenPlayerAndSword(collidedObjectName, attackedObjectName);
+        }
+
+        if (collidedObjectTag == "Player" && attackedObjectTag == "Arrow")
+        {
+            this.CollisionHandlerBetweenPlayerAndArrow(collidedObjectName, attackedObjectName);
         }
     }
 
