@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
 using System.Collections.Generic;
+using TMPro;
 
 public abstract class TheInteractable : MonoBehaviour
 {
@@ -10,17 +11,20 @@ public abstract class TheInteractable : MonoBehaviour
 
     private TheFirstPlayer theFirstPlayer;
     private TheSecondPlayer theSecondPlayer;
-    
+
     private Transform textBubble;
     protected DialogueManager dialogueManager;
     protected TheGameManager theGameManager;
 
-    protected virtual void Awake() {
+    private string content;
+
+    protected virtual void Awake()
+    {
         this.textBubble = this.transform.Find("TextBubble");
     }
     protected virtual void Start()
     {
-        dialogueManager = DialogueManager.Instance;
+        this.dialogueManager = DialogueManager.Instance;
         this.theFirstPlayer = TheFirstPlayer.Instance;
         this.theSecondPlayer = TheSecondPlayer.Instance;
         this.theGameManager = TheGameManager.Instance;
@@ -28,63 +32,78 @@ public abstract class TheInteractable : MonoBehaviour
 
     protected virtual void Update()
     {
-        float   firstDistance   =   Vector2.Distance(transform.position, theFirstPlayer.transform.position),
-                secondDistance  =   Vector2.Distance(transform.position, theSecondPlayer.transform.position);
+        float firstDistance = Vector2.Distance(transform.position, theFirstPlayer.transform.position),
+                secondDistance = Vector2.Distance(transform.position, theSecondPlayer.transform.position);
+        bool isTheFirstPlayerAttacking = Input.GetKeyDown(KeyCode.E),
+                isTheSecondPlayerAttacking = Input.GetKeyDown(KeyCode.O);
 
-        if (firstDistance < secondDistance)
+        if (firstDistance <= this.interactionRadius && secondDistance <= this.interactionRadius)
         {
-            if (firstDistance <= interactionRadius)
-            {
-                if (!isPlayerInRange)
-                {
-                    isPlayerInRange = true;
-                    OnPlayerEnterRange();
-                }
+            this.content = "E|O";
 
-            }
-            else
-            {
-                if (isPlayerInRange)
-                {
-                    isPlayerInRange = false;
-                    OnPlayerExitRange();
-                }
-            }
+            this.isPlayerInRange = true;
 
-            if (Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
-            {
-                Debug.Log("press e");
-                Interact(1);
-            }
-        }
-        else if (secondDistance < firstDistance)
-        {
-            if (secondDistance <= interactionRadius)
-            {
-                if (!this.isPlayerInRange)
-                {
-                    this.isPlayerInRange = true;
-                    this.OnPlayerEnterRange();
-                }
+            this.OnPlayerEnterRange();
 
-            }
-            else
+            if (isTheFirstPlayerAttacking && isTheSecondPlayerAttacking)
             {
-                if (this.isPlayerInRange)
-                {
-                    this.isPlayerInRange = false;
-                    this.OnPlayerExitRange();
-                }
+
+                if (firstDistance < secondDistance)
+                    this.Interact(1);
+                else if (secondDistance < firstDistance)
+                    this.Interact(2);
+
+                return;
             }
 
-            if (Input.GetKeyDown(KeyCode.O) && isPlayerInRange)
+            if (isTheFirstPlayerAttacking)
             {
-                Debug.Log("press o");
-                Interact(2);
+                this.Interact(1);
             }
+
+            if (isTheSecondPlayerAttacking)
+            {
+                this.Interact(2);
+            }
+
+            return;
         }
 
-        
+        if (firstDistance <= this.interactionRadius)
+        {
+            this.content = "E";
+
+            this.isPlayerInRange = true;
+
+            this.OnPlayerEnterRange();
+
+            if (isTheFirstPlayerAttacking)
+            {
+                this.Interact(1);
+            }
+
+            return;
+        }
+
+        if (secondDistance <= this.interactionRadius)
+        {
+            this.content = "O";
+
+            this.isPlayerInRange = true;
+
+            this.OnPlayerEnterRange();
+
+            if (isTheSecondPlayerAttacking)
+            {
+                this.Interact(2);
+            }
+
+            return;
+        }
+
+        this.isPlayerInRange = false;
+
+        this.OnPlayerExitRange();
     }
 
     // Method called when the player presses "E" (with the first player) or "O" (with the second player) within range
@@ -92,18 +111,32 @@ public abstract class TheInteractable : MonoBehaviour
 
     protected virtual void OnPlayerEnterRange()
     {
-        if (this.textBubble) {
+        if (this.textBubble)
+        {
+            Transform text = this.textBubble.Find("Text");
+
+            if (text != null)
+            {
+                TextMeshPro component = text.GetComponent<TextMeshPro>();
+                if (component != null)
+                {
+                    component.text = this.content;
+                }
+            }
+
+
             this.textBubble.gameObject.SetActive(true);
         }
-        
+
     }
 
     protected virtual void OnPlayerExitRange()
     {
-        if (this.textBubble) {
+        if (this.textBubble)
+        {
             this.textBubble.gameObject.SetActive(false);
         }
-        
+
     }
 
     private void OnDrawGizmosSelected()
