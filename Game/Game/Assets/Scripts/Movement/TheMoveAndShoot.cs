@@ -59,9 +59,9 @@ public class TheMoveAndShoot : TheMovementBase
                 } else if (targetDirection.x > 0.1f) {
                     sr.flipX = false;
                 }
-                _animator.SetTrigger("attack");
+                this._animator.SetTrigger("attack");
                 
-                GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                GameObject newBullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
                 newBullet.transform.right = targetDirection;
             }
             else if ((randomness == 2) || (randomness == 0 && secondDistance < firstDistance))
@@ -76,9 +76,9 @@ public class TheMoveAndShoot : TheMovementBase
                 {
                     sr.flipX = false;
                 }
-                _animator.SetTrigger("attack");
+                this._animator.SetTrigger("attack");
 
-                GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                GameObject newBullet = Instantiate(bulletPrefab, this.transform.position, Quaternion.identity);
                 newBullet.transform.right = targetDirection;
             }
 
