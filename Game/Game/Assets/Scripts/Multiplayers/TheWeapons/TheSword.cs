@@ -102,15 +102,17 @@ public class TheSword : TheWeapon
         float currentTime = Time.time,
               amountPassed = (currentTime - this.attackStartTime) * 1000;
 
-        
         if (amountPassed < NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION * 2)
             return false;
+
+        //Debug.Log(this.theWeaponOwner);
 
         this.attacking = true;
         this.attackStartTime = Time.time;
         this.spriteRenderer.sprite = this.movingSwordSprite;
         this.movingCollider.enabled = true;
         AudioManager.Instance.PlaySFX("human_atk_sword");
+        
         return true;
     }
 
@@ -148,6 +150,8 @@ public class TheSword : TheWeapon
 
     protected override void Update()
     {
+        //Debug.Log(this.theWeaponOwner);
+
         base.Update();
 
         this.UpdateAttack();

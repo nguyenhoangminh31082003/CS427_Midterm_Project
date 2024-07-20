@@ -256,6 +256,47 @@ public class TheGameManager : MonoBehaviour
         Destroy(attackedObject);
     }
 
+    private void CollisionHandlerBetweenPlayerAndSword(string collidedObjectName, string attackedObjectName)
+    {
+        GameObject collidedObject = RetrieveObject(collidedObjectName);
+        GameObject attackedObject = RetrieveObject(attackedObjectName);
+        TheSword theSword = attackedObject?.GetComponent<TheSword>();
+
+        if (theSword)
+        {
+            GameObject theWeaponOwner = theSword.GetTheWeaponOwner();
+
+            //Debug.Log(theWeaponOwner.name + " " + collidedObject.name + " " + attackedObject.name);
+
+            if (collidedObject != theWeaponOwner)
+            {
+                if (collidedObjectName.ToLower().IndexOf("First", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    TheFirstPlayer player = collidedObject.GetComponent<TheFirstPlayer>();
+
+                    if (!player.IsInvincible())
+                    {
+                        player.GetKnockBack(attackedObject.transform);
+                    }
+
+                    player.DecreaseLiveCount();
+                }
+
+                if (collidedObjectName.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    TheSecondPlayer player = collidedObject.GetComponent<TheSecondPlayer>();
+
+                    if (!player.IsInvincible())
+                    {
+                        player.GetKnockBack(attackedObject.transform);
+                    }
+
+                    player.DecreaseLiveCount();
+                }
+            }
+        }
+    }
+
     //Name is needed to retrieve object from the hierachy 
     //Tag is needed to identify the object
     public void CollisionHandler(string collidedObjectTag, 
@@ -265,37 +306,42 @@ public class TheGameManager : MonoBehaviour
     {
 
         if (collidedObjectTag == "Player" && attackedObjectTag == "Item") {
-            CollisionHandlerBetweenPlayerAndItem(collidedObjectName, attackedObjectName);
+            this.CollisionHandlerBetweenPlayerAndItem(collidedObjectName, attackedObjectName);
         }
 
         if (collidedObjectTag == "Monster" && attackedObjectTag == "Sword")
         {
-            CollisionHandlerBetweenMonsterAndSword(collidedObjectName, attackedObjectName);
+            this.CollisionHandlerBetweenMonsterAndSword(collidedObjectName, attackedObjectName);
         }
 
         if (collidedObjectTag == "Box" && attackedObjectTag == "Sword")
         {
-            CollisionHandlerBetweenBoxAndSword(collidedObjectName, attackedObjectName);
+            this.CollisionHandlerBetweenBoxAndSword(collidedObjectName, attackedObjectName);
         }
 
         if (collidedObjectTag == "Box" && attackedObjectTag == "Arrow")
         {
-            CollisionHandlerBoxAndArrow(collidedObjectName, attackedObjectName);
+            this.CollisionHandlerBoxAndArrow(collidedObjectName, attackedObjectName);
         }
 
         if (collidedObjectTag == "Monster" && attackedObjectTag == "Arrow")
         {
-            CollisionHandlerMonsterAndArrow(collidedObjectName, attackedObjectName);
+            this.CollisionHandlerMonsterAndArrow(collidedObjectName, attackedObjectName);
         }
 
         if (collidedObjectTag == "Player" && attackedObjectTag == "Monster")
         {
-            CollisionHandlerBetweenPlayerAndMonster(collidedObjectName, attackedObjectName);
+            this.CollisionHandlerBetweenPlayerAndMonster(collidedObjectName, attackedObjectName);
         }
 
         if (collidedObjectTag == "Player" && attackedObjectTag == "Trap")
         {
-            CollisionHandlerBetweenPlayerAndTrap(collidedObjectName, attackedObjectName);
+            this.CollisionHandlerBetweenPlayerAndTrap(collidedObjectName, attackedObjectName);
+        }
+
+        if (collidedObjectTag == "Player" && attackedObjectTag == "Sword")
+        {
+            this.CollisionHandlerBetweenPlayerAndSword(collidedObjectName, attackedObjectName);
         }
     }
 

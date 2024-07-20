@@ -134,7 +134,7 @@ public class TheWeapon : MonoBehaviour
 
     protected virtual void OnCollisionEnter2D(Collision2D other)
     {
-        theGameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);   
+        this.theGameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);   
     }
     public virtual double GetAmountDamageThatCanBeCaused()
     {
@@ -196,4 +196,8 @@ public class TheWeapon : MonoBehaviour
         return false;
     }
 
+    public GameObject GetTheWeaponOwner()
+    {
+        return this.theWeaponOwner;
+    }
 }
