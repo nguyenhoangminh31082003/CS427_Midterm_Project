@@ -134,8 +134,8 @@ Transform:
   m_GameObject: {fileID: 2509127933944270849}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.010000229, y: 0.23999977, z: 0}
-  m_LocalScale: {x: 0.38807556, y: 0.33572417, z: 0.38807556}
+  m_LocalPosition: {x: -0.0134, y: 0.23999977, z: 0}
+  m_LocalScale: {x: 1.2977703, y: 0.33572417, z: 0.38807556}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6632819735930351674}
@@ -259,8 +259,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.25, y: 0.22}
-  m_SizeDelta: {x: 0.7473, y: 0.4162}
+  m_AnchoredPosition: {x: -0.0124, y: 0.22}
+  m_SizeDelta: {x: 1.2721, y: 0.4162}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &1051156923629182490
 MeshRenderer:
@@ -357,9 +357,9 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
