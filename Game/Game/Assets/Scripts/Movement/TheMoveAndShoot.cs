@@ -40,8 +40,8 @@ public class TheMoveAndShoot : TheMovementBase
         }
 
         if (attackRange > 0 && canAttack) {
-            canAttack = false;
-            { // attack block
+            this.canAttack = false;
+            {
                 Vector2 targetDirection = theFirstPlayer.transform.position - transform.position;
                 
                 if (targetDirection.x < -0.1f) {
@@ -64,11 +64,11 @@ public class TheMoveAndShoot : TheMovementBase
 
     IEnumerator AttackCooldownRoutine() {
         yield return new WaitForSeconds(attackCD);
-        canAttack = true;
+        this.canAttack = true;
     }
 
     private Vector2 ResetRoamingPosition() {
-        timeRoaming = 0f;
+        this.timeRoaming = 0f;
         return new Vector2(Random.Range(-1f,1f), Random.Range(-1f,1f)).normalized;
     }
     

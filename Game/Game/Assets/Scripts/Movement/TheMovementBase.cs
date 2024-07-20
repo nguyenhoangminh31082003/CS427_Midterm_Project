@@ -6,6 +6,7 @@ public abstract class TheMovementBase : MonoBehaviour
 {
     [SerializeField] protected float moveSpeed = 2f;
     protected TheFirstPlayer theFirstPlayer;
+    protected TheSecondPlayer theSecondPlayer;
     protected TheEnemyController theEnemyController;
     protected Rigidbody2D rb;
     protected Knockback knockback;
@@ -14,18 +15,19 @@ public abstract class TheMovementBase : MonoBehaviour
 
     protected Animator _animator;
 
-    private Vector2 moveDir;
+    private Vector2 moveDirection;
     protected virtual void Awake()
     {
-        knockback = GetComponent<Knockback>();
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        _animator = GetComponent<Animator>();
-        theEnemyController = GetComponent<TheEnemyController>();
+        this.knockback = GetComponent<Knockback>();
+        this.rb = GetComponent<Rigidbody2D>();
+        this.sr = GetComponent<SpriteRenderer>();
+        this._animator = GetComponent<Animator>();
+        this.theEnemyController = GetComponent<TheEnemyController>();
         
     }
     protected virtual void Start() {
         this.theFirstPlayer = TheFirstPlayer.Instance;
+        this.theSecondPlayer = TheSecondPlayer.Instance;
     }
 
     protected virtual void Update() {}
@@ -33,26 +35,30 @@ public abstract class TheMovementBase : MonoBehaviour
     protected virtual void FixedUpdate() {    
         if (DialogueManager.Instance != null)
         {
-            if (DialogueManager.Instance.isDialogueActive) { 
+            if (DialogueManager.Instance.isDialogueActive) 
+            { 
                 return; 
             }
         }
 
-        if (knockback.gettingKnockedBack) { return; }
+        if (knockback.gettingKnockedBack) 
+        { 
+            return; 
+        }
 
-        rb.MovePosition(rb.position + moveDir * (moveSpeed * Time.fixedDeltaTime));
+        rb.MovePosition(rb.position + this.moveDirection * (moveSpeed * Time.fixedDeltaTime));
 
-        if (moveDir.x < -0.1f) {
+        if (this.moveDirection.x < -0.1f) {
             sr.flipX = true;
-        } else if (moveDir.x > 0.1f) {
+        } else if (this.moveDirection.x > 0.1f) {
             sr.flipX = false;
         }
     }
     public void MoveTo(Vector2 targetPosition) {
-        moveDir = targetPosition;
+        this.moveDirection = targetPosition;
     }
     public void StopMoving() {
-        moveDir = Vector3.zero;
+        this.moveDirection = Vector3.zero;
     }
 
     public abstract void Roaming();

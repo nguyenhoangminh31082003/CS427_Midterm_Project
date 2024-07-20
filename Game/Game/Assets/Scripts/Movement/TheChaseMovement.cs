@@ -1,6 +1,8 @@
+using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 
 public class TheChaseMovement : TheMovementBase
 {
@@ -21,17 +23,24 @@ public class TheChaseMovement : TheMovementBase
             StopMoving();
         }
         
-        if (Vector2.Distance(theFirstPlayer.transform.position, originalPosition) <= chaseRadius) {
+        if (Math.Min(Vector2.Distance(theFirstPlayer.transform.position, originalPosition), Vector2.Distance(theSecondPlayer.transform.position, originalPosition)) <= chaseRadius) {
             theEnemyController.SwitchToAttacking();
         }
     }
 
     public override void Attacking()
     {
-        MoveTo(((Vector2)theFirstPlayer.transform.position - (Vector2)transform.position).normalized);
-        
-        if (Vector2.Distance(theFirstPlayer.transform.position, originalPosition) > chaseRadius) {
-            theEnemyController.SwitchToRoaming();
+
+        float   firstDistance   =   Vector2.Distance(theFirstPlayer.transform.position, transform.position),
+                secondDistance  =   Vector2.Distance(theSecondPlayer.transform.position, transform.position);
+
+        if (firstDistance < secondDistance)
+            this.MoveTo(((Vector2)theFirstPlayer.transform.position - (Vector2)transform.position).normalized);
+        else if (secondDistance < firstDistance)
+            this.MoveTo(((Vector2)theSecondPlayer.transform.position - (Vector2)transform.position).normalized);
+
+        if (Math.Min(Vector2.Distance(theFirstPlayer.transform.position, originalPosition), Vector2.Distance(theSecondPlayer.transform.position, originalPosition)) > chaseRadius) {
+            this.theEnemyController.SwitchToRoaming();
         }
     }
 }
