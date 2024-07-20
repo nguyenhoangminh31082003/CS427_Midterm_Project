@@ -85,7 +85,7 @@ public class TheFirstPlayer : ThePlayer
 
     protected override void UpdateKeyUsage()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.K))
         {
             //WHERE IS THE MANAGER!!!
         }
@@ -93,7 +93,7 @@ public class TheFirstPlayer : ThePlayer
 
     protected override void UpdateCurrentlyUsedWeapon()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             this.bag.MoveToTheNextWeaponAsTheCurrentWeapon();
         }

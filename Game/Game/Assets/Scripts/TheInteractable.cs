@@ -34,12 +34,12 @@ public abstract class TheInteractable : MonoBehaviour
     {
         float firstDistance = Vector2.Distance(transform.position, theFirstPlayer.transform.position),
                 secondDistance = Vector2.Distance(transform.position, theSecondPlayer.transform.position);
-        bool isTheFirstPlayerAttacking = Input.GetKeyDown(KeyCode.E),
-                isTheSecondPlayerAttacking = Input.GetKeyDown(KeyCode.O);
+        bool isTheFirstPlayerAttacking = Input.GetKeyDown(KeyCode.K),
+                isTheSecondPlayerAttacking = Input.GetKeyDown(KeyCode.Keypad2);
 
         if (firstDistance <= this.interactionRadius && secondDistance <= this.interactionRadius)
         {
-            this.content = "E|O";
+            this.content = "K|2";
 
             this.isPlayerInRange = true;
 
@@ -71,7 +71,7 @@ public abstract class TheInteractable : MonoBehaviour
 
         if (firstDistance <= this.interactionRadius)
         {
-            this.content = "E";
+            this.content = "K";
 
             this.isPlayerInRange = true;
 
@@ -87,7 +87,7 @@ public abstract class TheInteractable : MonoBehaviour
 
         if (secondDistance <= this.interactionRadius)
         {
-            this.content = "O";
+            this.content = "2";
 
             this.isPlayerInRange = true;
 
