@@ -35,6 +35,11 @@ public class ThePlayer : MonoBehaviour
 
     protected bool partialInitialized = false;
 
+    protected virtual void Awake()
+    {
+
+    }
+
     public void SetDefaultValuesToPlayerPrefs()
     {
         PlayerPrefs.SetString("invincible", false.ToString());
@@ -93,13 +98,7 @@ public class ThePlayer : MonoBehaviour
         this.partialInitialized = true;
     }
 
-
-    protected virtual void Awake()
-    {
-        
-    }
-
-    void Start()
+    protected virtual void Start()
     {
         //this.LoadDataFromPlayerPrefs();
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
@@ -220,7 +219,7 @@ public class ThePlayer : MonoBehaviour
         this.speedY *= percentage;
     }
 
-    void Update()
+    protected void Update()
     {
         if (dialogueManager != null)
         {
@@ -237,7 +236,7 @@ public class ThePlayer : MonoBehaviour
         this.UpdateKeyUsage();
     }
 
-    private void UpdateKeyUsage()
+    protected virtual void UpdateKeyUsage()
     {
         if (Input.GetKey(KeyCode.E))
         {
@@ -272,7 +271,7 @@ public class ThePlayer : MonoBehaviour
         return this.bag.ChangeChestKeyCount(-delta);
     }
 
-    private void UpdateCurrentlyUsedWeapon()
+    protected virtual void UpdateCurrentlyUsedWeapon()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -280,12 +279,12 @@ public class ThePlayer : MonoBehaviour
         }
     }
 
-    private void UpdateAttack()
+    protected void UpdateAttack()
     {
         this.bag.UseCurrentWeaponToAttackWithConsideringKeyboard();
     }
 
-    private void UpdateCanvasElement()
+    protected void UpdateCanvasElement()
     {
         if (this.liveCountText != null)
             this.liveCountText.text = this.liveCount.ToString();
@@ -293,7 +292,7 @@ public class ThePlayer : MonoBehaviour
             this.coinCountText.text = this.coinCount.ToString();
     }
 
-    private void UpdateInvincibilityStatus()
+    protected void UpdateInvincibilityStatus()
     {
         if (this.invincible)
         {
@@ -318,7 +317,7 @@ public class ThePlayer : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (dialogueManager != null)
         {
@@ -352,9 +351,10 @@ public class ThePlayer : MonoBehaviour
         return this.liveCount > 0;
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    protected void OnCollisionEnter2D(Collision2D other)
     {
-        if (IsAttacking()) return;
+        if (IsAttacking()) 
+            return;
 
         if (other.transform.tag == "Monster" || other.transform.tag == "Trap")
         {
