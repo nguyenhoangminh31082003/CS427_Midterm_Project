@@ -33,14 +33,18 @@ public class ThePickup : MonoBehaviour
 
     private void Start() {
         theGameManager = TheGameManager.Instance;
-        if (pickUpType == PickUpType.SilverKey || pickUpType == PickUpType.GoldKey) { return; }
+        if (pickUpType == PickUpType.SilverKey || pickUpType == PickUpType.GoldKey) 
+        { 
+               return; 
+        }
         StartCoroutine(AnimCurveSpawnRoutine());
     }
 
     private void Update() {
-        Vector3 theFirstPlayerPosition = TheFirstPlayer.Instance.transform.position;
+        Vector3 theFirstPlayerPosition = TheFirstPlayer.Instance.transform.position,
+                theSecondPlayerPosition = TheSecondPlayer.Instance.transform.position;
         float   firstDistance = Vector3.Distance(transform.position, theFirstPlayerPosition),
-                secondDistance = firstDistance + 1;
+                secondDistance = Vector3.Distance(transform.position, theSecondPlayerPosition);
 
         if (firstDistance < secondDistance)
         {
@@ -57,7 +61,16 @@ public class ThePickup : MonoBehaviour
         }
         else if (secondDistance < pickUpDistance) 
         {
-
+            if (secondDistance < pickUpDistance)
+            {
+                moveDir = (theSecondPlayerPosition - transform.position).normalized;
+                moveSpeed += accelartionRate;
+            }
+            else
+            {
+                moveDir = Vector3.zero;
+                moveSpeed = 0;
+            }
         }
         
     }

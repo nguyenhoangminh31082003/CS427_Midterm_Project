@@ -14749,6 +14749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40f589f92bc9d94e8c0690f46359d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theWeaponOwner: {fileID: 0}
   weightPerUnit: 0
   currentlyUsed: 0
   number: 0
@@ -16374,6 +16375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96a95c22e585e0419921b19fdd702a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theWeaponOwner: {fileID: 0}
   weightPerUnit: 0
   currentlyUsed: 0
   number: 0
@@ -18606,6 +18608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6fdde6185af3a47a49afc3ed793db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theWeaponOwner: {fileID: 0}
   weightPerUnit: 0
   currentlyUsed: 0
   number: 0
@@ -20663,7 +20666,7 @@ MonoBehaviour:
   liveCountText: {fileID: 763545253}
   coinCountText: {fileID: 429764136}
   playerBag: {fileID: 1188293713}
-  liveCount: 0
+  liveCount: 5
 --- !u!70 &672730412
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -25449,6 +25452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40f589f92bc9d94e8c0690f46359d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theWeaponOwner: {fileID: 0}
   weightPerUnit: 0
   currentlyUsed: 0
   number: 0
@@ -25584,6 +25588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6fdde6185af3a47a49afc3ed793db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theWeaponOwner: {fileID: 0}
   weightPerUnit: 0
   currentlyUsed: 0
   number: 0
@@ -66566,6 +66571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96a95c22e585e0419921b19fdd702a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  theWeaponOwner: {fileID: 0}
   weightPerUnit: 0
   currentlyUsed: 0
   number: 0

@@ -21,7 +21,7 @@ public class TheSecondPlayer : MonoBehaviour
     public const double DEFAULT_SPEED = 4;
 
     private DialogueManager dialogueManager;
-    private GameManager gameManager;
+    private TheGameManager theGameManager;
     private Knockback knockback;
 
     private SpriteRenderer spriteRenderer;
@@ -129,7 +129,7 @@ public class TheSecondPlayer : MonoBehaviour
             this.lastDamageTime = 0;
         }
 
-        this.gameManager = GameManager.Instance;
+        this.theGameManager = TheGameManager.Instance;
         this.dialogueManager = DialogueManager.Instance;
     }
 
@@ -366,7 +366,7 @@ public class TheSecondPlayer : MonoBehaviour
 
         if (other.transform.tag == "Monster" || other.transform.tag == "Trap")
         {
-            gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
+            theGameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
         }
     }
 

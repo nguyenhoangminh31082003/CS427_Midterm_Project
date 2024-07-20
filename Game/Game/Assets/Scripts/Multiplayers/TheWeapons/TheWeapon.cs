@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class TheWeapon : MonoBehaviour
 {
-
+    [SerializeField] protected GameObject theWeaponOwner;
     [SerializeField] protected double weightPerUnit;
     [SerializeField] protected bool currentlyUsed;
     [SerializeField] protected int number;

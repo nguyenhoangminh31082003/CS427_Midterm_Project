@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public abstract class TheInteractable : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public abstract class TheInteractable : MonoBehaviour
     private bool isPlayerInRange = false;
 
     private TheFirstPlayer theFirstPlayer;
+    private TheSecondPlayer theSecondPlayer;
     
     private Transform textBubble;
     protected DialogueManager dialogueManager;
@@ -19,39 +21,71 @@ public abstract class TheInteractable : MonoBehaviour
     protected virtual void Start()
     {
         dialogueManager = DialogueManager.Instance;
-        theFirstPlayer = TheFirstPlayer.Instance;
-        theGameManager = TheGameManager.Instance;
+        this.theFirstPlayer = TheFirstPlayer.Instance;
+        this.theSecondPlayer = TheSecondPlayer.Instance;
+        this.theGameManager = TheGameManager.Instance;
     }
 
     protected virtual void Update()
     {
         // Check the distance between the player and the interactable object
-        float distance = Vector2.Distance(transform.position, theFirstPlayer.transform.position);
+        float   firstDistance   =   Vector2.Distance(transform.position, theFirstPlayer.transform.position),
+                secondDistance  =   Vector2.Distance(transform.position, theSecondPlayer.transform.position);
 
-        if (distance <= interactionRadius)
+        if (firstDistance < secondDistance)
         {
-            if (!isPlayerInRange)
+            if (firstDistance <= interactionRadius)
             {
-                isPlayerInRange = true;
-                OnPlayerEnterRange();
+                if (!isPlayerInRange)
+                {
+                    isPlayerInRange = true;
+                    OnPlayerEnterRange();
+                }
+
+            }
+            else
+            {
+                if (isPlayerInRange)
+                {
+                    isPlayerInRange = false;
+                    OnPlayerExitRange();
+                }
             }
 
-        }
-        else
-        {
-            if (isPlayerInRange)
+            if (Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
             {
-                isPlayerInRange = false;
-                OnPlayerExitRange();
+                Debug.Log("press e");
+                Interact(1);
+            }
+        }
+        else if (secondDistance < firstDistance)
+        {
+            if (secondDistance <= interactionRadius)
+            {
+                if (!isPlayerInRange)
+                {
+                    isPlayerInRange = true;
+                    OnPlayerEnterRange();
+                }
+
+            }
+            else
+            {
+                if (isPlayerInRange)
+                {
+                    isPlayerInRange = false;
+                    OnPlayerExitRange();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
+            {
+                Debug.Log("press e");
+                Interact(2);
             }
         }
 
-        // Check if the player presses the "E" key
-        if (Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
-        {
-            Debug.Log("press e");
-            Interact(1);
-        }
+        
     }
 
     // Method called when the player presses "E" within range
