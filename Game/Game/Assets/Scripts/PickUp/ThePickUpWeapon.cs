@@ -24,14 +24,14 @@ public class ThePickUpWeapon : TheInteractable
         Debug.Log("Picked " + weaponType.ToString());
 
         if (whichPlayer == 1)
-            theGameManager.CollisionHandler(TheFirstPlayer.Instance.tag, TheFirstPlayer.Instance.name, "Item", this.transform.name);
+            this.theGameManager.CollisionHandler(TheFirstPlayer.Instance.tag, TheFirstPlayer.Instance.name, "Item", this.transform.name);
         else if (whichPlayer == 2)
-            theGameManager.CollisionHandler(TheSecondPlayer.Instance.tag, TheSecondPlayer.Instance.name, "Item", this.transform.name);
+            this.theGameManager.CollisionHandler(TheSecondPlayer.Instance.tag, TheSecondPlayer.Instance.name, "Item", this.transform.name);
     }
 
     public ItemWeaponType GetPickUpType()
     {
-        return weaponType;
+        return this.weaponType;
     }
 
     private IEnumerator AnimCurveSpawnRoutine() {

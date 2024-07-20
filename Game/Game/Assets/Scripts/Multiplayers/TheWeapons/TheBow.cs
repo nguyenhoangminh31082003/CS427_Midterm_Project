@@ -10,6 +10,8 @@ public class TheBow : TheWeapon
     [SerializeField] protected Sprite stillBowSprite;
     [SerializeField] protected int unusedArrowCount;
 
+    [SerializeField] protected string attackingKeyButton;
+
     private float mostRecentFinishingAttackTime;
     private GameObject currentlyHeldArrow;
     private string arrowIndex;
@@ -165,25 +167,36 @@ public class TheBow : TheWeapon
 
     public override bool AttackWithConsideringKeyboard()
     {
-        bool    spaceEntered    = Input.GetKeyDown(KeyCode.Space),
-                spaceHeld       = Input.GetKey(KeyCode.Space),
-                spaceReleased   = Input.GetKeyUp(KeyCode.Space),
-                result          = false;
 
-        if (spaceEntered)
+        bool result = false;
+
+        try
         {
-            result = result || this.StartHolding();
+            KeyCode keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), this.attackingKeyButton, true);
+
+            bool    buttonEntered = Input.GetKeyDown(keyCode),
+                    buttonHeld = Input.GetKey(keyCode),
+                    buttonReleased = Input.GetKeyUp(keyCode);
+                    
+            if (buttonEntered)
+            {
+                result = result || this.StartHolding();
+            }
+
+            if (buttonHeld)
+            {
+
+            }
+
+            if (buttonReleased)
+            {
+                result = result || this.Shot();
+                AudioManager.Instance.PlaySFX("human_atk_arrow");
+            }
         }
-
-        if (spaceHeld)
+        catch (System.ArgumentException)
         {
-
-        }
-
-        if (spaceReleased)
-        {
-            result = result || this.Shot();
-            AudioManager.Instance.PlaySFX("human_atk_arrow");
+            return false;
         }
 
         return result;

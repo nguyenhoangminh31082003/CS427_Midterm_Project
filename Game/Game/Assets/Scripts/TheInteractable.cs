@@ -16,7 +16,7 @@ public abstract class TheInteractable : MonoBehaviour
     protected TheGameManager theGameManager;
 
     protected virtual void Awake() {
-        textBubble = this.transform.Find("TextBubble");
+        this.textBubble = this.transform.Find("TextBubble");
     }
     protected virtual void Start()
     {
@@ -28,7 +28,6 @@ public abstract class TheInteractable : MonoBehaviour
 
     protected virtual void Update()
     {
-        // Check the distance between the player and the interactable object
         float   firstDistance   =   Vector2.Distance(transform.position, theFirstPlayer.transform.position),
                 secondDistance  =   Vector2.Distance(transform.position, theSecondPlayer.transform.position);
 
@@ -62,25 +61,25 @@ public abstract class TheInteractable : MonoBehaviour
         {
             if (secondDistance <= interactionRadius)
             {
-                if (!isPlayerInRange)
+                if (!this.isPlayerInRange)
                 {
-                    isPlayerInRange = true;
-                    OnPlayerEnterRange();
+                    this.isPlayerInRange = true;
+                    this.OnPlayerEnterRange();
                 }
 
             }
             else
             {
-                if (isPlayerInRange)
+                if (this.isPlayerInRange)
                 {
-                    isPlayerInRange = false;
-                    OnPlayerExitRange();
+                    this.isPlayerInRange = false;
+                    this.OnPlayerExitRange();
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
+            if (Input.GetKeyDown(KeyCode.O) && isPlayerInRange)
             {
-                Debug.Log("press e");
+                Debug.Log("press o");
                 Interact(2);
             }
         }
@@ -88,26 +87,25 @@ public abstract class TheInteractable : MonoBehaviour
         
     }
 
-    // Method called when the player presses "E" within range
+    // Method called when the player presses "E" (with the first player) or "O" (with the second player) within range
     protected abstract void Interact(int whichPlayer);
 
     protected virtual void OnPlayerEnterRange()
     {
-        if (textBubble) {
-            textBubble.gameObject.SetActive(true);
+        if (this.textBubble) {
+            this.textBubble.gameObject.SetActive(true);
         }
         
     }
 
     protected virtual void OnPlayerExitRange()
     {
-        if (textBubble) {
-            textBubble.gameObject.SetActive(false);
+        if (this.textBubble) {
+            this.textBubble.gameObject.SetActive(false);
         }
         
     }
 
-    // Draw the interaction radius in the editor
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

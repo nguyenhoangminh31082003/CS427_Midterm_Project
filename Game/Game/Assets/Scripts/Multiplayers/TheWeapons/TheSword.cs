@@ -10,6 +10,8 @@ public class TheSword : TheWeapon
     [SerializeField] private Sprite movingSwordSprite;
     [SerializeField] private Sprite stillSwordSprite;
 
+    [SerializeField] private string attackingKeyButton;
+
     private bool attacking;
     private float attackStartTime;
     private CapsuleCollider2D movingCollider;
@@ -114,10 +116,16 @@ public class TheSword : TheWeapon
 
     public override bool AttackWithConsideringKeyboard()
     {
-        bool spaceEntered = Input.GetKeyDown(KeyCode.Space);
-        if (spaceEntered)
+        try
         {
-            return this.Attack();
+            if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), this.attackingKeyButton, true)))
+            {
+                return this.Attack();
+            }
+        }
+        catch (System.ArgumentException)
+        {
+            return false;
         }
         return false;
     }

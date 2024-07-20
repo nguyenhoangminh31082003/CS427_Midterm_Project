@@ -33,10 +33,12 @@ public class ThePickup : MonoBehaviour
 
     private void Start() {
         theGameManager = TheGameManager.Instance;
+
         if (pickUpType == PickUpType.SilverKey || pickUpType == PickUpType.GoldKey) 
         { 
                return; 
         }
+        
         StartCoroutine(AnimCurveSpawnRoutine());
     }
 
@@ -50,26 +52,26 @@ public class ThePickup : MonoBehaviour
         {
             if (firstDistance < pickUpDistance)
             {
-                moveDir = (theFirstPlayerPosition - transform.position).normalized;
-                moveSpeed += accelartionRate;
+                this.moveDir = (theFirstPlayerPosition - transform.position).normalized;
+                this.moveSpeed += accelartionRate;
             }
             else
             {
-                moveDir = Vector3.zero;
-                moveSpeed = 0;
+                this.moveDir = Vector3.zero;
+                this.moveSpeed = 0;
             }
         }
         else if (secondDistance < pickUpDistance) 
         {
             if (secondDistance < pickUpDistance)
             {
-                moveDir = (theSecondPlayerPosition - transform.position).normalized;
-                moveSpeed += accelartionRate;
+                this.moveDir = (theSecondPlayerPosition - transform.position).normalized;
+                this.moveSpeed += accelartionRate;
             }
             else
             {
-                moveDir = Vector3.zero;
-                moveSpeed = 0;
+                this.moveDir = Vector3.zero;
+                this.moveSpeed = 0;
             }
         }
         
@@ -80,21 +82,21 @@ public class ThePickup : MonoBehaviour
     }
     public PickUpType GetPickUpType()
     {
-        return pickUpType;
+        return this.pickUpType;
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         
         if (other.transform.tag == "Player")
         {
-            theGameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);
+            this.theGameManager.CollisionHandler(other.transform.tag, other.transform.name, this.tag, this.name);
         }
     }
 
     private IEnumerator AnimCurveSpawnRoutine() {
-        Vector2 startPoint = transform.position;
-        float randomX = transform.position.x + Random.Range(-2f, 2f);
-        float randomY = transform.position.y + Random.Range(-1f, 1f);
+        Vector2 startPoint  = transform.position;
+        float randomX       = transform.position.x + Random.Range(-2f, 2f);
+        float randomY       = transform.position.y + Random.Range(-1f, 1f);
 
         Vector2 endPoint = new Vector2(randomX, randomY);
 

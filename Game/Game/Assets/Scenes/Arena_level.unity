@@ -19785,6 +19785,7 @@ MonoBehaviour:
   theSampleArrow: {fileID: 868932700}
   stillBowSprite: {fileID: 21300000, guid: 5cb38364f0c17494cbd5d7e705889a4e, type: 3}
   unusedArrowCount: 0
+  attackingKeyButton: X
 --- !u!1 &485783695 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8248736938809600413, guid: 30da1157bd44cd5499fe8a57e47a390f, type: 3}
@@ -22055,6 +22056,7 @@ MonoBehaviour:
   damageCausedPerHit: 42
   movingSwordSprite: {fileID: 21300000, guid: 83aaa63eec275e5449f4d6a59d5a39a8, type: 3}
   stillSwordSprite: {fileID: 21300000, guid: 3d9e76a44a6786e4cae51c98707859f9, type: 3}
+  attackingKeyButton: X
 --- !u!1 &581687345
 GameObject:
   m_ObjectHideFlags: 0
@@ -29147,6 +29149,7 @@ MonoBehaviour:
   damageCausedPerHit: 42
   movingSwordSprite: {fileID: 21300000, guid: 83aaa63eec275e5449f4d6a59d5a39a8, type: 3}
   stillSwordSprite: {fileID: 21300000, guid: 3d9e76a44a6786e4cae51c98707859f9, type: 3}
+  attackingKeyButton: Space
 --- !u!70 &882942935
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -71242,6 +71245,7 @@ MonoBehaviour:
   theSampleArrow: {fileID: 420226080}
   stillBowSprite: {fileID: 21300000, guid: 5cb38364f0c17494cbd5d7e705889a4e, type: 3}
   unusedArrowCount: 0
+  attackingKeyButton: Space
 --- !u!212 &2040273483
 SpriteRenderer:
   m_ObjectHideFlags: 0
