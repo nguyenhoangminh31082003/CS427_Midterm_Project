@@ -47,7 +47,7 @@ public class TheSecondPlayer : ThePlayer
         this.dialogueManager = DialogueManager.Instance;
     }
 
-    private void UpdateVelocity()
+    protected override void UpdateVelocity()
     {
         bool rightArrow     = Input.GetKey(KeyCode.RightArrow),
              leftArrow      = Input.GetKey(KeyCode.LeftArrow),

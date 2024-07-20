@@ -190,7 +190,7 @@ public class ThePlayer : MonoBehaviour
         return false;
     }
 
-    private void UpdateVelocity()
+    protected virtual void UpdateVelocity()
     {
         bool rightArrow = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D),
              leftArrow = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A),
