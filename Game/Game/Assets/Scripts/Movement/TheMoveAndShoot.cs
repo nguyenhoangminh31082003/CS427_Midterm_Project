@@ -1,6 +1,7 @@
+using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class TheMoveAndShoot : TheMovementBase
 {
@@ -22,8 +23,9 @@ public class TheMoveAndShoot : TheMovementBase
 
     public override void Roaming()
     {
-        timeRoaming += Time.deltaTime;
-        if (Vector2.Distance(theFirstPlayer.transform.position, transform.position) <= attackRange) {
+        this.timeRoaming += Time.deltaTime;
+
+        if (Math.Min(Vector2.Distance(theFirstPlayer.transform.position, transform.position), Vector2.Distance(theSecondPlayer.transform.position, transform.position)) <= attackRange) {
             theEnemyController.SwitchToAttacking();
         }
         
@@ -35,12 +37,20 @@ public class TheMoveAndShoot : TheMovementBase
 
     public override void Attacking()
     {
-        if (Vector2.Distance(theFirstPlayer.transform.position, transform.position) > attackRange) {
-            theEnemyController.SwitchToRoaming();
+        float   firstDistance   =   Vector2.Distance(theFirstPlayer.transform.position, transform.position),
+                secondDistance  =   Vector2.Distance(theSecondPlayer.transform.position, transform.position),
+                distance        =   Math.Min(firstDistance, secondDistance);
+
+        if (distance > attackRange) {
+            this.theEnemyController.SwitchToRoaming();
         }
 
         if (attackRange > 0 && canAttack) {
+            int randomness  =    UnityEngine.Random.Range(0, 3); 
+           
             this.canAttack = false;
+            
+            if ((randomness == 1) || (randomness == 0 && firstDistance < secondDistance))
             {
                 Vector2 targetDirection = theFirstPlayer.transform.position - transform.position;
                 
@@ -50,11 +60,30 @@ public class TheMoveAndShoot : TheMovementBase
                     sr.flipX = false;
                 }
                 _animator.SetTrigger("attack");
+                
                 GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                 newBullet.transform.right = targetDirection;
             }
-            if (stopWhenAttack) {
-                StopMoving();
+            else if ((randomness == 2) || (randomness == 0 && secondDistance < firstDistance))
+            {
+                Vector2 targetDirection = theSecondPlayer.transform.position - transform.position;
+
+                if (targetDirection.x < -0.1f)
+                {
+                    sr.flipX = true;
+                }
+                else if (targetDirection.x > 0.1f)
+                {
+                    sr.flipX = false;
+                }
+                _animator.SetTrigger("attack");
+
+                GameObject newBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                newBullet.transform.right = targetDirection;
+            }
+
+            if (this.stopWhenAttack) {
+                this.StopMoving();
             }
 
             StartCoroutine(AttackCooldownRoutine());
@@ -69,7 +98,7 @@ public class TheMoveAndShoot : TheMovementBase
 
     private Vector2 ResetRoamingPosition() {
         this.timeRoaming = 0f;
-        return new Vector2(Random.Range(-1f,1f), Random.Range(-1f,1f)).normalized;
+        return new Vector2(UnityEngine.Random.Range(-1f,1f), UnityEngine.Random.Range(-1f,1f)).normalized;
     }
     
 

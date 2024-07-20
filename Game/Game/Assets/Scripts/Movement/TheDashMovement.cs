@@ -1,5 +1,6 @@
-using System.Collections;
+using System;
 using UnityEngine;
+using System.Collections;
 
 public class TheDashMovement : TheMovementBase
 {
@@ -17,36 +18,56 @@ public class TheDashMovement : TheMovementBase
     protected override void Start() 
     {
         base.Start();
-        originalSpeed = moveSpeed;
+        this.originalSpeed = moveSpeed;
     }
 
     public override void Roaming()
     {
-        if (freezed && Vector2.Distance(transform.position, this.theFirstPlayer.transform.position) <= chaseRadius) {
-            freezed = false;
+
+        float firstDistance = Vector2.Distance(this.transform.position, this.theFirstPlayer.transform.position),
+              secondDistance = Vector2.Distance(this.transform.position, this.theSecondPlayer.transform.position),
+              distance = Mathf.Min(firstDistance, secondDistance);
+
+        if (this.freezed && distance <= this.chaseRadius) {
+            this.freezed = false;
         }
 
-        if (freezed) { return; }
+        if (this.freezed) 
+        { 
+            return; 
+        }
 
-        if (Vector2.Distance(transform.position, this.theFirstPlayer.transform.position) <= dashRadius) {
+        if (distance <= this.dashRadius) {
             this.theEnemyController.SwitchToAttacking();
         }
 
-        MoveTo(((Vector2)theFirstPlayer.transform.position - (Vector2)transform.position).normalized);
+        if (firstDistance < secondDistance)
+            this.MoveTo(((Vector2)this.theFirstPlayer.transform.position - (Vector2)this.transform.position).normalized);
+        else if (secondDistance < firstDistance)
+            this.MoveTo(((Vector2)this.theSecondPlayer.transform.position - (Vector2)this.transform.position).normalized);
     }
 
     public override void Attacking()
     {
-        if (Vector2.Distance(transform.position, this.theFirstPlayer.transform.position) > dashRadius) {
+        float firstDistance = Vector2.Distance(this.transform.position, this.theFirstPlayer.transform.position),
+              secondDistance = Vector2.Distance(this.transform.position, this.theSecondPlayer.transform.position),
+              distance = Mathf.Min(firstDistance, secondDistance);
+
+        if (distance > this.dashRadius) 
+        {
             this.theEnemyController.SwitchToRoaming();
         }
 
-        MoveTo(((Vector2)this.theFirstPlayer.transform.position - (Vector2)transform.position).normalized);
+        if (firstDistance < secondDistance)
+            this.MoveTo(((Vector2)this.theFirstPlayer.transform.position - (Vector2)transform.position).normalized);
+        else if (secondDistance < firstDistance)
+            this.MoveTo(((Vector2)this.theSecondPlayer.transform.position - (Vector2)transform.position).normalized);
 
-        if (canDash && !isDashing) {
-            canDash = false;
-            isDashing = true;
-            moveSpeed *= dashSpeed;
+        if (this.canDash && !this.isDashing) 
+        {
+            this.canDash = false;
+            this.isDashing = true;
+            this.moveSpeed *= dashSpeed;
             StartCoroutine(EndDashRoutine());
         }
     }
@@ -54,9 +75,9 @@ public class TheDashMovement : TheMovementBase
     private IEnumerator EndDashRoutine() {
         float dashTime = .2f;
         yield return new WaitForSeconds(dashTime);
-        isDashing = false;
-        moveSpeed = originalSpeed;
+        this.isDashing = false;
+        this.moveSpeed = originalSpeed;
         yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
+        this.canDash = true;
     }
 }

@@ -25,14 +25,16 @@ public abstract class TheMovementBase : MonoBehaviour
         this.theEnemyController = GetComponent<TheEnemyController>();
         
     }
-    protected virtual void Start() {
+    protected virtual void Start() 
+    {
         this.theFirstPlayer = TheFirstPlayer.Instance;
         this.theSecondPlayer = TheSecondPlayer.Instance;
     }
 
     protected virtual void Update() {}
         
-    protected virtual void FixedUpdate() {    
+    protected virtual void FixedUpdate() 
+    {    
         if (DialogueManager.Instance != null)
         {
             if (DialogueManager.Instance.isDialogueActive) 
@@ -54,7 +56,8 @@ public abstract class TheMovementBase : MonoBehaviour
             sr.flipX = false;
         }
     }
-    public void MoveTo(Vector2 targetPosition) {
+    public void MoveTo(Vector2 targetPosition) 
+    {
         this.moveDirection = targetPosition;
     }
     public void StopMoving() {
