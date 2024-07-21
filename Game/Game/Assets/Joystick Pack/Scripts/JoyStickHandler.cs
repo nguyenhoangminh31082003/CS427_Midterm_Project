@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class JoyStickHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private DialogueManager dialogueManager;
     void Start()
     {
-        
+        this.dialogueManager = DialogueManager.Instance;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (dialogueManager != null)
+        {
+            if (dialogueManager.isDialogueActive)
+            {
+                this.gameObject.SetActive(false);
+                return;
+            }
+        }
+        this.gameObject.SetActive(true);
     }
 }
