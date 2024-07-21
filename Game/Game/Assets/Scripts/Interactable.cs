@@ -50,9 +50,9 @@ public abstract class Interactable : MonoBehaviour
         }
 
         // Check if the player presses the "E" key
-        if (Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
+        if (!dialogueManager.isDialogueActive && Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
         {
-            Debug.Log("press e");
+            //Debug.Log("press e");
             Interact();
         }
     }
@@ -73,7 +73,6 @@ public abstract class Interactable : MonoBehaviour
         if (textBubble) {
             textBubble.gameObject.SetActive(false);
         }
-        
     }
 
     // Draw the interaction radius in the editor

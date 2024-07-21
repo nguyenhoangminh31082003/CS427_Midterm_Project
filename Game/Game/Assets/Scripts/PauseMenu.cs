@@ -6,6 +6,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject endGameMenu;
     private bool isOn = false;
 
     public void Pause() {
@@ -14,11 +15,22 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Resume() {
-        isOn = false;
+        isOn = false;   
         mainMenu.SetActive(false);
     }
 
     void Update() {
+
+        if (MainCharacter.Instance.IsDead())
+        {
+            if (!isOn)
+            {
+                endGameMenu.SetActive(true);
+                isOn = true;
+            }
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.P)) {
             if (!isOn) Pause();
             else Resume();

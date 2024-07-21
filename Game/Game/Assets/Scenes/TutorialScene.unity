@@ -607,6 +607,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 18151936}
+  - component: {fileID: 18151937}
   m_Layer: 5
   m_Name: Arrows
   m_TagString: Untagged
@@ -640,6 +641,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000015258789, y: -0.000014782}
   m_SizeDelta: {x: 280, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &18151937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18151935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00309cb71d8bc494a8c6b91ee0f5d2f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrowsPrice: 35
 --- !u!1 &23079633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,12 +1712,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 72212907}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 72212907}
+  m_maskType: 0
 --- !u!23 &72212907
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3564,12 +3578,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 120829262}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 120829262}
+  m_maskType: 0
 --- !u!23 &120829262
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5846,12 +5860,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 200065284}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 200065284}
+  m_maskType: 0
 --- !u!23 &200065284
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6333,7 +6347,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 233151870}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 18151937}
+        m_TargetAssemblyTypeName: ArrowShop, Assembly-CSharp
+        m_MethodName: BuyArrows
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1528255317}
+        m_TargetAssemblyTypeName: ShopCoin, Assembly-CSharp
+        m_MethodName: UpdateCoin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &233151870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6495,12 +6533,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 233153771}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 233153771}
+  m_maskType: 0
 --- !u!23 &233153771
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8214,12 +8252,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 319733777}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 319733777}
+  m_maskType: 0
 --- !u!23 &319733777
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10750,12 +10788,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 420124930}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 420124930}
+  m_maskType: 0
 --- !u!23 &420124930
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10921,12 +10959,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 424378199}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 424378199}
+  m_maskType: 0
 --- !u!23 &424378199
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11123,12 +11161,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 434006481}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 434006481}
+  m_maskType: 0
 --- !u!23 &434006481
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15810,12 +15848,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 649056613}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 649056613}
+  m_maskType: 0
 --- !u!23 &649056613
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22441,7 +22479,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $ 25
+  m_text: $ 50
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a73ddf18ef2f8cce0a3cf31eb6213e3a, type: 2}
   m_sharedMaterial: {fileID: 638876542881690735, guid: a73ddf18ef2f8cce0a3cf31eb6213e3a, type: 2}
@@ -92712,12 +92750,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1067994464}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1067994464}
+  m_maskType: 0
 --- !u!23 &1067994464
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94538,12 +94576,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1152729072}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1152729072}
+  m_maskType: 0
 --- !u!23 &1152729072
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -96436,12 +96474,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1217117885}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1217117885}
+  m_maskType: 0
 --- !u!23 &1217117885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -97814,7 +97852,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4 x arrows
+  m_text: 4 x Arrows
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a73ddf18ef2f8cce0a3cf31eb6213e3a, type: 2}
   m_sharedMaterial: {fileID: 638876542881690735, guid: a73ddf18ef2f8cce0a3cf31eb6213e3a, type: 2}
@@ -98014,12 +98052,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1318791223}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1318791223}
+  m_maskType: 0
 --- !u!23 &1318791223
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -98370,7 +98408,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1 x sword
+  m_text: ATK+
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a73ddf18ef2f8cce0a3cf31eb6213e3a, type: 2}
   m_sharedMaterial: {fileID: 638876542881690735, guid: a73ddf18ef2f8cce0a3cf31eb6213e3a, type: 2}
@@ -99135,12 +99173,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1372384362}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1372384362}
+  m_maskType: 0
 --- !u!23 &1372384362
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -100481,12 +100519,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1417487363}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1417487363}
+  m_maskType: 0
 --- !u!23 &1417487363
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -101525,12 +101563,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1488657019}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1488657019}
+  m_maskType: 0
 --- !u!23 &1488657019
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -101757,7 +101795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &1514587831
 Canvas:
   m_ObjectHideFlags: 0
@@ -101765,7 +101803,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514587830}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -101810,10 +101848,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1980, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -104755,12 +104793,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1639563414}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1639563414}
+  m_maskType: 0
 --- !u!23 &1639563414
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -106638,12 +106676,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1730543733}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1730543733}
+  m_maskType: 0
 --- !u!23 &1730543733
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -107250,12 +107288,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1757078641}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1757078641}
+  m_maskType: 0
 --- !u!23 &1757078641
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -109369,6 +109407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 1514587830}
+  endGameMenu: {fileID: 2087733509}
 --- !u!1 &1835606020
 GameObject:
   m_ObjectHideFlags: 0
@@ -109426,7 +109465,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $ 50
+  m_text: '$ 35
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a73ddf18ef2f8cce0a3cf31eb6213e3a, type: 2}
   m_sharedMaterial: {fileID: 638876542881690735, guid: a73ddf18ef2f8cce0a3cf31eb6213e3a, type: 2}
@@ -111536,10 +111577,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1514587831}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 1536939375}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: ReplayLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -113625,12 +113666,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 2035631511}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 2035631511}
+  m_maskType: 0
 --- !u!23 &2035631511
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114896,7 +114937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2087733510
 RectTransform:
   m_ObjectHideFlags: 0
@@ -117823,12 +117864,12 @@ MonoBehaviour:
   m_margin: {x: 0.010478973, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 6441015858755752408}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 6441015858755752408}
+  m_maskType: 0
 --- !u!95 &3443211909276445049
 Animator:
   serializedVersion: 5

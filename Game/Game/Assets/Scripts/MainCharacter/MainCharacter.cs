@@ -236,6 +236,10 @@ public class MainCharacter : MonoBehaviour
                 return; 
             }
         }
+        if (IsDead())
+        {
+            return;
+        }
         this.UpdateCurrentlyUsedWeapon();
         this.UpdateVelocity();
         this.UpdateInvincibilityStatus();
@@ -327,6 +331,10 @@ public class MainCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (IsDead())
+        {
+            return;
+        }
         if (dialogueManager != null)
         {
             if (dialogueManager.isDialogueActive)
@@ -341,11 +349,6 @@ public class MainCharacter : MonoBehaviour
         }
         
         this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
-        
-        if (IsDead())
-        {
-            Destroy(gameObject);
-        }
     }
 
     public bool IsDead()
