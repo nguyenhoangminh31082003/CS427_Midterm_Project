@@ -102,7 +102,7 @@ public class TheSword : TheWeapon
         float currentTime = Time.time,
               amountPassed = (currentTime - this.attackStartTime) * 1000;
 
-        if (amountPassed < NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION * 2)
+        if (amountPassed < this.NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION * 2)
             return false;
 
         this.attacking = true;
@@ -138,7 +138,7 @@ public class TheSword : TheWeapon
         float currentTime = Time.time,
               amountPassed = (currentTime - this.attackStartTime) * 1000;
 
-        if (amountPassed > NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION)
+        if (amountPassed > this.NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION)
         {
             this.attacking = false;
             this.movingCollider.enabled = false;
@@ -148,8 +148,6 @@ public class TheSword : TheWeapon
 
     protected override void Update()
     {
-        //Debug.Log(this.theWeaponOwner);
-
         base.Update();
 
         this.UpdateAttack();

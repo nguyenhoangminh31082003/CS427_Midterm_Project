@@ -196,4 +196,8 @@ public class Weapon : MonoBehaviour
         return false;
     }
 
+    public virtual bool ChangeAmountDamageThatCanBeCaused(double newAmount)
+    {
+        return false;
+    }
 }

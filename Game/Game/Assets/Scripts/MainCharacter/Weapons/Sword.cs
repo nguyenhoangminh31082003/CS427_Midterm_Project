@@ -150,6 +150,17 @@ public class Sword : Weapon
         return this.damageCausedPerHit;
     }
 
+    public override bool ChangeAmountDamageThatCanBeCaused(double newAmount)
+    {
+
+        if (newAmount <= 0)
+            return false;
+
+        this.damageCausedPerHit = newAmount;
+
+        return true;
+    }
+
     public override bool IsBeingUsedToAttack()
     {
         return this.attacking;

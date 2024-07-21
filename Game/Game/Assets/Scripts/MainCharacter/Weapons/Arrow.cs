@@ -302,5 +302,9 @@ public class Arrow : Weapon
             Destroy(this.gameObject);
         }
     }
-    
+
+    public override bool ChangeAmountDamageThatCanBeCaused(double newAmount)
+    {
+        return false;
+    }
 }

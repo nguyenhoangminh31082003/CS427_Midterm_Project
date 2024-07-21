@@ -288,4 +288,9 @@ public class Bow : Weapon
 
         return false;
     }
+
+    public override bool ChangeAmountDamageThatCanBeCaused(double newAmount)
+    {
+        return false;
+    }
 }

@@ -162,18 +162,24 @@ public class PlayerBag : MonoBehaviour
     public bool ChangeGateKeyCount(int delta)
     {
         int newGateKeyCount = this.gateKeyCount + delta;
+
         if (newGateKeyCount < 0)
             return false;
+        
         this.gateKeyCount = newGateKeyCount;
+        
         return true;
     }
 
     public bool ChangeChestKeyCount(int delta)
     {
         int newChestKeyCount = this.chestKeyCount + delta;
+
         if (newChestKeyCount < 0)
             return false;
+        
         this.gateKeyCount = newChestKeyCount;
+        
         return true;
     }
 
@@ -411,4 +417,23 @@ public class PlayerBag : MonoBehaviour
         return result;
     }
 
+    public bool ChangeAmountDamageThatCanBeCausedByWeapon(string weaponName, double delta)
+    {
+        if (this.weapons == null)
+            return false;
+
+        bool result = false;
+
+        foreach (Weapon weapon in this.weapons)
+            if (weapon.GetNameOfWeapon() == weaponName)
+            {
+
+                if (weapon.ChangeAmountDamageThatCanBeCaused(weapon.GetAmountDamageThatCanBeCaused() + delta))
+                    result = true;
+         
+                break;
+            }
+
+        return result;
+    }
 }

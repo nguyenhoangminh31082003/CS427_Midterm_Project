@@ -404,4 +404,12 @@ public class MainCharacter : MonoBehaviour
             return false;
         return this.bag.ChangeWeaponCount(weaponName, -number);
     }
+
+    public bool IncreaseAmountDamageThatCanBeCausedByWeapon(string weaponName, double delta)
+    {
+        if (delta <= 0)
+            return false;
+
+        return this.bag.ChangeAmountDamageThatCanBeCausedByWeapon(weaponName, delta);
+    }
 }
