@@ -9,6 +9,8 @@ public class MainCharacter : MonoBehaviour
 {
     public static MainCharacter Instance;
 
+    [SerializeField] private Joystick joystick;
+
     [SerializeField] private TextMeshProUGUI liveCountText;
     [SerializeField] private TextMeshProUGUI coinCountText;
     [SerializeField] private GameObject playerBag;
