@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    public float interactionRadius = 2.0f;  // Radius within which the player can interact
+    public float interactionRadius = 2.0f;  
     private bool isPlayerInRange = false;
     private MainCharacter player;
     private Transform textBubble;
@@ -12,18 +12,16 @@ public abstract class Interactable : MonoBehaviour
     protected GameManager gameManager;
 
     protected virtual void Awake() {
-        textBubble = this.transform.Find("TextBubble");
+        this.textBubble = this.transform.Find("TextBubble");
     }
     protected virtual void Start()
     {
         this.dialogueManager = DialogueManager.Instance;
         this.player = MainCharacter.Instance;
         this.gameManager = GameManager.Instance;
-        // player = GameObject.FindGameObjectWithTag("Player");
     }
     protected virtual void Update()
     {
-        // Check the distance between the player and the interactable object
 
         Debug.Log(this.gameObject);
 
@@ -47,14 +45,12 @@ public abstract class Interactable : MonoBehaviour
             }
         }
 
-        // Check if the player presses the "E" key
-        if (!this.dialogueManager.isDialogueActive && false /* Input.GetKeyDown(KeyCode.E)*/ && this.isPlayerInRange)
+        if (!this.dialogueManager.isDialogueActive && this.player.IsButtonEClicked() && this.isPlayerInRange)
         {
             this.Interact();
         }
     }
 
-    // Method called when the player presses "E" within range
     protected abstract void Interact();
 
     protected virtual void OnPlayerEnterRange()
@@ -72,7 +68,6 @@ public abstract class Interactable : MonoBehaviour
         }
     }
 
-    // Draw the interaction radius in the editor
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

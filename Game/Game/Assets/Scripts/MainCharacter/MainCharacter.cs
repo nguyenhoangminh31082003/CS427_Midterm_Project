@@ -10,6 +10,7 @@ public class MainCharacter : MonoBehaviour
 {
     public static MainCharacter Instance;
 
+    [SerializeField] private GameControlButton buttonE;
     [SerializeField] private Joystick joystick;
 
     [SerializeField] private TextMeshProUGUI liveCountText;
@@ -406,5 +407,10 @@ public class MainCharacter : MonoBehaviour
             return false;
 
         return this.bag.ChangeAmountDamageThatCanBeCausedByWeapon(weaponName, delta);
+    }
+
+    public bool IsButtonEClicked()
+    {
+        return this.buttonE != null && this.buttonE.IsClicked();
     }
 }
