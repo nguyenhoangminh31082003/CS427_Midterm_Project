@@ -12,14 +12,15 @@ public class JoyStickHandler : MonoBehaviour
 
     void Update()
     {
-        if (dialogueManager != null)
+        if (this.dialogueManager != null)
         {
-            if (dialogueManager.isDialogueActive)
+            if (this.dialogueManager.isDialogueActive)
             {
                 this.gameObject.SetActive(false);
                 return;
             }
         }
+
         this.gameObject.SetActive(true);
     }
 }

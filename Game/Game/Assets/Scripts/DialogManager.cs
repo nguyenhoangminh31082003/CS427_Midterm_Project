@@ -47,7 +47,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (lines.Count == 0)
         {
-            EndDialogue();
+            this.EndDialogue();
             if (AudioManager.Instance.currentTrack.Length != 0)
             {
                 AudioManager.Instance.currentTrack = "";
@@ -83,8 +83,8 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        isDialogueActive = false;
-        canvas.enabled = false;
+        this.isDialogueActive = false;
+        this.canvas.enabled = false;
     }
 
     public void Update()
@@ -94,7 +94,7 @@ public class DialogueManager : MonoBehaviour
             AudioManager.Instance.sfxSource.Stop();
         }
         
-        if (this.isDialogueActive && Input.GetKeyDown(KeyCode.Escape))
+        if (this.isDialogueActive && Input.GetMouseButtonDown(0))
         {
             if (index < currentLine.line.Length)
             {
@@ -108,7 +108,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        if (this.isDialogueActive && Input.GetKeyDown(KeyCode.Escape))
+        if (this.isDialogueActive && false/* && Input.GetKeyDown(KeyCode.Escape)*/)
         {
             lines.Clear();
             AudioManager.Instance.sfxSource.Stop();

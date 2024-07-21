@@ -325,9 +325,9 @@ public class MainCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (dialogueManager != null)
+        if (this.dialogueManager != null)
         {
-            if (dialogueManager.isDialogueActive)
+            if (this.dialogueManager.isDialogueActive)
             {
                 this.rigidBody2D.velocity = new Vector2(0, 0);
                 return;
@@ -363,7 +363,7 @@ public class MainCharacter : MonoBehaviour
 
         if (other.transform.tag == "Monster" || other.transform.tag == "Trap")
         {
-            gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
+            this.gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
         }
     }
     

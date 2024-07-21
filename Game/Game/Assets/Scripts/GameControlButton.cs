@@ -8,6 +8,7 @@ public class GameControlButton : MonoBehaviour
 
     const int NUMBER_OF_FRAME_FOR_A_CLICK = 5;
 
+    private DialogueManager dialogueManager;
     private int lastClickedFame;
     private Button button;
 
@@ -21,13 +22,21 @@ public class GameControlButton : MonoBehaviour
         {
             this.lastClickedFame = Time.frameCount;
         });
-        
-        //Debug.Log(this.gameObject + " " + (this.button != null));
+
+        this.dialogueManager = DialogueManager.Instance;
     }
 
     void Update()
     {
-        
+        if (this.dialogueManager != null)
+        {
+            if (this.dialogueManager.isDialogueActive)
+            {
+                this.gameObject.SetActive(false);
+                return;
+            }
+        }
+        this.gameObject.SetActive(true);
     }
 
     public bool IsClicked()

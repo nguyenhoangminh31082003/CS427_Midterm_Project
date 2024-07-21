@@ -23,8 +23,6 @@ public abstract class Interactable : MonoBehaviour
     protected virtual void Update()
     {
 
-        Debug.Log(this.gameObject);
-
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
         if (distance <= interactionRadius)
@@ -55,8 +53,8 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void OnPlayerEnterRange()
     {
-        if (textBubble) {
-            textBubble.gameObject.SetActive(true);
+        if (this.textBubble) {
+            this.textBubble.gameObject.SetActive(true);
         }
         
     }
