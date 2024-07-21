@@ -16,11 +16,11 @@ public class JoyStickHandler : MonoBehaviour
         {
             if (this.dialogueManager.isDialogueActive)
             {
-                this.gameObject.SetActive(false);
+                this.gameObject.transform.localScale = new Vector3(0, 0, 0);
                 return;
             }
         }
 
-        this.gameObject.SetActive(true);
+        this.gameObject.transform.localScale = new Vector3(1, 1, 1);
     }
 }
