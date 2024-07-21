@@ -228,10 +228,14 @@ public class ThePlayer : MonoBehaviour
                 return;
             }
         }
-        this.UpdateCurrentlyUsedWeapon();
-        this.UpdateVelocity();
-        this.UpdateInvincibilityStatus();
+        
         this.UpdateCanvasElement();
+        this.UpdateInvincibilityStatus();
+
+        if (IsDead()) { return; }
+
+        this.UpdateVelocity();
+        this.UpdateCurrentlyUsedWeapon();
         this.UpdateAttack();
         this.UpdateKeyUsage();
     }
@@ -333,12 +337,14 @@ public class ThePlayer : MonoBehaviour
             return;
         }
 
-        this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
-
         if (IsDead())
         {
-            Destroy(gameObject);
+            this.rigidBody2D.velocity = new Vector2(0, 0);
+            return;
+            //Dead
         }
+
+        this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
     }
 
     public bool IsDead()
