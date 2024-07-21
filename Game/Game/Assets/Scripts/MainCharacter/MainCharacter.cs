@@ -260,7 +260,7 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateKeyUsage()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (false/*Input.GetKey(KeyCode.E)*/)
         {
             //WHERE IS THE MANAGER!!!
         }
@@ -295,7 +295,7 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateCurrentlyUsedWeapon()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (false/* Input.GetKeyDown(KeyCode.Q)*/)
         {
             this.bag.MoveToTheNextWeaponAsTheCurrentWeapon();
         }

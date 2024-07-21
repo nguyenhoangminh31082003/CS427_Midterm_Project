@@ -31,9 +31,12 @@ public class PauseMenu : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.P)) {
-            if (!isOn) Pause();
-            else Resume();
+        if (false/*Input.GetKeyDown(KeyCode.P)*/) 
+        {
+            if (!isOn) 
+                Pause();
+            else 
+                Resume();
         }
     }
 }
