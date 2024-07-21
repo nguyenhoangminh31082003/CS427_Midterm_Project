@@ -202,27 +202,10 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateVelocity()
     {
+        double percentage = Math.Max(0, 1 - this.GetTotalWeight() / MAXIMUM_WEIGHT_LIMIT);
+        this.speedX = this.joystick.Direction.x * DEFAULT_SPEED * percentage;
+        this.speedY = this.joystick.Direction.y * DEFAULT_SPEED * percentage;
 
-        bool rightArrow = false,//Input.GetKey(KeyCode.RightArrow)  || Input.GetKey(KeyCode.D),
-             leftArrow  = false,//Input.GetKey(KeyCode.LeftArrow)   || Input.GetKey(KeyCode.A),
-             upArrow    = false,//Input.GetKey(KeyCode.UpArrow)     || Input.GetKey(KeyCode.W),
-             downArrow  = false;//Input.GetKey(KeyCode.DownArrow)   || Input.GetKey(KeyCode.S);
-
-        this.speedX = 0;
-        this.speedY = 0;
-        
-        if (leftArrow)
-            this.speedX -= DEFAULT_SPEED;
-        
-        if (rightArrow)
-            this.speedX += DEFAULT_SPEED;
-        
-        if (upArrow)
-            this.speedY += DEFAULT_SPEED;
-        
-        if (downArrow)
-            this.speedY -= DEFAULT_SPEED;
-        
         if (this.speedX > 0)
         {
             this.transform.localScale = new Vector3(1, 1, 1);
@@ -231,9 +214,6 @@ public class MainCharacter : MonoBehaviour
         {
             this.transform.localScale = new Vector3(-1, 1, 1);
         }
-        double percentage = Math.Max(0, 1 - this.GetTotalWeight() / MAXIMUM_WEIGHT_LIMIT);
-        this.speedX *= percentage;
-        this.speedY *= percentage;
     }
 
     void Update()
