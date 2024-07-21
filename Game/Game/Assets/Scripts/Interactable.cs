@@ -16,13 +16,11 @@ public abstract class Interactable : MonoBehaviour
     }
     protected virtual void Start()
     {
-        dialogueManager = DialogueManager.Instance;
-        player = MainCharacter.Instance;
-        gameManager = GameManager.Instance;
+        this.dialogueManager = DialogueManager.Instance;
+        this.player = MainCharacter.Instance;
+        this.gameManager = GameManager.Instance;
         // player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    // Update is called once per frame
     protected virtual void Update()
     {
         // Check the distance between the player and the interactable object
@@ -33,19 +31,19 @@ public abstract class Interactable : MonoBehaviour
 
         if (distance <= interactionRadius)
         {
-            if (!isPlayerInRange)
+            if (!this.isPlayerInRange)
             {
-                isPlayerInRange = true;
-                OnPlayerEnterRange();
+                this.isPlayerInRange = true;
+                this.OnPlayerEnterRange();
             }
 
         }
         else
         {
-            if (isPlayerInRange)
+            if (this.isPlayerInRange)
             {
-                isPlayerInRange = false;
-                OnPlayerExitRange();
+                this.isPlayerInRange = false;
+                this.OnPlayerExitRange();
             }
         }
 
