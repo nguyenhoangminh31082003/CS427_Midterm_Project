@@ -48,10 +48,9 @@ public abstract class Interactable : MonoBehaviour
         }
 
         // Check if the player presses the "E" key
-        if (!dialogueManager.isDialogueActive && false /* Input.GetKeyDown(KeyCode.E)*/ && isPlayerInRange)
+        if (!this.dialogueManager.isDialogueActive && false /* Input.GetKeyDown(KeyCode.E)*/ && this.isPlayerInRange)
         {
-            //Debug.Log("press e");
-            Interact();
+            this.Interact();
         }
     }
 

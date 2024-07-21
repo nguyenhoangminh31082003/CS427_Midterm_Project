@@ -93,7 +93,8 @@ public class DialogueManager : MonoBehaviour
         {
             AudioManager.Instance.sfxSource.Stop();
         }
-        if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
+        
+        if (this.isDialogueActive && Input.GetKeyDown(KeyCode.Escape))
         {
             if (index < currentLine.line.Length)
             {
@@ -106,7 +107,8 @@ public class DialogueManager : MonoBehaviour
                 DisplayNextDialogueLine();
             }
         }
-        if (isDialogueActive && Input.GetKeyDown(KeyCode.Escape))
+
+        if (this.isDialogueActive && Input.GetKeyDown(KeyCode.Escape))
         {
             lines.Clear();
             AudioManager.Instance.sfxSource.Stop();
