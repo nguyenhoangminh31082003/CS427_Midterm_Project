@@ -236,14 +236,17 @@ public class MainCharacter : MonoBehaviour
                 return; 
             }
         }
+
+        this.UpdateCanvasElement();
+        this.UpdateInvincibilityStatus();
+
         if (IsDead())
         {
             return;
         }
-        this.UpdateCurrentlyUsedWeapon();
+
         this.UpdateVelocity();
-        this.UpdateInvincibilityStatus();
-        this.UpdateCanvasElement();
+        this.UpdateCurrentlyUsedWeapon();
         this.UpdateAttack();
         this.UpdateKeyUsage();
     }
@@ -331,10 +334,6 @@ public class MainCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (IsDead())
-        {
-            return;
-        }
         if (dialogueManager != null)
         {
             if (dialogueManager.isDialogueActive)
@@ -347,7 +346,13 @@ public class MainCharacter : MonoBehaviour
         if (knockback.gettingKnockedBack) { 
             return; 
         }
-        
+
+        if (IsDead())
+        {
+            this.rigidBody2D.velocity = new Vector2(0, 0);
+            return;
+        }
+
         this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
     }
 
