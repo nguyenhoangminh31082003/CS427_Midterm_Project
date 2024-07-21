@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Drawing;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MainCharacter : MonoBehaviour
 {
