@@ -161,9 +161,9 @@ public class Bow : Weapon
 
     public override bool AttackWithConsideringKeyboard()
     {
-        bool    spaceEntered    = Input.GetKeyDown(KeyCode.Space),
-                spaceHeld       = Input.GetKey(KeyCode.Space),
-                spaceReleased   = Input.GetKeyUp(KeyCode.Space),
+        bool    spaceEntered    = false,//Input.GetKeyDown(KeyCode.Space),
+                spaceHeld       = false,//Input.GetKey(KeyCode.Space),
+                spaceReleased   = false,//Input.GetKeyUp(KeyCode.Space),
                 result          = false;
 
         if (spaceEntered)
