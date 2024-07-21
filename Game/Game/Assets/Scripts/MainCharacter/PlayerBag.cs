@@ -162,18 +162,24 @@ public class PlayerBag : MonoBehaviour
     public bool ChangeGateKeyCount(int delta)
     {
         int newGateKeyCount = this.gateKeyCount + delta;
+
         if (newGateKeyCount < 0)
             return false;
+        
         this.gateKeyCount = newGateKeyCount;
+        
         return true;
     }
 
     public bool ChangeChestKeyCount(int delta)
     {
         int newChestKeyCount = this.chestKeyCount + delta;
+
         if (newChestKeyCount < 0)
             return false;
+        
         this.gateKeyCount = newChestKeyCount;
+        
         return true;
     }
 
@@ -197,9 +203,22 @@ public class PlayerBag : MonoBehaviour
         return this.totalWeight;
     }
 
+    private void UpdateTotalWeight()
+    {
+        this.totalWeight = 0;
+        if (this.weapons != null)
+        {
+            foreach (Weapon weapon in this.weapons)
+            {
+                this.totalWeight += weapon.FindTotalWeight();
+            }
+        }
+    }
+
     void Update()
     {
         this.UpdateCanvasElements();
+        this.UpdateTotalWeight();
     }
 
     private int CountAvailableWeapons()
@@ -223,13 +242,13 @@ public class PlayerBag : MonoBehaviour
     {
         if (KeyManager.Instance != null)
         {
-            if (silverKeyCountText != null)
+            if (this.silverKeyCountText != null)
             {
-                silverKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.SilverKey).ToString();
+                this.silverKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.SilverKey).ToString();
             }
-            if (goldenKeyCountText != null)
+            if (this.goldenKeyCountText != null)
             {
-                goldenKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.GoldKey).ToString();
+                this.goldenKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.GoldKey).ToString();
             }
         }
 
@@ -398,4 +417,23 @@ public class PlayerBag : MonoBehaviour
         return result;
     }
 
+    public bool ChangeAmountDamageThatCanBeCausedByWeapon(string weaponName, double delta)
+    {
+        if (this.weapons == null)
+            return false;
+
+        bool result = false;
+
+        foreach (Weapon weapon in this.weapons)
+            if (weapon.GetNameOfWeapon() == weaponName)
+            {
+
+                if (weapon.ChangeAmountDamageThatCanBeCaused(weapon.GetAmountDamageThatCanBeCaused() + delta))
+                    result = true;
+         
+                break;
+            }
+
+        return result;
+    }
 }

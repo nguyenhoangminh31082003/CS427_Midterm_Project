@@ -23,7 +23,7 @@ public class Sword : Weapon
         PlayerPrefs.SetString(weaponName + ".currentlyUsed", false.ToString());
 
         PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION", 200);
-        PlayerPrefs.SetString(weaponName + ".damageCausedPerHit", "1");
+        PlayerPrefs.SetString(weaponName + ".damageCausedPerHit", "3");
         PlayerPrefs.SetString(weaponName + ".attacking", false.ToString());
         PlayerPrefs.SetFloat(weaponName + ".attackStartTime", 0);
     }
@@ -86,7 +86,7 @@ public class Sword : Weapon
         {
             this.attacking = false;
 
-            this.attackStartTime = Time.time;
+            this.attackStartTime = 0;
         }
 
         this.movingCollider.enabled = false;
@@ -100,6 +100,7 @@ public class Sword : Weapon
         float currentTime = Time.time,
               amountPassed = (currentTime - this.attackStartTime) * 1000;
 
+        
         if (amountPassed < NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION * 2)
             return false;
 
@@ -141,12 +142,23 @@ public class Sword : Weapon
     {
         base.Update();
 
-        UpdateAttack();
+        this.UpdateAttack();
     }
 
     public override double GetAmountDamageThatCanBeCaused()
     {
         return this.damageCausedPerHit;
+    }
+
+    public override bool ChangeAmountDamageThatCanBeCaused(double newAmount)
+    {
+
+        if (newAmount <= 0)
+            return false;
+
+        this.damageCausedPerHit = newAmount;
+
+        return true;
     }
 
     public override bool IsBeingUsedToAttack()
@@ -168,11 +180,15 @@ public class Sword : Weapon
     {
         return "Sword";
     }
-
     public override void DisplayInCanvas(WeaponBoxCanvasUI box)
     {
         box.SetAndShowFirstCounter(this.number);
         box.HideSecondCounter();
         box.SetAndShowWeaponImage(this.stillSwordSprite);
+    }
+
+    public override double FindTotalWeight()
+    {
+        return base.FindTotalWeight();
     }
 }

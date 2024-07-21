@@ -1,9 +1,5 @@
 using System;
-using UnityEditor;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -24,11 +20,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 0)
+        if (SceneManager.GetActiveScene().buildIndex > 3)
         {
             MainCharacter.Instance.LoadDataFromPlayerPrefs();
             // AudioManager.Instance.LoadDataFromPlayerPrefs();
-            
         }
     }
 
@@ -44,8 +39,10 @@ public class GameManager : MonoBehaviour
 
     //Name is needed to retrieve object from the hierachy 
     //Tag is needed to identify the object
-    public void CollisionHandler(string collidedObjectTag, string collidedObjectName,
-                                 string attackedObjectTag, string attackedObjectName)
+    public void CollisionHandler(string collidedObjectTag, 
+                                 string collidedObjectName,
+                                 string attackedObjectTag, 
+                                 string attackedObjectName)
     {
         //For debug purposes
         //CollisionLog(collidedObjectName);

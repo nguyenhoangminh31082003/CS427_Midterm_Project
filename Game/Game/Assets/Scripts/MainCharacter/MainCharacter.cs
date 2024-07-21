@@ -70,7 +70,6 @@ public class MainCharacter : MonoBehaviour
     
     public void LoadDataFromPlayerPrefs()
     {
-        Debug.Log("HELLO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         if (PlayerPrefs.HasKey("invincible"))
             this.invincible = bool.Parse(PlayerPrefs.GetString("invincible"));
@@ -237,10 +236,17 @@ public class MainCharacter : MonoBehaviour
                 return; 
             }
         }
-        this.UpdateCurrentlyUsedWeapon();
-        this.UpdateVelocity();
-        this.UpdateInvincibilityStatus();
+
         this.UpdateCanvasElement();
+        this.UpdateInvincibilityStatus();
+
+        if (IsDead())
+        {
+            return;
+        }
+
+        this.UpdateVelocity();
+        this.UpdateCurrentlyUsedWeapon();
         this.UpdateAttack();
         this.UpdateKeyUsage();
     }
@@ -340,13 +346,14 @@ public class MainCharacter : MonoBehaviour
         if (knockback.gettingKnockedBack) { 
             return; 
         }
-        
-        this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
-        
+
         if (IsDead())
         {
-            Destroy(gameObject);
+            this.rigidBody2D.velocity = new Vector2(0, 0);
+            return;
         }
+
+        this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);
     }
 
     public bool IsDead()
@@ -401,5 +408,13 @@ public class MainCharacter : MonoBehaviour
         if (number <= 0)
             return false;
         return this.bag.ChangeWeaponCount(weaponName, -number);
+    }
+
+    public bool IncreaseAmountDamageThatCanBeCausedByWeapon(string weaponName, double delta)
+    {
+        if (delta <= 0)
+            return false;
+
+        return this.bag.ChangeAmountDamageThatCanBeCausedByWeapon(weaponName, delta);
     }
 }

@@ -22,12 +22,11 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
+        LoadDataFromPlayerPrefs();
     }
 
     private void Start()
     {
-        LoadDataFromPlayerPrefs();
         PlayMusic(musicName);
     }
     public void PlayMusic(string name)
@@ -41,6 +40,7 @@ public class AudioManager : MonoBehaviour
         if (s == null)
         {
             Debug.Log("Music sound not found");
+            currentTrack = ""; 
         }
         else
         {
@@ -63,28 +63,36 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // public void Update()
-    // {
-    //     if (!musicSource.isPlaying)
-    //     {
-    //         if (currentTrack.Length == 0)
-    //         {
-    //             PlayMusic(musicName);
-    //         }
-    //         else
-    //         {
-    //             PlayMusic(currentTrack);
-    //         }
-    //     }
-    // }
-    public void ToggleMusic()
+    public void Update()
     {
-        musicSource.mute = !musicSource.mute;
+        if (!musicSource.isPlaying)
+        {
+            if (currentTrack.Length == 0)
+            {
+                PlayMusic(musicName);
+            }
+            else
+            {
+                PlayMusic(currentTrack);
+            }
+        }
+    }
+    public void ToggleMusic(bool isOn)
+    {
+        if (isOn)
+            musicSource.mute = true;
+        else 
+            musicSource.mute = false;
+        // musicSource.mute = !musicSource.mute;
     }
 
-    public void ToggleSFX()
+    public void ToggleSFX(bool isOn)
     {
-        sfxSource.mute = !sfxSource.mute;
+        if (isOn)
+            sfxSource.mute = true;
+        else 
+            sfxSource.mute = false;
+        // sfxSource.mute = !sfxSource.mute;
     }
 
     public void MusicVolume(float v)
@@ -99,17 +107,12 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeDefaultTrack(string newTrack)
     {
-        Sound s = Array.Find(sfxSounds, x => x.name == name);
+        Debug.Log("Music change: " + newTrack);
+        Sound s = Array.Find(musicSounds, x => x.name == name);
 
-        if (s == null)
-        {
-            Debug.Log("SFX sound not found");
-        }
-        else
-        {
-            this.currentTrack = newTrack; 
-            this.PlayMusic(newTrack);
-        }
+        
+        this.musicName = newTrack; 
+        this.PlayMusic(newTrack);
     }
 
     public void LoadDataFromPlayerPrefs()

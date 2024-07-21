@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Arrow : Weapon
 {
@@ -30,6 +25,11 @@ public class Arrow : Weapon
     private float startTime;
     private float speedX;
     private float speedY;
+
+    public override double FindTotalWeight()
+    {
+        return base.FindTotalWeight();
+    }
 
     public override void SetDefaultValuesToPlayerPrefs()
     {
@@ -292,13 +292,19 @@ public class Arrow : Weapon
     {
         return "Arrow";
     }
+    
+    protected override void OnCollisionEnter2D(Collision2D other)
+    {
+        base.OnCollisionEnter2D(other);
 
-    //private void OnCollisionEnter2D(Collision2D other)
-    //{
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
-    //    if (other.gameObject.CompareTag("Wall"))
-    //    {
-    //        Destroy(this.gameObject);
-    //    }
-    //}
+    public override bool ChangeAmountDamageThatCanBeCaused(double newAmount)
+    {
+        return false;
+    }
 }

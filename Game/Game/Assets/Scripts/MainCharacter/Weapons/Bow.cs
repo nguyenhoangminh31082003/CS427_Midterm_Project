@@ -15,6 +15,10 @@ public class Bow : Weapon
     private string arrowIndex;
     private bool attacking;
 
+    public override double FindTotalWeight()
+    {
+        return this.weightPerUnit * this.number + this.unusedArrowCount * sampleArrow.FindTotalWeight();
+    }
     public override void SetDefaultValuesToPlayerPrefs()
     {
         string weaponName = this.GetNameOfWeapon();
@@ -282,6 +286,11 @@ public class Bow : Weapon
             return true;
         }
 
+        return false;
+    }
+
+    public override bool ChangeAmountDamageThatCanBeCaused(double newAmount)
+    {
         return false;
     }
 }

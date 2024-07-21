@@ -26,6 +26,9 @@ public abstract class Interactable : MonoBehaviour
     protected virtual void Update()
     {
         // Check the distance between the player and the interactable object
+
+        Debug.Log(this.gameObject);
+
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
         if (distance <= interactionRadius)
@@ -47,9 +50,9 @@ public abstract class Interactable : MonoBehaviour
         }
 
         // Check if the player presses the "E" key
-        if (Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
+        if (!dialogueManager.isDialogueActive && Input.GetKeyDown(KeyCode.E) && isPlayerInRange)
         {
-            Debug.Log("press e");
+            //Debug.Log("press e");
             Interact();
         }
     }
@@ -70,7 +73,6 @@ public abstract class Interactable : MonoBehaviour
         if (textBubble) {
             textBubble.gameObject.SetActive(false);
         }
-        
     }
 
     // Draw the interaction radius in the editor
