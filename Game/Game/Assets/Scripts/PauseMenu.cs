@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
+    public const double NUMBER_OF_MILLISECONDS_OF_TIMEOUT = 1000;
+
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject endGameMenu;
     private bool isOn = false;
+    private double lastTime = 0;
 
     public void Pause() {
         this.isOn = true;
@@ -30,7 +33,11 @@ public class PauseMenu : MonoBehaviour
 
         if (MainCharacter.Instance.IsButtonPDown()) 
         {
-            Debug.Log(Time.time);
+            if ((Time.time - this.lastTime) * 1000 <= NUMBER_OF_MILLISECONDS_OF_TIMEOUT)
+                return;
+
+            this.lastTime = Time.time;
+
             if (!this.isOn) 
                 this.Pause();
             else 
