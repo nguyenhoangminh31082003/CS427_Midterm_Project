@@ -242,6 +242,8 @@ public class PlayerBag : MonoBehaviour
     {
         if (KeyManager.Instance != null)
         {
+            //Debug.Log(this.silverKeyCountText + " " + this.goldenKeyCountText + " " + KeyManager.Instance.CountItem(KeyManager.KeyItem.SilverKey) + " " + KeyManager.Instance.CountItem(KeyManager.KeyItem.GoldKey));
+
             if (this.silverKeyCountText != null)
             {
                 this.silverKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.SilverKey).ToString();

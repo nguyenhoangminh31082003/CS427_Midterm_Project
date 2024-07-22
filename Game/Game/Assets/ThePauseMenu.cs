@@ -20,13 +20,11 @@ public class ThePauseMenu : MonoBehaviour
         mainMenu.SetActive(false);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -42,8 +40,10 @@ public class ThePauseMenu : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            if (!isOn) Pause();
-            else Resume();
+            if (!isOn) 
+                Pause();
+            else 
+                Resume();
         }
     }
 }

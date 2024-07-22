@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 public class TheBow : TheWeapon
 {
     [SerializeField] protected float NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK;
@@ -10,7 +11,7 @@ public class TheBow : TheWeapon
     [SerializeField] protected Sprite stillBowSprite;
     [SerializeField] protected int unusedArrowCount;
 
-    [SerializeField] protected string attackingKeyButton;
+    [SerializeField] protected string attackingKeyButtons;
 
     private float mostRecentFinishingAttackTime;
     private GameObject currentlyHeldArrow;
@@ -167,17 +168,29 @@ public class TheBow : TheWeapon
 
     public override bool AttackWithConsideringKeyboard()
     {
-
         bool result = false;
 
         try
         {
-            KeyCode keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), this.attackingKeyButton, true);
+            bool    buttonEntered   = false,
+                    buttonHeld      = false,
+                    buttonReleased  = false;
 
-            bool    buttonEntered = Input.GetKeyDown(keyCode),
-                    buttonHeld = Input.GetKey(keyCode),
-                    buttonReleased = Input.GetKeyUp(keyCode);
-                    
+            foreach (string attackingKeyButton in this.attackingKeyButtons.Split(","))
+            {
+                KeyCode keyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), attackingKeyButton, true);
+
+                if (Input.GetKeyDown(keyCode))
+                    buttonEntered = true;
+
+                if (Input.GetKey(keyCode))
+                    buttonHeld = true;
+
+                if (Input.GetKeyUp(keyCode))
+                    buttonReleased = true;
+            
+            }
+  
             if (buttonEntered)
             {
                 result = result || this.StartHolding();

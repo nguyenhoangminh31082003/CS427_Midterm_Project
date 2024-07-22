@@ -22,7 +22,6 @@ public class TheGameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex != 1)
         {
-            //MainCharacter.Instance.LoadDataFromPlayerPrefs();
         }
     }
 
@@ -79,12 +78,12 @@ public class TheGameManager : MonoBehaviour
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.SilverKey)
                 {
                     AudioManager.Instance.PlaySFX("key_pick_up");
-                    KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+                    TheKeyManager.Instance.AddItem("first", TheKeyManager.KeyItem.SilverKey);
                 }
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.GoldKey)
                 {
                     AudioManager.Instance.PlaySFX("key_pick_up");
-                    KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
+                    TheKeyManager.Instance.AddItem("first", TheKeyManager.KeyItem.GoldKey);
                 }
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.Arrow)
                 {
@@ -134,12 +133,15 @@ public class TheGameManager : MonoBehaviour
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.SilverKey)
                 {
                     AudioManager.Instance.PlaySFX("key_pick_up");
-                    KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+
+                    //Debug.Log(TheKeyManager.Instance == null);
+
+                    TheKeyManager.Instance.AddItem("second", TheKeyManager.KeyItem.SilverKey);
                 }
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.GoldKey)
                 {
                     AudioManager.Instance.PlaySFX("key_pick_up");
-                    KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
+                    TheKeyManager.Instance.AddItem("second", TheKeyManager.KeyItem.GoldKey);
                 }
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.Arrow)
                 {
@@ -167,6 +169,9 @@ public class TheGameManager : MonoBehaviour
             }
            
             player.DecreaseLiveCount();
+
+            if (player.IsDead())
+                TheSecondPlayer.Instance.Win();
         }
 
         if (collidedObjectName.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
@@ -179,6 +184,9 @@ public class TheGameManager : MonoBehaviour
             }
 
             player.DecreaseLiveCount();
+
+            if (player.IsDead())
+                TheFirstPlayer.Instance.Win();
         }
     }
 
@@ -197,6 +205,9 @@ public class TheGameManager : MonoBehaviour
             }
 
             player.DecreaseLiveCount();
+
+            if (player.IsDead())
+                TheSecondPlayer.Instance.Win();
         }
 
         if (collidedObjectName.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
@@ -209,6 +220,9 @@ public class TheGameManager : MonoBehaviour
             }
 
             player.DecreaseLiveCount();
+
+            if (player.IsDead())
+                TheFirstPlayer.Instance.Win();
         }
     }
 
@@ -274,6 +288,9 @@ public class TheGameManager : MonoBehaviour
                     }
 
                     player.DecreaseLiveCount();
+
+                    if (player.IsDead())
+                        TheSecondPlayer.Instance.Win();
                 }
 
                 if (collidedObjectName.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
@@ -286,6 +303,9 @@ public class TheGameManager : MonoBehaviour
                     }
 
                     player.DecreaseLiveCount();
+
+                    if (player.IsDead())
+                        TheFirstPlayer.Instance.Win();
                 }
             }
         }
@@ -314,6 +334,9 @@ public class TheGameManager : MonoBehaviour
 
                     player.DecreaseLiveCount();
 
+                    if (player.IsDead())
+                        TheSecondPlayer.Instance.Win();
+
                     Destroy(attackedObject);
                 }
 
@@ -327,6 +350,9 @@ public class TheGameManager : MonoBehaviour
                     }
 
                     player.DecreaseLiveCount();
+
+                    if (player.IsDead())
+                        TheFirstPlayer.Instance.Win();
 
                     Destroy(attackedObject);
                 }

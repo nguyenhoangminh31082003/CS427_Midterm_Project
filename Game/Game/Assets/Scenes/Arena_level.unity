@@ -3489,7 +3489,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960.0001, y: 450.98016}
+  m_AnchoredPosition: {x: 960.0001, y: 500}
   m_SizeDelta: {x: 932, y: 437.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &180160314 stripped
@@ -17576,8 +17576,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1.5739136}
-  m_SizeDelta: {x: 932, y: 585.3522}
+  m_AnchoredPosition: {x: 0, y: -7.5798}
+  m_SizeDelta: {x: 932, y: 573.3408}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &321697826
 MonoBehaviour:
@@ -18290,7 +18290,7 @@ RectTransform:
   m_GameObject: {fileID: 357287296}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.060086, y: 2.060086, z: 2.060086}
+  m_LocalScale: {x: 2.1, y: 2.1, z: 2.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1990945500}
@@ -18302,8 +18302,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 960.0001, y: 450.46}
-  m_SizeDelta: {x: 932, y: 437.32}
+  m_AnchoredPosition: {x: 961, y: 500}
+  m_SizeDelta: {x: 932, y: 437.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &357909289
 PrefabInstance:
@@ -21506,7 +21506,7 @@ MonoBehaviour:
   theSampleArrow: {fileID: 868932700}
   stillBowSprite: {fileID: 21300000, guid: 5cb38364f0c17494cbd5d7e705889a4e, type: 3}
   unusedArrowCount: 0
-  attackingKeyButton: J
+  attackingKeyButtons: 
 --- !u!1 &485783695 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8248736938809600413, guid: 30da1157bd44cd5499fe8a57e47a390f, type: 3}
@@ -24182,7 +24182,7 @@ MonoBehaviour:
   damageCausedPerHit: 42
   movingSwordSprite: {fileID: 21300000, guid: 83aaa63eec275e5449f4d6a59d5a39a8, type: 3}
   stillSwordSprite: {fileID: 21300000, guid: 3d9e76a44a6786e4cae51c98707859f9, type: 3}
-  attackingKeyButton: J
+  attackingKeyButtons: 
 --- !u!1 &581687345
 GameObject:
   m_ObjectHideFlags: 0
@@ -32007,7 +32007,7 @@ MonoBehaviour:
   damageCausedPerHit: 42
   movingSwordSprite: {fileID: 21300000, guid: 83aaa63eec275e5449f4d6a59d5a39a8, type: 3}
   stillSwordSprite: {fileID: 21300000, guid: 3d9e76a44a6786e4cae51c98707859f9, type: 3}
-  attackingKeyButton: Keypad1
+  attackingKeyButtons: KeyPad1,Alpha1
 --- !u!70 &882942935
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -32456,7 +32456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 897198546}
-  - component: {fileID: 897198545}
+  - component: {fileID: 897198547}
   m_Layer: 0
   m_Name: KeyManager
   m_TagString: Untagged
@@ -32464,18 +32464,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &897198545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 897198544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aeb26d2c2144c24ab22cf72414fe07c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &897198546
 Transform:
   m_ObjectHideFlags: 0
@@ -32491,6 +32479,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &897198547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897198544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae6bd2176acde145bf9d66fd087949e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &903895165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35718,10 +35718,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 175322431}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: HighResolution
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -76190,7 +76190,7 @@ MonoBehaviour:
   theSampleArrow: {fileID: 420226080}
   stillBowSprite: {fileID: 21300000, guid: 5cb38364f0c17494cbd5d7e705889a4e, type: 3}
   unusedArrowCount: 0
-  attackingKeyButton: Keypad1
+  attackingKeyButtons: KeyPad1,Alpha1
 --- !u!212 &2040273483
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -78200,10 +78200,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 175322431}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: LowResolution
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

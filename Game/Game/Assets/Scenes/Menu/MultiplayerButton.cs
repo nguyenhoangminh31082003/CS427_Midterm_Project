@@ -19,7 +19,7 @@ public class MultiplayerButton : MonoBehaviour
     {
         transistionAnim.SetTrigger("End");
         yield return new WaitForSeconds(1);
-        SceneManager.LoadSceneAsync(8);
+        SceneManager.LoadSceneAsync(9);
         transistionAnim.SetTrigger("Start");
     }
 
