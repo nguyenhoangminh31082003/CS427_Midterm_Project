@@ -10,7 +10,7 @@ public class TheSword : TheWeapon
     [SerializeField] private Sprite movingSwordSprite;
     [SerializeField] private Sprite stillSwordSprite;
 
-    [SerializeField] private string attackingKeyButton;
+    [SerializeField] private string attackingKeyButtons;
 
     private bool attacking;
     private float attackStartTime;
@@ -118,7 +118,15 @@ public class TheSword : TheWeapon
     {
         try
         {
-            if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), this.attackingKeyButton, true)))
+            bool attacking = false;
+
+            foreach (string attackingKeyButton in this.attackingKeyButtons.Split(","))
+                if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), attackingKeyButton, true)))
+                {
+                    attacking = true;
+                }
+
+            if (attacking)
             {
                 return this.Attack();
             }

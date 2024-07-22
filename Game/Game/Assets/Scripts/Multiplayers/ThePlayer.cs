@@ -192,12 +192,14 @@ public class ThePlayer : MonoBehaviour
 
     protected virtual void UpdateVelocity()
     {
-        bool rightArrow = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D),
-             leftArrow = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A),
-             upArrow = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W),
-             downArrow = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
+        bool rightArrow = Input.GetKey(KeyCode.RightArrow)  || Input.GetKey(KeyCode.D),
+             leftArrow = Input.GetKey(KeyCode.LeftArrow)    || Input.GetKey(KeyCode.A),
+             upArrow = Input.GetKey(KeyCode.UpArrow)        || Input.GetKey(KeyCode.W),
+             downArrow = Input.GetKey(KeyCode.DownArrow)    || Input.GetKey(KeyCode.S);
+
         this.speedX = 0;
         this.speedY = 0;
+        
         if (leftArrow)
             this.speedX -= DEFAULT_SPEED;
         if (rightArrow)
@@ -221,9 +223,9 @@ public class ThePlayer : MonoBehaviour
 
     protected void Update()
     {
-        if (dialogueManager != null)
+        if (this.dialogueManager != null)
         {
-            if (dialogueManager.isDialogueActive)
+            if (this.dialogueManager.isDialogueActive)
             {
                 return;
             }
@@ -232,7 +234,9 @@ public class ThePlayer : MonoBehaviour
         this.UpdateCanvasElement();
         this.UpdateInvincibilityStatus();
 
-        if (IsDead()) { return; }
+        if (this.IsDead()) { 
+            return; 
+        }
 
         this.UpdateVelocity();
         this.UpdateCurrentlyUsedWeapon();
@@ -337,11 +341,10 @@ public class ThePlayer : MonoBehaviour
             return;
         }
 
-        if (IsDead())
+        if (this.IsDead())
         {
             this.rigidBody2D.velocity = new Vector2(0, 0);
             return;
-            //Dead
         }
 
         this.rigidBody2D.velocity = new Vector2((float)this.speedX, (float)this.speedY);

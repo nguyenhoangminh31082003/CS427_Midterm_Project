@@ -35,7 +35,7 @@ public abstract class TheInteractable : MonoBehaviour
         float firstDistance = Vector2.Distance(transform.position, theFirstPlayer.transform.position),
                 secondDistance = Vector2.Distance(transform.position, theSecondPlayer.transform.position);
         bool isTheFirstPlayerAttacking = Input.GetKeyDown(KeyCode.K),
-                isTheSecondPlayerAttacking = Input.GetKeyDown(KeyCode.Keypad2);
+                isTheSecondPlayerAttacking = Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2);
 
         if (firstDistance <= this.interactionRadius && secondDistance <= this.interactionRadius)
         {
