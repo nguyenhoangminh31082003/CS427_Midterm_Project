@@ -86,7 +86,7 @@ public class TheSecondPlayer : ThePlayer
 
     protected override void UpdateKeyUsage()
     {
-        if (Input.GetKey(KeyCode.Keypad2))
+        if (Input.GetKey(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2))
         {
             //WHERE IS THE MANAGER!!!
         }
@@ -94,7 +94,7 @@ public class TheSecondPlayer : ThePlayer
 
     protected override void UpdateCurrentlyUsedWeapon()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad3))
+        if (Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3))
         {
             this.bag.MoveToTheNextWeaponAsTheCurrentWeapon();
         }
