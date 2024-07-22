@@ -9,6 +9,7 @@ public class MainCharacter : MonoBehaviour
     [SerializeField] private GameControlButton buttonE;
     [SerializeField] private GameControlButton buttonQ;
     [SerializeField] private GameControlButton buttonX;
+    [SerializeField] private GameControlButton buttonP;
     [SerializeField] private Joystick joystick;
 
     [SerializeField] private TextMeshProUGUI liveCountText;
@@ -18,7 +19,6 @@ public class MainCharacter : MonoBehaviour
     [SerializeField] private int liveCount;
 
     public const double NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD = 4000;
-    public const double NUMBER_OF_MILLISECONDS_OF_TIMEOUT_FOR_SWAPPING = 1000;
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
     public const int MAXIMUM_LIVE_COUNT = 5;
     public const double DEFAULT_SPEED = 4;
@@ -38,7 +38,6 @@ public class MainCharacter : MonoBehaviour
     private bool invincible;
 
     private bool partialInitialized = false;
-    private double lastSwappingTime = 0;
 
     public void SetDefaultValuesToPlayerPrefs()
     {
@@ -116,7 +115,6 @@ public class MainCharacter : MonoBehaviour
         //this.LoadDataFromPlayerPrefs();
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
         this.rigidBody2D = this.GetComponent<Rigidbody2D>();
-        this.lastSwappingTime = 0;
 
         if (this.bag == null)
             this.bag = this.playerBag.GetComponent<PlayerBag>();
@@ -280,14 +278,8 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateCurrentlyUsedWeapon()
     {
-        //Debug.Log("SWAP " + Time.time + " " + this.lastSwappingTime + " " + (Time.time - this.lastSwappingTime) + " " + NUMBER_OF_MILLISECONDS_OF_TIMEOUT_FOR_SWAPPING);
-
-        if ((Time.time - this.lastSwappingTime) * 1000 <= NUMBER_OF_MILLISECONDS_OF_TIMEOUT_FOR_SWAPPING)
-            return;
-
         if (this.IsButtonQDown())
         {
-            this.lastSwappingTime = Time.time;
             this.bag.MoveToTheNextWeaponAsTheCurrentWeapon();
         }
     }
@@ -434,5 +426,10 @@ public class MainCharacter : MonoBehaviour
     public bool IsButtonXDown()
     {
         return this.buttonX != null && this.buttonX.IsDown();
+    }
+
+    public bool IsButtonPDown()
+    {
+        return this.buttonP != null && this.buttonP.IsDown();
     }
 }

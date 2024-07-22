@@ -1,6 +1,3 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
@@ -10,33 +7,34 @@ public class PauseMenu : MonoBehaviour
     private bool isOn = false;
 
     public void Pause() {
-        isOn = true;
-        mainMenu.SetActive(true);
+        this.isOn = true;
+        this.mainMenu.SetActive(true);
     }
 
     public void Resume() {
-        isOn = false;   
-        mainMenu.SetActive(false);
+        this.isOn = false;
+        this.mainMenu.SetActive(false);
     }
 
     void Update() {
 
         if (MainCharacter.Instance.IsDead())
         {
-            if (!isOn)
+            if (!this.isOn)
             {
-                endGameMenu.SetActive(true);
-                isOn = true;
+                this.endGameMenu.SetActive(true);
+                this.isOn = true;
             }
             return;
         }
 
-        if (false/*Input.GetKeyDown(KeyCode.P)*/) 
+        if (MainCharacter.Instance.IsButtonPDown()) 
         {
-            if (!isOn) 
-                Pause();
+            Debug.Log(Time.time);
+            if (!this.isOn) 
+                this.Pause();
             else 
-                Resume();
+                this.Resume();
         }
     }
 }

@@ -3,18 +3,24 @@ using UnityEngine.EventSystems;
 
 public class GameControlButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    public const double NUMBER_OF_MILLISECONDS_OF_TIMEOUT = 1000;
 
-    const int NUMBER_OF_FRAME_FOR_A_CLICK = 1;
+    [SerializeField] bool inactiveByDialogue = false;
+
+    public const int NUMBER_OF_FRAME_OF_TIMEOUT = 1;
 
     private DialogueManager dialogueManager;
     private int lastDownFrame;
     private int lastUpFrame;
+    private double lastTime;
 
     void Start()
     {
         this.lastDownFrame = 0;
 
         this.lastUpFrame = 0;
+
+        this.lastTime = 0;
 
         this.dialogueManager = DialogueManager.Instance;
     }
@@ -45,11 +51,20 @@ public class GameControlButton : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     public bool IsDown()
     {
-        return (Time.frameCount - this.lastDownFrame) <= NUMBER_OF_FRAME_FOR_A_CLICK;
+        if ((Time.time - this.lastTime) * 1000 <= NUMBER_OF_MILLISECONDS_OF_TIMEOUT)
+            return false;
+
+        if ((Time.frameCount - this.lastDownFrame) <= NUMBER_OF_FRAME_OF_TIMEOUT)
+        {
+            this.lastTime = Time.time;
+            return true;
+        }
+
+        return false;
     }
 
     public bool IsUp()
     {
-        return (Time.frameCount - this.lastUpFrame) <= NUMBER_OF_FRAME_FOR_A_CLICK;
+        return (Time.frameCount - this.lastUpFrame) <= NUMBER_OF_FRAME_OF_TIMEOUT;
     }
 }
