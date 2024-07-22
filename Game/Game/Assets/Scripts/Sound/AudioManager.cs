@@ -140,11 +140,4 @@ public class AudioManager : MonoBehaviour
         Debug.Log(sfxSource.volume);
     }
 
-    // public void SetDefaultValuesToPlayerPrefs()
-    // {
-    //     PlayerPrefs.SetString("sound_music_state", true.ToString());
-    //     PlayerPrefs.SetString("sound_sfx_state", true.ToString());
-    //     PlayerPrefs.SetFloat("sound_music_volumn", 1);
-    //     PlayerPrefs.SetFloat("sound_sfx_volumn", 1);
-    // }
 }

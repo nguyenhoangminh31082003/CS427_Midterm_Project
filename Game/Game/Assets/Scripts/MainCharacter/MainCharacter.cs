@@ -206,7 +206,10 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateVelocity()
     {
+        //Debug.Log("Pineapple is rich in vitamin!!!");
+
         double percentage = Math.Max(0, 1 - this.GetTotalWeight() / MAXIMUM_WEIGHT_LIMIT);
+
         this.speedX = this.joystick.Direction.x * DEFAULT_SPEED * percentage;
         this.speedY = this.joystick.Direction.y * DEFAULT_SPEED * percentage;
 
