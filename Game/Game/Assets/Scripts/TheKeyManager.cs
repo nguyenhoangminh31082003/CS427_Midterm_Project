@@ -1,57 +1,115 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class TheKeyManager : MonoBehaviour
 {
     public static TheKeyManager Instance;
 
-    public Dictionary<KeyItem, int> _inventoryItems = new Dictionary<KeyItem, int>();
+    public Dictionary<KeyItem, int>[] _inventoryItems = 
+    {
+        new Dictionary<KeyItem, int>(),
+        new Dictionary<KeyItem, int>()
+    };
     public enum KeyItem {
         SilverKey,
         GoldKey
     }
     void Awake() {
+        Debug.Log("HELLO WESTEROS!!!!!!!!!!!!!!!!!!!");
         Instance = this;
     }
 
-    public void AddItem(KeyItem item)
+    public void AddItem(string whichPlayer, KeyItem item)
     {
-        if (_inventoryItems.ContainsKey(item))
-        {
-            _inventoryItems[item]++;
-        }
-        else
-        {
-            _inventoryItems[item] = 1;
-        }
-    }
+        int id = -1;
 
-    public void RemoveItem(KeyItem item)
-    {
-        if (_inventoryItems.ContainsKey(item))
+        if (whichPlayer.ToLower().IndexOf("First", StringComparison.OrdinalIgnoreCase) >= 0)
+            id = 0;
+        else if (whichPlayer.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
+            id = 1;
+
+        if (id >= 0)
         {
-            _inventoryItems[item]--;
-            if (_inventoryItems[item] <= 0)
+            if (_inventoryItems[id].ContainsKey(item))
             {
-                _inventoryItems.Remove(item);
+                _inventoryItems[id][item]++;
+            }
+            else
+            {
+                _inventoryItems[id][item] = 1;
             }
         }
+        
     }
 
-    public bool CheckRequiredItem(KeyItem item)
+    public void RemoveItem(string whichPlayer, KeyItem item)
     {
-        return _inventoryItems.ContainsKey(item) && _inventoryItems[item] > 0;
+        int id = -1;
+
+        if (whichPlayer.ToLower().IndexOf("First", StringComparison.OrdinalIgnoreCase) >= 0)
+            id = 0;
+        else if (whichPlayer.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
+            id = 1;
+
+        if (id >= 0)
+        {
+            if (_inventoryItems[id].ContainsKey(item))
+            {
+                _inventoryItems[id][item]--;
+                if (_inventoryItems[id][item] <= 0)
+                {
+                    _inventoryItems[id].Remove(item);
+                }
+            }
+        }
+
     }
 
-    public List<KeyItem> GetInventoryKey()
+    public bool CheckRequiredItem(string whichPlayer, KeyItem item)
     {
-        return new List<KeyItem>(_inventoryItems.Keys);
+        int id = -1;
+
+        if (whichPlayer.ToLower().IndexOf("First", StringComparison.OrdinalIgnoreCase) >= 0)
+            id = 0;
+        else if (whichPlayer.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
+            id = 1;
+
+        if (id < 0)
+            return false;
+
+        return _inventoryItems[id].ContainsKey(item) && _inventoryItems[id][item] > 0;
     }
 
-    public int CountItem(KeyItem item)
+    public List<KeyItem> GetInventoryKey(string whichPlayer)
     {
-        return _inventoryItems.ContainsKey(item) ? _inventoryItems[item] : 0;
+        int id = -1;
+
+        if (whichPlayer.ToLower().IndexOf("First", StringComparison.OrdinalIgnoreCase) >= 0)
+            id = 0;
+        else if (whichPlayer.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
+            id = 1;
+
+        if (id < 0)
+            return new List<KeyItem>();
+
+        return new List<KeyItem>(_inventoryItems[id].Keys);
+    }
+
+    public int CountItem(string whichPlayer, KeyItem item)
+    {
+        int id = -1;
+
+        if (whichPlayer.ToLower().IndexOf("First", StringComparison.OrdinalIgnoreCase) >= 0)
+            id = 0;
+        else if (whichPlayer.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
+            id = 1;
+
+        if (id < 0)
+            return 0;
+
+        return _inventoryItems[id].ContainsKey(item) ? _inventoryItems[id][item] : 0;
     }
 
 }

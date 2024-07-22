@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
 
-public class TheChest : Interactable
+public class Chest : Interactable
 {
     [SerializeField] KeyManager.KeyItem _requiredKey;
     

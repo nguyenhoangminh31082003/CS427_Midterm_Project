@@ -22,7 +22,6 @@ public class TheGameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex != 1)
         {
-            //MainCharacter.Instance.LoadDataFromPlayerPrefs();
         }
     }
 
@@ -79,12 +78,12 @@ public class TheGameManager : MonoBehaviour
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.SilverKey)
                 {
                     AudioManager.Instance.PlaySFX("key_pick_up");
-                    KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+                    TheKeyManager.Instance.AddItem("first", TheKeyManager.KeyItem.SilverKey);
                 }
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.GoldKey)
                 {
                     AudioManager.Instance.PlaySFX("key_pick_up");
-                    KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
+                    TheKeyManager.Instance.AddItem("first", TheKeyManager.KeyItem.GoldKey);
                 }
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.Arrow)
                 {
@@ -134,12 +133,15 @@ public class TheGameManager : MonoBehaviour
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.SilverKey)
                 {
                     AudioManager.Instance.PlaySFX("key_pick_up");
-                    KeyManager.Instance.AddItem(KeyManager.KeyItem.SilverKey);
+
+                    //Debug.Log(TheKeyManager.Instance == null);
+
+                    TheKeyManager.Instance.AddItem("second", TheKeyManager.KeyItem.SilverKey);
                 }
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.GoldKey)
                 {
                     AudioManager.Instance.PlaySFX("key_pick_up");
-                    KeyManager.Instance.AddItem(KeyManager.KeyItem.GoldKey);
+                    TheKeyManager.Instance.AddItem("second", TheKeyManager.KeyItem.GoldKey);
                 }
                 else if (pickup.GetPickUpType() == ThePickup.PickUpType.Arrow)
                 {

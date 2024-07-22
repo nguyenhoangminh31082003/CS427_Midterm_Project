@@ -1,11 +1,7 @@
 using TMPro;
 using System;
 using UnityEngine;
-using System.Collections;
-using Unity.VisualScripting;
-using JetBrains.Annotations;
 using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
 public class ThePlayerBag : MonoBehaviour
 {
 
@@ -234,15 +230,18 @@ public class ThePlayerBag : MonoBehaviour
 
     private void UpdateCanvasElements()
     {
-        if (KeyManager.Instance != null)
+        if (TheKeyManager.Instance != null)
         {
+            Debug.Log(this.transform.parent.name);
+
             if (this.silverKeyCountText != null)
             {
-                this.silverKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.SilverKey).ToString();
+                this.silverKeyCountText.text = TheKeyManager.Instance.CountItem(this.transform.parent.name, TheKeyManager.KeyItem.SilverKey).ToString();
             }
+
             if (this.goldenKeyCountText != null)
             {
-                this.goldenKeyCountText.text = KeyManager.Instance.CountItem(KeyManager.KeyItem.GoldKey).ToString();
+                this.goldenKeyCountText.text = TheKeyManager.Instance.CountItem(this.transform.parent.name, TheKeyManager.KeyItem.GoldKey).ToString();
             }
         }
 
