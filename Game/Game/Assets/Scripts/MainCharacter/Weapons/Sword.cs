@@ -115,7 +115,7 @@ public class Sword : Weapon
     public override bool AttackWithConsideringKeyboard()
     {
      
-        if (MainCharacter.Instance.IsButtonXClicked())
+        if (MainCharacter.Instance.IsButtonXDown())
         {
             return this.Attack();
         }

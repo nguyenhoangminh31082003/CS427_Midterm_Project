@@ -43,7 +43,7 @@ public abstract class Interactable : MonoBehaviour
             }
         }
 
-        if (!this.dialogueManager.isDialogueActive && this.player.IsButtonEClicked() && this.isPlayerInRange)
+        if (!this.dialogueManager.isDialogueActive && this.player.IsButtonEDown() && this.isPlayerInRange)
         {
             this.Interact();
         }
@@ -61,8 +61,8 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void OnPlayerExitRange()
     {
-        if (textBubble) {
-            textBubble.gameObject.SetActive(false);
+        if (this.textBubble) {
+            this.textBubble.gameObject.SetActive(false);
         }
     }
 

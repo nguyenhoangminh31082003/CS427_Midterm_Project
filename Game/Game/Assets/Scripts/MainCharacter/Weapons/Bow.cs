@@ -161,22 +161,14 @@ public class Bow : Weapon
 
     public override bool AttackWithConsideringKeyboard()
     {
-        bool    spaceEntered    = false,//Input.GetKeyDown(KeyCode.Space),
-                spaceHeld       = false,//Input.GetKey(KeyCode.Space),
-                spaceReleased   = false,//Input.GetKeyUp(KeyCode.Space),
-                result          = false;
+        bool result = false;
 
-        if (spaceEntered)
+        if (MainCharacter.Instance.IsButtonXDown())
         {
             result = result || this.StartHolding();
         }
 
-        if (spaceHeld)
-        {
-
-        }
-
-        if (spaceReleased)
+        if (MainCharacter.Instance.IsButtonXUp())
         {
             result = result || this.Shot();
             AudioManager.Instance.PlaySFX("human_atk_arrow");

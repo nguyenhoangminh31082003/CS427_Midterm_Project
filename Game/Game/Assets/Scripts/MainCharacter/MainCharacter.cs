@@ -18,6 +18,7 @@ public class MainCharacter : MonoBehaviour
     [SerializeField] private int liveCount;
 
     public const double NUMBER_OF_MILLISECONDS_OF_INVINCIBILITY_PERIOD = 4000;
+    public const double NUMBER_OF_MILLISECONDS_OF_TIMEOUT_FOR_SWAPPING = 1000;
     public const double MAXIMUM_WEIGHT_LIMIT = 1E8;
     public const int MAXIMUM_LIVE_COUNT = 5;
     public const double DEFAULT_SPEED = 4;
@@ -37,6 +38,7 @@ public class MainCharacter : MonoBehaviour
     private bool invincible;
 
     private bool partialInitialized = false;
+    private double lastSwappingTime = 0;
 
     public void SetDefaultValuesToPlayerPrefs()
     {
@@ -114,6 +116,7 @@ public class MainCharacter : MonoBehaviour
         //this.LoadDataFromPlayerPrefs();
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
         this.rigidBody2D = this.GetComponent<Rigidbody2D>();
+        this.lastSwappingTime = 0;
 
         if (this.bag == null)
             this.bag = this.playerBag.GetComponent<PlayerBag>();
@@ -242,7 +245,7 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateKeyUsage()
     {
-        if (this.IsButtonEClicked())
+        if (this.IsButtonEDown())
         {
             //WHERE IS THE MANAGER!!!
         }
@@ -277,8 +280,14 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateCurrentlyUsedWeapon()
     {
-        if (this.IsButtonQClicked())
+        //Debug.Log("SWAP " + Time.time + " " + this.lastSwappingTime + " " + (Time.time - this.lastSwappingTime) + " " + NUMBER_OF_MILLISECONDS_OF_TIMEOUT_FOR_SWAPPING);
+
+        if ((Time.time - this.lastSwappingTime) * 1000 <= NUMBER_OF_MILLISECONDS_OF_TIMEOUT_FOR_SWAPPING)
+            return;
+
+        if (this.IsButtonQDown())
         {
+            this.lastSwappingTime = Time.time;
             this.bag.MoveToTheNextWeaponAsTheCurrentWeapon();
         }
     }
@@ -292,6 +301,7 @@ public class MainCharacter : MonoBehaviour
     {
         if (this.liveCountText != null)
             this.liveCountText.text = this.liveCount.ToString();
+
         if (this.coinCountText != null)
             this.coinCountText.text = this.coinCount.ToString();
     }
@@ -406,18 +416,23 @@ public class MainCharacter : MonoBehaviour
         return this.bag.ChangeAmountDamageThatCanBeCausedByWeapon(weaponName, delta);
     }
 
-    public bool IsButtonEClicked()
+    public bool IsButtonEDown()
     {
-        return this.buttonE != null && this.buttonE.IsClicked();
+        return this.buttonE != null && this.buttonE.IsDown();
     }
 
-    public bool IsButtonQClicked()
+    public bool IsButtonXUp()
     {
-        return this.buttonQ != null && this.buttonQ.IsClicked();
+        return this.buttonX != null && this.buttonX.IsUp();
     }
 
-    public bool IsButtonXClicked()
+    public bool IsButtonQDown()
     {
-        return this.buttonX != null && this.buttonX.IsClicked();
+        return this.buttonQ != null && this.buttonQ.IsDown();
+    }
+
+    public bool IsButtonXDown()
+    {
+        return this.buttonX != null && this.buttonX.IsDown();
     }
 }

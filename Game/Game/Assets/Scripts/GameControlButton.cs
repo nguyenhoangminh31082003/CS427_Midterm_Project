@@ -1,29 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class GameControlButton : MonoBehaviour
+public class GameControlButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
-    const int NUMBER_OF_FRAME_FOR_A_CLICK = 5;
+    const int NUMBER_OF_FRAME_FOR_A_CLICK = 1;
 
     private DialogueManager dialogueManager;
-    private int lastClickedFame;
-    private Button button;
+    private int lastDownFrame;
+    private int lastUpFrame;
 
     void Start()
     {
-        this.button = this.gameObject.GetComponent<Button>();
+        this.lastDownFrame = 0;
 
-        this.lastClickedFame = 0;
-
-        this.button.onClick.AddListener(() =>
-        {
-            this.lastClickedFame = Time.frameCount;
-        });
+        this.lastUpFrame = 0;
 
         this.dialogueManager = DialogueManager.Instance;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        this.lastDownFrame = Time.frameCount;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        this.lastUpFrame = Time.frameCount;
     }
 
     void Update()
@@ -40,8 +43,13 @@ public class GameControlButton : MonoBehaviour
         this.gameObject.transform.localScale = new Vector3(1, 1, 1);
     }
 
-    public bool IsClicked()
+    public bool IsDown()
     {
-        return (Time.frameCount - this.lastClickedFame) <= NUMBER_OF_FRAME_FOR_A_CLICK;
+        return (Time.frameCount - this.lastDownFrame) <= NUMBER_OF_FRAME_FOR_A_CLICK;
+    }
+
+    public bool IsUp()
+    {
+        return (Time.frameCount - this.lastUpFrame) <= NUMBER_OF_FRAME_FOR_A_CLICK;
     }
 }
