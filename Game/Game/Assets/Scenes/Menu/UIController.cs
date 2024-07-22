@@ -61,6 +61,6 @@ public class UIController : MonoBehaviour
 
     public void LowResolution() {
         Debug.Log("Trigger LowResolution");
-        Screen.SetResolution(800, 600, true);
+        Screen.SetResolution(1280, 720, true);
     }
 }
