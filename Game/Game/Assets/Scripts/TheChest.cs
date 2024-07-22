@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
 
-public class Chest : Interactable
+public class TheChest : TheInteractable
 {
-    [SerializeField] KeyManager.KeyItem _requiredKey;
+    [SerializeField] TheKeyManager.KeyItem _requiredKey;
     
     private const string idle = "chest";
     private const string open = "open_chest";
@@ -24,12 +24,24 @@ public class Chest : Interactable
         _currentState = idle;
     }
 
-    protected override void Interact()
+    protected override void Interact(int whichPlayer)
     {
-        if (KeyManager.Instance.CheckRequiredItem(_requiredKey)) {
-            StartCoroutine(PlayAnimationAndChangeState());
-            KeyManager.Instance.RemoveItem(_requiredKey);
+        string user = null;
+
+        if (whichPlayer == 1)
+            user = "first";
+        else if (whichPlayer == 2)
+            user = "second";
+
+        if (user != null)
+        {
+            if (TheKeyManager.Instance.CheckRequiredItem(user, _requiredKey))
+            {
+                StartCoroutine(PlayAnimationAndChangeState());
+                TheKeyManager.Instance.RemoveItem(user, _requiredKey);
+            }
         }
+
     }
 
 
@@ -37,7 +49,6 @@ public class Chest : Interactable
     {
         ChangeAnimationState(open);
 
-        // Wait until the animation is complete
         while (IsAnimationPlaying(_animator, open))
         {
             yield return null;
