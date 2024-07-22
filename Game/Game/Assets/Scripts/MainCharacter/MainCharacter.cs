@@ -1,16 +1,14 @@
 using TMPro;
 using System;
 using UnityEngine;
-using System.Drawing;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
 
 public class MainCharacter : MonoBehaviour
 {
     public static MainCharacter Instance;
 
     [SerializeField] private GameControlButton buttonE;
+    [SerializeField] private GameControlButton buttonQ;
+    [SerializeField] private GameControlButton buttonX;
     [SerializeField] private Joystick joystick;
 
     [SerializeField] private TextMeshProUGUI liveCountText;
@@ -220,9 +218,9 @@ public class MainCharacter : MonoBehaviour
 
     void Update()
     {
-        if (dialogueManager != null)
+        if (this.dialogueManager != null)
         {
-            if (dialogueManager.isDialogueActive) 
+            if (this.dialogueManager.isDialogueActive) 
             { 
                 return; 
             }
@@ -244,7 +242,7 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateKeyUsage()
     {
-        if (false/*Input.GetKey(KeyCode.E)*/)
+        if (this.IsButtonEClicked())
         {
             //WHERE IS THE MANAGER!!!
         }
@@ -279,7 +277,7 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateCurrentlyUsedWeapon()
     {
-        if (false/* Input.GetKeyDown(KeyCode.Q)*/)
+        if (this.IsButtonQClicked())
         {
             this.bag.MoveToTheNextWeaponAsTheCurrentWeapon();
         }
@@ -334,7 +332,7 @@ public class MainCharacter : MonoBehaviour
             }
         }
 
-        if (knockback.gettingKnockedBack) { 
+        if (this.knockback.gettingKnockedBack) { 
             return; 
         }
 
@@ -359,12 +357,11 @@ public class MainCharacter : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (IsAttacking()) return;
+        if (this.IsAttacking()) 
+            return;
 
         if (other.transform.tag == "Monster" || other.transform.tag == "Trap")
-        {
             this.gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
-        }
     }
     
     public void PauseAnimation()
@@ -412,5 +409,15 @@ public class MainCharacter : MonoBehaviour
     public bool IsButtonEClicked()
     {
         return this.buttonE != null && this.buttonE.IsClicked();
+    }
+
+    public bool IsButtonQClicked()
+    {
+        return this.buttonQ != null && this.buttonQ.IsClicked();
+    }
+
+    public bool IsButtonXClicked()
+    {
+        return this.buttonX != null && this.buttonX.IsClicked();
     }
 }

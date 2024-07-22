@@ -114,8 +114,8 @@ public class Sword : Weapon
 
     public override bool AttackWithConsideringKeyboard()
     {
-        bool spaceEntered = false;// Input.GetKeyDown(KeyCode.Space);
-        if (spaceEntered)
+     
+        if (MainCharacter.Instance.IsButtonXClicked())
         {
             return this.Attack();
         }
