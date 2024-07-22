@@ -35,6 +35,8 @@ public class ThePlayer : MonoBehaviour
 
     protected bool partialInitialized = false;
 
+    protected bool winning;
+
     protected virtual void Awake()
     {
 
@@ -100,12 +102,14 @@ public class ThePlayer : MonoBehaviour
 
     protected virtual void Start()
     {
+        this.winning = false;
         //this.LoadDataFromPlayerPrefs();
         this.spriteRenderer = this.GetComponent<SpriteRenderer>();
         this.rigidBody2D = this.GetComponent<Rigidbody2D>();
 
         if (this.bag == null)
             this.bag = this.playerBag.GetComponent<ThePlayerBag>();
+        
         this.knockback = this.GetComponent<Knockback>();
 
         if (!this.partialInitialized)
@@ -127,6 +131,16 @@ public class ThePlayer : MonoBehaviour
     public void GetKnockBack(Transform source)
     {
         this.knockback.GetKnockedBack(source, 10f);
+    }
+
+    public void Win()
+    {
+        this.winning = true;
+    }
+
+    public bool IsWinning()
+    {
+        return this.winning;
     }
 
     public bool ChangeCoinCount(long change)
@@ -234,7 +248,7 @@ public class ThePlayer : MonoBehaviour
         this.UpdateCanvasElement();
         this.UpdateInvincibilityStatus();
 
-        if (this.IsDead()) { 
+        if (this.IsDead() || this.IsWinning()) { 
             return; 
         }
 
@@ -327,9 +341,9 @@ public class ThePlayer : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        if (dialogueManager != null)
+        if (this.dialogueManager != null)
         {
-            if (dialogueManager.isDialogueActive)
+            if (this.dialogueManager.isDialogueActive)
             {
                 this.rigidBody2D.velocity = new Vector2(0, 0);
                 return;
@@ -362,7 +376,7 @@ public class ThePlayer : MonoBehaviour
 
     protected void OnCollisionEnter2D(Collision2D other)
     {
-        if (IsAttacking()) 
+        if (this.IsAttacking()) 
             return;
 
         if (other.transform.tag == "Monster" || other.transform.tag == "Trap")

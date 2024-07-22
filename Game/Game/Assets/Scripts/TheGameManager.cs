@@ -169,6 +169,9 @@ public class TheGameManager : MonoBehaviour
             }
            
             player.DecreaseLiveCount();
+
+            if (player.IsDead())
+                TheSecondPlayer.Instance.Win();
         }
 
         if (collidedObjectName.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
@@ -181,6 +184,9 @@ public class TheGameManager : MonoBehaviour
             }
 
             player.DecreaseLiveCount();
+
+            if (player.IsDead())
+                TheFirstPlayer.Instance.Win();
         }
     }
 
@@ -199,6 +205,9 @@ public class TheGameManager : MonoBehaviour
             }
 
             player.DecreaseLiveCount();
+
+            if (player.IsDead())
+                TheSecondPlayer.Instance.Win();
         }
 
         if (collidedObjectName.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
@@ -211,6 +220,9 @@ public class TheGameManager : MonoBehaviour
             }
 
             player.DecreaseLiveCount();
+
+            if (player.IsDead())
+                TheFirstPlayer.Instance.Win();
         }
     }
 
@@ -276,6 +288,9 @@ public class TheGameManager : MonoBehaviour
                     }
 
                     player.DecreaseLiveCount();
+
+                    if (player.IsDead())
+                        TheSecondPlayer.Instance.Win();
                 }
 
                 if (collidedObjectName.ToLower().IndexOf("Second", StringComparison.OrdinalIgnoreCase) >= 0)
@@ -288,6 +303,9 @@ public class TheGameManager : MonoBehaviour
                     }
 
                     player.DecreaseLiveCount();
+
+                    if (player.IsDead())
+                        TheFirstPlayer.Instance.Win();
                 }
             }
         }
@@ -316,6 +334,9 @@ public class TheGameManager : MonoBehaviour
 
                     player.DecreaseLiveCount();
 
+                    if (player.IsDead())
+                        TheSecondPlayer.Instance.Win();
+
                     Destroy(attackedObject);
                 }
 
@@ -329,6 +350,9 @@ public class TheGameManager : MonoBehaviour
                     }
 
                     player.DecreaseLiveCount();
+
+                    if (player.IsDead())
+                        TheFirstPlayer.Instance.Win();
 
                     Destroy(attackedObject);
                 }
