@@ -8,6 +8,7 @@ public class Cutscene : MonoBehaviour
     [SerializeField] private Dialogue dialogue;
     [SerializeField] private Animator transistionAnim;
     private bool transition = false;
+    [SerializeField] private bool transitionAtEnd = true;
     void Start()
     {
         DialogueManager.Instance.StartDialogue(dialogue);
@@ -39,7 +40,8 @@ public class Cutscene : MonoBehaviour
             transition = true;
         }
         else if (transition && !DialogueManager.Instance.isDialogueActive) {
-            NextLevel();
+            if (transitionAtEnd)
+                NextLevel();
             transition = false;
         }
     }
