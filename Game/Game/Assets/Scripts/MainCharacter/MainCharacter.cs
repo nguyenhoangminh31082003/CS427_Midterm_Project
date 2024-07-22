@@ -204,8 +204,10 @@ public class MainCharacter : MonoBehaviour
              leftArrow  = Input.GetKey(KeyCode.LeftArrow)   || Input.GetKey(KeyCode.A),
              upArrow    = Input.GetKey(KeyCode.UpArrow)     || Input.GetKey(KeyCode.W),
              downArrow  = Input.GetKey(KeyCode.DownArrow)   || Input.GetKey(KeyCode.S);
+        
         this.speedX = 0;
         this.speedY = 0;
+
         if (leftArrow)
             this.speedX -= DEFAULT_SPEED;
         if (rightArrow)
@@ -229,9 +231,9 @@ public class MainCharacter : MonoBehaviour
 
     void Update()
     {
-        if (dialogueManager != null)
+        if (this.dialogueManager != null)
         {
-            if (dialogueManager.isDialogueActive) 
+            if (this.dialogueManager.isDialogueActive) 
             { 
                 return; 
             }
@@ -240,7 +242,7 @@ public class MainCharacter : MonoBehaviour
         this.UpdateCanvasElement();
         this.UpdateInvincibilityStatus();
 
-        if (IsDead())
+        if (this.IsDead())
         {
             return;
         }
@@ -334,9 +336,9 @@ public class MainCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (dialogueManager != null)
+        if (this.dialogueManager != null)
         {
-            if (dialogueManager.isDialogueActive)
+            if (this.dialogueManager.isDialogueActive)
             {
                 this.rigidBody2D.velocity = new Vector2(0, 0);
                 return;
@@ -368,11 +370,12 @@ public class MainCharacter : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (IsAttacking()) return;
+        if (this.IsAttacking()) 
+            return;
 
         if (other.transform.tag == "Monster" || other.transform.tag == "Trap")
         {
-            gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
+            this.gameManager.CollisionHandler(this.tag, this.name, other.transform.tag, other.transform.name);
         }
     }
     

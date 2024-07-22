@@ -22,12 +22,11 @@ public abstract class Interactable : MonoBehaviour
         // player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     protected virtual void Update()
     {
         // Check the distance between the player and the interactable object
 
-        Debug.Log(this.gameObject);
+        //Debug.Log(this.gameObject);
 
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
