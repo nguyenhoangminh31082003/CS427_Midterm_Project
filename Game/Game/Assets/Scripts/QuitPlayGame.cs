@@ -19,7 +19,7 @@ public class QuitPlayGame : MonoBehaviour
 
     }
 
-    void QuitGame()
+    public void QuitGame()
     {
         SceneManager.LoadSceneAsync(0);
     }

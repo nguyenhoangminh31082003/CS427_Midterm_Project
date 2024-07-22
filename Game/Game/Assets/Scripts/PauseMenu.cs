@@ -19,6 +19,18 @@ public class PauseMenu : MonoBehaviour
         mainMenu.SetActive(false);
     }
 
+    public void HighResolution()
+    {
+        Debug.Log("Trigger HighResolution");
+        Screen.SetResolution(1920, 1080, true);
+    }
+
+    public void LowResolution()
+    {
+        Debug.Log("Trigger LowResolution");
+        Screen.SetResolution(1280, 720, true);
+    }
+
     void Update() {
 
         if (MainCharacter.Instance.IsDead())
