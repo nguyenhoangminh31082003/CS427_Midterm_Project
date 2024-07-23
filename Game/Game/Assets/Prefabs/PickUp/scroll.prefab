@@ -149,7 +149,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0020680428, y: -0.012408733}
@@ -174,6 +174,7 @@ MonoBehaviour:
         name: Test123
         icon: {fileID: 0}
       line: 123456 test test must must 123
+  backgroundTrack: 
 --- !u!1 &5550295996595669627
 GameObject:
   m_ObjectHideFlags: 0

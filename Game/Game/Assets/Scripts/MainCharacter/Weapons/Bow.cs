@@ -44,7 +44,6 @@ public class Bow : Weapon
 
         PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK", this.NUMBER_OF_MILLISECONDS_OF_TIME_OUT_AFTER_ATTACK);
         PlayerPrefs.SetInt(weaponName + ".unusedArrowCount", this.unusedArrowCount);
-        PlayerPrefs.SetFloat(weaponName + ".mostRecentFinishingAttackTime", this.mostRecentFinishingAttackTime);
         PlayerPrefs.SetString(weaponName + ".arrowIndex", this.arrowIndex);
         PlayerPrefs.SetString(weaponName + ".attacking", this.attacking.ToString());
     }
@@ -67,10 +66,7 @@ public class Bow : Weapon
         
         if (PlayerPrefs.HasKey(weaponName + ".unusedArrowCount"))
             this.unusedArrowCount = PlayerPrefs.GetInt(weaponName + ".unusedArrowCount");
-        
-        if (PlayerPrefs.HasKey(weaponName + ".mostRecentFinishingAttackTime"))
-            this.mostRecentFinishingAttackTime = PlayerPrefs.GetFloat(weaponName + ".mostRecentFinishingAttackTime");
-        
+       
         if (PlayerPrefs.HasKey(weaponName + ".arrowIndex"))
             this.arrowIndex = PlayerPrefs.GetString(weaponName + ".arrowIndex");
 
@@ -85,6 +81,8 @@ public class Bow : Weapon
         base.Start();
 
         this.spriteRenderer = GetComponent<SpriteRenderer>();
+
+        this.mostRecentFinishingAttackTime = 0;
 
         if (!this.partiallyInitialized)
         {

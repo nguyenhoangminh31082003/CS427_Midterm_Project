@@ -249,7 +249,11 @@ public class MainCharacter : MonoBehaviour
     {
         if (this.IsButtonEDown())
         {
-            //WHERE IS THE MANAGER!!!
+            /*
+            
+                This part has already been handle by GameManager
+             
+            */
         }
     }
 
@@ -285,7 +289,13 @@ public class MainCharacter : MonoBehaviour
         if ((Time.time - this.lastSwappingTime) * 1000 <= NUMBER_OF_MILLISECONDS_OF_TIMEOUT_FOR_SWAPPING)
             return;
 
-        if (this.IsButtonQDown())
+        if (this.bag == null)
+            return;
+
+        if (this.bag.IsAttacking())
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             this.lastSwappingTime = Time.time;
             this.bag.MoveToTheNextWeaponAsTheCurrentWeapon();
