@@ -54940,6 +54940,14 @@ PrefabInstance:
       propertyPath: _requiredKey
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1237048768041411262, guid: 6c7ebee1cafb66e4bbaf244f9c10b927, type: 3}
+      propertyPath: interactionRadius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4544522592515134198, guid: 6c7ebee1cafb66e4bbaf244f9c10b927, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7868366979614470008, guid: 6c7ebee1cafb66e4bbaf244f9c10b927, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.1479015
@@ -56177,7 +56185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4075589380517286759, guid: 51b7d45d505eb3349aab003919aa6318, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[8].line
-      value: 'But both exits are locked, unfortunately. '
+      value: 'But it is locked, unfortunately. '
       objectReference: {fileID: 0}
     - target: {fileID: 4075589380517286759, guid: 51b7d45d505eb3349aab003919aa6318, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[9].line
@@ -62452,11 +62460,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6592566948273698713, guid: 71b981ecd701b1745a25cc17a713c8b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.09
+      value: 18.05
       objectReference: {fileID: 0}
     - target: {fileID: 6592566948273698713, guid: 71b981ecd701b1745a25cc17a713c8b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -20.02
+      value: -18.7
       objectReference: {fileID: 0}
     - target: {fileID: 6592566948273698713, guid: 71b981ecd701b1745a25cc17a713c8b3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -63055,6 +63063,10 @@ PrefabInstance:
     - target: {fileID: 2723950442602952965, guid: 8382c46e995c0d24faf3dc649af20b64, type: 3}
       propertyPath: _requiredKey
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2723950442602952965, guid: 8382c46e995c0d24faf3dc649af20b64, type: 3}
+      propertyPath: interactionRadius
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5657807296889082216, guid: 8382c46e995c0d24faf3dc649af20b64, type: 3}
       propertyPath: m_Name
