@@ -257,7 +257,11 @@ public class MainCharacter : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.E))
         {
-            //WHERE IS THE MANAGER!!!
+            /*
+            
+                This part has already been handle by GameManager
+             
+            */
         }
     }
 
@@ -290,6 +294,12 @@ public class MainCharacter : MonoBehaviour
 
     private void UpdateCurrentlyUsedWeapon()
     {
+        if (this.bag == null)
+            return;
+
+        if (this.bag.IsAttacking())
+            return;
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             this.bag.MoveToTheNextWeaponAsTheCurrentWeapon();
