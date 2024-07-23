@@ -295,7 +295,7 @@ public class MainCharacter : MonoBehaviour
         if (this.bag.IsAttacking())
             return;
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (this.IsButtonQDown())
         {
             this.lastSwappingTime = Time.time;
             this.bag.MoveToTheNextWeaponAsTheCurrentWeapon();
