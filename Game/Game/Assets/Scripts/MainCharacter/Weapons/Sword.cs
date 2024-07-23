@@ -25,7 +25,6 @@ public class Sword : Weapon
         PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION", 200);
         PlayerPrefs.SetString(weaponName + ".damageCausedPerHit", "3");
         PlayerPrefs.SetString(weaponName + ".attacking", false.ToString());
-        PlayerPrefs.SetFloat(weaponName + ".attackStartTime", 0);
     }
     public override void SaveDataToPlayerPrefs()
     {
@@ -38,7 +37,6 @@ public class Sword : Weapon
         PlayerPrefs.SetFloat(weaponName + ".NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION", this.NUMBER_OF_MILLISECONDS_OF_ATTACK_DURATION);
         PlayerPrefs.SetString(weaponName + ".damageCausedPerHit", this.damageCausedPerHit.ToString());
         PlayerPrefs.SetString(weaponName + ".attacking", this.attacking.ToString());
-        PlayerPrefs.SetFloat(weaponName + ".attackStartTime", this.attackStartTime);
     }
 
     public override void LoadDataFromPlayerPrefs()
@@ -62,10 +60,7 @@ public class Sword : Weapon
 
         if (PlayerPrefs.HasKey(weaponName + ".attacking"))
             this.attacking = bool.Parse(PlayerPrefs.GetString(weaponName + ".attacking"));
-        
-        if (PlayerPrefs.HasKey(weaponName + ".attackStartTime"))
-            this.attackStartTime = PlayerPrefs.GetFloat(weaponName + ".attackStartTime");
-
+    
         this.partiallyInitialized = true;
     }
 
@@ -82,11 +77,11 @@ public class Sword : Weapon
 
         this.movingCollider = this.GetComponent<CapsuleCollider2D>();
 
+        this.attackStartTime = 0;
+
         if (!this.partiallyInitialized)
         {
             this.attacking = false;
-
-            this.attackStartTime = 0;
         }
 
         this.movingCollider.enabled = false;
