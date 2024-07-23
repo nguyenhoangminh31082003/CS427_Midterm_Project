@@ -7193,15 +7193,15 @@ Transform:
   m_Children:
   - {fileID: 1482964875}
   - {fileID: 1738772214}
-  - {fileID: 1765341248}
-  - {fileID: 1127839538}
   - {fileID: 1404990664}
-  - {fileID: 1119704648}
   - {fileID: 777135455}
   - {fileID: 1160544852}
+  - {fileID: 1119704648}
+  - {fileID: 1892990335}
+  - {fileID: 1765341248}
+  - {fileID: 1127839538}
   - {fileID: 1115593382}
   - {fileID: 2112291657}
-  - {fileID: 1892990335}
   m_Father: {fileID: 1953877060}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &526203089
@@ -8646,7 +8646,7 @@ GameObject:
   - component: {fileID: 777135457}
   - component: {fileID: 777135456}
   m_Layer: 0
-  m_Name: NorthWall (2)
+  m_Name: WestWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8724,9 +8724,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 4000
+  m_LinearDrag: 4000
+  m_AngularDrag: 4000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -8738,7 +8738,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &811192770
 GameObject:
   m_ObjectHideFlags: 0
@@ -10603,7 +10603,7 @@ GameObject:
   - component: {fileID: 1115593384}
   - component: {fileID: 1115593383}
   m_Layer: 0
-  m_Name: NorthWall (9)
+  m_Name: TheSouthWestWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10681,9 +10681,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 4000
+  m_LinearDrag: 4000
+  m_AngularDrag: 4000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -10695,7 +10695,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &1117085902
 GameObject:
   m_ObjectHideFlags: 0
@@ -10783,7 +10783,7 @@ GameObject:
   - component: {fileID: 1119704650}
   - component: {fileID: 1119704649}
   m_Layer: 0
-  m_Name: NorthWall (1)
+  m_Name: EastWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10861,9 +10861,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 4000
+  m_LinearDrag: 4000
+  m_AngularDrag: 4000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -10875,7 +10875,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &1127839537
 GameObject:
   m_ObjectHideFlags: 0
@@ -10888,7 +10888,7 @@ GameObject:
   - component: {fileID: 1127839540}
   - component: {fileID: 1127839539}
   m_Layer: 0
-  m_Name: NorthWall (8)
+  m_Name: TheRightSouthWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10966,9 +10966,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 4000
+  m_LinearDrag: 4000
+  m_AngularDrag: 4000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -10980,7 +10980,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &1160544851
 GameObject:
   m_ObjectHideFlags: 0
@@ -10993,7 +10993,7 @@ GameObject:
   - component: {fileID: 1160544854}
   - component: {fileID: 1160544853}
   m_Layer: 0
-  m_Name: NorthWall (5)
+  m_Name: TheWestWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11071,9 +11071,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 4000
+  m_LinearDrag: 4000
+  m_AngularDrag: 4000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -11085,7 +11085,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &1164753745
 GameObject:
   m_ObjectHideFlags: 0
@@ -12529,7 +12529,7 @@ GameObject:
   - component: {fileID: 1404990666}
   - component: {fileID: 1404990665}
   m_Layer: 0
-  m_Name: NorthWall (4)
+  m_Name: RightSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12607,9 +12607,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 4000
+  m_LinearDrag: 4000
+  m_AngularDrag: 4000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -12621,7 +12621,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &1426703420
 GameObject:
   m_ObjectHideFlags: 0
@@ -38425,9 +38425,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 4000
+  m_LinearDrag: 4000
+  m_AngularDrag: 4000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -38439,7 +38439,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &1489797286
 GameObject:
   m_ObjectHideFlags: 0
@@ -40909,7 +40909,7 @@ GameObject:
   - component: {fileID: 1738772216}
   - component: {fileID: 1738772215}
   m_Layer: 0
-  m_Name: NorthWall (3)
+  m_Name: LeftSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40987,9 +40987,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 4000
+  m_LinearDrag: 4000
+  m_AngularDrag: 4000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -41001,7 +41001,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &1765341247
 GameObject:
   m_ObjectHideFlags: 0
@@ -41014,7 +41014,7 @@ GameObject:
   - component: {fileID: 1765341250}
   - component: {fileID: 1765341249}
   m_Layer: 0
-  m_Name: NorthWall (7)
+  m_Name: TheLeftSouthWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41092,9 +41092,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 4000
+  m_LinearDrag: 4000
+  m_AngularDrag: 4000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -41106,7 +41106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &1770961824
 GameObject:
   m_ObjectHideFlags: 0
@@ -41231,7 +41231,7 @@ GameObject:
   - component: {fileID: 1892990337}
   - component: {fileID: 1892990336}
   m_Layer: 0
-  m_Name: NorthWall (6)
+  m_Name: TheEastWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41309,9 +41309,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 4000
+  m_LinearDrag: 4000
+  m_AngularDrag: 4000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -41323,7 +41323,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &1904294440
 GameObject:
   m_ObjectHideFlags: 0
@@ -63708,7 +63708,7 @@ GameObject:
   - component: {fileID: 2112291659}
   - component: {fileID: 2112291658}
   m_Layer: 0
-  m_Name: NorthWall (10)
+  m_Name: TheSouthEastWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63786,9 +63786,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 4000
+  m_LinearDrag: 4000
+  m_AngularDrag: 4000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -63800,7 +63800,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!114 &393996185224179046
 MonoBehaviour:
   m_ObjectHideFlags: 0
