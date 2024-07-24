@@ -56,3 +56,5 @@ The following list is the list of used resources and their references.
 - The sprites for the boss in level 4 - [Boss: Mecha-Stone Golem](https://darkpixel-kronovi.itch.io/mecha-golem-free?download&fbclid=IwZXh0bgNhZW0CMTAAAR04Xaji6pGf0MGo8BE9vb1vLxK3AqKzFa5kSncjbopbhSikIq7zhMLSfnQ_aem_rdrdHVlOQdvcSHZD6uA-oA#google_vignette)
 
 - The sprites for "The scrolls" - [Pixel vintage scroll ribbon manuscript parchment banner](https://www.freepik.com/premium-vector/pixel-vintage-scroll-ribbon-manuscript-parchment-banner_47929270.htm?fbclid=IwZXh0bgNhZW0CMTEAAR3k5dwapCSVtsmSX_ZMn7MvCEc35woCj0Ix61b2dEEYIQtySGPFgZZN-C4_aem_kJczRYmJ4_sEMsQePy8zbQ)
+
+- [Joystick Pack](https://assetstore.unity.com/packages/tools/input-management/joystick-pack-107631)
