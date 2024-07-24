@@ -38,3 +38,19 @@ Knight Destiny is an RPG game with puzzle-solving elements and a thrilling plotl
 - Level 5 Dialogue Background Music - Girl's Frontline, Poincaré Recurrence Soundtrack, Track name: [Demon](https://www.youtube.com/watch?v=f01I5QkDX90)
 
 - Final Scene Background Music - Girl's Frontline, Slow Shock Soundtrack, Track name: [Beloplechii](https://www.youtube.com/watch?v=lNjBZ0MvAlo)
+
+- The sprites for tiles used for tutorial scene and levels, some characters including "vampires", "skulls", "skeletons", "trainers", items including flags, torches, candles, boxes, chests, keys, coins, flasks, weapons (swords, bows and arrows), traps including spikes and flame throwers - [PIXEL_POEM DUNGEON TILESET II](https://pixel-poem.itch.io/dungeon-assetpuck)
+
+- Assets for fonts used in the game - [GB UNITY TEMPLATE](https://doctorm64.itch.io/gbunity)
+
+- The sprites for "heart", "coin", "boxes displaying weapons" used in UI displayed during the time when game is played - [How to make an 2D Top Down RPG in Unity](https://www.youtube.com/playlist?list=PL6bqhqO0Ba776ksb3F9P_xmUMT9WvmfFT)
+
+- The sprites for the "The Demon" or "The Crow", a character making appearance in level 5 - [Plague Crow](https://gabry-corti.itch.io/plague-crow?fbclid=IwZXh0bgNhZW0CMTAAAR039hlDIv6H-ex3O697owGs8CsHp9BdeLt125qZ8U3R7BTDpThLRYaHTrU_aem_WaQHYxGyyTvb0xbhwR3TMw)
+
+- The sprites used as the background for the displayed menu - [The Siege and the Sandfox: Pixel Art Game with UE4 (80.lv)](https://80.lv/articles/the-siege-and-the-sandfox-pixel-art-game-with-ue4)
+
+- The sprites for "The Ghosts" - [Round Ghost](https://pixerat.itch.io/round-ghost)
+
+- The sprites for the boss in level 4 - [Boss: Mecha-Stone Golem](https://darkpixel-kronovi.itch.io/mecha-golem-free?download&fbclid=IwZXh0bgNhZW0CMTAAAR04Xaji6pGf0MGo8BE9vb1vLxK3AqKzFa5kSncjbopbhSikIq7zhMLSfnQ_aem_rdrdHVlOQdvcSHZD6uA-oA#google_vignette)
+
+- The sprites for "The scrolls" - [Pixel vintage scroll ribbon manuscript parchment banner](https://www.freepik.com/premium-vector/pixel-vintage-scroll-ribbon-manuscript-parchment-banner_47929270.htm?fbclid=IwZXh0bgNhZW0CMTEAAR3k5dwapCSVtsmSX_ZMn7MvCEc35woCj0Ix61b2dEEYIQtySGPFgZZN-C4_aem_kJczRYmJ4_sEMsQePy8zbQ)
