@@ -122,6 +122,106 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &41640394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 41640396}
+  - component: {fileID: 41640395}
+  m_Layer: 0
+  m_Name: CutsceneScript (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &41640395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41640394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ed0b86abddd7d4682d2d8b9c747add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    dialogueLines:
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: I see, so that's your choice ...
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: Interestingly, your choice won't affect them whatsoever.
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: 'They are just victims of a much larger narrative. '
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: 'Their existences are just mere entertainment if you see it in the eye
+        of the demon. '
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: But you still make a choice, cause you want to see the current thing
+        crash and burn.
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: And beside, you can also make that choice again, over and over.
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: 'So let me ask you. Right now, what are you, dear player? '
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: 'So let me ask you. Right now, what are you, dear player? '
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: Do you still believe that you are the chosen king? Are you still think
+        that you are Joe Snow?
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: Or, are you the demon, ready to start another loop of tragedy?
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: 'Well, close your eyes, and open wide. '
+    - character:
+        name: Narrator
+        icon: {fileID: 21300000, guid: 8800ed922ef607b48ae9b7634d9a5521, type: 3}
+      line: 'I will show you something ... familiar. And tell me next time, who do
+        you think you are? '
+  transistionAnim: {fileID: 0}
+  transitionAtEnd: 1
+--- !u!4 &41640396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41640394}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &65728973
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,10 +557,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1416504440}
-        m_TargetAssemblyTypeName: ChoiceShowed, Assembly-CSharp
-        m_MethodName: NextLevel
-        m_Mode: 1
+      - m_Target: {fileID: 41640394}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -468,6 +568,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 109196180}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 972314228}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &109196183
 MonoBehaviour:
@@ -1857,10 +1981,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1416504440}
-        m_TargetAssemblyTypeName: ChoiceShowed, Assembly-CSharp
-        m_MethodName: NextLevel
-        m_Mode: 1
+      - m_Target: {fileID: 1416504438}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 41640394}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1869,9 +2005,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1416504438}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
+      - m_Target: {fileID: 972314228}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 109196180}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12483,81 +12631,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 817626511}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1079580799
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1079580800}
-  - component: {fileID: 1079580802}
-  - component: {fileID: 1079580801}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1079580800
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079580799}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1416504439}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 520.25006, y: 172.63382}
-  m_SizeDelta: {x: 932, y: 585.3522}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1079580801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079580799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.22352941, g: 0.2, b: 0.2901961, a: 0.28235295}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1079580802
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079580799}
-  m_CullTransparentMesh: 1
 --- !u!1 &1142077054
 GameObject:
   m_ObjectHideFlags: 0
@@ -13048,7 +13121,6 @@ RectTransform:
   m_Children:
   - {fileID: 109196181}
   - {fileID: 972314229}
-  - {fileID: 1079580800}
   m_Father: {fileID: 1854212808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -15207,3 +15279,4 @@ SceneRoots:
   - {fileID: 817626511}
   - {fileID: 1854212808}
   - {fileID: 1585037468}
+  - {fileID: 41640396}

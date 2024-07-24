@@ -24,11 +24,22 @@ public class Cutscene : MonoBehaviour
         StartCoroutine(LoadLevel());
     }
 
+    public void BackToMenu() {
+        SceneManager.LoadSceneAsync(0);
+    }
+
     IEnumerator LoadLevel()
     {
         transistionAnim.SetTrigger("End");
         yield return new WaitForSeconds(1);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        transistionAnim.SetTrigger("Start");
+    }
+    IEnumerator Reload()
+    {
+        transistionAnim.SetTrigger("End");
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadSceneAsync(0);
         transistionAnim.SetTrigger("Start");
     }
 
@@ -41,7 +52,11 @@ public class Cutscene : MonoBehaviour
         }
         else if (transition && !DialogueManager.Instance.isDialogueActive) {
             if (transitionAtEnd)
-                NextLevel();
+                if (SceneManager.GetActiveScene().buildIndex == 8)
+                {
+                    BackToMenu();
+                }
+                else NextLevel();
             transition = false;
         }
     }
