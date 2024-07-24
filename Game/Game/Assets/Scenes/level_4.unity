@@ -6282,7 +6282,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 891793295971509651, guid: 6c7ebee1cafb66e4bbaf244f9c10b927, type: 3}
       propertyPath: m_Name
-      value: door1 (1)
+      value: upper_door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237048768041411262, guid: 6c7ebee1cafb66e4bbaf244f9c10b927, type: 3}
+      propertyPath: interactionRadius
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 7868366979614470008, guid: 6c7ebee1cafb66e4bbaf244f9c10b927, type: 3}
       propertyPath: m_LocalPosition.x
@@ -84545,7 +84549,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 891793295971509651, guid: 6c7ebee1cafb66e4bbaf244f9c10b927, type: 3}
       propertyPath: m_Name
-      value: door1
+      value: lower_door
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237048768041411262, guid: 6c7ebee1cafb66e4bbaf244f9c10b927, type: 3}
+      propertyPath: interactionRadius
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 5101572230200064253, guid: 6c7ebee1cafb66e4bbaf244f9c10b927, type: 3}
       propertyPath: m_LocalPosition.x
