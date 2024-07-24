@@ -17,6 +17,8 @@ Knight Destiny is an RPG game with puzzle-solving elements and a thrilling plotl
 
 ## Resource references
 
+The following list is the list of used resources and their references.
+
 - Tutorial Scene Background Music - Girl's Frontline 2: Exile Original Soundtrack, Track - Name: [Funny](https://www.youtube.com/watch?v=wNqLuZyHImk&list=PL6N1UyX9iZqsOczU6QhCHEqNEVfyOg31K&index=21&t=92s)
 
 - Intro Scene Background Music - Fate/Grand Order Original Soundtrack I, Track - Name [Flame Contaminated City: Fuyuki](https://www.youtube.com/watch?v=pJvSaxBYOkw&list=PLdR7m7PFLzQ7Yb6xmmuqEl6FjWTcwhlh_&index=8)
